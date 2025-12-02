@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ca" translate="no">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Capítol VI: Renaixement - El Manuscrit</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Lato:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root { --bg-color: #121212; --card-bg: #1e1e1e; --text-main: #e0d6c2; --text-muted: #a8a095; --accent: #c0392b; }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { background-color: var(--bg-color); color: var(--text-main); font-family: 'Lato', sans-serif; line-height: 1.6; padding: 20px; max-width: 600px; margin: 0 auto; }
+        h1, h3 { font-family: 'Cinzel', serif; color: #fff; letter-spacing: 1px; }
+        h1 { font-size: 1.8rem; text-align: center; margin-bottom: 10px; border-bottom: 2px solid var(--accent); padding-bottom: 10px; }
+        .subtitle { text-align: center; font-size: 0.9rem; color: var(--text-muted); margin-bottom: 25px; text-transform: uppercase; }
+        .img-container { width: 100%; max-height: 250px; background-color: #333; border-radius: 8px; margin-bottom: 20px; overflow: hidden; border: 1px solid #444; }
+        .img-container img { width: 100%; height: 100%; object-fit: cover; display: block; }
+        .card { background-color: var(--card-bg); padding: 20px; border-radius: 12px; margin-bottom: 20px; box-shadow: 0 4px 6px rgba(0,0,0,0.3); }
+        .narrative-text { font-style: italic; border-left: 3px solid var(--accent); padding-left: 15px; margin-top: 15px; color: #dcdcdc; }
+        .enigma-box { background-color: #2c2c2c; border: 1px solid var(--accent); padding: 20px; border-radius: 8px; margin-top: 20px; text-align: center; }
+        .enigma-icon { font-size: 2rem; margin-bottom: 10px; display: block; }
+        input[type="text"] { width: 100%; padding: 15px; font-size: 1.2rem; font-family: 'Cinzel', serif; background-color: #1a1a1a; border: 2px solid #444; color: white; border-radius: 8px; margin: 15px 0; text-align: center; text-transform: uppercase; }
+        .btn { width: 100%; padding: 15px; font-size: 1rem; font-weight: bold; text-transform: uppercase; border: none; border-radius: 8px; cursor: pointer; font-family: 'Cinzel', serif; }
+        .btn-primary { background-color: var(--accent); color: white; }
+        .info-toggle { background: none; border: none; color: var(--text-muted); text-decoration: underline; cursor: pointer; font-size: 0.9rem; margin-top: 15px; display: block; width: 100%; }
+        .info-content { display: none; margin-top: 15px; font-size: 0.9rem; background: #151515; padding: 15px; border-radius: 8px; text-align: left; }
+        #feedback-msg { margin-top: 15px; font-weight: bold; min-height: 1.5em; color: var(--accent); }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Capítol VI: Senyals de Pedra</h1>
+        <div class="subtitle">Casa de l'Ardiaca · Plaça Nova</div>
+    </header>
+    <div class="img-container">
+        <img src="../imagenes/ardiaca.jpg" alt="Portada de la Casa de l'Ardiaca amb bústia">
+    </div>
+    <section class="card">
+        <p>“Has tornat a la Plaça Nova. Davant teu s'alça la Casa de l'Ardiaca. Tot i que els seus fonaments són romans, la seva portada et parla en el llenguatge del Renaixement.”</p>
+        <p class="narrative-text">“Davant la casa de l'ardiaca, tres senyals guarden el secret. Compta les columnes que sostenen l'entrada, descobreix l'animal que mai arriba, i anomena l'escut que protegeix la pedra. Només llavors trobaràs la clau oculta.”</p>
+    </section>
+    <div id="enigma-container">
+        <section class="enigma-box">
+            <span class="enigma-icon">🛡️</span>
+            <h3>La Combinació de l'Ardiaca</h3>
+            <p>Observa la façana i completa la fórmula:</p>
+            <ul style="text-align: left; list-style: none; padding-left: 10px; font-size: 0.9rem; line-height: 1.8;">
+                <li>1. Nombre de <strong>columnes</strong> estriades als costats de la porta.</li>
+                <li>2. Inicial de l'<strong>animal</strong> (rèptil) tallat a la bústia.</li>
+                <li>3. Nom de l'objecte heràldic sobre la <strong>llinda</strong> de la porta.</li>
+            </ul>
+            <p style="margin-top:15px; font-weight: bold; color: var(--text-muted); font-size: 0.9rem;">FORMAT: Nº-LLETRA-PARAULA</p>
+            <label for="answer" style="display:none;">La teva resposta</label>
+            <input type="text" id="answer" placeholder="">
+            <button class="btn btn-primary" onclick="checkAnswer()">Validar Codi</button>
+            <div id="feedback-msg"></div>
+            <button class="info-toggle" onclick="toggleHint()">Necessites ajuda visual?</button>
+            <div id="hint-box" class="info-content">
+                <p>1. Mira als flancs de la porta: hi ha <strong>2</strong> columnes.</p>
+                <p>2. Mira la bústia a la dreta: és una Tortuga (<strong>T</strong>).</p>
+                <p>3. Mira a dalt de tot, al triangle: és un <strong>ESCUT</strong>.</p>
+            </div>
+        </section>
+    </div>
+    <script>
+        // Solució: 2TESCUT
+        function checkAnswer() {
+            let userIn = document.getElementById('answer').value.toUpperCase().trim();
+            userIn = userIn.replace(/[\s-]/g, '');
+            if (userIn === "2TESCUT") {
+                window.location.href = 'parada6-recompensa-ca.html';
+            } else {
+                document.getElementById('feedback-msg').textContent = "Combinació incorrecta. Observa bé els detalls de l'entrada.";
+            }
+        }
+        function toggleHint() {
+            const box = document.getElementById('hint-box');
+            box.style.display = box.style.display === 'block' ? 'none' : 'block';
+        }
+    </script>
+</body>
+</html>

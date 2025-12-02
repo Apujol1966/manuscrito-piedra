@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="es" translate="no">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Capítulo VII: Ilustración - El Manuscrito</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Lato:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root { --bg-color: #121212; --card-bg: #1e1e1e; --text-main: #e0d6c2; --text-muted: #a8a095; --accent: #c0392b; --line-color: #e0d6c2; }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { background-color: var(--bg-color); color: var(--text-main); font-family: 'Lato', sans-serif; line-height: 1.6; padding: 20px; max-width: 600px; margin: 0 auto; }
+        h1, h3 { font-family: 'Cinzel', serif; color: #fff; letter-spacing: 1px; }
+        h1 { font-size: 1.8rem; text-align: center; margin-bottom: 10px; border-bottom: 2px solid var(--accent); padding-bottom: 10px; }
+        .subtitle { text-align: center; font-size: 0.9rem; color: var(--text-muted); margin-bottom: 25px; text-transform: uppercase; }
+        .img-container { width: 100%; max-height: 250px; background-color: #333; border-radius: 8px; margin-bottom: 20px; overflow: hidden; border: 1px solid #444; }
+        .img-container img { width: 100%; height: 100%; object-fit: cover; display: block; }
+        .card { background-color: var(--card-bg); padding: 20px; border-radius: 12px; margin-bottom: 20px; box-shadow: 0 4px 6px rgba(0,0,0,0.3); }
+        .narrative-text { font-style: italic; border-left: 3px solid var(--accent); padding-left: 15px; margin-top: 15px; color: #dcdcdc; }
+        .enigma-box { background-color: #2c2c2c; border: 1px solid var(--accent); padding: 20px; border-radius: 8px; margin-top: 20px; text-align: center; }
+        .enigma-icon { font-size: 2rem; margin-bottom: 10px; display: block; }
+        input[type="text"] { width: 100%; padding: 15px; font-size: 1.2rem; font-family: 'Cinzel', serif; background-color: #1a1a1a; border: 2px solid #444; color: white; border-radius: 8px; margin: 15px 0; text-align: center; text-transform: uppercase; }
+        .btn { width: 100%; padding: 15px; font-size: 1rem; font-weight: bold; text-transform: uppercase; border: none; border-radius: 8px; cursor: pointer; font-family: 'Cinzel', serif; }
+        .btn-primary { background-color: var(--accent); color: white; }
+        .info-toggle { background: none; border: none; color: var(--text-muted); text-decoration: underline; cursor: pointer; font-size: 0.9rem; margin-top: 15px; display: block; width: 100%; }
+        .info-content { display: none; margin-top: 15px; font-size: 0.9rem; background: #151515; padding: 15px; border-radius: 8px; text-align: left; }
+        #feedback-msg { margin-top: 15px; font-weight: bold; min-height: 1.5em; color: var(--accent); }
+
+        /* --- ESTILOS DEL CIFRADO MASÓNICO (CORREGIDOS) --- */
+        
+        /* Contenedor de las claves */
+        .keys-container { display: flex; justify-content: center; gap: 15px; margin-bottom: 25px; flex-wrap: wrap; }
+        
+        /* Rejillas (Tic-Tac-Toe) */
+        .grid-key { display: grid; grid-template-columns: repeat(3, 1fr); width: 90px; height: 90px; }
+        .cell { 
+            display: flex; align-items: center; justify-content: center; 
+            font-family: 'Cinzel', serif; font-weight: bold; color: #fff; font-size: 14px;
+            border-color: var(--line-color); border-style: solid; border-width: 0;
+        }
+        
+        /* BORDES INTERNOS DE LA REJILLA (CLAVE) */
+        /* Fila 1 */
+        .cell:nth-child(1) { border-right-width: 3px; border-bottom-width: 3px; } /* A */
+        .cell:nth-child(2) { border-left-width: 3px; border-right-width: 3px; border-bottom-width: 3px; } /* B */
+        .cell:nth-child(3) { border-left-width: 3px; border-bottom-width: 3px; } /* C */
+        /* Fila 2 */
+        .cell:nth-child(4) { border-top-width: 3px; border-right-width: 3px; border-bottom-width: 3px; } /* D */
+        .cell:nth-child(5) { border-width: 3px; } /* E (Caja cerrada) */
+        .cell:nth-child(6) { border-top-width: 3px; border-left-width: 3px; border-bottom-width: 3px; } /* F */
+        /* Fila 3 */
+        .cell:nth-child(7) { border-top-width: 3px; border-right-width: 3px; } /* G */
+        .cell:nth-child(8) { border-left-width: 3px; border-right-width: 3px; border-top-width: 3px; } /* H */
+        .cell:nth-child(9) { border-left-width: 3px; border-top-width: 3px; } /* I */
+
+        /* Clave en X para la S */
+        .x-key { 
+            position: relative; width: 60px; height: 60px; margin-top: 15px; 
+            display: flex; align-items: center; justify-content: center;
+        }
+        /* Dibujamos la X con CSS */
+        .x-lines { position: absolute; width: 100%; height: 100%; top: 0; left: 0; }
+        .x-lines::before, .x-lines::after {
+            content: ''; position: absolute; background: var(--line-color);
+            top: 50%; left: 50%; transform: translate(-50%, -50%) rotate(45deg);
+        }
+        .x-lines::before { width: 100%; height: 3px; } /* Línea 1 */
+        .x-lines::after { width: 3px; height: 100%; } /* Línea 2 */
+        
+        .letter-s { position: absolute; top: 5px; font-family: 'Cinzel', serif; font-size: 14px; font-weight: bold; }
+
+        /* --- SÍMBOLOS DEL MENSAJE (Dibujados para coincidir con la clave) --- */
+        .message-row { display: flex; justify-content: center; gap: 8px; margin: 20px 0; flex-wrap: wrap; }
+        .symbol { width: 30px; height: 30px; border-color: var(--accent); border-style: solid; border-width: 0; position: relative; }
+        .symbol.dot::after { content: '•'; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: var(--accent); font-size: 20px; line-height: 0; }
+
+        /* DEFINICIÓN DE FORMAS (Coincidiendo con la clave) */
+        /* P (Rejilla 2, abajo-izq): Techo y Pared Derecha + Punto */
+        .sym-p { border-top-width: 3px; border-right-width: 3px; } 
+        
+        /* A (Rejilla 1, arriba-izq): Pared Derecha y Suelo */
+        .sym-a { border-right-width: 3px; border-bottom-width: 3px; }
+        
+        /* D (Rejilla 1, medio-izq): Techo, Pared Derecha, Suelo */
+        .sym-d { border-top-width: 3px; border-right-width: 3px; border-bottom-width: 3px; }
+        
+        /* E (Rejilla 1, centro): Caja completa */
+        .sym-e { border-width: 3px; }
+        
+        /* L (Rejilla 2, arriba-der): Pared Izquierda y Suelo + Punto */
+        .sym-l { border-left-width: 3px; border-bottom-width: 3px; }
+        
+        /* S (Clave X, arriba): Forma de V */
+        .sym-s { 
+            width: 20px; height: 20px; 
+            border-bottom: 3px solid var(--accent); 
+            border-right: 3px solid var(--accent);
+            transform: rotate(45deg); /* Gira para hacer la V */
+            margin-top: 5px;
+        }
+
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Capítulo VII: La Logia Secreta</h1>
+        <div class="subtitle">Carrer del Veguer · Siglo XVIII</div>
+    </header>
+    
+    <div class="img-container">
+        <img src="../imagenes/veguer.jpg" alt="Fachada gótica de la Casa Padellàs">
+    </div>
+
+    <section class="card">
+        <p>“Entras en el Siglo de las Luces y las Sombras. Tras la derrota de 1714, Barcelona cambia. Se imponen el orden y la razón, pero la disidencia se esconde en sociedades secretas.”</p>
+        <p class="narrative-text">“Frente a ti tienes la **Casa Padellàs**, un palacio gótico que fue trasladado piedra a piedra a esta calle en 1931. Pero su origen es noble. Una logia masónica ha dejado encriptado el apellido de la familia que construyó este palacio.”</p>
+    </section>
+
+    <div id="enigma-container">
+        <section class="enigma-box">
+            <span class="enigma-icon">👁️</span>
+            <h3>El Código Masónico</h3>
+            <p>Usa la <strong>Clave Maestra</strong> para encontrar las letras en la cuadrícula y descifrar el apellido oculto.</p>
+            
+            <!-- CLAVES VISUALES -->
+            <div style="text-align: center; font-size: 0.7rem; color: #aaa; margin-bottom: 5px;">CLAVES DE REFERENCIA</div>
+            <div class="keys-container">
+                <!-- Rejilla 1 (Normal) -->
+                <div class="grid-key">
+                    <div class="cell">A</div><div class="cell">B</div><div class="cell">C</div>
+                    <div class="cell">D</div><div class="cell">E</div><div class="cell">F</div>
+                    <div class="cell">G</div><div class="cell">H</div><div class="cell">I</div>
+                </div>
+                <!-- Rejilla 2 (Con Puntos) -->
+                <div class="grid-key">
+                    <div class="cell">J•</div><div class="cell">K•</div><div class="cell">L•</div>
+                    <div class="cell">M•</div><div class="cell">N•</div><div class="cell">O•</div>
+                    <div class="cell">P•</div><div class="cell">Q•</div><div class="cell">R•</div>
+                </div>
+                <!-- Clave X para la S -->
+                <div class="x-key">
+                    <div class="x-lines"></div>
+                    <div class="letter-s">S</div>
+                </div>
+            </div>
+
+            <!-- MENSAJE CIFRADO -->
+            <div style="text-align: center; font-size: 0.8rem; color: #aaa; border-top: 1px dashed #444; padding-top:10px;">DESCIFRA ESTOS SÍMBOLOS:</div>
+            
+            <div class="message-row">
+                <div class="symbol sym-p dot" title="P"></div>
+                <div class="symbol sym-a" title="A"></div>
+                <div class="symbol sym-d" title="D"></div>
+                <div class="symbol sym-e" title="E"></div>
+                <div class="symbol sym-l dot" title="L"></div>
+                <div class="symbol sym-l dot" title="L"></div>
+                <div class="symbol sym-a" title="A"></div>
+                <div class="symbol sym-s" title="S"></div>
+            </div>
+            
+            <label for="answer" style="display:none;">Tu respuesta</label>
+            <input type="text" id="answer" placeholder="Escribe el Apellido">
+            <button class="btn btn-primary" onclick="checkAnswer()">Validar</button>
+            
+            <div id="feedback-msg"></div>
+            
+            <button class="info-toggle" onclick="toggleHint()">¿Cómo se lee esto?</button>
+            <div id="hint-box" class="info-content">
+                <p>Busca la forma del símbolo en las rejillas de arriba. El símbolo es el "muro" que rodea a la letra.</p>
+                <p>1. El primer símbolo tiene techo y pared derecha, y lleva punto. Busca en la segunda rejilla (la de puntos). Es la <strong>P</strong>.</p>
+                <p>2. El segundo símbolo es una esquina (pared derecha y suelo). Busca en la primera rejilla. Es la <strong>A</strong>.</p>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        const SOLUTION = "PADELLAS";
+
+        function checkAnswer() {
+            let userIn = document.getElementById('answer').value.toUpperCase().trim();
+            userIn = userIn.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+            
+            if (userIn === SOLUTION) {
+                window.location.href = 'parada7-recompensa-es.html';
+            } else {
+                document.getElementById('feedback-msg').textContent = "Código incorrecto. Fíjate bien en los bordes de cada letra.";
+            }
+        }
+
+        function toggleHint() {
+            const box = document.getElementById('hint-box');
+            box.style.display = box.style.display === 'block' ? 'none' : 'block';
+        }
+    </script>
+</body>
+</html>

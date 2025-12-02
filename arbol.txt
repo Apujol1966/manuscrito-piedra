@@ -1,0 +1,28 @@
+/ (CARPETA PRINCIPAL: "escape-room-barcelona")
+|
+|-- index.html           (Selector de idioma: ES | CA | EN)
+|-- es.html              (Página de inicio en ESPAÑOL)
+|-- ca.html              (Página de inicio en CATALÁN)
+|-- en.html              (Página de inicio en INGLÉS)
+|
+|-- imagenes/
+|   |-- portada.jpg
+|   |-- roma.jpg
+|   `-- (el resto de imágenes de ambientación...)
+|
+|-- adulto/
+|   |-- parada1-enigma-es.html
+|   |-- parada1-recompensa-es.html
+|   |
+|   |-- parada1-enigma-ca.html
+|   |-- parada1-recompensa-ca.html
+|   |
+|   |-- parada1-enigma-en.html
+|   |-- parada1-recompensa-en.html
+|   |
+|   |-- parada2-enigma-es.html
+|   |-- ... (y así sucesivamente para las 9 paradas y 3 idiomas)
+|   |
+|   `-- diploma.html       (Página final para generar el diploma, probablemente multilingüe)
+|
+`-- verificar.html         (Página para la validación de diplomas)

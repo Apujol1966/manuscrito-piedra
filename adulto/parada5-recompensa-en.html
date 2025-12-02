@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" translate="no">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chapter V: The Call - Uncovered</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Lato:wght@400;700&display=swap" rel="stylesheet">
+    <style>:root{--bg-color:#121212;--card-bg:#1e1e1e;--text-main:#e0d6c2;--text-muted:#a8a095;--accent:#c0392b;--success:#27ae60}*{box-sizing:border-box;margin:0;padding:0}body{background-color:var(--bg-color);color:var(--text-main);font-family:'Lato',sans-serif;line-height:1.6;padding:20px;max-width:600px;margin:0 auto}h1,h2,h3,h4{font-family:'Cinzel',serif;color:#fff;letter-spacing:1px}h1{font-size:1.8rem;text-align:center;margin-bottom:25px}.card{background-color:var(--card-bg);padding:20px;border-radius:12px;margin-bottom:20px;box-shadow:0 4px 6px rgba(0,0,0,.3)}.btn{width:100%;padding:15px 20px;font-size:1rem;font-weight:700;text-transform:uppercase;border:none;border-radius:8px;cursor:pointer;font-family:'Cinzel',serif;text-decoration:none;display:inline-block;text-align:center;margin-top:10px}.btn-success{background-color:var(--success);color:#fff}.btn-secondary{background-color:transparent;border:1px solid var(--text-muted);color:var(--text-muted);font-size:.8rem}.btn-primary{background-color:var(--accent);color:#fff}.btn-map{background-color:#3498db;color:#fff}.source-text{font-size:.8rem;margin-top:10px;color:#666;display:block}.knowledge-reward{padding-top:20px;border-top:1px solid #444;text-align:left}.knowledge-reward h3{color:var(--success);text-align:center;margin-bottom:15px}.knowledge-reward p{margin-bottom:10px}.knowledge-reward strong{color:#fff}#next-clue-box{margin-top:20px;padding:15px;background-color:#2c2c2c;border-left:3px solid var(--success);border-radius:4px}.feedback-success{text-align:center;font-weight:700;color:var(--success);font-size:1.2rem;margin-bottom:20px;animation:fadeIn 1s ease-in}@keyframes fadeIn{from{opacity:0}to{opacity:1}}.modal-overlay{position:fixed;top:0;left:0;width:100%;height:100%;background-color:rgba(0,0,0,.85);display:none;align-items:center;justify-content:center;z-index:1000;padding:20px}.modal-content{background-color:var(--card-bg);padding:30px;border-radius:12px;text-align:center;width:100%;max-width:500px;border-top:4px solid var(--accent)}.modal-content h2{margin-bottom:15px}.modal-content p{color:var(--text-muted);margin-bottom:25px}.modal-input{width:100%;padding:10px;font-size:1rem;background-color:#1a1a1a;border:2px solid #444;color:#fff;border-radius:8px;margin:15px 0;text-align:center;text-transform:uppercase}#guardian-feedback{font-size:.9rem;color:var(--accent);min-height:1.2em;margin-top:10px}.extra-hint-content{display:none;margin-top:15px;padding-top:15px;border-top:1px dashed #444}</style>
+</head>
+<body>
+    <div id="guardian-modal" class="modal-overlay">
+        <div class="modal-content">
+            <h2>Guardian's Test</h2>
+            <p id="guardian-question"></p>
+            <input type="text" id="guardian-answer" class="modal-input">
+            <button id="guardian-submit" class="btn btn-primary">Validate</button>
+            <div id="guardian-feedback"></div>
+        </div>
+    </div>
+    <header><h1>Chapter V: Hidden Wisdom</h1></header>
+    <div id="reward-container">
+        <div class="card">
+            <div class="feedback-success">72! The number of knowledge.</div>
+            <div class="knowledge-reward">
+                <h3>The Sage of the Call</h3>
+                <p><strong>Salomó ben Adret (Rashba):</strong> This street bears his name. He was the rabbi of Barcelona for 50 years in the 13th century. His wisdom was so respected that kings and scholars from all over Europe sent him consultations. He was also the moneylender to King James I himself.</p>
+                <p><strong>The Oldest House:</strong> The building at number 6 is considered the oldest inhabited house in Barcelona. Imagine the generations that have crossed that threshold since the 12th century.</p>
+                <span class="source-text">Source: MUHBA / Call of Barcelona</span>
+            </div>
+            <div id="next-clue-box">
+                <p><strong>JUMP CLUE:</strong><br>Your path now leads you to the Renaissance. You must return to the Cathedral and look for the <strong>Archdeacon's House</strong> (Casa de l'Ardiaca). There, an inscription waits to be counted, and a marble mailbox keeps secrets.</p>
+                <button id="hint-btn-1" class="btn btn-secondary" onclick="askGuardian(1)">Unsure where to go? Get a Direct Clue</button>
+                <div id="hint-level-2" class="extra-hint-content">
+                    <h4>Direct Clue</h4>
+                    <p>Head back to <strong>Plaça Nova</strong> (where you started with the Roman letters). Facing the Cathedral, to the right, you will see the <strong>Casa de l'Ardiaca</strong>. Look for a modernist mailbox with swallows and a turtle.</p>
+                    <button id="hint-btn-2" class="btn btn-secondary" onclick="askGuardian(2)">I'm still lost. Show me the map</button>
+                </div>
+                <div id="hint-level-3" class="extra-hint-content">
+                     <h4>Exact Location</h4>
+                     <a href="https://www.google.com/maps/search/?api=1&query=Casa+de+l'Ardiaca,Barcelona" target="_blank" class="btn btn-map">Open in Google Maps</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <a href="parada6-enigma-en.html" class="btn btn-success" onclick="saveProgress()">Begin Chapter VI (Renaissance)</a>
+    <script>
+        function saveProgress() { localStorage.setItem('progresoJuego', '6'); }
+        const guardianPuzzles = [
+            { question: "To which famous rabbi is this street dedicated?", answer: "RASHBA" }, 
+            { question: "You are heading to the Archdeacon's House. What architectural style is your next clue looking for?", answer: "RENAISSANCE" }
+        ];
+        const feedbackError = 'Incorrect answer. Check the text.';
+        const modal = document.getElementById('guardian-modal'); const questionEl = document.getElementById('guardian-question'); const answerEl = document.getElementById('guardian-answer'); const submitBtn = document.getElementById('guardian-submit'); const feedbackEl = document.getElementById('guardian-feedback'); let levelToUnlock = 0;
+        function askGuardian(level) { levelToUnlock = level; const puzzle = guardianPuzzles[level - 1]; questionEl.textContent = puzzle.question; answerEl.value = ''; feedbackEl.textContent = ''; modal.style.display = 'flex'; answerEl.focus(); }
+        submitBtn.onclick = () => { const puzzle = guardianPuzzles[levelToUnlock - 1]; const userAnswer = answerEl.value.toUpperCase().trim(); const validAnswers1 = ["RASHBA", "ADRET", "SALOMO", "BEN ADRET"]; let isCorrect = false; if (levelToUnlock === 1) { isCorrect = validAnswers1.some(ans => userAnswer.includes(ans)); } else { isCorrect = userAnswer.includes(puzzle.answer); } if (isCorrect) { modal.style.display = 'none'; revealHint(levelToUnlock); } else { feedbackEl.textContent = feedbackError; } };
+        function revealHint(level) { if (level === 1) { document.getElementById('hint-level-2').style.display = 'block'; document.getElementById('hint-btn-1').style.display = 'none'; } else if (level === 2) { document.getElementById('hint-level-3').style.display = 'block'; document.getElementById('hint-btn-2').style.display = 'none'; } }
+    </script>
+</body>
+</html>

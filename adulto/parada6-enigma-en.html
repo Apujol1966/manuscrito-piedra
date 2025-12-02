@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" translate="no">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chapter VI: Renaissance - The Manuscript</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Lato:wght@400;700&display=swap" rel="stylesheet">
+    <style>:root{--bg-color:#121212;--card-bg:#1e1e1e;--text-main:#e0d6c2;--text-muted:#a8a095;--accent:#c0392b}*{box-sizing:border-box;margin:0;padding:0}body{background-color:var(--bg-color);color:var(--text-main);font-family:'Lato',sans-serif;line-height:1.6;padding:20px;max-width:600px;margin:0 auto}h1,h3{font-family:'Cinzel',serif;color:#fff;letter-spacing:1px}h1{font-size:1.8rem;text-align:center;margin-bottom:10px;border-bottom:2px solid var(--accent);padding-bottom:10px}.subtitle{text-align:center;font-size:.9rem;color:var(--text-muted);margin-bottom:25px;text-transform:uppercase}.img-container{width:100%;max-height:250px;background-color:#333;border-radius:8px;margin-bottom:20px;overflow:hidden;border:1px solid #444}.img-container img{width:100%;height:100%;object-fit:cover;display:block}.card{background-color:var(--card-bg);padding:20px;border-radius:12px;margin-bottom:20px;box-shadow:0 4px 6px rgba(0,0,0,.3)}.narrative-text{font-style:italic;border-left:3px solid var(--accent);padding-left:15px;margin-top:15px;color:#dcdcdc}.enigma-box{background-color:#2c2c2c;border:1px solid var(--accent);padding:20px;border-radius:8px;margin-top:20px;text-align:center}.enigma-icon{font-size:2rem;margin-bottom:10px;display:block}input[type="text"]{width:100%;padding:15px;font-size:1.2rem;font-family:'Cinzel',serif;background-color:#1a1a1a;border:2px solid #444;color:#fff;border-radius:8px;margin:15px 0;text-align:center;text-transform:uppercase}.btn{width:100%;padding:15px;font-size:1rem;font-weight:700;text-transform:uppercase;border:none;border-radius:8px;cursor:pointer;font-family:'Cinzel',serif}.btn-primary{background-color:var(--accent);color:#fff}.info-toggle{background:0 0;border:none;color:var(--text-muted);text-decoration:underline;cursor:pointer;font-size:.9rem;margin-top:15px}.info-content{display:none;margin-top:15px;font-size:.9rem;background:#151515;padding:15px;border-radius:8px;text-align:left}#feedback-msg{margin-top:15px;font-weight:700;min-height:1.5em;color:var(--accent)}</style>
+</head>
+<body>
+    <header>
+        <h1>Chapter VI: Stone Signals</h1>
+        <div class="subtitle">Casa de l'Ardiaca · Plaça Nova</div>
+    </header>
+    <div class="img-container">
+        <img src="../imagenes/ardiaca.jpg" alt="Renaissance facade of the Archdeacon's House">
+    </div>
+    <section class="card">
+        <p>“You have returned to Plaça Nova. Before you stands the Archdeacon's House. Although its foundations are Roman, its portal speaks to you in the language of the Renaissance.”</p>
+        <p class="narrative-text">“Before the Archdeacon's house, three signs keep the secret. Count the columns that support the entrance, discover the animal that never arrives, and name the shield that protects the stone. Only then will you find the hidden key.”</p>
+    </section>
+    <div id="enigma-container">
+        <section class="enigma-box">
+            <span class="enigma-icon">🛡️</span>
+            <h3>The Archdeacon's Combination</h3>
+            <p>Observe the facade and complete the formula:</p>
+            <ul style="text-align: left; list-style: none; padding-left: 10px; font-size: 0.9rem; line-height: 1.8;">
+                <li>1. Number of striated <strong>columns</strong> flanking the door.</li>
+                <li>2. Initial of the <strong>animal</strong> (reptile) carved on the mailbox.</li>
+                <li>3. Name of the heraldic object above the <strong>lintel</strong> of the door.</li>
+            </ul>
+            <p style="margin-top:15px; font-weight: bold; color: var(--text-muted); font-size: 0.9rem;">FORMAT: Nº-LETTER-WORD</p>
+            <label for="answer" style="display:none;">Your answer</label>
+            <input type="text" id="answer" placeholder="">
+            <button class="btn btn-primary" onclick="checkAnswer()">Validate Code</button>
+            <div id="feedback-msg"></div>
+            <button class="info-toggle" onclick="toggleHint()">Need visual help?</button>
+            <div id="hint-box" class="info-content">
+                <p>1. Look at the flanks of the door: there are <strong>2</strong> columns.</p>
+                <p>2. Look at the mailbox on the right: it is a Turtle (<strong>T</strong>).</p>
+                <p>3. Look at the very top, in the triangle: it is a <strong>SHIELD</strong>.</p>
+            </div>
+        </section>
+    </div>
+    <script>
+        // Solution: 2TSHIELD
+        function checkAnswer() {
+            let userIn = document.getElementById('answer').value.toUpperCase().trim();
+            userIn = userIn.replace(/[\s-]/g, '');
+            if (userIn === "2TSHIELD") {
+                window.location.href = 'parada6-recompensa-en.html';
+            } else {
+                document.getElementById('feedback-msg').textContent = "Incorrect combination. Look closely at the entrance details.";
+            }
+        }
+        function toggleHint() {
+            const box = document.getElementById('hint-box');
+            box.style.display = box.style.display === 'block' ? 'none' : 'block';
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="es" translate="no">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Capítulo III: Al-Ándalus - El Manuscrito</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Lato:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root { --bg-color: #121212; --card-bg: #1e1e1e; --text-main: #e0d6c2; --text-muted: #a8a095; --accent: #c0392b; }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { background-color: var(--bg-color); color: var(--text-main); font-family: 'Lato', sans-serif; line-height: 1.6; padding: 20px; max-width: 600px; margin: 0 auto; }
+        h1, h3 { font-family: 'Cinzel', serif; color: #fff; letter-spacing: 1px; }
+        h1 { font-size: 1.8rem; text-align: center; margin-bottom: 10px; border-bottom: 2px solid var(--accent); padding-bottom: 10px; }
+        .subtitle { text-align: center; font-size: 0.9rem; color: var(--text-muted); margin-bottom: 25px; text-transform: uppercase; }
+        .img-container { width: 100%; max-height: 250px; background-color: #333; border-radius: 8px; margin-bottom: 20px; overflow: hidden; border: 1px solid #444; }
+        .img-container img { width: 100%; height: 100%; object-fit: cover; display: block; }
+        .card { background-color: var(--card-bg); padding: 20px; border-radius: 12px; margin-bottom: 20px; box-shadow: 0 4px 6px rgba(0,0,0,0.3); }
+        .narrative-text { font-style: italic; border-left: 3px solid var(--accent); padding-left: 15px; margin-top: 15px; color: #dcdcdc; }
+        .enigma-box { background-color: #2c2c2c; border: 1px solid var(--accent); padding: 20px; border-radius: 8px; margin-top: 20px; text-align: center; }
+        .enigma-icon { font-size: 2rem; margin-bottom: 10px; display: block; }
+        input[type="number"] { width: 100%; padding: 15px; font-size: 1.5rem; font-family: 'Cinzel', serif; background-color: #1a1a1a; border: 2px solid #444; color: white; border-radius: 8px; margin: 15px 0; text-align: center; }
+        .btn { width: 100%; padding: 15px; font-size: 1rem; font-weight: bold; text-transform: uppercase; border: none; border-radius: 8px; cursor: pointer; font-family: 'Cinzel', serif; }
+        .btn-primary { background-color: var(--accent); color: white; }
+        .info-toggle { background: none; border: none; color: var(--text-muted); text-decoration: underline; cursor: pointer; font-size: 0.9rem; margin-top: 15px; }
+        .info-content { display: none; margin-top: 15px; font-size: 0.9rem; background: #151515; padding: 15px; border-radius: 8px; text-align: left; }
+        #feedback-msg { margin-top: 15px; font-weight: bold; min-height: 1.5em; color: var(--accent); }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Capítulo III: La Frontera Invisible</h1>
+        <div class="subtitle">Plaza Ramon Berenguer · Al-Ándalus</div>
+    </header>
+    <div class="img-container">
+        <img src="../imagenes/al-andalus.jpg" alt="Astrolabio árabe antiguo">
+    </div>
+    <section class="card">
+        <p>“Llegas a la cicatriz de una antigua frontera. Durante casi un siglo, el río Llobregat, a pocos kilómetros de aquí, separaba el mundo carolingio de Al-Ándalus. Barcelona no era una ciudad musulmana, sino un bastión fronterizo cristiano que vivía bajo su sombra y su influencia.”</p>
+        <p class="narrative-text">“Para entender esta época, no buscaremos una mezquita, sino la estatua del hombre que dedicó su vida a combatir en esa frontera: <strong>Ramon Berenguer III</strong>, el Gran, uno de los primeros condes en iniciar la expansión hacia el sur.”</p>
+    </section>
+    <div id="enigma-container">
+        <section class="enigma-box">
+            <span class="enigma-icon">⚔️</span>
+            <h3>El Código del Conde</h3>
+            <p>“Lee atentamente el <strong>nombre completo del Conde a caballo</strong> grabado en la placa. Ocultos entre sus letras y su título, hay <strong>dos números romanos</strong>. Súmalos para encontrar la solución.”</p>
+            <label for="answer" style="display:none;">Tu respuesta</label>
+            <input type="number" id="answer" placeholder="Introduce el número">
+            <button class="btn btn-primary" onclick="checkAnswer()">Validar Número</button>
+            <div id="feedback-msg"></div>
+            <button class="info-toggle" onclick="toggleHint()">¿Necesitas una pista?</button>
+            <div id="hint-box" class="info-content">
+                <p>Busca una letra en su nombre de pila (RAMON) que también sea un número romano de gran valor. Luego, fíjate en el número que acompaña a su nombre al final.</p>
+            </div>
+        </section>
+    </div>
+    <script>
+        const SOLUTION = 1003;
+        function checkAnswer() {
+            const userIn = document.getElementById('answer').value;
+            if (parseInt(userIn) === SOLUTION) {
+                window.location.href = 'parada3-recompensa-es.html';
+            } else {
+                document.getElementById('feedback-msg').textContent = "El código no es correcto. El Conde guarda su secreto.";
+            }
+        }
+        function toggleHint() {
+            const box = document.getElementById('hint-box');
+            box.style.display = box.style.display === 'block' ? 'none' : 'block';
+        }
+    </script>
+</body>
+</html>

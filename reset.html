@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Resetear Progreso del Escape Room</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: sans-serif;
+            background-color: #121212;
+            color: #e0d6c2;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            text-align: center;
+        }
+        .container {
+            padding: 40px;
+            background-color: #1e1e1e;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+        }
+        h1 {
+            font-family: 'Cinzel', serif; /* Opcional, si quieres la misma fuente */
+            margin-bottom: 20px;
+            color: #fff;
+        }
+        p {
+            margin-bottom: 30px;
+            max-width: 400px;
+        }
+        button {
+            padding: 15px 30px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            color: white;
+            background-color: #c0392b;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        button:active {
+            transform: scale(0.95);
+        }
+        #message {
+            margin-top: 20px;
+            color: #27ae60;
+            font-weight: bold;
+            min-height: 1.5em;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Herramienta de Reseteo</h1>
+        <p>
+            Pulsa este botón para borrar el progreso guardado del juego.
+            La próxima vez que abras `index.html`, empezarás desde el principio.
+        </p>
+        <button onclick="resetProgress()">Poner Marcador a Cero</button>
+        <div id="message"></div>
+    </div>
+
+    <script>
+        function resetProgress() {
+            // Borra la clave 'progresoJuego' de la memoria del navegador
+            localStorage.removeItem('progresoJuego');
+            
+            // Muestra un mensaje de confirmación
+            const messageEl = document.getElementById('message');
+            messageEl.textContent = "¡Progreso borrado! Ya puedes empezar de cero.";
+            
+            // Opcional: el mensaje desaparece después de unos segundos
+            setTimeout(() => {
+                messageEl.textContent = "";
+            }, 3000);
+        }
+    </script>
+
+</body>
+</html>

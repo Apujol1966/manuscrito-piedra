@@ -1,0 +1,99 @@
+DOCUMENTO MAESTRO DE CONTEXTO v5.0 (ESTADO ACTUAL)
+PROYECTO: "El Manuscrito de las Capas de Piedra"
+FECHA: 26/11/2025
+ESTADO: Paradas 1-5 (Completas 3 idiomas) | Parada 6 (Diseñada/ES creada)
+1. VISIÓN Y REGLAS TÉCNICAS
+Formato: Web App autoguíada (HTML/CSS/JS Vanilla).
+Sin Servidor: Funciona en local o hosting estático (GitHub Pages).
+Imágenes: Carpeta /imagenes/ (rutas relativas).
+Persistencia: localStorage (Clave: progresoJuego).
+Valor 1 a 9: Número de parada actual.
+Se guarda onclick en los botones de "Continuar" de las páginas de recompensa.
+Idiomas: Español (es), Catalán (ca), Inglés (en).
+Mecánica de Ayuda: Sistema "Enigmas del Guardián".
+Nivel 1: Pista narrativa (Default).
+Nivel 2: Pista directa (Requiere responder pregunta sobre texto anterior).
+Nivel 3: Google Maps (Requiere responder pregunta sobre texto actual).
+2. ESTRUCTURA DE ARCHIVOS (ÁRBOL)
+code
+Text
+/ (Raíz)
+|-- index.html           (Selector de idioma)
+|-- es.html, ca.html, en.html (Páginas de inicio + Lógica "Continuar Partida")
+|-- reset.html           (Herramienta de QA para borrar localStorage)
+|-- imagenes/
+|   |-- portada.jpg, roma.jpg, visigodos.jpg, al-andalus.jpg (o alandalus.jpg)
+|   |-- gotico.jpg, call.jpg, ardiaca.jpg
+|
+|-- adulto/
+    |-- parada1-enigma-[es/ca/en].html  |  parada1-recompensa-[es/ca/en].html
+    |-- parada2-enigma-[es/ca/en].html  |  parada2-recompensa-[es/ca/en].html
+    |-- parada3-enigma-[es/ca/en].html  |  parada3-recompensa-[es/ca/en].html
+    |-- parada4-enigma-[es/ca/en].html  |  parada4-recompensa-[es/ca/en].html
+    |-- parada5-enigma-[es/ca/en].html  |  parada5-recompensa-[es/ca/en].html
+    |-- parada6-enigma-es.html          |  parada6-recompensa-es.html
+    |-- (Resto de paradas pendientes...)
+3. GUION Y LÓGICA DE JUEGO (DETALLADO)
+📍 INICIO (Plaça Catalunya -> Catedral)
+Misión: "Excavar" la historia.
+Pista Inicial: Buscar el termómetro gigante en Portal de l'Àngel.
+Destino: Plaça Nova (letras BARCINO).
+📍 PARADA 1: ROMA (Plaça Nova)
+Elemento: Torres de la muralla romana (Porta Praetoria).
+Enigma: Siglas de las torres "izquierda" y "derecha" según la placa.
+Solución: SD (Sinistra / Dextra).
+Pista Salto: Ir a donde los reyes impartían justicia (Plaça del Rei).
+📍 PARADA 2: VISIGODOS (Plaça del Rei)
+Elemento: Muros del Palacio Real Mayor.
+Enigma: Buscar 3 marcas de cantero (△) con letras L, M, S. Sumar valores (A=1... Z=26).
+L(12) + M(13) + S(19).
+Solución: 44.
+Pista Salto: Buscar estatua ecuestre del Conde sobre la muralla (Plaça Ramon Berenguer).
+📍 PARADA 3: AL-ÁNDALUS (Plaça Ramon Berenguer)
+Elemento: Estatua ecuestre de Ramon Berenguer III.
+Enigma: Sumar números romanos ocultos en su nombre (M en Ramon, III al final).
+M (1000) + III (3).
+Solución: 1003.
+Pista Salto: Ir al "puente famoso" (Carrer del Bisbe).
+📍 PARADA 4: GÓTICO (Pont del Bisbe)
+Elemento: Puente neogótico y la calavera.
+Enigma: Contar 13 gárgolas. Aplicar César +13 a "GANS". Invertir resultado.
+GANS (+13) -> TNAF -> (Invertir) -> FANT.
+Solución: FANT.
+Pista Salto: Ir al Call (Barrio Judío), calle del rabino sabio (Salomó ben Adret).
+📍 PARADA 5: EL CALL (Carrer de Salomó ben Adret)
+Ubicación: Número 6.
+Elemento: La casa habitada más antigua.
+Enigma: Multiplicar el número del portal (6) por el siglo de los cimientos (XII).
+Nota: El texto no da los números explícitos en la pregunta, hay que leer la narrativa.
+6 x 12.
+Solución: 72.
+Pista Salto: Volver a Plaça Nova, buscar buzón modernista (Casa de l'Ardiaca).
+📍 PARADA 6: RENACIMIENTO (Casa de l'Ardiaca)
+Ubicación: Frente a la Catedral.
+Elemento: Buzón de mármol y patio.
+Enigma: Frase latina "ALMA MATER ACADEMIA ARS MAGNA". Contar letras 'A' (9) y sumar 4 (barras de la senyera).
+9 + 4.
+Solución: 13.
+Pista Salto: Buscar calle con nombre de "vigilante" (Veguer) detrás de la Plaça del Rei.
+4. PARADAS PENDIENTES DE DESARROLLO
+📍 PARADA 7: ILUSTRACIÓN (Carrer del Veguer)
+Ubicación: Carrer del Veguer (bajada al MUHBA).
+Enigma Propuesto: Número de inventario o fecha en dintel rotada/invertida. (Por definir en código).
+📍 PARADA 8: GUERRA CIVIL (Plaça Sant Felip Neri)
+Ubicación: Plaza con marcas de metralla.
+Enigma Propuesto: Placa conmemorativa. Operación con número de víctimas (42) y día del bombardeo (30). Solución: 12. (Por definir en código).
+📍 PARADA 9: PRESENTE / FINAL (Plaça Sant Jaume)
+Ubicación: Centro político.
+Enigma Final: Suma simbólica o contraseña maestra.
+Diploma: Generación del certificado de "Arqueólogo".
+5. LISTADO DE ASSETS (IMÁGENES NECESARIAS)
+Asegúrate de tener estos archivos en la carpeta /imagenes/:
+portada.jpg (Callejón gótico genérico)
+roma.jpg (Torres de la Plaça Nova o letras Barcino)
+visigodos.jpg (Plaça del Rei o ventana visigoda)
+al-andalus.jpg (Estatua Ramon Berenguer o astrolabio)
+gotico.jpg (Pont del Bisbe / Calavera)
+call.jpg (Callejón estrecho o inscripción hebrea)
+ardiaca.jpg (Buzón de las golondrinas)
+(Pendientes: veguer.jpg, felipneri.jpg, santjaume.jpg)

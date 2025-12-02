@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" translate="no">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chapter VI: Renaissance - Uncovered</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Lato:wght@400;700&display=swap" rel="stylesheet">
+    <style>:root{--bg-color:#121212;--card-bg:#1e1e1e;--text-main:#e0d6c2;--text-muted:#a8a095;--accent:#c0392b;--success:#27ae60}*{box-sizing:border-box;margin:0;padding:0}body{background-color:var(--bg-color);color:var(--text-main);font-family:'Lato',sans-serif;line-height:1.6;padding:20px;max-width:600px;margin:0 auto}h1,h2,h3,h4{font-family:'Cinzel',serif;color:#fff;letter-spacing:1px}h1{font-size:1.8rem;text-align:center;margin-bottom:25px}.card{background-color:var(--card-bg);padding:20px;border-radius:12px;margin-bottom:20px;box-shadow:0 4px 6px rgba(0,0,0,.3)}.btn{width:100%;padding:15px 20px;font-size:1rem;font-weight:700;text-transform:uppercase;border:none;border-radius:8px;cursor:pointer;font-family:'Cinzel',serif;text-decoration:none;display:inline-block;text-align:center;margin-top:10px}.btn-success{background-color:var(--success);color:#fff}.btn-secondary{background-color:transparent;border:1px solid var(--text-muted);color:var(--text-muted);font-size:.8rem}.btn-primary{background-color:var(--accent);color:#fff}.btn-map{background-color:#3498db;color:#fff}.source-text{font-size:.8rem;margin-top:10px;color:#666;display:block}.knowledge-reward{padding-top:20px;border-top:1px solid #444;text-align:left}.knowledge-reward h3{color:var(--success);text-align:center;margin-bottom:15px}.knowledge-reward p{margin-bottom:10px}.knowledge-reward strong{color:#fff}#next-clue-box{margin-top:20px;padding:15px;background-color:#2c2c2c;border-left:3px solid var(--success);border-radius:4px}.feedback-success{text-align:center;font-weight:700;color:var(--success);font-size:1.2rem;margin-bottom:20px;animation:fadeIn 1s ease-in}@keyframes fadeIn{from{opacity:0}to{opacity:1}}.modal-overlay{position:fixed;top:0;left:0;width:100%;height:100%;background-color:rgba(0,0,0,.85);display:none;align-items:center;justify-content:center;z-index:1000;padding:20px}.modal-content{background-color:var(--card-bg);padding:30px;border-radius:12px;text-align:center;width:100%;max-width:500px;border-top:4px solid var(--accent)}.modal-content h2{margin-bottom:15px}.modal-content p{color:var(--text-muted);margin-bottom:25px}.modal-input{width:100%;padding:10px;font-size:1rem;background-color:#1a1a1a;border:2px solid #444;color:#fff;border-radius:8px;margin:15px 0;text-align:center;text-transform:uppercase}#guardian-feedback{font-size:.9rem;color:var(--accent);min-height:1.2em;margin-top:10px}.extra-hint-content{display:none;margin-top:15px;padding-top:15px;border-top:1px dashed #444}</style>
+</head>
+<body>
+    <div id="guardian-modal" class="modal-overlay">
+        <div class="modal-content">
+            <h2>Guardian's Test</h2>
+            <p id="guardian-question"></p>
+            <input type="text" id="guardian-answer" class="modal-input">
+            <button id="guardian-submit" class="btn btn-primary">Validate</button>
+            <div id="guardian-feedback"></div>
+        </div>
+    </div>
+    <header><h1>Chapter VI: Renaissance</h1></header>
+    <div id="reward-container">
+        <div class="card">
+            <div class="feedback-success">Code 2-T-SHIELD accepted!</div>
+            <div class="knowledge-reward">
+                <h3>The Archdeacon's Palace</h3>
+                <p><strong>Living History:</strong> You are facing the renovation that Lluís Desplà carried out in the 16th century, turning a medieval house into a <strong>Renaissance</strong> palace. But its story doesn't end there: today, this building guards the written memory of all Barcelonans, as it is the headquarters of the <strong>Historical Archive of the City of Barcelona</strong>.</p>
+                <p><strong>An Ironic Wink:</strong> The mailbox you used for the enigma is <strong>Modernist</strong> (1902). The <strong>swallows</strong> symbolize the ideal swiftness of Justice, but the <strong>turtle</strong> represents the sad reality: the administrative bureaucracy that makes it slow and heavy.</p>
+                <span class="source-text">Source: City Historical Archive</span>
+            </div>
+            <div id="next-clue-box">
+                <p><strong>JUMP CLUE:</strong><br>Your excavation advances towards the Age of Enlightenment. Look for a street with the name of a "watchman" (Veguer) just behind the great King's Square. There, the inventory numbers await you.</p>
+                <button id="hint-btn-1" class="btn btn-secondary" onclick="askGuardian(1)">Unsure where to go? Get a Direct Clue</button>
+                <div id="hint-level-2" class="extra-hint-content">
+                    <h4>Direct Clue</h4>
+                    <p>Return to <strong>Plaça del Rei</strong>. On one of its corners begins <strong>Carrer del Veguer</strong>. It is a narrow alley leading down to the History Museum.</p>
+                    <button id="hint-btn-2" class="btn btn-secondary" onclick="askGuardian(2)">I'm still lost. Show me the map</button>
+                </div>
+                <div id="hint-level-3" class="extra-hint-content">
+                     <h4>Exact Location</h4>
+                     <a href="https://www.google.com/maps/search/?api=1&query=Carrer+del+Veguer,Barcelona" target="_blank" class="btn btn-map">Open in Google Maps</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <a href="parada7-enigma-en.html" class="btn btn-success" onclick="saveProgress()">Begin Chapter VII (Enlightenment)</a>
+    <script>
+        function saveProgress() { localStorage.setItem('progresoJuego', '7'); }
+        const guardianPuzzles = [
+            { question: "What important institution does this building house today?", answer: "ARCHIVE" },
+            { question: "The clue sends you to a street named after an old profession. What is it?", answer: "VEGUER" }
+        ];
+        const feedbackError = 'Incorrect answer. Check the text.';
+        const modal = document.getElementById('guardian-modal'); const questionEl = document.getElementById('guardian-question'); const answerEl = document.getElementById('guardian-answer'); const submitBtn = document.getElementById('guardian-submit'); const feedbackEl = document.getElementById('guardian-feedback'); let levelToUnlock = 0;
+        function askGuardian(level) { levelToUnlock = level; const puzzle = guardianPuzzles[level - 1]; questionEl.textContent = puzzle.question; answerEl.value = ''; feedbackEl.textContent = ''; modal.style.display = 'flex'; answerEl.focus(); }
+        submitBtn.onclick = () => { const puzzle = guardianPuzzles[levelToUnlock - 1]; const userAnswer = answerEl.value.toUpperCase().trim(); if (userAnswer.includes(puzzle.answer)) { modal.style.display = 'none'; revealHint(levelToUnlock); } else { feedbackEl.textContent = feedbackError; } };
+        function revealHint(level) { if (level === 1) { document.getElementById('hint-level-2').style.display = 'block'; document.getElementById('hint-btn-1').style.display = 'none'; } else if (level === 2) { document.getElementById('hint-level-3').style.display = 'block'; document.getElementById('hint-btn-2').style.display = 'none'; } }
+    </script>
+</body>
+</html>

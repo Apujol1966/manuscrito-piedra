@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="es" translate="no">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Capítulo III: Al-Ándalus - Descubierto</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Lato:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root { --bg-color: #121212; --card-bg: #1e1e1e; --text-main: #e0d6c2; --text-muted: #a8a095; --accent: #c0392b; --success: #27ae60; }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { background-color: var(--bg-color); color: var(--text-main); font-family: 'Lato', sans-serif; line-height: 1.6; padding: 20px; max-width: 600px; margin: 0 auto; }
+        h1, h2, h3, h4 { font-family: 'Cinzel', serif; color: #fff; letter-spacing: 1px; }
+        h1 { font-size: 1.8rem; text-align: center; margin-bottom: 25px; }
+        .card { background-color: var(--card-bg); padding: 20px; border-radius: 12px; margin-bottom: 20px; box-shadow: 0 4px 6px rgba(0,0,0,0.3); }
+        .btn { width: 100%; padding: 15px 20px; font-size: 1rem; font-weight: bold; text-transform: uppercase; border: none; border-radius: 8px; cursor: pointer; font-family: 'Cinzel', serif; text-decoration: none; display: inline-block; text-align: center; margin-top: 10px; }
+        .btn-success { background-color: var(--success); color: white; }
+        .btn-secondary { background-color: transparent; border: 1px solid var(--text-muted); color: var(--text-muted); font-size: 0.8rem; }
+        .btn-primary { background-color: var(--accent); color: white; }
+        .btn-map { background-color: #3498db; color: white; }
+        .source-text { font-size: 0.8rem; margin-top: 10px; color: #666; display: block; }
+        .knowledge-reward { padding-top: 20px; border-top: 1px solid #444; text-align: left; }
+        .knowledge-reward h3 { color: var(--success); text-align: center; margin-bottom: 15px; }
+        .knowledge-reward p { margin-bottom: 10px; }
+        .knowledge-reward strong { color: #fff; }
+        #next-clue-box { margin-top: 20px; padding: 15px; background-color: #2c2c2c; border-left: 3px solid var(--success); border-radius: 4px; }
+        .feedback-success { text-align: center; font-weight: bold; color: var(--success); font-size: 1.2rem; margin-bottom: 20px; animation: fadeIn 1s ease-in; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.85); display: none; align-items: center; justify-content: center; z-index: 1000; padding: 20px; }
+        .modal-content { background-color: var(--card-bg); padding: 30px; border-radius: 12px; text-align: center; width: 100%; max-width: 500px; border-top: 4px solid var(--accent); }
+        .modal-content h2 { margin-bottom: 15px; }
+        .modal-content p { color: var(--text-muted); margin-bottom: 25px; }
+        .modal-input { width: 100%; padding: 10px; font-size: 1rem; background-color: #1a1a1a; border: 2px solid #444; color: white; border-radius: 8px; margin: 15px 0; text-align: center; text-transform: uppercase; }
+        #guardian-feedback { font-size: 0.9rem; color: var(--accent); min-height: 1.2em; margin-top: 10px; }
+        .extra-hint-content { display: none; margin-top: 15px; padding-top: 15px; border-top: 1px dashed #444; }
+    </style>
+</head>
+<body>
+
+    <div id="guardian-modal" class="modal-overlay">
+        <div class="modal-content">
+            <h2>Prueba del Guardián</h2>
+            <p id="guardian-question"></p>
+            <input type="text" id="guardian-answer" class="modal-input">
+            <button id="guardian-submit" class="btn btn-primary">Validar</button>
+            <div id="guardian-feedback"></div>
+        </div>
+    </div>
+
+    <header><h1>Capítulo III: La Frontera Invisible</h1></header>
+
+    <div id="reward-container">
+        <div class="card">
+            <div class="feedback-success">¡Correcto! El Conde te ha revelado su código.</div>
+            
+            <div class="knowledge-reward">
+                <h3>El Legado de la Frontera</h3>
+                <p><strong>El Legado de Al-Ándalus:</strong> Aunque Barcelona resistió como ciudad cristiana, su posición en la frontera con Al-Ándalus la convirtió en un crisol. La proximidad permitió un flujo vital de conocimientos en <strong>medicina</strong>, <strong>matemáticas</strong> y <strong>filosofía</strong> que llegaban desde Córdoba, ayudando a sentar las bases de su futura prosperidad.</p>
+                <p><strong>Curiosidad del Lugar:</strong> Ramon Berenguer III, cuya estatua contemplas, no solo luchó. También estableció alianzas <strong>matrimoniales</strong> y comerciales con señores musulmanes. Esta dualidad de conflicto y coexistencia definió la vida en la frontera. La misma muralla romana que le sirve de pedestal fue, en su día, la defensa de la ciudad contra las incursiones andalusíes.</p>
+                <span class="source-text">Fuente: "Al-Hakam I", doc. Vallvé 1992</span>
+            </div>
+
+            <div id="next-clue-box">
+                <!-- PISTA NIVEL 1 -->
+                <p><strong>PISTA DE SALTO:</strong><br>El número 1003 te transporta de la tensión de la frontera al corazón del poder gótico. Adéntrate en la calle que pasa bajo el famoso y fotografiado puente que une dos palacios. Las bestias de piedra te observan desde lo alto.</p>
+                
+                <!-- BOTÓN PARA PISTA NIVEL 2 -->
+                <button id="hint-btn-1" class="btn btn-secondary" onclick="askGuardian(1)">¿No sabes dónde ir? Pide una Pista Directa</button>
+
+                <!-- PISTA NIVEL 2 (Oculta) -->
+                <div id="hint-level-2" class="extra-hint-content">
+                    <h4>Pista Directa</h4>
+                    <p>Busca el <strong>Carrer del Bisbe</strong>. Es la calle que, desde la Plaça de Sant Jaume, va hacia la Catedral, pasando por debajo de un icónico puente neogótico.</p>
+                    <button id="hint-btn-2" class="btn btn-secondary" onclick="askGuardian(2)">Sigo perdido/a. Muéstrame el mapa</button>
+                </div>
+                
+                <!-- PISTA NIVEL 3 (Oculta) -->
+                <div id="hint-level-3" class="extra-hint-content">
+                     <h4>Ubicación Exacta</h4>
+                     <a href="https://www.google.com/maps/search/?api=1&query=Carrer+del+Bisbe,Barcelona" target="_blank" class="btn btn-map">Abrir en Google Maps</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <a href="parada4-enigma-es.html" class="btn btn-success" onclick="saveProgress()">Iniciar Capítulo IV (Gótico)</a>
+
+    <script>
+        function saveProgress() {
+            localStorage.setItem('progresoJuego', '4');
+        }
+
+        const guardianPuzzles = [
+            { question: "El Guardián pone a prueba tu memoria. De los conocimientos que Al-Ándalus aportó, escribe uno de los tres campos que acabas de leer.", answers: ["MEDICINA", "MATEMATICAS", "FILOSOFIA"] },
+            { question: "Para desvelar el mapa, recuerda la curiosidad del lugar. ¿Qué tipo de alianzas, además de las comerciales, estableció el Conde?", answers: ["MATRIMONIALES"] }
+        ];
+        const feedbackError = 'Respuesta incorrecta. La memoria de un arqueólogo debe ser precisa.';
+        const modal = document.getElementById('guardian-modal');
+        const questionEl = document.getElementById('guardian-question');
+        const answerEl = document.getElementById('guardian-answer');
+        const submitBtn = document.getElementById('guardian-submit');
+        const feedbackEl = document.getElementById('guardian-feedback');
+        let levelToUnlock = 0;
+
+        function askGuardian(level) {
+            levelToUnlock = level;
+            const puzzle = guardianPuzzles[level - 1];
+            questionEl.textContent = puzzle.question;
+            answerEl.value = '';
+            feedbackEl.textContent = '';
+            modal.style.display = 'flex';
+            answerEl.focus();
+        }
+
+        submitBtn.onclick = () => {
+            const puzzle = guardianPuzzles[levelToUnlock - 1];
+            const userAnswer = answerEl.value.toUpperCase().trim().normalize("NFD").replace(/[\u0300-\u036f]/g, ""); // Normaliza para quitar tildes
+
+            if (puzzle.answers.includes(userAnswer)) {
+                modal.style.display = 'none';
+                revealHint(levelToUnlock);
+            } else {
+                feedbackEl.textContent = feedbackError;
+            }
+        };
+
+        function revealHint(level) {
+            if (level === 1) {
+                document.getElementById('hint-level-2').style.display = 'block';
+                document.getElementById('hint-btn-1').style.display = 'none'; 
+            } else if (level === 2) {
+                document.getElementById('hint-level-3').style.display = 'block';
+                document.getElementById('hint-btn-2').style.display = 'none';
+            }
+        }
+    </script>
+</body>
+</html>

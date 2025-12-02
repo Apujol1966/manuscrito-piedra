@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="es" translate="no">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="google" content="notranslate">
+    <title>El Manuscrito de las Capas de Piedra</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Lato:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root { --bg-color: #121212; --card-bg: #1e1e1e; --text-main: #e0d6c2; --text-muted: #a8a095; --accent: #c0392b; --success: #27ae60; }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { background-color: var(--bg-color); color: var(--text-main); font-family: 'Lato', sans-serif; line-height: 1.6; padding: 20px; max-width: 600px; margin: 0 auto; }
+        h1, h2, h3, h4 { font-family: 'Cinzel', serif; color: #fff; letter-spacing: 1px; }
+        h1 { font-size: 2rem; text-align: center; margin-bottom: 25px; color: var(--text-main); }
+        .img-container { width: 100%; height: 200px; background-color: #333; border-radius: 8px; margin-bottom: 20px; overflow: hidden; border: 1px solid #444; display: flex; align-items: center; justify-content: center; }
+        .img-container img { width: 100%; height: 100%; object-fit: cover; display: block; }
+        .card { background-color: var(--card-bg); padding: 20px; border-radius: 12px; margin-bottom: 20px; box-shadow: 0 4px 6px rgba(0,0,0,0.3); text-align: center; }
+        .card p { margin-bottom: 15px; }
+        .btn { width: 100%; padding: 15px 20px; font-size: 1rem; font-weight: bold; text-transform: uppercase; border: none; border-radius: 8px; cursor: pointer; transition: transform 0.2s; font-family: 'Cinzel', serif; text-decoration: none; display: inline-block; text-align: center; margin-top: 10px; }
+        .btn-start { background-color: var(--accent); color: white; }
+        .btn-secondary { background-color: transparent; border: 1px solid var(--text-muted); color: var(--text-muted); font-size: 0.8rem; }
+        .btn-map { background-color: #3498db; color: white; }
+        .btn-continue { background-color: var(--success); color: white; }
+        .btn-restart { background-color: transparent; border: 1px solid var(--text-muted); color: var(--text-muted); }
+        .starting-point { margin-top: 25px; padding-top: 25px; border-top: 1px solid #333; }
+        .starting-point h3 { color: var(--text-muted); margin-bottom: 15px; font-size: 1rem; }
+        .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.85); display: none; align-items: center; justify-content: center; z-index: 1000; padding: 20px; }
+        .modal-content { background-color: var(--card-bg); padding: 30px; border-radius: 12px; text-align: center; width: 100%; max-width: 500px; border-top: 4px solid var(--accent); }
+        .modal-content h2 { margin-bottom: 15px; }
+        .modal-content p { color: var(--text-muted); margin-bottom: 25px; }
+        .modal-buttons { display: flex; justify-content: space-between; gap: 10px; }
+        .modal-buttons .btn { width: 100%; margin: 0; }
+        .modal-input { width: 100%; padding: 10px; font-size: 1rem; background-color: #1a1a1a; border: 2px solid #444; color: white; border-radius: 8px; margin: 15px 0; text-align: center; }
+        #guardian-feedback { font-size: 0.9rem; color: var(--accent); min-height: 1.2em; margin-top: 10px; }
+        .extra-hint-content { display: none; margin-top: 15px; padding-top: 15px; border-top: 1px dashed #444; }
+    </style>
+</head>
+<body>
+    <div id="continue-modal" class="modal-overlay">
+        <div class="modal-content">
+            <h2>¡Bienvenido de nuevo, Arqueólogo/a!</h2>
+            <p id="continue-text"></p>
+            <div class="modal-buttons">
+                <button id="continue-btn" class="btn btn-continue">Sí, continuar</button>
+                <button id="restart-btn" class="btn btn-restart">No, empezar de cero</button>
+            </div>
+        </div>
+    </div>
+    <div id="guardian-modal" class="modal-overlay">
+        <div class="modal-content">
+            <h2>Prueba del Guardián</h2>
+            <p id="guardian-question"></p>
+            <input type="text" id="guardian-answer" class="modal-input">
+            <button id="guardian-submit" class="btn btn-start">Validar</button>
+            <div id="guardian-feedback"></div>
+        </div>
+    </div>
+    <div id="main-content">
+        <header><h1>El Manuscrito de las Capas de Piedra</h1></header>
+        <div class="img-container"><img src="imagenes/portada.jpg" alt="Callejón del Barrio Gótico"></div>
+        <main>
+            <section class="card">
+                <p>"Bienvenido/a, Arqueólogo/a del Tiempo.<br>Sostienes en tus manos el mapa de una excavación única. No buscarás oro ni reliquias, sino algo mucho más valioso: la memoria de Barcelona, grabada en su piel de piedra."</p>
+                <p>"Hoy, tu misión es excavar sus secretos. No usarás un pico y una pala, sino tu ingenio. Tu trabajo será retirar el polvo de los siglos para revelar las marcas que cada civilización dejó atrás, convirtiendo las calles en tu yacimiento."</p>
+                <div class="starting-point">
+                    <h3>Punto de Inicio: Plaça de Catalunya</h3>
+                    <div id="hint-level-1">
+                        <p>"Desde la gran plaza, dale la espalda al edificio con la manzana mordida y busca, al otro lado, la avenida peatonal coronada por un <strong>gigantesco termómetro</strong>. Ese termómetro es tu brújula. Desciende por esa avenida hasta topar con la imponente <strong>Catedral gótica</strong>. Tu primer yacimiento te espera a su izquierda."</p>
+                        <button id="hint-btn-1" class="btn btn-secondary" onclick="askGuardian(1)">Necesito una pista más directa</button>
+                    </div>
+                    <div id="hint-level-2" class="extra-hint-content">
+                        <h4>Pista Directa</h4>
+                        <p>"Dirígete a la avenida <strong>Portal de l'Àngel</strong>. Camina hasta el final y encontrarás la Catedral de Barcelona. La <strong>Plaça Nova</strong> está a la izquierda de la fachada principal."</p>
+                        <button id="hint-btn-2" class="btn btn-secondary" onclick="askGuardian(2)">Sigo perdido/a. Muéstrame el mapa</button>
+                    </div>
+                    <div id="hint-level-3" class="extra-hint-content">
+                         <h4>Ubicación Exacta</h4>
+                         <a href="https://www.google.com/maps/search/?api=1&query=Plaça+Nova,Barcelona" target="_blank" class="btn btn-map">Abrir en Google Maps</a>
+                    </div>
+                </div>
+            </section>
+            <!-- BOTÓN CORREGIDO CON ONCLICK -->
+            <a href="adulto/parada1-enigma-es.html" class="btn btn-start" onclick="saveProgress(1)">He llegado a la puerta romana. Iniciar Expedición</a>
+        </main>
+    </div>
+    <script>
+        // --- FUNCIÓN DE GUARDADO ---
+        function saveProgress(stopNumber) {
+            localStorage.setItem('progresoJuego', stopNumber.toString());
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const progress = parseInt(localStorage.getItem('progresoJuego') || '1');
+            // La lógica para "Continuar Partida" se activa si el progreso es 1 o mayor, pero ya estás en el juego.
+            // Para la página de INICIO, solo queremos que se active si ya han pasado de la parada 1.
+            if (progress > 1) {
+                const continueModal = document.getElementById('continue-modal');
+                const mainContent = document.getElementById('main-content');
+                
+                mainContent.style.display = 'none';
+                continueModal.style.display = 'flex';
+
+                document.getElementById('continue-text').textContent = `Hemos detectado que ya habías llegado al Capítulo ${progress}. ¿Quieres continuar desde allí?`;
+
+                document.getElementById('continue-btn').onclick = () => {
+                    window.location.href = `adulto/parada${progress}-enigma-es.html`;
+                };
+
+                document.getElementById('restart-btn').onclick = () => {
+                    localStorage.removeItem('progresoJuego');
+                    continueModal.style.display = 'none';
+                    mainContent.style.display = 'block';
+                };
+            }
+        });
+
+        const guardianPuzzles = [
+            { question: "Para recibir tu guía, demuestra que has entendido tu rol. ¿Cuál es tu misión?", answer: "EXCAVAR" },
+            { question: "La atención es tu mejor herramienta. ¿Qué objeto te servirá como 'brújula' para encontrar el camino?", answer: "TERMOMETRO" }
+        ];
+        const feedbackError = 'Respuesta incorrecta. Lee el texto con más atención.';
+        const guardianModal = document.getElementById('guardian-modal');
+        const questionEl = document.getElementById('guardian-question');
+        const answerEl = document.getElementById('guardian-answer');
+        const submitBtn = document.getElementById('guardian-submit');
+        const feedbackEl = document.getElementById('guardian-feedback');
+        let levelToUnlock = 0;
+        function askGuardian(level) {
+            levelToUnlock = level;
+            const puzzle = guardianPuzzles[level - 1];
+            questionEl.textContent = puzzle.question;
+            answerEl.value = '';
+            feedbackEl.textContent = '';
+            guardianModal.style.display = 'flex';
+            answerEl.focus();
+        }
+        submitBtn.onclick = () => {
+            const puzzle = guardianPuzzles[levelToUnlock - 1];
+            const userAnswer = answerEl.value.toUpperCase().trim();
+            if (userAnswer.includes(puzzle.answer)) {
+                guardianModal.style.display = 'none';
+                revealHint(levelToUnlock);
+            } else {
+                feedbackEl.textContent = feedbackError;
+            }
+        };
+        function revealHint(level) {
+            if (level === 1) {
+                document.getElementById('hint-level-2').style.display = 'block';
+                document.getElementById('hint-btn-1').style.display = 'none'; 
+            } else if (level === 2) {
+                document.getElementById('hint-level-3').style.display = 'block';
+                document.getElementById('hint-btn-2').style.display = 'none';
+            }
+        }
+    </script>
+</body>
+</html>```

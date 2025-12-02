@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en" translate="no">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="google" content="notranslate">
+    <title>The Manuscript of Stone Layers</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Lato:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root { --bg-color: #121212; --card-bg: #1e1e1e; --text-main: #e0d6c2; --text-muted: #a8a095; --accent: #c0392b; --success: #27ae60; }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { background-color: var(--bg-color); color: var(--text-main); font-family: 'Lato', sans-serif; line-height: 1.6; padding: 20px; max-width: 600px; margin: 0 auto; }
+        h1, h2, h3, h4 { font-family: 'Cinzel', serif; color: #fff; letter-spacing: 1px; }
+        h1 { font-size: 2rem; text-align: center; margin-bottom: 25px; color: var(--text-main); }
+        .img-container { width: 100%; height: 200px; background-color: #333; border-radius: 8px; margin-bottom: 20px; overflow: hidden; border: 1px solid #444; display: flex; align-items: center; justify-content: center; }
+        .img-container img { width: 100%; height: 100%; object-fit: cover; display: block; }
+        .card { background-color: var(--card-bg); padding: 20px; border-radius: 12px; margin-bottom: 20px; box-shadow: 0 4px 6px rgba(0,0,0,0.3); text-align: center; }
+        .card p { margin-bottom: 15px; }
+        .btn { width: 100%; padding: 15px 20px; font-size: 1rem; font-weight: bold; text-transform: uppercase; border: none; border-radius: 8px; cursor: pointer; transition: transform 0.2s; font-family: 'Cinzel', serif; text-decoration: none; display: inline-block; text-align: center; margin-top: 10px; }
+        .btn-start { background-color: var(--accent); color: white; }
+        .btn-secondary { background-color: transparent; border: 1px solid var(--text-muted); color: var(--text-muted); font-size: 0.8rem; }
+        .btn-map { background-color: #3498db; color: white; }
+        .btn-continue { background-color: var(--success); color: white; }
+        .btn-restart { background-color: transparent; border: 1px solid var(--text-muted); color: var(--text-muted); }
+        .starting-point { margin-top: 25px; padding-top: 25px; border-top: 1px solid #333; }
+        .starting-point h3 { color: var(--text-muted); margin-bottom: 15px; font-size: 1rem; }
+        .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.85); display: none; align-items: center; justify-content: center; z-index: 1000; padding: 20px; }
+        .modal-content { background-color: var(--card-bg); padding: 30px; border-radius: 12px; text-align: center; width: 100%; max-width: 500px; border-top: 4px solid var(--accent); }
+        .modal-content h2 { margin-bottom: 15px; }
+        .modal-content p { color: var(--text-muted); margin-bottom: 25px; }
+        .modal-buttons { display: flex; justify-content: space-between; gap: 10px; }
+        .modal-buttons .btn { width: 100%; margin: 0; }
+        .modal-input { width: 100%; padding: 10px; font-size: 1rem; background-color: #1a1a1a; border: 2px solid #444; color: white; border-radius: 8px; margin: 15px 0; text-align: center; }
+        #guardian-feedback { font-size: 0.9rem; color: var(--accent); min-height: 1.2em; margin-top: 10px; }
+        .extra-hint-content { display: none; margin-top: 15px; padding-top: 15px; border-top: 1px dashed #444; }
+    </style>
+</head>
+<body>
+    <div id="continue-modal" class="modal-overlay">
+        <div class="modal-content">
+            <h2>Welcome back, Archaeologist!</h2>
+            <p id="continue-text"></p>
+            <div class="modal-buttons">
+                <button id="continue-btn" class="btn btn-continue">Yes, continue</button>
+                <button id="restart-btn" class="btn btn-restart">No, start over</button>
+            </div>
+        </div>
+    </div>
+    <div id="guardian-modal" class="modal-overlay">
+        <div class="modal-content">
+            <h2>Guardian's Test</h2>
+            <p id="guardian-question"></p>
+            <input type="text" id="guardian-answer" class="modal-input">
+            <button id="guardian-submit" class="btn btn-start">Validate</button>
+            <div id="guardian-feedback"></div>
+        </div>
+    </div>
+    <div id="main-content">
+        <header><h1>The Manuscript of Stone Layers</h1></header>
+        <div class="img-container"><img src="imagenes/portada.jpg" alt="Mysterious alley in the Gothic Quarter"></div>
+        <main>
+            <section class="card">
+                <p>"Welcome, Archaeologist of Time.<br>You are holding the map of a unique excavation. You will not seek gold or relics, but something far more valuable: the memory of Barcelona, engraved on its skin of stone."</p>
+                <p>"Today, your mission is to excavate its secrets. You will not use a pickaxe and shovel, but your ingenuity. Your job is to remove the dust of centuries to reveal the marks that each civilization left behind, turning the streets into your archaeological site."</p>
+                <div class="starting-point">
+                    <h3>Starting Point: Plaça de Catalunya</h3>
+                    <div id="hint-level-1">
+                        <p>"From the grand plaza, turn your back to the building with the bitten apple and look for, on the other side, the pedestrian avenue crowned by a <strong>giant thermometer</strong>. That thermometer is your compass. Go down that avenue until you run into the imposing <strong>Gothic Cathedral</strong>. Your first site awaits you to its left."</p>
+                        <button id="hint-btn-1" class="btn btn-secondary" onclick="askGuardian(1)">I need a more direct clue</button>
+                    </div>
+                    <div id="hint-level-2" class="extra-hint-content">
+                        <h4>Direct Clue</h4>
+                        <p>"Head to the <strong>Portal de l'Àngel</strong> avenue. Walk to the end, and you will find the Cathedral of Barcelona. The <strong>Plaça Nova</strong> is on the left of the main facade."</p>
+                        <button id="hint-btn-2" class="btn btn-secondary" onclick="askGuardian(2)">I'm still lost. Show me the map</button>
+                    </div>
+                    <div id="hint-level-3" class="extra-hint-content">
+                         <h4>Exact Location</h4>
+                         <a href="https://www.google.com/maps/search/?api=1&query=Plaça+Nova,Barcelona" target="_blank" class="btn btn-map">Open in Google Maps</a>
+                    </div>
+                </div>
+            </section>
+            <a href="adulto/parada1-enigma-en.html" class="btn btn-start" onclick="saveProgress(1)">I have reached the Roman gate. Begin Expedition</a>
+        </main>
+    </div>
+    <script>
+        function saveProgress(stopNumber) {
+            localStorage.setItem('progresoJuego', stopNumber.toString());
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const progress = parseInt(localStorage.getItem('progresoJuego') || '1');
+            if (progress > 1) {
+                const modal = document.getElementById('continue-modal');
+                const mainContent = document.getElementById('main-content');
+                mainContent.style.display = 'none';
+                modal.style.display = 'flex';
+                document.getElementById('continue-text').textContent = `We noticed you've already reached Chapter ${progress}. Would you like to continue from there?`;
+                document.getElementById('continue-btn').onclick = () => {
+                    window.location.href = `adulto/parada${progress}-enigma-en.html`;
+                };
+                document.getElementById('restart-btn').onclick = () => {
+                    localStorage.removeItem('progresoJuego');
+                    modal.style.display = 'none';
+                    mainContent.style.display = 'block';
+                };
+            }
+        });
+
+        const guardianPuzzles = [
+            { question: "To receive your guide, prove you've understood your role. What is your mission?", answer: "EXCAVATE" },
+            { question: "Attention is your best tool. What object will serve as your 'compass' to find the way?", answer: "THERMOMETER" }
+        ];
+        const feedbackError = 'Incorrect answer. Pay more attention.';
+        const modal = document.getElementById('guardian-modal');
+        const questionEl = document.getElementById('guardian-question');
+        const answerEl = document.getElementById('guardian-answer');
+        const submitBtn = document.getElementById('guardian-submit');
+        const feedbackEl = document.getElementById('guardian-feedback');
+        let levelToUnlock = 0;
+        function askGuardian(level) {
+            levelToUnlock = level;
+            const puzzle = guardianPuzzles[level - 1];
+            questionEl.textContent = puzzle.question;
+            answerEl.value = '';
+            feedbackEl.textContent = '';
+            modal.style.display = 'flex';
+            answerEl.focus();
+        }
+        submitBtn.onclick = () => {
+            const puzzle = guardianPuzzles[levelToUnlock - 1];
+            const userAnswer = answerEl.value.toUpperCase().trim();
+            if (userAnswer.includes(puzzle.answer)) {
+                modal.style.display = 'none';
+                revealHint(levelToUnlock);
+            } else {
+                feedbackEl.textContent = feedbackError;
+            }
+        };
+        function revealHint(level) {
+            if (level === 1) {
+                document.getElementById('hint-level-2').style.display = 'block';
+                document.getElementById('hint-btn-1').style.display = 'none'; 
+            } else if (level === 2) {
+                document.getElementById('hint-level-3').style.display = 'block';
+                document.getElementById('hint-btn-2').style.display = 'none';
+            }
+        }
+    </script>
+</body>
+</html>
