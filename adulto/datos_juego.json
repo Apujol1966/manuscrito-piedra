@@ -1,0 +1,145 @@
+{
+  "config": {
+    "titulo_proyecto": "El Manuscrito de las Capas de Piedra",
+    "version": "6.0",
+    "idiomas_disponibles": ["es", "ca", "en"],
+    "total_paradas": 9
+  },
+  "ui_translations": {
+    "btn_validar": { "es": "Validar", "ca": "Validar", "en": "Validate" },
+    "btn_pista": { "es": "¿Necesitas ayuda?", "ca": "Necessites ajuda?", "en": "Need help?" },
+    "btn_continuar": { "es": "Continuar", "ca": "Continuar", "en": "Continue" },
+    "feedback_error": { "es": "Incorrecto. Inténtalo de nuevo.", "ca": "Incorrecte. Torna-ho a provar.", "en": "Incorrect. Try again." },
+    "placeholder_num": { "es": "Introduce el código", "ca": "Introdueix el codi", "en": "Enter code" }
+  },
+  "paradas": [
+    {
+      "id": 1,
+      "titulo": { "es": "Capítulo I: Roma", "ca": "Capítol I: Roma", "en": "Chapter I: Rome" },
+      "subtitulo": { "es": "Plaça Nova", "ca": "Plaça Nova", "en": "Plaça Nova" },
+      "imagen": "roma.jpg",
+      "narrativa": {
+        "es": "Estás ante las puertas de la antigua Barcino. Olvida las placas pequeñas. La ciudad grita su nombre antiguo a los cuatro vientos con letras de bronce gigantes a los pies de las torres.",
+        "ca": "Ets davant les portes de l'antiga Bàrcino. Oblida les plaques petites. La ciutat crida el seu nom antic als quatre vents amb lletres de bronze gegants als peus de les torres.",
+        "en": "You are at the gates of ancient Barcino. Forget the small plaques. The city shouts its ancient name to the four winds with giant bronze letters at the foot of the towers."
+      },
+      "enigma": {
+        "pregunta": { "es": "¿Qué nombre romano de 7 letras forman las esculturas?", "ca": "Quin nom romà de 7 lletres formen les escultures?", "en": "What 7-letter Roman name do the sculptures form?" },
+        "solucion": "BARCINO",
+        "tipo_input": "text"
+      },
+      "pistas": {
+        "nivel_1": { "es": "Ir a donde los reyes impartían justicia (Plaça del Rei).", "ca": "Anar on els reis impartien justícia (Plaça del Rei).", "en": "Go where kings dispensed justice (Plaça del Rei)." },
+        "guardian_1": { "pregunta": "¿Qué emperador fundó Barcino?", "respuesta": "AUGUSTO" },
+        "nivel_2": { "es": "Busca el Palau Reial Major.", "ca": "Busca el Palau Reial Major.", "en": "Look for the Palau Reial Major." },
+        "guardian_2": { "pregunta": "¿Qué se celebraba en la plaza?", "respuesta": "MERCADO" },
+        "nivel_3_mapa": "Plaça del Rei, Barcelona"
+      },
+      "recompensa": {
+        "titulo": { "es": "El Legado de Roma", "ca": "El Llegat de Roma", "en": "The Legacy of Rome" },
+        "texto": { "es": "Has encontrado la firma de la ciudad...", "ca": "Has trobat la signatura de la ciutat...", "en": "You found the city's signature..." }
+      }
+    },
+    {
+      "id": 2,
+      "titulo": { "es": "Capítulo II: Visigodos", "ca": "Capítol II: Visigots", "en": "Chapter II: Visigoths" },
+      "subtitulo": { "es": "Plaça del Rei", "ca": "Plaça del Rei", "en": "King's Square" },
+      "imagen": "visigodos.jpg",
+      "narrativa": {
+        "es": "Los reyes visigodos duermen bajo tierra. Pero sobre ellos, los reyes medievales quisieron tocar el cielo. Alza la vista hacia la torre rectangular que domina la plaza.",
+        "ca": "Els reis visigots dormen sota terra. Però sobre ells, els reis medievals van voler tocar el cel. Alça la vista cap a la torre rectangular que domina la plaça.",
+        "en": "Visigothic kings sleep underground. But above them, medieval kings wanted to touch the sky. Look up at the rectangular tower dominating the square."
+      },
+      "enigma": {
+        "pregunta": { "es": "Código: Nombre del rey constructor (sin tilde) + Pisos de la torre.", "ca": "Codi: Nom del rei constructor + Pisos de la torre.", "en": "Code: Name of the builder king + Floors of the tower." },
+        "solucion": "MARTI5",
+        "tipo_input": "text"
+      },
+      "pistas": {
+        "nivel_1": { "es": "Busca estatua ecuestre sobre la muralla.", "ca": "Busca estàtua eqüestre sobre la muralla.", "en": "Look for equestrian statue on the wall." },
+        "guardian_1": { "pregunta": "¿Cómo se llamaba el rey de la torre?", "respuesta": "MARTI" },
+        "nivel_2": { "es": "Plaza Ramon Berenguer el Gran.", "ca": "Plaça Ramon Berenguer el Gran.", "en": "Ramon Berenguer el Gran Square." },
+        "guardian_2": { "pregunta": "¿Cuántos pisos tiene la torre?", "respuesta": "5" },
+        "nivel_3_mapa": "Plaça de Ramon Berenguer el Gran, Barcelona"
+      }
+    },
+    {
+      "id": 3,
+      "titulo": { "es": "Capítulo III: Al-Ándalus", "ca": "Capítol III: Al-Àndalus", "en": "Chapter III: Al-Andalus" },
+      "subtitulo": { "es": "Plaça Ramon Berenguer", "ca": "Plaça Ramon Berenguer", "en": "Ramon Berenguer Square" },
+      "imagen": "alandalus.jpg",
+      "enigma": {
+        "pregunta": { "es": "Suma TODOS los números romanos en 'RAMON BERENGVER III'. (Ojo: U=V=5).", "ca": "Suma TOTS els nombres romans a 'RAMON BERENGVER III'. (Ull: U=V=5).", "en": "Sum ALL Roman numerals in 'RAMON BERENGVER III'. (Note: U=V=5)." },
+        "solucion": "1008",
+        "tipo_input": "number"
+      }
+    },
+    {
+      "id": 4,
+      "titulo": { "es": "Capítulo IV: Gótico", "ca": "Capítol IV: Gòtic", "en": "Chapter IV: Gothic" },
+      "subtitulo": { "es": "Pont del Bisbe", "ca": "Pont del Bisbe", "en": "Bishop's Bridge" },
+      "imagen": "gotico.jpg",
+      "enigma": {
+        "pregunta": { "es": "Objeto que atraviesa la calavera convertido a números (A=1, B=2...).", "ca": "Objecte que travessa la calavera convertit a números (A=1, B=2...).", "en": "Object piercing the skull converted to numbers (A=1, B=2...)." },
+        "solucion": "4171",
+        "tipo_input": "number"
+      }
+    },
+    {
+      "id": 5,
+      "titulo": { "es": "Capítulo V: El Call", "ca": "Capítol V: El Call", "en": "Chapter V: The Call" },
+      "subtitulo": { "es": "Carrer Salomó ben Adret", "ca": "Carrer Salomó ben Adret", "en": "Salomó ben Adret St." },
+      "imagen": "call.jpg",
+      "enigma": {
+        "pregunta": { "es": "Multiplica el número del portal por el siglo de los cimientos.", "ca": "Multiplica el número del portal pel segle dels fonaments.", "en": "Multiply the door number by the century of the foundations." },
+        "solucion": "72",
+        "tipo_input": "number"
+      }
+    },
+    {
+      "id": 6,
+      "titulo": { "es": "Capítulo VI: Renacimiento", "ca": "Capítol VI: Renaixement", "en": "Chapter VI: Renaissance" },
+      "subtitulo": { "es": "Casa de l'Ardiaca", "ca": "Casa de l'Ardiaca", "en": "Archdeacon's House" },
+      "imagen": "ardiaca.jpg",
+      "enigma": {
+        "pregunta": { "es": "Código: Nº Columnas - Inicial Animal - Objeto Dintel", "ca": "Codi: Nº Columnes - Inicial Animal - Objecte Llinda", "en": "Code: Nº Columns - Animal Initial - Lintel Object" },
+        "soluciones": { "es": "2TESCUDO", "ca": "2TESCUT", "en": "2TSHIELD" },
+        "tipo_input": "text"
+      }
+    },
+    {
+      "id": 7,
+      "titulo": { "es": "Capítulo VII: Ilustración", "ca": "Capítol VII: Il·lustració", "en": "Chapter VII: Enlightenment" },
+      "subtitulo": { "es": "Carrer del Veguer", "ca": "Carrer del Veguer", "en": "Veguer St." },
+      "imagen": "veguer.jpg",
+      "tipo_enigma": "pigpen",
+      "enigma": {
+        "pregunta": { "es": "Descifra el apellido usando la clave masónica.", "ca": "Desxifra el cognom usant la clau maçònica.", "en": "Decipher the surname using the Masonic key." },
+        "solucion": "PADELLAS",
+        "tipo_input": "text"
+      }
+    },
+    {
+      "id": 8,
+      "titulo": { "es": "Capítulo VIII: Guerra Civil", "ca": "Capítol VIII: Guerra Civil", "en": "Chapter VIII: Civil War" },
+      "subtitulo": { "es": "Sant Felip Neri", "ca": "Sant Felip Neri", "en": "Sant Felip Neri" },
+      "imagen": "felipneri.jpg",
+      "enigma": {
+        "pregunta": { "es": "Convierte el apellido del Santo en secuencia numérica (A=1...). NO SUMAR.", "ca": "Converteix el cognom del Sant en seqüència numèrica (A=1...). NO SUMAR.", "en": "Convert the Saint's surname into a numerical sequence (A=1...). DO NOT SUM." },
+        "solucion": "145189",
+        "tipo_input": "number"
+      }
+    },
+    {
+      "id": 9,
+      "titulo": { "es": "Capítulo Final: Presente", "ca": "Capítol Final: Present", "en": "Final Chapter: Present" },
+      "subtitulo": { "es": "Plaça Sant Jaume", "ca": "Plaça Sant Jaume", "en": "Sant Jaume Square" },
+      "imagen": "santjaume.jpg",
+      "enigma": {
+        "pregunta": { "es": "¿Cómo se llama la ciudad hoy?", "ca": "Com es diu la ciutat avui?", "en": "What is the city called today?" },
+        "solucion": "BARCELONA",
+        "tipo_input": "text"
+      }
+    }
+  ]
+}
