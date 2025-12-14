@@ -1,0 +1,235 @@
+{
+  "config": {
+    "titulo_proyecto": "El Manuscrito de las Capas de Piedra",
+    "version": "7.0",
+    "autor": "Arqueólogo del Tiempo",
+    "idiomas_disponibles": ["es", "ca", "en"],
+    "total_paradas": 9
+  },
+  "ui_translations": {
+    "btn_validar": { "es": "Validar Respuesta", "ca": "Validar Resposta", "en": "Validate Answer" },
+    "btn_pista_1": { "es": "¿Necesitas una pista?", "ca": "Necessites una pista?", "en": "Need a hint?" },
+    "btn_pista_2": { "es": "¿Sigues perdido? Pista Directa", "ca": "Encara perdut? Pista Directa", "en": "Still lost? Direct Clue" },
+    "btn_mapa": { "es": "Ver en Google Maps", "ca": "Veure a Google Maps", "en": "Open in Google Maps" },
+    "btn_continuar": { "es": "Continuar Aventura", "ca": "Continuar Aventura", "en": "Continue Adventure" },
+    "placeholder_texto": { "es": "Escribe tu respuesta...", "ca": "Escriu la teva resposta...", "en": "Write your answer..." },
+    "placeholder_num": { "es": "Introduce el número", "ca": "Introdueix el número", "en": "Enter the number" },
+    "msg_error": { "es": "Incorrecto. Inténtalo de nuevo.", "ca": "Incorrecte. Torna-ho a provar.", "en": "Incorrect. Try again." },
+    "msg_correcto": { "es": "¡Correcto!", "ca": "Correcte!", "en": "Correct!" }
+  },
+  "paradas": [
+    {
+      "id": 1,
+      "slug": "roma",
+      "titulo": { "es": "Capítulo I: Roma", "ca": "Capítol I: Roma", "en": "Chapter I: Rome" },
+      "ubicacion": { "es": "Plaça Nova", "ca": "Plaça Nova", "en": "Plaça Nova" },
+      "imagen": "roma.jpg",
+      "narrativa_intro": {
+        "es": "Estás ante las puertas de la antigua Barcino. Olvida las placas pequeñas. La ciudad grita su nombre antiguo a los cuatro vientos con letras de bronce gigantes a los pies de las torres.",
+        "ca": "Ets davant les portes de l'antiga Bàrcino. Oblida les plaques petites. La ciutat crida el seu nom antic als quatre vents amb lletres de bronze gegants als peus de les torres.",
+        "en": "You are at the gates of ancient Barcino. Forget the small plaques. The city shouts its ancient name to the four winds with giant bronze letters at the foot of the towers."
+      },
+      "enigma": {
+        "pregunta": { "es": "¿Qué nombre romano de 7 letras forman las esculturas?", "ca": "Quin nom romà de 7 lletres formen les escultures?", "en": "What 7-letter Roman name do the sculptures form?" },
+        "tipo": "texto",
+        "solucion": "BARCINO"
+      },
+      "recompensa": {
+        "titulo": { "es": "El Nombre de la Ciudad", "ca": "El Nom de la Ciutat", "en": "The Name of the City" },
+        "texto_historico": { "es": "Barcino fue fundada por el emperador Augusto...", "ca": "Bàrcino va ser fundada per l'emperador August...", "en": "Barcino was founded by Emperor Augustus..." },
+        "pista_salto": { "es": "No te vayas lejos. Tu siguiente objetivo está en esta misma plaza, frente a la Catedral. Busca una casa con un buzón de mármol muy especial.", "ca": "No te'n vagis lluny. El teu següent objectiu és a la mateixa plaça, davant de la Catedral. Busca una casa amb una bústia de marbre molt especial.", "en": "Don't go far. Your next target is in this same square, facing the Cathedral. Look for a house with a very special marble mailbox." },
+        "pista_directa": { "es": "Busca la Casa de l'Ardiaca, a la derecha de las torres romanas.", "ca": "Busca la Casa de l'Ardiaca, a la dreta de les torres romanes.", "en": "Look for the Archdeacon's House (Casa de l'Ardiaca), to the right of the Roman towers." },
+        "coordenadas_mapa": "Casa de l'Ardiaca, Barcelona"
+      }
+    },
+    {
+      "id": 2,
+      "slug": "renacimiento",
+      "titulo": { "es": "Capítulo II: Renacimiento", "ca": "Capítol II: Renaixement", "en": "Chapter II: Renaissance" },
+      "ubicacion": { "es": "Casa de l'Ardiaca", "ca": "Casa de l'Ardiaca", "en": "Archdeacon's House" },
+      "imagen": "ardiaca.jpg",
+      "narrativa_intro": {
+        "es": "Ante la casa del Arcediano, tres señales guardan el secreto. Cuenta las columnas de la entrada, descubre al animal del buzón y nombra el escudo del dintel.",
+        "ca": "Davant la casa de l'Ardiaca, tres senyals guarden el secret. Compta les columnes de l'entrada, descobreix l'animal de la bústia i anomena l'escut de la llinda.",
+        "en": "Before the Archdeacon's house, three signs keep the secret. Count the entrance columns, discover the mailbox animal, and name the shield on the lintel."
+      },
+      "enigma": {
+        "pregunta": { "es": "Código: Nº Columnas - Inicial Animal - Objeto Dintel", "ca": "Codi: Nº Columnes - Inicial Animal - Objecte Llinda", "en": "Code: Nº Columns - Animal Initial - Lintel Object" },
+        "tipo": "texto",
+        "soluciones": { "es": "2TESCUDO", "ca": "2TESCUT", "en": "2TSHIELD" }
+      },
+      "recompensa": {
+        "titulo": { "es": "Justicia de Piedra", "ca": "Justícia de Pedra", "en": "Stone Justice" },
+        "texto_historico": { "es": "Las golondrinas vuelan rápido, la tortuga es la burocracia lenta...", "ca": "Les orenetes volen ràpid, la tortuga és la burocràcia lenta...", "en": "Swallows fly fast, the turtle is the slow bureaucracy..." },
+        "pista_salto": { "es": "Sal de la plaza hacia la gran avenida (Via Laietana) para buscar la muralla y una estatua ecuestre.", "ca": "Surt de la plaça cap a la gran avinguda (Via Laietana) per buscar la muralla i una estàtua eqüestre.", "en": "Leave the square towards the big avenue (Via Laietana) to find the wall and an equestrian statue." },
+        "pista_directa": { "es": "Busca la Plaza de Ramon Berenguer el Gran.", "ca": "Busca la Plaça de Ramon Berenguer el Gran.", "en": "Look for Ramon Berenguer el Gran Square." },
+        "coordenadas_mapa": "Plaça de Ramon Berenguer el Gran, Barcelona"
+      }
+    },
+    {
+      "id": 3,
+      "slug": "alandalus",
+      "titulo": { "es": "Capítulo III: Al-Ándalus", "ca": "Capítol III: Al-Àndalus", "en": "Chapter III: Al-Andalus" },
+      "ubicacion": { "es": "Plaça Ramon Berenguer", "ca": "Plaça Ramon Berenguer", "en": "Ramon Berenguer Square" },
+      "imagen": "alandalus.jpg",
+      "narrativa_intro": {
+        "es": "Estás ante el Conde que cabalga sobre la muralla. Fíjate en su nombre: RAMON BERENGVER III. El latín esconde trampas: la 'U' se escribe como 'V'.",
+        "ca": "Ets davant el Comte que cavalca sobre la muralla. Fixa't en el seu nom: RAMON BERENGVER III. El llatí amaga trampes: la 'U' s'escriu com 'V'.",
+        "en": "You are before the Count riding on the wall. Look at his name: RAMON BERENGVER III. Latin hides traps: 'U' is written as 'V'."
+      },
+      "enigma": {
+        "pregunta": { "es": "Suma TODOS los números romanos (M + V + III).", "ca": "Suma TOTS els nombres romans (M + V + III).", "en": "Sum ALL Roman numerals (M + V + III)." },
+        "tipo": "numero",
+        "solucion": "1008"
+      },
+      "recompensa": {
+        "titulo": { "es": "La Frontera", "ca": "La Frontera", "en": "The Frontier" },
+        "texto_historico": { "es": "Barcelona fue frontera con el mundo islámico...", "ca": "Barcelona va ser frontera amb el món islàmic...", "en": "Barcelona was a frontier with the Islamic world..." },
+        "pista_salto": { "es": "Cruza la muralla y entra en el corazón noble: la Plaça del Rei.", "ca": "Creua la muralla i entra al cor noble: la Plaça del Rei.", "en": "Cross the wall and enter the noble heart: King's Square (Plaça del Rei)." },
+        "pista_directa": { "es": "Tu destino es la Plaça del Rei, justo al otro lado de la muralla.", "ca": "El teu destí és la Plaça del Rei, just a l'altre costat de la muralla.", "en": "Your destination is Plaça del Rei, just on the other side of the wall." },
+        "coordenadas_mapa": "Plaça del Rei, Barcelona"
+      }
+    },
+    {
+      "id": 4,
+      "slug": "visigodos",
+      "titulo": { "es": "Capítulo IV: Visigodos", "ca": "Capítol IV: Visigots", "en": "Chapter IV: Visigoths" },
+      "ubicacion": { "es": "Plaça del Rei", "ca": "Plaça del Rei", "en": "King's Square" },
+      "imagen": "visigodos.jpg",
+      "narrativa_intro": {
+        "es": "Los reyes visigodos duermen bajo tierra. Pero arriba, la torre rectangular domina la plaza. Cuenta sus pisos de galerías.",
+        "ca": "Els reis visigots dormen sota terra. Però a dalt, la torre rectangular domina la plaça. Compta els seus pisos de galeries.",
+        "en": "Visigothic kings sleep underground. But above, the rectangular tower dominates the square. Count its gallery floors."
+      },
+      "enigma": {
+        "pregunta": { "es": "Código: Nombre del rey constructor (sin tilde) + Nº de pisos.", "ca": "Codi: Nom del rei constructor + Nº de pisos.", "en": "Code: Builder King's Name + Nº of floors." },
+        "tipo": "texto",
+        "solucion": "MARTI5"
+      },
+      "recompensa": {
+        "titulo": { "es": "El Mirador del Rey", "ca": "El Mirador del Rei", "en": "The King's Watchtower" },
+        "texto_historico": { "es": "La Torre del Rei Martí es el punto más alto del palacio...", "ca": "La Torre del Rei Martí és el punt més alt del palau...", "en": "King Martin's Tower is the highest point of the palace..." },
+        "pista_salto": { "es": "Mira a la esquina de esta misma plaza (hacia la bajada). Una calle estrecha te lleva al Museo.", "ca": "Mira a la cantonada d'aquesta mateixa plaça (cap a la baixada). Un carrer estret et porta al Museu.", "en": "Look at the corner of this same square (downhill). A narrow street leads you to the Museum." },
+        "pista_directa": { "es": "Busca la Calle del Veguer.", "ca": "Busca el Carrer del Veguer.", "en": "Look for Veguer Street." },
+        "coordenadas_mapa": "Carrer del Veguer, Barcelona"
+      }
+    },
+    {
+      "id": 5,
+      "slug": "ilustracion",
+      "titulo": { "es": "Capítulo V: Ilustración", "ca": "Capítol V: Il·lustració", "en": "Chapter V: Enlightenment" },
+      "ubicacion": { "es": "Carrer del Veguer", "ca": "Carrer del Veguer", "en": "Veguer Street" },
+      "imagen": "veguer.jpg",
+      "narrativa_intro": {
+        "es": "Estás ante la Casa Padellàs, un palacio trasladado piedra a piedra. Una logia masónica ha dejado encriptado el apellido de la familia.",
+        "ca": "Ets davant la Casa Padellàs, un palau traslladat pedra a pedra. Una lògia maçònica ha deixat encriptat el cognom de la família.",
+        "en": "You are before Padellàs House, a palace moved stone by stone. A Masonic lodge has encrypted the family surname."
+      },
+      "enigma": {
+        "pregunta": { "es": "Descifra el apellido usando la clave masónica.", "ca": "Desxifra el cognom usant la clau maçònica.", "en": "Decipher the surname using the Masonic key." },
+        "tipo": "pigpen",
+        "solucion": "PADELLAS"
+      },
+      "recompensa": {
+        "titulo": { "es": "La Razón y el Orden", "ca": "La Raó i l'Ordre", "en": "Reason and Order" },
+        "texto_historico": { "es": "El Veguer fue eliminado por el Decreto de Nueva Planta...", "ca": "El Veguer va ser eliminat pel Decret de Nova Planta...", "en": "The Veguer was eliminated by the New Plant Decree..." },
+        "pista_salto": { "es": "Sigue bajando por la calle y busca el puente más famoso del barrio.", "ca": "Segueix baixant pel carrer i busca el pont més famós del barri.", "en": "Continue down the street and look for the most famous bridge in the quarter." },
+        "pista_directa": { "es": "Busca el Pont del Bisbe.", "ca": "Busca el Pont del Bisbe.", "en": "Look for Bishop's Bridge." },
+        "coordenadas_mapa": "Pont del Bisbe, Barcelona"
+      }
+    },
+    {
+      "id": 6,
+      "slug": "gotico",
+      "titulo": { "es": "Capítulo VI: Gótico", "ca": "Capítol VI: Gòtic", "en": "Chapter VI: Gothic" },
+      "ubicacion": { "es": "Pont del Bisbe", "ca": "Pont del Bisbe", "en": "Bishop's Bridge" },
+      "imagen": "gotico.jpg",
+      "narrativa_intro": {
+        "es": "Bajo el arco del puente, una calavera es atravesada por un arma. Convierte el nombre del arma en números.",
+        "ca": "Sota l'arc del pont, una calavera és travessada per una arma. Converteix el nom de l'arma en números.",
+        "en": "Under the bridge arch, a skull is pierced by a weapon. Convert the weapon's name into numbers."
+      },
+      "enigma": {
+        "pregunta": { "es": "Código de la DAGA (A=1, B=2...).", "ca": "Codi de la DAGA (A=1, B=2...).", "en": "Code of the DAGA (A=1, B=2...)." },
+        "tipo": "numero",
+        "solucion": "4171"
+      },
+      "recompensa": {
+        "titulo": { "es": "Falso Gótico", "ca": "Fals Gòtic", "en": "Fake Gothic" },
+        "texto_historico": { "es": "El puente es de 1928, no es medieval...", "ca": "El pont és de 1928, no és medieval...", "en": "The bridge is from 1928, it is not medieval..." },
+        "pista_salto": { "es": "Antes de llegar al final de la calle, desvíate a la derecha hacia una plaza silenciosa con marcas de bombas.", "ca": "Abans d'arribar al final del carrer, desvia't a la dreta cap a una plaça silenciosa amb marques de bombes.", "en": "Before reaching the end of the street, turn right towards a silent square with bomb marks." },
+        "pista_directa": { "es": "Plaça de Sant Felip Neri.", "ca": "Plaça de Sant Felip Neri.", "en": "Sant Felip Neri Square." },
+        "coordenadas_mapa": "Plaça de Sant Felip Neri, Barcelona"
+      }
+    },
+    {
+      "id": 7,
+      "slug": "guerracivil",
+      "titulo": { "es": "Capítulo VII: Guerra Civil", "ca": "Capítol VII: Guerra Civil", "en": "Chapter VII: Civil War" },
+      "ubicacion": { "es": "Sant Felip Neri", "ca": "Sant Felip Neri", "en": "Sant Felip Neri" },
+      "imagen": "felipneri.jpg",
+      "narrativa_intro": {
+        "es": "Los muros de la iglesia sangran. Convierte el apellido del Santo (NERI) en una secuencia numérica. NO SUMES.",
+        "ca": "Els murs de l'església sagnen. Converteix el cognom del Sant (NERI) en una seqüència numèrica. NO SUMIS.",
+        "en": "The church walls bleed. Convert the Saint's surname (NERI) into a numerical sequence. DO NOT SUM."
+      },
+      "enigma": {
+        "pregunta": { "es": "Código NERI (A=1, B=2...).", "ca": "Codi NERI (A=1, B=2...).", "en": "NERI Code (A=1, B=2...)." },
+        "tipo": "numero",
+        "solucion": "145189"
+      },
+      "recompensa": {
+        "titulo": { "es": "El Dolor", "ca": "El Dolor", "en": "The Pain" },
+        "texto_historico": { "es": "Fue una bomba italiana en 1938, no fusilamientos...", "ca": "Va ser una bomba italiana el 1938, no afusellaments...", "en": "It was an Italian bomb in 1938, not executions..." },
+        "pista_salto": { "es": "Sal de la plaza y adéntrate en las callejuelas estrechas del antiguo Barrio Judío.", "ca": "Surt de la plaça i endinsa't als carrerons estrets de l'antic Barri Jueu.", "en": "Leave the square and enter the narrow alleys of the old Jewish Quarter." },
+        "pista_directa": { "es": "Ve al Carrer de Salomó ben Adret.", "ca": "Ves al Carrer de Salomó ben Adret.", "en": "Go to Salomó ben Adret Street." },
+        "coordenadas_mapa": "Carrer de Salomó ben Adret, Barcelona"
+      }
+    },
+    {
+      "id": 8,
+      "slug": "call",
+      "titulo": { "es": "Capítulo VIII: El Call", "ca": "Capítol VIII: El Call", "en": "Chapter VIII: The Call" },
+      "ubicacion": { "es": "Casa Adret", "ca": "Casa Adret", "en": "Adret House" },
+      "imagen": "call.jpg",
+      "narrativa_intro": {
+        "es": "Busca la Casa Adret en el número 6. Es la casa más antigua. Multiplica el número del portal por el siglo de sus cimientos (XII).",
+        "ca": "Busca la Casa Adret al número 6. És la casa més antiga. Multiplica el número del portal pel segle dels seus fonaments (XII).",
+        "en": "Find Adret House at number 6. It is the oldest house. Multiply the door number by the century of its foundations (XII)."
+      },
+      "enigma": {
+        "pregunta": { "es": "Operación: 6 x 12", "ca": "Operació: 6 x 12", "en": "Operation: 6 x 12" },
+        "tipo": "numero",
+        "solucion": "72"
+      },
+      "recompensa": {
+        "titulo": { "es": "Sabiduría", "ca": "Saviesa", "en": "Wisdom" },
+        "texto_historico": { "es": "Rashba fue el rabino más importante...", "ca": "Rashba va ser el rabí més important...", "en": "Rashba was the most important rabbi..." },
+        "pista_salto": { "es": "Sal del laberinto hacia el centro del poder político: la Plaça Sant Jaume.", "ca": "Surt del laberint cap al centre del poder polític: la Plaça Sant Jaume.", "en": "Leave the maze towards the center of political power: Sant Jaume Square." },
+        "pista_directa": { "es": "Plaça de Sant Jaume.", "ca": "Plaça de Sant Jaume.", "en": "Sant Jaume Square." },
+        "coordenadas_mapa": "Plaça de Sant Jaume, Barcelona"
+      }
+    },
+    {
+      "id": 9,
+      "slug": "final",
+      "titulo": { "es": "Capítulo Final", "ca": "Capítol Final", "en": "Final Chapter" },
+      "ubicacion": { "es": "Sant Jaume", "ca": "Sant Jaume", "en": "Sant Jaume" },
+      "imagen": "santjaume.jpg",
+      "narrativa_intro": {
+        "es": "Has cerrado el círculo. De Barcino a hoy. ¿Cómo se llama la ciudad ahora?",
+        "ca": "Has tancat el cercle. De Bàrcino a avui. Com es diu la ciutat ara?",
+        "en": "You have closed the circle. From Barcino to today. What is the city called now?"
+      },
+      "enigma": {
+        "pregunta": { "es": "Nombre actual de la ciudad.", "ca": "Nom actual de la ciutat.", "en": "Current name of the city." },
+        "tipo": "texto",
+        "solucion": "BARCELONA"
+      },
+      "recompensa": {
+        "titulo": { "es": "Epílogo", "ca": "Epíleg", "en": "Epilogue" },
+        "texto_historico": { "es": "Tú eres la última capa...", "ca": "Tu ets l'última capa...", "en": "You are the last layer..." }
+      }
+    }
+  ]
+}
