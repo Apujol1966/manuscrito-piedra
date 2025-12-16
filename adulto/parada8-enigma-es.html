@@ -4,7 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Capítulo VIII: Guerra Civil - El Manuscrito</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Lato:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Lato:wght@400;700&display=swap" rel="stylesheet">
     <style>
         :root { --bg-color: #121212; --card-bg: #1e1e1e; --text-main: #e0d6c2; --text-muted: #a8a095; --accent: #c0392b; }
         * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -18,12 +20,13 @@
         .narrative-text { font-style: italic; border-left: 3px solid var(--accent); padding-left: 15px; margin-top: 15px; color: #dcdcdc; }
         .enigma-box { background-color: #2c2c2c; border: 1px solid var(--accent); padding: 20px; border-radius: 8px; margin-top: 20px; text-align: center; }
         .enigma-icon { font-size: 2rem; margin-bottom: 10px; display: block; }
-        input[type="number"] { width: 100%; padding: 15px; font-size: 1.5rem; font-family: 'Cinzel', serif; background-color: #1a1a1a; border: 2px solid #444; color: white; border-radius: 8px; margin: 15px 0; text-align: center; }
+        input[type="text"] { width: 100%; padding: 15px; font-size: 1.5rem; font-family: 'Cinzel', serif; background-color: #1a1a1a; border: 2px solid #444; color: white; border-radius: 8px; margin: 15px 0; text-align: center; letter-spacing: 2px; }
         .btn { width: 100%; padding: 15px; font-size: 1rem; font-weight: bold; text-transform: uppercase; border: none; border-radius: 8px; cursor: pointer; font-family: 'Cinzel', serif; }
         .btn-primary { background-color: var(--accent); color: white; }
         .info-toggle { background: none; border: none; color: var(--text-muted); text-decoration: underline; cursor: pointer; font-size: 0.9rem; margin-top: 15px; display: block; width: 100%; }
         .info-content { display: none; margin-top: 15px; font-size: 0.9rem; background: #151515; padding: 15px; border-radius: 8px; text-align: left; }
         #feedback-msg { margin-top: 15px; font-weight: bold; min-height: 1.5em; color: var(--accent); }
+        .cypher-key { margin-top: 10px; padding: 10px; background-color: #1a1a1a; border-radius: 4px; font-size: 0.8rem; color: var(--text-muted); font-family: monospace; }
     </style>
 </head>
 <body>
@@ -32,49 +35,53 @@
         <div class="subtitle">Plaça de Sant Felip Neri · Guerra Civil</div>
     </header>
     
-    <!-- Imagen recomendada: felipneri.jpg (Muros con metralla) -->
     <div class="img-container">
         <img src="../imagenes/felipneri.jpg" alt="Muros de la iglesia marcados por la metralla">
     </div>
 
     <section class="card">
         <p>“Has entrado en un paréntesis de silencio. Aquí, el ruido de la ciudad se apaga. Pero las piedras gritan.”</p>
-        <p class="narrative-text">“Observa la fachada de la iglesia. No son efectos del tiempo, ni marcas de fusilamientos como cuenta la leyenda popular. Son las cicatrices de una bomba lanzada por la aviación fascista italiana en 1938. La tragedia quedó grabada para siempre en la piel de Barcelona.”</p>
+        <p class="narrative-text">“Observa la fachada de la iglesia. No es el desgaste del tiempo. Son las cicatrices de una bomba lanzada en 1938. La tragedia quedó grabada para siempre en la piel de Barcelona.”</p>
     </section>
 
     <div id="enigma-container">
         <section class="enigma-box">
             <span class="enigma-icon">🥀</span>
-            <h3>La Cifra del Recuerdo</h3>
-            <p>“Acércate a la placa rectangular que hay en la fachada. Lee la historia del bombardeo.”</p>
-            <p>“Resta el <strong>día del mes</strong> en que cayó la bomba al <strong>número total de víctimas</strong> mortales.”</p>
-            <p style="font-size: 0.9rem; color: #aaa;">(Fórmula: Víctimas - Día = ?)</p>
+            <h3>El Código del Santo</h3>
+            <p>“La placa en la fachada nombra al santo que vigila este lugar: <strong>Sant Felip NERI</strong>.”</p>
+            <p>“Tu misión es transformar su apellido (<strong>NERI</strong>) en una secuencia numérica usando el abecedario. <strong>¡Atención! No sumes los valores.</strong> Escribe los números seguidos.”</p>
+            
+            <div class="cypher-key">A=1 | B=2 ... M=13 | N=14 ...</div>
             
             <label for="answer" style="display:none;">Tu respuesta</label>
-            <input type="number" id="answer" placeholder="Resultado de la resta">
+            <input type="text" id="answer" placeholder="Ej: 3-1-19-1">
             <button class="btn btn-primary" onclick="checkAnswer()">Honrar la Memoria</button>
             
             <div id="feedback-msg"></div>
             
-            <button class="info-toggle" onclick="toggleHint()">¿No encuentras la placa?</button>
+            <button class="info-toggle" onclick="toggleHint()">¿Necesitas ayuda con los números?</button>
             <div id="hint-box" class="info-content">
-                <p>La placa dice que murieron <strong>42</strong> personas.</p>
-                <p>Ocurrió el día <strong>30</strong> de enero.</p>
-                <p>La operación es: 42 - 30.</p>
+                <p>N = 14</p>
+                <p>E = 5</p>
+                <p>R = 18</p>
+                <p>I = 9</p>
+                <p>Escribe todo junto o con guiones.</p>
             </div>
         </section>
     </div>
 
     <script>
-        // Solución: 42 (Víctimas) - 30 (Día) = 12
-        const SOLUTION = 12;
+        // Solución: 145189 (NERI)
+        const SOLUTION = "145189";
 
         function checkAnswer() {
-            const userIn = document.getElementById('answer').value;
-            if (parseInt(userIn) === SOLUTION) {
+            // Limpiamos la entrada (quitamos espacios y guiones) para validar solo los números
+            let userIn = document.getElementById('answer').value.replace(/[^0-9]/g, '');
+            
+            if (userIn === SOLUTION) {
                 window.location.href = 'parada8-recompensa-es.html';
             } else {
-                document.getElementById('feedback-msg').textContent = "Cifra incorrecta. Lee la placa con respeto y atención.";
+                document.getElementById('feedback-msg').textContent = "Código incorrecto. Revisa la posición de las letras.";
             }
         }
 

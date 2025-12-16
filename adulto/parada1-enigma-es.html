@@ -3,238 +3,80 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="google" content="notranslate">
     <title>Capítulo I: Roma - El Manuscrito</title>
-    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Lato:wght@400;700&display=swap" rel="stylesheet">
-
     <style>
-        /* (Los estilos CSS son los mismos que en index.html) */
-        :root {
-            --bg-color: #121212;
-            --card-bg: #1e1e1e;
-            --text-main: #e0d6c2;
-            --text-muted: #a8a095;
-            --accent: #c0392b;
-        }
+        :root { --bg-color: #121212; --card-bg: #1e1e1e; --text-main: #e0d6c2; --text-muted: #a8a095; --accent: #c0392b; }
         * { box-sizing: border-box; margin: 0; padding: 0; }
-        body {
-            background-color: var(--bg-color);
-            color: var(--text-main);
-            font-family: 'Lato', sans-serif;
-            line-height: 1.6;
-            padding: 20px;
-            max-width: 600px;
-            margin: 0 auto;
-        }
-        h1, h2, h3, h4 {
-            font-family: 'Cinzel', serif;
-            color: #fff;
-            letter-spacing: 1px;
-        }
-        h1 {
-            font-size: 1.8rem;
-            text-align: center;
-            margin-bottom: 10px;
-            border-bottom: 2px solid var(--accent);
-            padding-bottom: 10px;
-        }
-        .subtitle {
-            text-align: center;
-            font-size: 0.9rem;
-            color: var(--text-muted);
-            margin-bottom: 25px;
-            text-transform: uppercase;
-        }
-        .lang-selector { text-align: center; margin-bottom: 20px; }
-        .lang-btn {
-            display: inline-block; padding: 8px 12px; margin: 0 5px;
-            border: 1px solid var(--text-muted); color: var(--text-muted);
-            background-color: transparent; border-radius: 5px; cursor: pointer;
-            font-family: 'Lato', sans-serif; font-weight: bold;
-        }
-        .lang-btn.active { background-color: var(--accent); color: white; border-color: var(--accent); }
-        .img-container {
-            width: 100%; max-height: 250px; background-color: #333;
-            border-radius: 8px; margin-bottom: 20px; overflow: hidden; border: 1px solid #444;
-        }
+        body { background-color: var(--bg-color); color: var(--text-main); font-family: 'Lato', sans-serif; line-height: 1.6; padding: 20px; max-width: 600px; margin: 0 auto; }
+        h1, h3 { font-family: 'Cinzel', serif; color: #fff; letter-spacing: 1px; }
+        h1 { font-size: 1.8rem; text-align: center; margin-bottom: 10px; border-bottom: 2px solid var(--accent); padding-bottom: 10px; }
+        .subtitle { text-align: center; font-size: 0.9rem; color: var(--text-muted); margin-bottom: 25px; text-transform: uppercase; }
+        .img-container { width: 100%; max-height: 250px; background-color: #333; border-radius: 8px; margin-bottom: 20px; overflow: hidden; border: 1px solid #444; }
         .img-container img { width: 100%; height: 100%; object-fit: cover; display: block; }
-        .card {
-            background-color: var(--card-bg); padding: 20px; border-radius: 12px;
-            margin-bottom: 20px; box-shadow: 0 4px 6px rgba(0,0,0,0.3);
-        }
-        .narrative-text {
-            font-style: italic; border-left: 3px solid var(--accent);
-            padding-left: 15px; margin-top: 15px; color: #dcdcdc;
-        }
-        .enigma-box {
-            background-color: #2c2c2c; border: 1px solid var(--accent);
-            padding: 20px; border-radius: 8px; margin-top: 20px; text-align: center;
-        }
+        .card { background-color: var(--card-bg); padding: 20px; border-radius: 12px; margin-bottom: 20px; box-shadow: 0 4px 6px rgba(0,0,0,0.3); }
+        .narrative-text { font-style: italic; border-left: 3px solid var(--accent); padding-left: 15px; margin-top: 15px; color: #dcdcdc; }
+        .enigma-box { background-color: #2c2c2c; border: 1px solid var(--accent); padding: 20px; border-radius: 8px; margin-top: 20px; text-align: center; }
         .enigma-icon { font-size: 2rem; margin-bottom: 10px; display: block; }
-        input[type="text"] {
-            width: 100%; padding: 15px; font-size: 1.5rem; font-family: 'Cinzel', serif;
-            background-color: #1a1a1a; border: 2px solid #444; color: white;
-            border-radius: 8px; margin: 15px 0; text-align: center; text-transform: uppercase;
-        }
-        .btn {
-            width: 100%; padding: 15px; font-size: 1rem; font-weight: bold;
-            text-transform: uppercase; border: none; border-radius: 8px; cursor: pointer;
-            font-family: 'Cinzel', serif;
-        }
+        input[type="text"] { width: 100%; padding: 15px; font-size: 1.5rem; font-family: 'Cinzel', serif; background-color: #1a1a1a; border: 2px solid #444; color: white; border-radius: 8px; margin: 15px 0; text-align: center; text-transform: uppercase; }
+        .btn { width: 100%; padding: 15px; font-size: 1rem; font-weight: bold; text-transform: uppercase; border: none; border-radius: 8px; cursor: pointer; font-family: 'Cinzel', serif; }
         .btn-primary { background-color: var(--accent); color: white; }
-        .info-toggle {
-            background: none; border: none; color: var(--text-muted); text-decoration: underline;
-            cursor: pointer; font-size: 0.9rem; margin-top: 15px; display: block; width: 100%;
-        }
+        .info-toggle { background: none; border: none; color: var(--text-muted); text-decoration: underline; cursor: pointer; font-size: 0.9rem; margin-top: 15px; display: block; width: 100%; }
         .info-content { display: none; margin-top: 15px; font-size: 0.9rem; background: #151515; padding: 15px; border-radius: 8px; text-align: left; }
         #feedback-msg { margin-top: 15px; font-weight: bold; min-height: 1.5em; color: var(--accent); }
-        .translatable { display: none; }
-        .translatable.active { display: block; }
-        h1.translatable.active, h4.translatable.active, span.translatable.active { display: inline; }
-        h1.translatable.active, h3.translatable.active { display: block; }
     </style>
 </head>
 <body>
-
-    <div class="lang-selector">
-        <button class="lang-btn" data-lang="es">ES</button>
-        <button class="lang-btn" data-lang="ca">CA</button>
-        <button class="lang-btn" data-lang="en">EN</button>
-    </div>
-
     <header>
-        <h1 class="translatable" lang="es">Capítulo I: La Primera Tinta - ROMA</h1>
-        <h1 class="translatable" lang="ca">Capítol I: La Primera Tinta - ROMA</h1>
-        <h1 class="translatable" lang="en">Chapter I: The First Ink - ROME</h1>
+        <h1>Capítulo I: La Primera Tinta</h1>
         <div class="subtitle">Plaça Nova · Porta Praetoria</div>
     </header>
 
     <div class="img-container">
-        <img src="../imagenes/roma.jpg" alt="Columnas del Templo de Augusto en Barcelona">
+        <!-- Asegúrate de tener esta foto o usa la de las torres -->
+        <img src="../imagenes/roma.jpg" alt="Letras Barcino en Plaça Nova">
     </div>
 
     <section class="card">
-        <div class="translatable" lang="es">
-            <p>“Ante ti se alzan las guardianas de Barcino. Las dos torres de la Porta Praetoria son el vestigio más puro de la muralla romana. Han visto pasar veinte siglos de historia.”</p>
-            <p class="narrative-text">“El aire huele a piedra fría y a historia. Escucha el eco de las sandalias de un centurión. Él conocía estas torres por sus nombres latinos, los mismos que hoy puedes leer si buscas con atención.”</p>
-        </div>
-        <div class="translatable" lang="ca">
-            <p>“Davant teu s'alcen les guardianes de Barcino. Les dues torres de la Porta Praetoria són el vestigi més pur de la muralla romana. Han vist passar vint segles d'història.”</p>
-            <p class="narrative-text">“L'aire fa olor de pedra freda i d'història. Escolta el ressò de les sandàlies d'un centurió. Ell coneixia aquestes torres pels seus noms llatins, els mateixos que avui pots llegir si busques amb atenció.”</p>
-        </div>
-        <div class="translatable" lang="en">
-            <p>“Before you stand the guardians of Barcino. The two towers of the Porta Praetoria are the purest remnant of the Roman wall. They have seen twenty centuries of history pass by.”</p>
-            <p class="narrative-text">“The air smells of cold stone and history. Listen to the echo of a centurion's sandals. He knew these towers by their Latin names, the same ones you can read today if you look carefully.”</p>
-        </div>
+        <p>“Ante ti se alzan las guardianas de la ciudad. Las dos torres de la Porta Praetoria son el vestigio más puro de la muralla romana. Han visto pasar veinte siglos de historia.”</p>
+        <p class="narrative-text">“Pero no busques placas pequeñas ni carteles modernos. La ciudad grita su nombre antiguo a los cuatro vientos con letras de bronce gigantes a los pies de las torres.”</p>
     </section>
 
     <div id="enigma-container">
         <section class="enigma-box">
-            <span class="enigma-icon">📜</span>
-            <h3 class="translatable" lang="es">El Enigma del Centurión</h3>
-            <h3 class="translatable" lang="ca">L'Enigma del Centurió</h3>
-            <h3 class="translatable" lang="en">The Centurion's Enigma</h3>
-
-            <div class="translatable" lang="es"><p>“Busca la placa informativa de bronce que nombra a las guardianas de la puerta. Une la <strong>primera letra</strong> del nombre de la torre 'izquierda' y la <strong>primera letra</strong> de la 'derecha' para formar la sigla que te abrirá el camino.”</p></div>
-            <div class="translatable" lang="ca"><p>“Busca la placa informativa de bronze que anomena les guardianes de la porta. Uneix la <strong>primera lletra</strong> del nom de la torre 'esquerra' i la <strong>primera lletra</strong> de la 'dreta' per formar la sigla que t'obrirà el camí.”</p></div>
-            <div class="translatable" lang="en"><p>“Look for the bronze information plaque that names the gate's guardians. Join the <strong>first letter</strong> of the 'left' tower's name and the <strong>first letter</strong> of the 'right's' to form the sigil that will open the way.”</p></div>
+            <span class="enigma-icon">🏛️</span>
+            <h3>El Nombre de Bronce</h3>
+            <p>“Mira al suelo, frente a las torres. Hay un poema visual hecho escultura. ¿Qué nombre romano de 7 letras forman las piezas de bronce que tienes delante?”</p>
             
             <label for="answer" style="display:none;">Tu respuesta</label>
-            <input type="text" id="answer" maxlength="2"
-                   class="translatable" lang="es" placeholder="Introduce las 2 letras">
-            <input type="text" id="answer_ca" maxlength="2"
-                   class="translatable" lang="ca" placeholder="Introdueix les 2 lletres">
-            <input type="text" id="answer_en" maxlength="2"
-                   class="translatable" lang="en" placeholder="Enter the 2 letters">
-
-            <button class="btn btn-primary" onclick="checkAnswer()">
-                <span class="translatable" lang="es">Validar Sigla</span>
-                <span class="translatable" lang="ca">Validar Sigla</span>
-                <span class="translatable" lang="en">Validate Sigil</span>
-            </button>
+            <input type="text" id="answer" placeholder="Escribe el nombre" maxlength="7">
+            
+            <button class="btn btn-primary" onclick="checkAnswer()">Validar Nombre</button>
             
             <div id="feedback-msg"></div>
 
-            <button class="info-toggle" onclick="toggleHint()">
-                <span class="translatable" lang="es">¿Necesitas una pista?</span>
-                <span class="translatable" lang="ca">Necessites una pista?</span>
-                <span class="translatable" lang="en">Need a hint?</span>
-            </button>
-            <!-- ESTA ES LA SECCIÓN CORRECTA Y TRADUCIDA -->
-			<div id="hint-box" class="info-content">
-				<div class="translatable" lang="es">
-					<p>La torre de la izquierda se llama <strong>S</strong>INISTRA.</p>
-					<p>La torre de la derecha se llama <strong>D</strong>EXTRA.</p>
-			</div>
-    <div class="translatable" lang="ca">
-        <p>La torre de l'esquerra es diu <strong>S</strong>INISTRA.</p>
-        <p>La torre de la dreta es diu <strong>D</strong>EXTRA.</p>
-    </div>
-    <div class="translatable" lang="en">
-        <p>The left tower is called <strong>S</strong>INISTRA.</p>
-        <p>The right tower is called <strong>D</strong>EXTRA.</p>
-    </div>
-</div>
+            <button class="info-toggle" onclick="toggleHint()">¿Necesitas una pista?</button>
+            
+            <div id="hint-box" class="info-content">
+                <p>Son letras grandes y desordenadas en el suelo.</p>
+                <p>Empieza por <strong>B</strong>...</p>
+                <p>Es el nombre antiguo de Barcelona.</p>
+            </div>
         </section>
     </div>
 
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const langButtons = document.querySelectorAll('.lang-btn');
-            const translatableElements = document.querySelectorAll('.translatable');
-            const savedLang = localStorage.getItem('manuscritoLang') || 'es';
-
-            function setLanguage(lang) {
-                localStorage.setItem('manuscritoLang', lang);
-                document.documentElement.lang = lang;
-
-                translatableElements.forEach(el => {
-                    const elLang = el.getAttribute('lang');
-                    if (elLang) {
-                        if (elLang === lang) {
-                            el.classList.add('active');
-                        } else {
-                            el.classList.remove('active');
-                        }
-                    }
-                });
-
-                langButtons.forEach(btn => {
-                    btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
-                });
-            }
-
-            langButtons.forEach(button => {
-                button.addEventListener('click', () => {
-                    setLanguage(button.getAttribute('data-lang'));
-                });
-            });
-
-            setLanguage(savedLang);
-        });
-
-        const SOLUTION = "SD";
+        const SOLUTION = "BARCINO";
         
-        const feedbackMessages = {
-            es: "Esa no es la sigla correcta. Las torres permanecen mudas.",
-            ca: "Aquesta no és la sigla correcta. Les torres romanen mudes.",
-            en: "That is not the correct sigil. The towers remain silent."
-        };
-
         function checkAnswer() {
-            const currentLang = localStorage.getItem('manuscritoLang') || 'es';
-            const inputId = currentLang === 'es' ? 'answer' : `answer_${currentLang}`;
-            const userInput = document.getElementById(inputId).value.toUpperCase().trim();
-            const feedback = document.getElementById('feedback-msg');
-
-            if (userInput === SOLUTION) {
+            const userIn = document.getElementById('answer').value.toUpperCase().trim();
+            
+            if (userIn === SOLUTION) {
                 window.location.href = 'parada1-recompensa-es.html';
             } else {
-                feedback.textContent = feedbackMessages[currentLang];
-                document.getElementById(inputId).focus();
+                document.getElementById('feedback-msg').textContent = "Nombre incorrecto. Mira bien las letras en el suelo.";
             }
         }
 

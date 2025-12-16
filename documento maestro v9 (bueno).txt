@@ -1,62 +1,63 @@
 ======================================================================
-DOCUMENTO MAESTRO DE CONTEXTO Y DESARROLLO v6.0 (FINAL POST-TEST)
+DOCUMENTO MAESTRO DE CONTEXTO Y DESARROLLO v8.0
 PROYECTO: "El Manuscrito de las Capas de Piedra"
 PLATAFORMA: Web App Móvil (GitHub Pages)
-FECHA: 11/12/2025
+RUTA: Cronológica (Histórica)
+ESTADO: Enigmas revisados tras prueba de campo (Nivel "Pro")
 ======================================================================
 
 1. ESPECIFICACIONES TÉCNICAS
 ----------------------------------------------------------------------
 [STACK]
 - Lenguajes: HTML5, CSS3, JavaScript (Vanilla).
-- Frameworks: NINGUNO. Código nativo para máxima compatibilidad y velocidad.
+- Frameworks: NINGUNO.
 - Diseño: Mobile First (Botones grandes, textos legibles, alto contraste).
 
 [ALMACENAMIENTO]
 - Sistema: localStorage del navegador.
-- Clave Principal: 'progresoJuego' (Valor: número de la siguiente parada, 1-9).
+- Clave Principal: 'progresoJuego' (Valor: número de la siguiente parada, 2-9).
 - Reset: Archivo 'reset.html' para limpiar datos durante pruebas.
 
 [ESTRUCTURA DE FICHEROS]
 / (Raíz)
 |-- index.html           (Selector de idioma)
-|-- es.html, ca.html, en.html (Intros por idioma + Lógica "Continuar Partida")
+|-- es.html, ca.html, en.html (Intros + Pista inicial corregida "Derecha")
 |-- reset.html           (Herramienta QA)
 |-- imagenes/            (Todas las fotos .jpg, rutas relativas)
 |-- adulto/              (Carpeta de contenido del juego)
-    |-- parada[X]-enigma-[lang].html
-    |-- parada[X]-recompensa-[lang].html
-    |-- diploma-[lang].html
+    |-- parada1-enigma-[lang].html
+    |-- parada1-recompensa-[lang].html
+    ... (hasta parada 9)
+    |-- final-[lang].html (Timeline interactiva)
 
 ======================================================================
-2. GUIÓN DE JUEGO Y LÓGICA DE ENIGMAS (CORREGIDO)
+2. GUIÓN DE JUEGO Y LÓGICA (RUTA CRONOLÓGICA)
 ======================================================================
 
 --- INICIO (Plaça Catalunya -> Catedral) ---
-- Objetivo: Llegar a la Plaça Nova.
-- CORRECCIÓN APLICADA: La pista debe indicar que, mirando la Catedral de frente, el objetivo (Torres Romanas) queda a la DERECHA, no a la izquierda.
+- Pista Inicial: "Mirando la fachada de la Catedral, tu objetivo está a la DERECHA".
 
 --- PARADA 1: ROMA (Plaça Nova) ---
 - Ubicación: Torres de la Muralla / Plaça Nova.
 - Elemento Visual: Las letras gigantes de bronce de Joan Brossa en el suelo.
 - Enigma: "¿Qué nombre romano de 7 letras forman las esculturas?"
 - Solución: BARCINO
-- Pista Salto: Ir a donde los reyes impartían justicia (Plaça del Rei).
+- Pista Salto: Ir a la plaza donde los reyes impartían justicia (Plaça del Rei).
 
 --- PARADA 2: VISIGODOS (Plaça del Rei) ---
 - Ubicación: Centro de la plaza.
 - Elemento Visual: Torre del Rei Martí (La torre alta rectangular de 5 pisos).
 - Enigma: "Código alfanumérico: Nombre del rey constructor (sin tilde) + Número de pisos de galerías de su torre."
 - Solución: MARTI5
-- Pista Salto: Buscar estatua ecuestre sobre la muralla (Plaça Ramon Berenguer).
+- Pista Salto: Cruzar la muralla y buscar la estatua ecuestre (Plaça Ramon Berenguer).
 
 --- PARADA 3: AL-ÁNDALUS (Plaça Ramon Berenguer) ---
-- Ubicación: Estatua ecuestre.
+- Ubicación: Estatua ecuestre en Via Laietana.
 - Elemento Visual: Inscripción "RAMON BERENGVER III".
 - Enigma (La Trampa del Latín): Sumar TODOS los números romanos del nombre, recordando que la 'U' se escribe 'V' y vale 5.
   (M=1000) + (V=5) + (III=3).
 - Solución: 1008
-- Pista Salto: Ir al puente famoso (Carrer del Bisbe).
+- Pista Salto: Ir al puente más famoso y fotografiado (Pont del Bisbe).
 
 --- PARADA 4: GÓTICO (Pont del Bisbe) ---
 - Ubicación: Debajo del puente.
@@ -68,9 +69,9 @@ FECHA: 11/12/2025
 
 --- PARADA 5: EL CALL (Carrer de Salomó ben Adret) ---
 - Ubicación: Altura del número 6 (Casa Adret).
-- Elemento Visual: Fachada antigua / Cartel "Casa Adret".
+- Elemento Visual: Fachada antigua / Cartel "Casa Adret" para confirmar ubicación.
 - Enigma: Multiplicar el número del portal (6) por el siglo de los cimientos (XII).
-  *Nota: El texto menciona explícitamente "Casa Adret" para facilitar la localización.*
+  *Nota: El texto menciona "Casa Adret" para facilitar la localización.*
 - Solución: 72
 - Pista Salto: Volver a Plaça Nova, buscar buzón modernista (Casa de l'Ardiaca).
 
@@ -80,7 +81,6 @@ FECHA: 11/12/2025
 - Enigma (Observación): Código compuesto "Nº Columnas - Inicial Animal - Objeto Dintel".
   2 Columnas estriadas - T (Tortuga) - ESCUDO.
 - Solución: 2TESCUDO (o 2-T-ESCUDO).
-  *Versiones: CA (2TESCUT), EN (2TSHIELD).*
 - Pista Salto: Buscar calle "Veguer" detrás de Plaça del Rei.
 
 --- PARADA 7: ILUSTRACIÓN (Carrer del Veguer) ---
@@ -88,7 +88,7 @@ FECHA: 11/12/2025
 - Elemento Visual: Fachada gótica trasladada.
 - Enigma (Jeroglífico): Cifrado Masónico (Pigpen) en la pantalla del móvil.
 - Solución: PADELLAS
-- Recompensa (Contexto): Explicación de la familia Padellàs, el traslado de la casa en 1931 y la supresión del Veguer (Decreto Nueva Planta).
+- Recompensa (Contexto): Explicación de la familia Padellàs, el traslado de 1931 y el fin del Veguer (Nueva Planta).
 - Pista Salto: Plaza escondida con marcas de metralla (Sant Felip Neri).
 
 --- PARADA 8: GUERRA CIVIL (Plaça Sant Felip Neri) ---
@@ -105,24 +105,24 @@ FECHA: 11/12/2025
 - Enigma: "¿Cómo se llama la ciudad hoy? (Cierre del ciclo Barcino -> Barcelona)".
 - Solución: BARCELONA
 - Recompensa: Epílogo narrativo ("Tú eres la última capa").
-- Acción Final: Botón a "Firmar Hallazgo" -> DIPLOMA.
+- Acción Final: Botón "Cerrar el Libro" -> TIMELINE VISUAL (final-es.html).
 
 ======================================================================
 3. LISTADO DE IMÁGENES (ASSETS)
 ======================================================================
 Las imágenes deben estar en la carpeta /imagenes/ con estos nombres exactos (respetando minúsculas):
 
-1. portada.jpg    (Callejón genérico o ambientación)
-2. roma.jpg       (Letras BARCINO o Torres Romanas)
-3. visigodos.jpg  (Torre del Rei Martí o vista general Plaça del Rei)
-4. alandalus.jpg  (Estatua Ramon Berenguer, detalle inscripción si es posible)
-5. gotico.jpg     (Pont del Bisbe / Calavera)
-6. call.jpg       (Callejón estrecho o placa calle Salomó ben Adret)
-7. ardiaca.jpg    (Fachada Casa Ardiaca o Buzón)
-8. veguer.jpg     (Fachada Casa Padellàs / MUHBA)
-9. felipneri.jpg  (Muros iglesia con metralla)
-10. santjaume.jpg (Vista general Plaza Sant Jaume)
+1. portada.jpg    (Callejón genérico)
+2. roma.jpg       (Letras BARCINO o Torres)
+3. visigodos.jpg  (Torre del Rei Martí)
+4. alandalus.jpg  (Estatua Ramon Berenguer)
+5. gotico.jpg     (Pont del Bisbe)
+6. call.jpg       (Callejón estrecho)
+7. ardiaca.jpg    (Fachada Ardiaca / Buzón)
+8. veguer.jpg     (Fachada Casa Padellàs)
+9. felipneri.jpg  (Muros iglesia)
+10. santjaume.jpg (Vista general Plaza)
 
 ======================================================================
-FIN DEL DOCUMENTO MAESTRO
+FIN DEL DOCUMENTO MAESTRO v8.0
 ======================================================================

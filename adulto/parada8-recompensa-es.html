@@ -4,7 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Capítulo VIII: Guerra Civil - Descubierto</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Lato:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Lato:wght@400;700&display=swap" rel="stylesheet">
     <style>
         :root { --bg-color: #121212; --card-bg: #1e1e1e; --text-main: #e0d6c2; --text-muted: #a8a095; --accent: #c0392b; --success: #27ae60; }
         * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -50,12 +52,12 @@
 
     <div id="reward-container">
         <div class="card">
-            <div class="feedback-success">12. El número del recuerdo.</div>
+            <div class="feedback-success">145189. Código confirmado.</div>
             
             <div class="knowledge-reward">
                 <h3>Lo que ocurrió aquí</h3>
                 <p><strong>30 de Enero de 1938:</strong> La aviación legionaria italiana, aliada de Franco, bombardeó Barcelona. Una bomba cayó directamente sobre la iglesia, donde se refugiaban niños de una guardería. Murieron 42 personas, la mayoría niños.</p>
-                <p><strong>Desmintiendo el Mito:</strong> Durante la dictadura, se dijo que los agujeros de la fachada eran balas de fusilamientos de curas por parte de los anarquistas. Hoy sabemos la verdad: es la metralla de una bomba, la cicatriz del primer bombardeo sistemático sobre población civil de la historia.</p>
+                <p><strong>Desmintiendo el Mito:</strong> Durante la dictadura, se dijo que los agujeros de la fachada eran balas de fusilamientos de curas por parte de los anarquistas. Hoy sabemos la verdad: es la metralla de una bomba, la cicatriz del primer bombardeo sistemático sobre población civil.</p>
                 <span class="source-text">Fuente: Ajuntament de Barcelona / Memòria Democràtica</span>
             </div>
 
@@ -81,7 +83,7 @@
         </div>
     </div>
     
-    <!-- Este botón llevará a la Parada 9 (Final) -->
+    <!-- ENLACE A PARADA 9 (FINAL) -->
     <a href="parada9-enigma-es.html" class="btn btn-success" onclick="saveProgress()">Iniciar Capítulo Final (Presente)</a>
 
     <script>
@@ -90,7 +92,7 @@
         }
 
         const guardianPuzzles = [
-            { question: "¿Qué causó realmente los agujeros de la fachada, según el texto?", answer: "BOMBA" }, // Aceptamos BOMBA, METRALLA, AVIACION
+            { question: "¿Qué causó realmente los agujeros de la fachada, según el texto?", answer: "BOMBA" }, 
             { question: "La pista final te envía al centro del poder político. ¿Cómo se llama la plaza?", answer: "SANT JAUME" }
         ];
         
@@ -118,8 +120,8 @@
             
             let isCorrect = false;
             if (levelToUnlock === 1) {
-                // Aceptamos varias respuestas válidas para el origen de los agujeros
-                isCorrect = userAnswer.includes("BOMBA") || userAnswer.includes("METRALLA") || userAnswer.includes("ITALIA");
+                // Aceptamos BOMBA, METRALLA, AVIACION, ITALIA...
+                isCorrect = userAnswer.includes("BOMBA") || userAnswer.includes("METRALLA") || userAnswer.includes("AVIACION");
             } else {
                 isCorrect = userAnswer.includes("SANT JAUME") || userAnswer.includes("JAIME");
             }

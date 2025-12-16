@@ -25,79 +25,44 @@
         .info-content { display: none; margin-top: 15px; font-size: 0.9rem; background: #151515; padding: 15px; border-radius: 8px; text-align: left; }
         #feedback-msg { margin-top: 15px; font-weight: bold; min-height: 1.5em; color: var(--accent); }
 
-        /* --- ESTILOS DEL CIFRADO MASÓNICO (CORREGIDOS) --- */
-        
-        /* Contenedor de las claves */
+        /* ESTILOS DEL CIFRADO MASÓNICO */
         .keys-container { display: flex; justify-content: center; gap: 15px; margin-bottom: 25px; flex-wrap: wrap; }
-        
-        /* Rejillas (Tic-Tac-Toe) */
         .grid-key { display: grid; grid-template-columns: repeat(3, 1fr); width: 90px; height: 90px; }
         .cell { 
             display: flex; align-items: center; justify-content: center; 
             font-family: 'Cinzel', serif; font-weight: bold; color: #fff; font-size: 14px;
             border-color: var(--line-color); border-style: solid; border-width: 0;
         }
-        
-        /* BORDES INTERNOS DE LA REJILLA (CLAVE) */
-        /* Fila 1 */
-        .cell:nth-child(1) { border-right-width: 3px; border-bottom-width: 3px; } /* A */
-        .cell:nth-child(2) { border-left-width: 3px; border-right-width: 3px; border-bottom-width: 3px; } /* B */
-        .cell:nth-child(3) { border-left-width: 3px; border-bottom-width: 3px; } /* C */
-        /* Fila 2 */
-        .cell:nth-child(4) { border-top-width: 3px; border-right-width: 3px; border-bottom-width: 3px; } /* D */
-        .cell:nth-child(5) { border-width: 3px; } /* E (Caja cerrada) */
-        .cell:nth-child(6) { border-top-width: 3px; border-left-width: 3px; border-bottom-width: 3px; } /* F */
-        /* Fila 3 */
-        .cell:nth-child(7) { border-top-width: 3px; border-right-width: 3px; } /* G */
-        .cell:nth-child(8) { border-left-width: 3px; border-right-width: 3px; border-top-width: 3px; } /* H */
-        .cell:nth-child(9) { border-left-width: 3px; border-top-width: 3px; } /* I */
+        /* Bordes de la rejilla Clave */
+        .cell:nth-child(1) { border-right-width: 3px; border-bottom-width: 3px; } 
+        .cell:nth-child(2) { border-left-width: 3px; border-right-width: 3px; border-bottom-width: 3px; } 
+        .cell:nth-child(3) { border-left-width: 3px; border-bottom-width: 3px; } 
+        .cell:nth-child(4) { border-top-width: 3px; border-right-width: 3px; border-bottom-width: 3px; } 
+        .cell:nth-child(5) { border-width: 3px; } 
+        .cell:nth-child(6) { border-top-width: 3px; border-left-width: 3px; border-bottom-width: 3px; } 
+        .cell:nth-child(7) { border-top-width: 3px; border-right-width: 3px; } 
+        .cell:nth-child(8) { border-left-width: 3px; border-right-width: 3px; border-top-width: 3px; } 
+        .cell:nth-child(9) { border-left-width: 3px; border-top-width: 3px; }
 
-        /* Clave en X para la S */
-        .x-key { 
-            position: relative; width: 60px; height: 60px; margin-top: 15px; 
-            display: flex; align-items: center; justify-content: center;
-        }
-        /* Dibujamos la X con CSS */
+        .x-key { position: relative; width: 60px; height: 60px; margin-top: 15px; display: flex; align-items: center; justify-content: center; }
         .x-lines { position: absolute; width: 100%; height: 100%; top: 0; left: 0; }
-        .x-lines::before, .x-lines::after {
-            content: ''; position: absolute; background: var(--line-color);
-            top: 50%; left: 50%; transform: translate(-50%, -50%) rotate(45deg);
-        }
-        .x-lines::before { width: 100%; height: 3px; } /* Línea 1 */
-        .x-lines::after { width: 3px; height: 100%; } /* Línea 2 */
-        
+        .x-lines::before, .x-lines::after { content: ''; position: absolute; background: var(--line-color); top: 50%; left: 50%; transform: translate(-50%, -50%) rotate(45deg); }
+        .x-lines::before { width: 100%; height: 3px; } 
+        .x-lines::after { width: 3px; height: 100%; }
         .letter-s { position: absolute; top: 5px; font-family: 'Cinzel', serif; font-size: 14px; font-weight: bold; }
 
-        /* --- SÍMBOLOS DEL MENSAJE (Dibujados para coincidir con la clave) --- */
+        /* SÍMBOLOS DEL MENSAJE (Dibujados igual que la clave) */
         .message-row { display: flex; justify-content: center; gap: 8px; margin: 20px 0; flex-wrap: wrap; }
         .symbol { width: 30px; height: 30px; border-color: var(--accent); border-style: solid; border-width: 0; position: relative; }
         .symbol.dot::after { content: '•'; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: var(--accent); font-size: 20px; line-height: 0; }
 
-        /* DEFINICIÓN DE FORMAS (Coincidiendo con la clave) */
-        /* P (Rejilla 2, abajo-izq): Techo y Pared Derecha + Punto */
+        /* Formas PADELLAS */
         .sym-p { border-top-width: 3px; border-right-width: 3px; } 
-        
-        /* A (Rejilla 1, arriba-izq): Pared Derecha y Suelo */
         .sym-a { border-right-width: 3px; border-bottom-width: 3px; }
-        
-        /* D (Rejilla 1, medio-izq): Techo, Pared Derecha, Suelo */
         .sym-d { border-top-width: 3px; border-right-width: 3px; border-bottom-width: 3px; }
-        
-        /* E (Rejilla 1, centro): Caja completa */
         .sym-e { border-width: 3px; }
-        
-        /* L (Rejilla 2, arriba-der): Pared Izquierda y Suelo + Punto */
         .sym-l { border-left-width: 3px; border-bottom-width: 3px; }
-        
-        /* S (Clave X, arriba): Forma de V */
-        .sym-s { 
-            width: 20px; height: 20px; 
-            border-bottom: 3px solid var(--accent); 
-            border-right: 3px solid var(--accent);
-            transform: rotate(45deg); /* Gira para hacer la V */
-            margin-top: 5px;
-        }
-
+        .sym-s { width: 20px; height: 20px; border-bottom: 3px solid var(--accent); border-right: 3px solid var(--accent); transform: rotate(45deg); margin-top: 5px; }
     </style>
 </head>
 <body>
@@ -112,7 +77,7 @@
 
     <section class="card">
         <p>“Entras en el Siglo de las Luces y las Sombras. Tras la derrota de 1714, Barcelona cambia. Se imponen el orden y la razón, pero la disidencia se esconde en sociedades secretas.”</p>
-        <p class="narrative-text">“Frente a ti tienes la **Casa Padellàs**, un palacio gótico que fue trasladado piedra a piedra a esta calle en 1931. Pero su origen es noble. Una logia masónica ha dejado encriptado el apellido de la familia que construyó este palacio.”</p>
+        <p class="narrative-text">“Frente a ti tienes la <strong>Casa Padellàs</strong>, un palacio gótico que fue trasladado piedra a piedra a esta calle en 1931. Pero su origen es noble. Una logia masónica ha dejado encriptado el apellido de la familia que construyó este palacio.”</p>
     </section>
 
     <div id="enigma-container">
@@ -121,29 +86,24 @@
             <h3>El Código Masónico</h3>
             <p>Usa la <strong>Clave Maestra</strong> para encontrar las letras en la cuadrícula y descifrar el apellido oculto.</p>
             
-            <!-- CLAVES VISUALES -->
             <div style="text-align: center; font-size: 0.7rem; color: #aaa; margin-bottom: 5px;">CLAVES DE REFERENCIA</div>
             <div class="keys-container">
-                <!-- Rejilla 1 (Normal) -->
                 <div class="grid-key">
                     <div class="cell">A</div><div class="cell">B</div><div class="cell">C</div>
                     <div class="cell">D</div><div class="cell">E</div><div class="cell">F</div>
                     <div class="cell">G</div><div class="cell">H</div><div class="cell">I</div>
                 </div>
-                <!-- Rejilla 2 (Con Puntos) -->
                 <div class="grid-key">
                     <div class="cell">J•</div><div class="cell">K•</div><div class="cell">L•</div>
                     <div class="cell">M•</div><div class="cell">N•</div><div class="cell">O•</div>
                     <div class="cell">P•</div><div class="cell">Q•</div><div class="cell">R•</div>
                 </div>
-                <!-- Clave X para la S -->
                 <div class="x-key">
                     <div class="x-lines"></div>
                     <div class="letter-s">S</div>
                 </div>
             </div>
 
-            <!-- MENSAJE CIFRADO -->
             <div style="text-align: center; font-size: 0.8rem; color: #aaa; border-top: 1px dashed #444; padding-top:10px;">DESCIFRA ESTOS SÍMBOLOS:</div>
             
             <div class="message-row">
@@ -158,7 +118,7 @@
             </div>
             
             <label for="answer" style="display:none;">Tu respuesta</label>
-            <input type="text" id="answer" placeholder="Escribe el Apellido">
+            <input type="text" id="answer" placeholder="Escribe tu respuesta">
             <button class="btn btn-primary" onclick="checkAnswer()">Validar</button>
             
             <div id="feedback-msg"></div>
@@ -167,7 +127,6 @@
             <div id="hint-box" class="info-content">
                 <p>Busca la forma del símbolo en las rejillas de arriba. El símbolo es el "muro" que rodea a la letra.</p>
                 <p>1. El primer símbolo tiene techo y pared derecha, y lleva punto. Busca en la segunda rejilla (la de puntos). Es la <strong>P</strong>.</p>
-                <p>2. El segundo símbolo es una esquina (pared derecha y suelo). Busca en la primera rejilla. Es la <strong>A</strong>.</p>
             </div>
         </section>
     </div>

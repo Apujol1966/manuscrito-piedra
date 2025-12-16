@@ -4,7 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Capítulo II: Visigodos - Descubierto</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Lato:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Lato:wght@400;700&display=swap" rel="stylesheet">
     <style>
         :root { --bg-color: #121212; --card-bg: #1e1e1e; --text-main: #e0d6c2; --text-muted: #a8a095; --accent: #c0392b; --success: #27ae60; }
         * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -35,6 +37,7 @@
     </style>
 </head>
 <body>
+
     <div id="guardian-modal" class="modal-overlay">
         <div class="modal-content">
             <h2>Prueba del Guardián</h2>
@@ -44,24 +47,37 @@
             <div id="guardian-feedback"></div>
         </div>
     </div>
-    <header><h1>Capítulo II: Ecos Visigodos</h1></header>
+
+    <header><h1>Capítulo II: Capas de Tiempo</h1></header>
+
     <div id="reward-container">
         <div class="card">
-            <div class="feedback-success">¡Correcto! Las marcas te han revelado su secreto.</div>
+            <div class="feedback-success">¡Correcto! MARTI5 es la llave.</div>
+            
             <div class="knowledge-reward">
-                <h3>El Legado Visigodo</h3>
-                <p><strong>Barchinona, capital efímera:</strong> Fue brevemente capital del reino visigodo. Aunque su presencia fue corta, mantuvieron la estructura cristiana y romana de la ciudad, actuando como un escudo cultural que preservó el legado clásico ante la llegada de nuevos pueblos.</p>
-                <p><strong>Curiosidad del Lugar:</strong> Estás en el corazón del poder medieval. El Palau Reial Major, que se alza sobre estos muros, fue residencia de condes y reyes. ¡Aquí mismo recibieron los Reyes Católicos a Cristóbal Colón a su regreso de América!</p>
-                <span class="source-text">Fuente: Memòria 1991 CC-BY</span>
+                <h3>El Secreto del Subsuelo</h3>
+                
+                <p><strong>El Legado (Historia):</strong> Estás en una plaza engañosa. Lo que pisas no es el suelo original. Cuatro metros más abajo se encuentra la verdadera <strong>Barcino Visigoda</strong> (siglos IV-VIII). Allí abajo se conservan el aula regia, el baptisterio y el palacio episcopal de aquella época.</p>
+                
+                <p><strong>La Curiosidad (Colón):</strong> Estas escaleras han visto la historia. Se dice que fue aquí, en el Palau Reial Major, donde los <strong>Reyes Católicos recibieron a Cristóbal Colón</strong> a su regreso de América en 1493.</p>
+                
+                <span class="source-text">Fuente: MUHBA / Historia de Barcelona</span>
             </div>
+
             <div id="next-clue-box">
-                <p><strong>PISTA DE SALTO:</strong><br>El número 44 señala el camino. Gira sobre tus pasos y busca la imponente figura ecuestre de un gran Conde de Barcelona, erigida sobre la muralla que aún respira historia.</p>
+                <!-- PISTA NIVEL 1 -->
+                <p><strong>PISTA DE SALTO:</strong><br>Para llegar a la siguiente etapa, debes cruzar la muralla romana. Sal de la plaza, gira hacia la gran avenida (Via Laietana) y busca la imponente estatua ecuestre de un Conde que vigila la frontera.</p>
+                
                 <button id="hint-btn-1" class="btn btn-secondary" onclick="askGuardian(1)">¿No sabes dónde ir? Pide una Pista Directa</button>
+
+                <!-- PISTA NIVEL 2 (Oculta) -->
                 <div id="hint-level-2" class="extra-hint-content">
                     <h4>Pista Directa</h4>
-                    <p>Sal de la Plaça del Rei y dirígete hacia la Via Laietana. Verás una gran plaza con una estatua de un hombre a caballo. Es la <strong>Plaça de Ramon Berenguer el Gran</strong>.</p>
+                    <p>Tu destino es la <strong>Plaça de Ramon Berenguer el Gran</strong>. Está justo detrás de la muralla que cierra la Plaça del Rei.</p>
                     <button id="hint-btn-2" class="btn btn-secondary" onclick="askGuardian(2)">Sigo perdido/a. Muéstrame el mapa</button>
                 </div>
+                
+                <!-- PISTA NIVEL 3 (Oculta) -->
                 <div id="hint-level-3" class="extra-hint-content">
                      <h4>Ubicación Exacta</h4>
                      <a href="https://www.google.com/maps/search/?api=1&query=Plaça+de+Ramon+Berenguer+el+Gran,Barcelona" target="_blank" class="btn btn-map">Abrir en Google Maps</a>
@@ -69,23 +85,60 @@
             </div>
         </div>
     </div>
+    
+    <!-- ENLACE A PARADA 3 (AL-ÁNDALUS) -->
     <a href="parada3-enigma-es.html" class="btn btn-success" onclick="saveProgress()">Iniciar Capítulo III (Al-Ándalus)</a>
+
     <script>
-        function saveProgress() { localStorage.setItem('progresoJuego', '3'); }
+        function saveProgress() {
+            localStorage.setItem('progresoJuego', '3');
+        }
+
         const guardianPuzzles = [
-            { question: "¿A qué famoso navegante recibieron los Reyes Católicos en este mismo lugar?", answer: "COLON" }, // Aceptamos COLON o CRISTOBAL COLON
-            { question: "La pista directa menciona una gran avenida. ¿Cómo se llama?", answer: "VIA LAIETANA" }
+            { question: "¿Qué civilización se encuentra oculta bajo el suelo de la plaza?", answer: "VISIGOD" }, // Acepta VISIGODA o VISIGODOS
+            { question: "¿A qué famoso navegante recibieron los Reyes aquí?", answer: "COLON" } // Acepta CRISTOBAL COLON
         ];
+        
         const feedbackError = 'Respuesta incorrecta. Lee el texto con más atención.';
-        const modal = document.getElementById('guardian-modal'); const questionEl = document.getElementById('guardian-question'); const answerEl = document.getElementById('guardian-answer'); const submitBtn = document.getElementById('guardian-submit'); const feedbackEl = document.getElementById('guardian-feedback'); let levelToUnlock = 0;
-        function askGuardian(level) { levelToUnlock = level; const puzzle = guardianPuzzles[level - 1]; questionEl.textContent = puzzle.question; answerEl.value = ''; feedbackEl.textContent = ''; modal.style.display = 'flex'; answerEl.focus(); }
-        submitBtn.onclick = () => { 
-            const puzzle = guardianPuzzles[levelToUnlock - 1]; 
-            // Normalizamos para quitar acentos (COLÓN -> COLON)
-            const userAnswer = answerEl.value.toUpperCase().trim().normalize("NFD").replace(/[\u0300-\u036f]/g, ""); 
-            if (userAnswer.includes(puzzle.answer)) { modal.style.display = 'none'; revealHint(levelToUnlock); } else { feedbackEl.textContent = feedbackError; } 
+        const modal = document.getElementById('guardian-modal');
+        const questionEl = document.getElementById('guardian-question');
+        const answerEl = document.getElementById('guardian-answer');
+        const submitBtn = document.getElementById('guardian-submit');
+        const feedbackEl = document.getElementById('guardian-feedback');
+        let levelToUnlock = 0;
+
+        function askGuardian(level) {
+            levelToUnlock = level;
+            const puzzle = guardianPuzzles[level - 1];
+            questionEl.textContent = puzzle.question;
+            answerEl.value = '';
+            feedbackEl.textContent = '';
+            modal.style.display = 'flex';
+            answerEl.focus();
+        }
+
+        submitBtn.onclick = () => {
+            const puzzle = guardianPuzzles[levelToUnlock - 1];
+            // Normalizamos para quitar acentos
+            const userAnswer = answerEl.value.toUpperCase().trim().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+            
+            if (userAnswer.includes(puzzle.answer)) {
+                modal.style.display = 'none';
+                revealHint(levelToUnlock);
+            } else {
+                feedbackEl.textContent = feedbackError;
+            }
         };
-        function revealHint(level) { if (level === 1) { document.getElementById('hint-level-2').style.display = 'block'; document.getElementById('hint-btn-1').style.display = 'none'; } else if (level === 2) { document.getElementById('hint-level-3').style.display = 'block'; document.getElementById('hint-btn-2').style.display = 'none'; } }
+
+        function revealHint(level) {
+            if (level === 1) {
+                document.getElementById('hint-level-2').style.display = 'block';
+                document.getElementById('hint-btn-1').style.display = 'none'; 
+            } else if (level === 2) {
+                document.getElementById('hint-level-3').style.display = 'block';
+                document.getElementById('hint-btn-2').style.display = 'none';
+            }
+        }
     </script>
 </body>
 </html>

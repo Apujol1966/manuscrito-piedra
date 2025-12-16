@@ -4,7 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Capítulo III: Al-Ándalus - El Manuscrito</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Lato:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Lato:wght@400;700&display=swap" rel="stylesheet">
     <style>
         :root { --bg-color: #121212; --card-bg: #1e1e1e; --text-main: #e0d6c2; --text-muted: #a8a095; --accent: #c0392b; }
         * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -21,48 +23,68 @@
         input[type="number"] { width: 100%; padding: 15px; font-size: 1.5rem; font-family: 'Cinzel', serif; background-color: #1a1a1a; border: 2px solid #444; color: white; border-radius: 8px; margin: 15px 0; text-align: center; }
         .btn { width: 100%; padding: 15px; font-size: 1rem; font-weight: bold; text-transform: uppercase; border: none; border-radius: 8px; cursor: pointer; font-family: 'Cinzel', serif; }
         .btn-primary { background-color: var(--accent); color: white; }
-        .info-toggle { background: none; border: none; color: var(--text-muted); text-decoration: underline; cursor: pointer; font-size: 0.9rem; margin-top: 15px; }
+        .info-toggle { background: none; border: none; color: var(--text-muted); text-decoration: underline; cursor: pointer; font-size: 0.9rem; margin-top: 15px; display: block; width: 100%; }
         .info-content { display: none; margin-top: 15px; font-size: 0.9rem; background: #151515; padding: 15px; border-radius: 8px; text-align: left; }
         #feedback-msg { margin-top: 15px; font-weight: bold; min-height: 1.5em; color: var(--accent); }
     </style>
 </head>
 <body>
     <header>
-        <h1>Capítulo III: La Frontera Invisible</h1>
-        <div class="subtitle">Plaza Ramon Berenguer · Al-Ándalus</div>
+        <h1>Capítulo III: La Frontera de Piedra</h1>
+        <div class="subtitle">Plaça Ramon Berenguer el Gran</div>
     </header>
+    
     <div class="img-container">
-        <img src="../imagenes/al-andalus.jpg" alt="Astrolabio árabe antiguo">
+        <!-- Mantenemos la foto original -->
+        <img src="../imagenes/al-andalus.jpg" alt="Estatua ecuestre de Ramon Berenguer">
     </div>
+
     <section class="card">
-        <p>“Llegas a la cicatriz de una antigua frontera. Durante casi un siglo, el río Llobregat, a pocos kilómetros de aquí, separaba el mundo carolingio de Al-Ándalus. Barcelona no era una ciudad musulmana, sino un bastión fronterizo cristiano que vivía bajo su sombra y su influencia.”</p>
-        <p class="narrative-text">“Para entender esta época, no buscaremos una mezquita, sino la estatua del hombre que dedicó su vida a combatir en esa frontera: <strong>Ramon Berenguer III</strong>, el Gran, uno de los primeros condes en iniciar la expansión hacia el sur.”</p>
+        <p>“Estás ante una imagen icónica: el Conde que cabalga eternamente sobre la muralla romana. Su figura marca la frontera histórica entre el mundo cristiano y el poder de Al-Ándalus.”</p>
+        <p class="narrative-text">“Acércate a la base de la estatua y lee su nombre completo grabado en bronce. Parece simple, pero el latín esconde trampas para el ojo moderno. Una de sus letras no es lo que parece.”</p>
     </section>
+
     <div id="enigma-container">
         <section class="enigma-box">
             <span class="enigma-icon">⚔️</span>
-            <h3>El Código del Conde</h3>
-            <p>“Lee atentamente el <strong>nombre completo del Conde a caballo</strong> grabado en la placa. Ocultos entre sus letras y su título, hay <strong>dos números romanos</strong>. Súmalos para encontrar la solución.”</p>
+            <h3>La Trampa del Latín</h3>
+            <p>“Suma el valor numérico de <strong>TODOS</strong> los números romanos que encuentres escondidos en la inscripción de su nombre (Nombre + Apellido + Numeral).”</p>
+            <p>“¡Atención! Recuerda que en latín la letra 'U' se escribía con la forma de un número...”</p>
+            
             <label for="answer" style="display:none;">Tu respuesta</label>
-            <input type="number" id="answer" placeholder="Introduce el número">
-            <button class="btn btn-primary" onclick="checkAnswer()">Validar Número</button>
+            <input type="number" id="answer" placeholder="Introduce la suma total">
+            <button class="btn btn-primary" onclick="checkAnswer()">Validar Cifra</button>
             <div id="feedback-msg"></div>
-            <button class="info-toggle" onclick="toggleHint()">¿Necesitas una pista?</button>
+            
+            <button class="info-toggle" onclick="toggleHint()">¿No te salen las cuentas?</button>
             <div id="hint-box" class="info-content">
-                <p>Busca una letra en su nombre de pila (RAMON) que también sea un número romano de gran valor. Luego, fíjate en el número que acompaña a su nombre al final.</p>
+                <p>1. Busca la <strong>M</strong> en RAMON (1000).</p>
+                <p>2. Busca la <strong>V</strong> en BERENGVER (5). ¡Sí, la U es una V y suma 5!</p>
+                <p>3. Busca el <strong>III</strong> final (3).</p>
+                <p>La operación es: 1000 + 5 + 3.</p>
             </div>
         </section>
     </div>
+
     <script>
-        const SOLUTION = 1003;
+        // Solución: 1008 (M + V + III)
+        const SOLUTION = 1008;
+
         function checkAnswer() {
             const userIn = document.getElementById('answer').value;
-            if (parseInt(userIn) === SOLUTION) {
+            const val = parseInt(userIn);
+
+            if (val === SOLUTION) {
                 window.location.href = 'parada3-recompensa-es.html';
             } else {
-                document.getElementById('feedback-msg').textContent = "El código no es correcto. El Conde guarda su secreto.";
+                if (val === 1003) {
+                    document.getElementById('feedback-msg').textContent = "Casi... ¿Has olvidado que la 'U' en latín es una 'V'? Esa letra también suma.";
+                } else {
+                    document.getElementById('feedback-msg').textContent = "Cálculo incorrecto. Revisa bien todas las letras del nombre.";
+                }
             }
         }
+
         function toggleHint() {
             const box = document.getElementById('hint-box');
             box.style.display = box.style.display === 'block' ? 'none' : 'block';

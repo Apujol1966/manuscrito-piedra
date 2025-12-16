@@ -65,12 +65,14 @@
                 
                 <button id="hint-btn-1" class="btn btn-secondary" onclick="askGuardian(1)">¿No sabes dónde ir? Pide una Pista Directa</button>
 
+                <!-- PISTA NIVEL 2 (Oculta) -->
                 <div id="hint-level-2" class="extra-hint-content">
                     <h4>Pista Directa</h4>
                     <p>Regresa a la <strong>Plaça del Rei</strong>. En una de sus esquinas nace el <strong>Carrer del Veguer</strong>. Es una callejuela que baja hacia el Museo de Historia.</p>
                     <button id="hint-btn-2" class="btn btn-secondary" onclick="askGuardian(2)">Sigo perdido/a. Muéstrame el mapa</button>
                 </div>
                 
+                <!-- PISTA NIVEL 3 (Oculta) -->
                 <div id="hint-level-3" class="extra-hint-content">
                      <h4>Ubicación Exacta</h4>
                      <a href="https://www.google.com/maps/search/?api=1&query=Carrer+del+Veguer,Barcelona" target="_blank" class="btn btn-map">Abrir en Google Maps</a>
@@ -86,7 +88,6 @@
             localStorage.setItem('progresoJuego', '7');
         }
 
-        // Preguntas de control actualizadas al nuevo contenido
         const guardianPuzzles = [
             { question: "¿Qué importante institución alberga hoy este edificio?", answer: "ARCHIVO" },
             { question: "La pista te envía a una calle con nombre de oficio antiguo. ¿Cuál es?", answer: "VEGUER" }

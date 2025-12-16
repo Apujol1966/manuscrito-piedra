@@ -4,7 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Capítulo V: El Call - Descubierto</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Lato:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Lato:wght@400;700&display=swap" rel="stylesheet">
     <style>
         :root { --bg-color: #121212; --card-bg: #1e1e1e; --text-main: #e0d6c2; --text-muted: #a8a095; --accent: #c0392b; --success: #27ae60; }
         * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -21,6 +23,7 @@
         .knowledge-reward { padding-top: 20px; border-top: 1px solid #444; text-align: left; }
         .knowledge-reward h3 { color: var(--success); text-align: center; margin-bottom: 15px; }
         .knowledge-reward p { margin-bottom: 10px; }
+        .knowledge-reward strong { color: #fff; }
         #next-clue-box { margin-top: 20px; padding: 15px; background-color: #2c2c2c; border-left: 3px solid var(--success); border-radius: 4px; }
         .feedback-success { text-align: center; font-weight: bold; color: var(--success); font-size: 1.2rem; margin-bottom: 20px; animation: fadeIn 1s ease-in; }
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
@@ -54,13 +57,13 @@
             <div class="knowledge-reward">
                 <h3>El Sabio del Call</h3>
                 <p><strong>Salomó ben Adret (Rashba):</strong> Esta calle lleva su nombre. Fue el rabino de Barcelona durante 50 años en el siglo XIII. Su sabiduría era tan respetada que reyes y eruditos de toda Europa le enviaban consultas. Además, fue el prestamista del mismísimo Rey Jaime I.</p>
-                <p><strong>La Casa más Antigua:</strong> El edificio del número 6 se considera la casa habitada más antigua de Barcelona. Imagina las generaciones que han cruzado ese umbral desde el siglo XII.</p>
+                <p><strong>La Casa más Antigua:</strong> El edificio del número 6 (Casa Adret) se considera la casa habitada más antigua de Barcelona. Imagina las generaciones que han cruzado ese umbral desde el siglo XII.</p>
                 <span class="source-text">Fuente: MUHBA / Call de Barcelona</span>
             </div>
 
             <div id="next-clue-box">
                 <!-- PISTA NIVEL 1 -->
-                <p><strong>PISTA DE SALTO:</strong><br>Tu camino te lleva ahora hacia el Renacimiento. Debes volver hacia la Catedral y buscar la <strong>Casa del Archidiácono</strong>. Allí, una inscripción espera ser contada y un buzón de mármol guarda secretos.</p>
+                <p><strong>PISTA DE SALTO:</strong><br>Tu camino te lleva ahora hacia el Renacimiento. Debes salir del laberinto, volver hacia la Catedral y buscar la <strong>Casa del Archidiácono</strong> (Casa de l'Ardiaca). Allí, un buzón de mármol guarda secretos.</p>
                 
                 <!-- BOTÓN PARA PISTA NIVEL 2 -->
                 <button id="hint-btn-1" class="btn btn-secondary" onclick="askGuardian(1)">¿No sabes dónde ir? Pide una Pista Directa</button>
@@ -68,7 +71,7 @@
                 <!-- PISTA NIVEL 2 (Oculta) -->
                 <div id="hint-level-2" class="extra-hint-content">
                     <h4>Pista Directa</h4>
-                    <p>Dirígete de nuevo a la <strong>Plaça Nova</strong> (donde empezaste con las letras romanas). Frente a la Catedral, a la derecha, verás la <strong>Casa de l'Ardiaca</strong>. Busca un buzón modernista con golondrinas y una tortuga.</p>
+                    <p>Dirígete de nuevo a la <strong>Plaça Nova</strong> (donde empezaste con las letras romanas, frente a la Catedral). A la derecha de la fachada verás la <strong>Casa de l'Ardiaca</strong>. Busca un buzón con golondrinas.</p>
                     <button id="hint-btn-2" class="btn btn-secondary" onclick="askGuardian(2)">Sigo perdido/a. Muéstrame el mapa</button>
                 </div>
                 
@@ -89,8 +92,8 @@
         }
 
         const guardianPuzzles = [
-            { question: "¿A qué famoso rabino está dedicada esta calle?", answer: "RASHBA" }, // Aceptamos RASHBA, ADRET, SALOMO
-            { question: "Vas hacia la Casa del Archidiácono. ¿Qué estilo arquitectónico busca tu siguiente pista?", answer: "RENACIMIENTO" }
+            { question: "¿A qué famoso rabino está dedicada esta calle?", answer: "RASHBA" }, // Acepta también ADRET o SALOMO
+            { question: "Vuelves a la plaza del inicio. ¿Qué casa debes buscar?", answer: "ARDIACA" } // Acepta ARCHIDIACONO
         ];
         
         const feedbackError = 'Respuesta incorrecta. Revisa el texto.';
@@ -114,14 +117,12 @@
         submitBtn.onclick = () => {
             const puzzle = guardianPuzzles[levelToUnlock - 1];
             const userAnswer = answerEl.value.toUpperCase().trim();
-            // Aceptamos varias respuestas para la primera pregunta
-            const validAnswers1 = ["RASHBA", "ADRET", "SALOMO", "BEN ADRET"];
             
             let isCorrect = false;
             if (levelToUnlock === 1) {
-                isCorrect = validAnswers1.some(ans => userAnswer.includes(ans));
+                isCorrect = userAnswer.includes("RASHBA") || userAnswer.includes("ADRET") || userAnswer.includes("SALOMO");
             } else {
-                isCorrect = userAnswer.includes(puzzle.answer);
+                isCorrect = userAnswer.includes("ARDIACA") || userAnswer.includes("ARCHIDIACONO");
             }
 
             if (isCorrect) {

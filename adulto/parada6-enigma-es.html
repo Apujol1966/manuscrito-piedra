@@ -32,21 +32,20 @@
         <div class="subtitle">Casa de l'Ardiaca · Plaça Nova</div>
     </header>
     
-    <!-- Asegúrate de que la imagen se llame 'ardiaca.jpg' -->
     <div class="img-container">
         <img src="../imagenes/ardiaca.jpg" alt="Portada de la Casa de l'Ardiaca con buzón">
     </div>
 
     <section class="card">
         <p>“Has regresado a la Plaça Nova. Frente a ti se alza la Casa del Archidiácono. Aunque sus cimientos son romanos, su portada te habla en el lenguaje del Renacimiento.”</p>
-        <p class="narrative-text">“Ante la casa del arcediano, tres señales guardan el secreto. Cuenta las columnas que sostienen la entrada, descubre al animal que nunca llega, y nombra el escudo que protege la piedra. Solo entonces hallarás la clave oculta.”</p>
+        <p class="narrative-text">“Tres señales guardan el secreto de esta entrada. Fíjate bien en la arquitectura que enmarca la puerta, en la heráldica que la corona y en el animal que la vigila desde el buzón.”</p>
     </section>
 
     <div id="enigma-container">
         <section class="enigma-box">
             <span class="enigma-icon">🛡️</span>
             <h3>La Combinación del Arcediano</h3>
-            <p>Observa la fachada y completa la fórmula:</p>
+            <p>Observa la fachada y completa la fórmula para obtener el código:</p>
             <ul style="text-align: left; list-style: none; padding-left: 10px; font-size: 0.9rem; line-height: 1.8;">
                 <li>1. Número de <strong>columnas</strong> estriadas a los lados de la puerta.</li>
                 <li>2. Inicial del <strong>animal</strong> (reptil) tallado en el buzón.</li>
@@ -56,7 +55,8 @@
             <p style="margin-top:15px; font-weight: bold; color: var(--text-muted); font-size: 0.9rem;">FORMATO: Nº-LETRA-PALABRA</p>
             
             <label for="answer" style="display:none;">Tu respuesta</label>
-            <input type="text" id="answer" placeholder="">
+            <!-- CORRECCIÓN: Ejemplo genérico para no dar la solución -->
+            <input type="text" id="answer" placeholder="Ej: 4-B-ROSA">
             <button class="btn btn-primary" onclick="checkAnswer()">Validar Código</button>
             
             <div id="feedback-msg"></div>
@@ -80,7 +80,7 @@
             if (userIn === "2TESCUDO") {
                 window.location.href = 'parada6-recompensa-es.html';
             } else {
-                document.getElementById('feedback-msg').textContent = "Combinación incorrecta. Observa bien los detalles de la entrada.";
+                document.getElementById('feedback-msg').textContent = "Combinación incorrecta. Observa bien los detalles.";
             }
         }
 

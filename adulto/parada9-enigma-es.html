@@ -30,24 +30,24 @@
         <div class="subtitle">Plaça de Sant Jaume · Presente</div>
     </header>
     
-    <!-- Imagen recomendada: santjaume.jpg (Vista general de la plaza) -->
     <div class="img-container">
-        <img src="../imagenes/santjaume.jpg" alt="Plaça de Sant Jaume, Generalitat y Ayuntamiento">
+        <img src="../imagenes/santjaume.jpg" alt="Plaça de Sant Jaume">
     </div>
 
     <section class="card">
-        <p>“Has completado el círculo. Hace 2000 años, aquí estaba el Foro Romano, el cruce del Cardo y el Decumanus. Hoy, sigue siendo el centro del poder político: la Generalitat y el Ayuntamiento se miran cara a cara.”</p>
-        <p class="narrative-text">“Todas las capas de piedra que has cruzado —Roma, Visigodos, Judíos, Góticos, Modernistas y las cicatrices de la Guerra— confluyen bajo tus pies. Para firmar tu descubrimiento, solo necesitas el nombre del lugar.”</p>
+        <p>“Has completado el círculo. Hace 2000 años, aquí estaba el Foro Romano, el cruce de caminos. Hoy, sigue siendo el centro del poder político.”</p>
+        <p class="narrative-text">“Todas las capas de piedra que has cruzado confluyen bajo tus pies: el origen en <strong>Roma</strong>, el subsuelo <strong>Visigodo</strong>, la frontera de <strong>Al-Ándalus</strong>, el esplendor <strong>Gótico</strong>, los secretos del <strong>Call</strong>, el arte del <strong>Renacimiento</strong>, el orden de la <strong>Ilustración</strong> y las cicatrices de la <strong>Guerra Civil</strong>.”</p>
     </section>
 
     <div id="enigma-container">
         <section class="enigma-box">
             <span class="enigma-icon">🏁</span>
             <h3>La Última Llave</h3>
-            <p>“Mira la placa de la plaza. Escribe el nombre del <strong>SANTO</strong> que preside este espacio (sin escribir 'Sant' ni 'Plaza').”</p>
+            <p>“Tu viaje empezó con el nombre antiguo: BARCINO.”</p>
+            <p>“Ahora, mira la fachada del Ayuntamiento (Ajuntament). Escribe el nombre actual de la ciudad tal y como aparece hoy, con todas sus letras.”</p>
             
             <label for="answer" style="display:none;">Tu respuesta</label>
-            <input type="text" id="answer" placeholder="Nombre del Santo">
+            <input type="text" id="answer" placeholder="Nombre de la Ciudad">
             <button class="btn btn-primary" onclick="checkAnswer()">Completar El Manuscrito</button>
             
             <div id="feedback-msg"></div>
@@ -55,13 +55,15 @@
     </div>
 
     <script>
-        // Solución: JAUME (Aceptamos Jaime por si acaso)
+        // Solución: BARCELONA
+        const SOLUTION = "BARCELONA";
+
         function checkAnswer() {
             const userIn = document.getElementById('answer').value.toUpperCase().trim();
-            if (userIn === "JAUME" || userIn === "JAIME" || userIn === "SANTIAGO") {
+            if (userIn === SOLUTION) {
                 window.location.href = 'parada9-recompensa-es.html';
             } else {
-                document.getElementById('feedback-msg').textContent = "Nombre incorrecto. Mira las placas azules de la calle.";
+                document.getElementById('feedback-msg').textContent = "Nombre incorrecto. Mira la fachada del Ayuntamiento.";
             }
         }
     </script>

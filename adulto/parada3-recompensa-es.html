@@ -4,7 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Capítulo III: Al-Ándalus - Descubierto</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Lato:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Lato:wght@400;700&display=swap" rel="stylesheet">
     <style>
         :root { --bg-color: #121212; --card-bg: #1e1e1e; --text-main: #e0d6c2; --text-muted: #a8a095; --accent: #c0392b; --success: #27ae60; }
         * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -29,7 +31,7 @@
         .modal-content { background-color: var(--card-bg); padding: 30px; border-radius: 12px; text-align: center; width: 100%; max-width: 500px; border-top: 4px solid var(--accent); }
         .modal-content h2 { margin-bottom: 15px; }
         .modal-content p { color: var(--text-muted); margin-bottom: 25px; }
-        .modal-input { width: 100%; padding: 10px; font-size: 1rem; background-color: #1a1a1a; border: 2px solid #444; color: white; border-radius: 8px; margin: 15px 0; text-align: center; text-transform: uppercase; }
+        .modal-input { width: 100%; padding: 10px; font-size: 1rem; background-color: #1a1a1a; border: 2px solid #444; color: white; border-radius: 8px; margin: 15px 0; text-align: center; }
         #guardian-feedback { font-size: 0.9rem; color: var(--accent); min-height: 1.2em; margin-top: 10px; }
         .extra-hint-content { display: none; margin-top: 15px; padding-top: 15px; border-top: 1px dashed #444; }
     </style>
@@ -50,26 +52,25 @@
 
     <div id="reward-container">
         <div class="card">
-            <div class="feedback-success">¡Correcto! El Conde te ha revelado su código.</div>
+            <div class="feedback-success">¡Correcto! El código del conde es 1008.</div>
             
             <div class="knowledge-reward">
                 <h3>El Legado de la Frontera</h3>
-                <p><strong>El Legado de Al-Ándalus:</strong> Aunque Barcelona resistió como ciudad cristiana, su posición en la frontera con Al-Ándalus la convirtió en un crisol. La proximidad permitió un flujo vital de conocimientos en <strong>medicina</strong>, <strong>matemáticas</strong> y <strong>filosofía</strong> que llegaban desde Córdoba, ayudando a sentar las bases de su futura prosperidad.</p>
-                <p><strong>Curiosidad del Lugar:</strong> Ramon Berenguer III, cuya estatua contemplas, no solo luchó. También estableció alianzas <strong>matrimoniales</strong> y comerciales con señores musulmanes. Esta dualidad de conflicto y coexistencia definió la vida en la frontera. La misma muralla romana que le sirve de pedestal fue, en su día, la defensa de la ciudad contra las incursiones andalusíes.</p>
+                <p><strong>El Legado de Al-Ándalus:</strong> Aunque Barcelona resistió como ciudad cristiana, su posición en la frontera con Al-Ándalus la convirtió en un crisol. El peligro constante fomentó su carácter defensivo, pero la proximidad permitió un flujo vital de conocimientos en medicina, matemáticas y filosofía que llegaban desde Córdoba.</p>
+                <p><strong>La Curiosidad (Alianzas):</strong> Ramon Berenguer III no solo luchó con la espada. También estableció alianzas <strong>matrimoniales</strong> y comerciales con señores musulmanes. Esta dualidad de conflicto y coexistencia definió la vida en la frontera.</p>
                 <span class="source-text">Fuente: "Al-Hakam I", doc. Vallvé 1992</span>
             </div>
 
             <div id="next-clue-box">
                 <!-- PISTA NIVEL 1 -->
-                <p><strong>PISTA DE SALTO:</strong><br>El número 1003 te transporta de la tensión de la frontera al corazón del poder gótico. Adéntrate en la calle que pasa bajo el famoso y fotografiado puente que une dos palacios. Las bestias de piedra te observan desde lo alto.</p>
+                <p><strong>PISTA DE SALTO:</strong><br>El número 1008 te transporta al corazón del Gótico. Adéntrate en la calle que pasa bajo el puente más famoso y fotografiado del barrio. Las bestias de piedra te observan desde lo alto.</p>
                 
-                <!-- BOTÓN PARA PISTA NIVEL 2 -->
                 <button id="hint-btn-1" class="btn btn-secondary" onclick="askGuardian(1)">¿No sabes dónde ir? Pide una Pista Directa</button>
 
                 <!-- PISTA NIVEL 2 (Oculta) -->
                 <div id="hint-level-2" class="extra-hint-content">
                     <h4>Pista Directa</h4>
-                    <p>Busca el <strong>Carrer del Bisbe</strong>. Es la calle que, desde la Plaça de Sant Jaume, va hacia la Catedral, pasando por debajo de un icónico puente neogótico.</p>
+                    <p>Busca el **Carrer del Bisbe**. Es la calle que va desde la Catedral hacia la Plaça de Sant Jaume, pasando por debajo de un icónico puente neogótico.</p>
                     <button id="hint-btn-2" class="btn btn-secondary" onclick="askGuardian(2)">Sigo perdido/a. Muéstrame el mapa</button>
                 </div>
                 
@@ -90,10 +91,11 @@
         }
 
         const guardianPuzzles = [
-            { question: "El Guardián pone a prueba tu memoria. De los conocimientos que Al-Ándalus aportó, escribe uno de los tres campos que acabas de leer.", answers: ["MEDICINA", "MATEMATICAS", "FILOSOFIA"] },
-            { question: "Para desvelar el mapa, recuerda la curiosidad del lugar. ¿Qué tipo de alianzas, además de las comerciales, estableció el Conde?", answers: ["MATRIMONIALES"] }
+            { question: "¿Qué tipo de conocimientos llegaron desde Córdoba?", answer: "MEDICINA" }, // Acepta MATEMATICAS o FILOSOFIA también
+            { question: "La pista directa menciona un elemento arquitectónico icónico. ¿Qué es?", answer: "PUENTE" }
         ];
-        const feedbackError = 'Respuesta incorrecta. La memoria de un arqueólogo debe ser precisa.';
+        
+        const feedbackError = 'Respuesta incorrecta. La respuesta está en el texto que acabas de leer.';
         const modal = document.getElementById('guardian-modal');
         const questionEl = document.getElementById('guardian-question');
         const answerEl = document.getElementById('guardian-answer');
@@ -113,13 +115,22 @@
 
         submitBtn.onclick = () => {
             const puzzle = guardianPuzzles[levelToUnlock - 1];
-            const userAnswer = answerEl.value.toUpperCase().trim().normalize("NFD").replace(/[\u0300-\u036f]/g, ""); // Normaliza para quitar tildes
-
-            if (puzzle.answers.includes(userAnswer)) {
-                modal.style.display = 'none';
-                revealHint(levelToUnlock);
+            const userAnswer = answerEl.value.toUpperCase().trim();
+            // Lógica flexible para la pregunta de conocimientos
+            if (levelToUnlock === 1) {
+                if (userAnswer.includes("MEDICINA") || userAnswer.includes("MATEMATICA") || userAnswer.includes("FILOSOFIA")) {
+                    modal.style.display = 'none';
+                    revealHint(levelToUnlock);
+                } else {
+                    feedbackEl.textContent = feedbackError;
+                }
             } else {
-                feedbackEl.textContent = feedbackError;
+                if (userAnswer.includes(puzzle.answer)) {
+                    modal.style.display = 'none';
+                    revealHint(levelToUnlock);
+                } else {
+                    feedbackEl.textContent = feedbackError;
+                }
             }
         };
 
