@@ -4,20 +4,66 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chapter VII: Enlightenment - The Manuscript</title>
+    <!-- CSS and Styles from previous corrected version -->
     <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Lato:wght@400;700&display=swap" rel="stylesheet">
-    <style>:root{--bg-color:#121212;--card-bg:#1e1e1e;--text-main:#e0d6c2;--text-muted:#a8a095;--accent:#c0392b;--line-color:#e0d6c2}*{box-sizing:border-box;margin:0;padding:0}body{background-color:var(--bg-color);color:var(--text-main);font-family:'Lato',sans-serif;line-height:1.6;padding:20px;max-width:600px;margin:0 auto}h1,h3{font-family:'Cinzel',serif;color:#fff;letter-spacing:1px}h1{font-size:1.8rem;text-align:center;margin-bottom:10px;border-bottom:2px solid var(--accent);padding-bottom:10px}.subtitle{text-align:center;font-size:.9rem;color:var(--text-muted);margin-bottom:25px;text-transform:uppercase}.img-container{width:100%;max-height:250px;background-color:#333;border-radius:8px;margin-bottom:20px;overflow:hidden;border:1px solid #444}.img-container img{width:100%;height:100%;object-fit:cover;display:block}.card{background-color:var(--card-bg);padding:20px;border-radius:12px;margin-bottom:20px;box-shadow:0 4px 6px rgba(0,0,0,.3)}.narrative-text{font-style:italic;border-left:3px solid var(--accent);padding-left:15px;margin-top:15px;color:#dcdcdc}.enigma-box{background-color:#2c2c2c;border:1px solid var(--accent);padding:20px;border-radius:8px;margin-top:20px;text-align:center}.enigma-icon{font-size:2rem;margin-bottom:10px;display:block}input[type="text"]{width:100%;padding:15px;font-size:1.2rem;font-family:'Cinzel',serif;background-color:#1a1a1a;border:2px solid #444;color:#fff;border-radius:8px;margin:15px 0;text-align:center;text-transform:uppercase}.btn{width:100%;padding:15px;font-size:1rem;font-weight:700;text-transform:uppercase;border:none;border-radius:8px;cursor:pointer;font-family:'Cinzel',serif}.btn-primary{background-color:var(--accent);color:#fff}.info-toggle{background:0 0;border:none;color:var(--text-muted);text-decoration:underline;cursor:pointer;font-size:.9rem;margin-top:15px}.info-content{display:none;margin-top:15px;font-size:.9rem;background:#151515;padding:15px;border-radius:8px;text-align:left}#feedback-msg{margin-top:15px;font-weight:700;min-height:1.5em;color:var(--accent)}.keys-container{display:flex;justify-content:center;gap:15px;margin-bottom:25px;flex-wrap:wrap}.grid-key{display:grid;grid-template-columns:repeat(3,1fr);width:90px;height:90px}.cell{display:flex;align-items:center;justify-content:center;font-family:'Cinzel',serif;font-weight:700;color:#fff;font-size:14px;border-color:var(--line-color);border-style:solid;border-width:0}.cell:nth-child(1){border-right-width:3px;border-bottom-width:3px}.cell:nth-child(2){border-left-width:3px;border-right-width:3px;border-bottom-width:3px}.cell:nth-child(3){border-left-width:3px;border-bottom-width:3px}.cell:nth-child(4){border-top-width:3px;border-right-width:3px;border-bottom-width:3px}.cell:nth-child(5){border-width:3px}.cell:nth-child(6){border-top-width:3px;border-left-width:3px;border-bottom-width:3px}.cell:nth-child(7){border-top-width:3px;border-right-width:3px}.cell:nth-child(8){border-left-width:3px;border-right-width:3px;border-top-width:3px}.cell:nth-child(9){border-left-width:3px;border-top-width:3px}.x-key{position:relative;width:60px;height:60px;margin-top:15px;display:flex;align-items:center;justify-content:center}.x-lines{position:absolute;width:100%;height:100%;top:0;left:0}.x-lines::before,.x-lines::after{content:'';position:absolute;background:var(--line-color);top:50%;left:50%;transform:translate(-50%,-50%) rotate(45deg)}.x-lines::before{width:100%;height:3px}.x-lines::after{width:3px;height:100%}.letter-s{position:absolute;top:5px;font-family:'Cinzel',serif;font-size:14px;font-weight:700}.message-row{display:flex;justify-content:center;gap:8px;margin:20px 0;flex-wrap:wrap}.symbol{width:30px;height:30px;border-color:var(--accent);border-style:solid;border-width:0;position:relative}.symbol.dot::after{content:'•';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);color:var(--accent);font-size:20px;line-height:0}.sym-p{border-top-width:3px;border-right-width:3px}.sym-a{border-right-width:3px;border-bottom-width:3px}.sym-d{border-top-width:3px;border-right-width:3px;border-bottom-width:3px}.sym-e{border-width:3px}.sym-l{border-left-width:3px;border-bottom-width:3px}.sym-s{width:20px;height:20px;border-bottom:3px solid var(--accent);border-right:3px solid var(--accent);transform:rotate(45deg);margin-top:5px}</style>
+    <style>
+        :root { --bg-color: #121212; --card-bg: #1e1e1e; --text-main: #e0d6c2; --text-muted: #a8a095; --accent: #c0392b; --line-color: #e0d6c2; }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { background-color: var(--bg-color); color: var(--text-main); font-family: 'Lato', sans-serif; line-height: 1.6; padding: 20px; max-width: 600px; margin: 0 auto; }
+        h1, h3 { font-family: 'Cinzel', serif; color: #fff; letter-spacing: 1px; }
+        h1 { font-size: 1.8rem; text-align: center; margin-bottom: 10px; border-bottom: 2px solid var(--accent); padding-bottom: 10px; }
+        .subtitle { text-align: center; font-size: 0.9rem; color: var(--text-muted); margin-bottom: 25px; text-transform: uppercase; }
+        .img-container { width: 100%; max-height: 250px; background-color: #333; border-radius: 8px; margin-bottom: 20px; overflow: hidden; border: 1px solid #444; }
+        .img-container img { width: 100%; height: 100%; object-fit: cover; display: block; }
+        .card { background-color: var(--card-bg); padding: 20px; border-radius: 12px; margin-bottom: 20px; box-shadow: 0 4px 6px rgba(0,0,0,0.3); }
+        .narrative-text { font-style: italic; border-left: 3px solid var(--accent); padding-left: 15px; margin-top: 15px; color: #dcdcdc; }
+        .enigma-box { background-color: #2c2c2c; border: 1px solid var(--accent); padding: 20px; border-radius: 8px; margin-top: 20px; text-align: center; }
+        .enigma-icon { font-size: 2rem; margin-bottom: 10px; display: block; }
+        input[type="text"] { width: 100%; padding: 15px; font-size: 1.2rem; font-family: 'Cinzel', serif; background-color: #1a1a1a; border: 2px solid #444; color: white; border-radius: 8px; margin: 15px 0; text-align: center; text-transform: uppercase; }
+        .btn { width: 100%; padding: 15px; font-size: 1rem; font-weight: bold; text-transform: uppercase; border: none; border-radius: 8px; cursor: pointer; font-family: 'Cinzel', serif; }
+        .btn-primary { background-color: var(--accent); color: white; }
+        .info-toggle { background: none; border: none; color: var(--text-muted); text-decoration: underline; cursor: pointer; font-size: 0.9rem; margin-top: 15px; display: block; width: 100%; }
+        .info-content { display: none; margin-top: 15px; font-size: 0.9rem; background: #151515; padding: 15px; border-radius: 8px; text-align: left; }
+        #feedback-msg { margin-top: 15px; font-weight: bold; min-height: 1.5em; color: var(--accent); }
+
+        /* MASONIC CSS */
+        .keys-container { display: flex; justify-content: center; gap: 15px; margin-bottom: 25px; flex-wrap: wrap; }
+        .grid-key { display: grid; grid-template-columns: repeat(3, 1fr); width: 90px; height: 90px; }
+        .cell { display: flex; align-items: center; justify-content: center; font-family: 'Cinzel', serif; font-weight: bold; color: #fff; font-size: 14px; border-color: var(--line-color); border-style: solid; border-width: 0; }
+        .cell:nth-child(1) { border-right-width: 3px; border-bottom-width: 3px; } 
+        .cell:nth-child(2) { border-left-width: 3px; border-right-width: 3px; border-bottom-width: 3px; } 
+        .cell:nth-child(3) { border-left-width: 3px; border-bottom-width: 3px; } 
+        .cell:nth-child(4) { border-top-width: 3px; border-right-width: 3px; border-bottom-width: 3px; } 
+        .cell:nth-child(5) { border-width: 3px; } 
+        .cell:nth-child(6) { border-top-width: 3px; border-left-width: 3px; border-bottom-width: 3px; } 
+        .cell:nth-child(7) { border-top-width: 3px; border-right-width: 3px; } 
+        .cell:nth-child(8) { border-left-width: 3px; border-right-width: 3px; border-top-width: 3px; } 
+        .cell:nth-child(9) { border-left-width: 3px; border-top-width: 3px; }
+        .x-key { position: relative; width: 60px; height: 60px; margin-top: 15px; display: flex; align-items: center; justify-content: center; }
+        .x-lines { position: absolute; width: 100%; height: 100%; top: 0; left: 0; }
+        .x-lines::before, .x-lines::after { content: ''; position: absolute; background: var(--line-color); top: 50%; left: 50%; transform: translate(-50%, -50%) rotate(45deg); }
+        .x-lines::before { width: 100%; height: 3px; } .x-lines::after { width: 3px; height: 100%; }
+        .letter-s { position: absolute; top: 5px; font-family: 'Cinzel', serif; font-size: 14px; font-weight: bold; }
+        .message-row { display: flex; justify-content: center; gap: 8px; margin: 20px 0; flex-wrap: wrap; }
+        .symbol { width: 30px; height: 30px; border-color: var(--accent); border-style: solid; border-width: 0; position: relative; }
+        .symbol.dot::after { content: '•'; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: var(--accent); font-size: 20px; line-height: 0; }
+        .sym-p { border-top-width: 3px; border-right-width: 3px; } 
+        .sym-a { border-right-width: 3px; border-bottom-width: 3px; }
+        .sym-d { border-top-width: 3px; border-right-width: 3px; border-bottom-width: 3px; }
+        .sym-e { border-width: 3px; }
+        .sym-l { border-left-width: 3px; border-bottom-width: 3px; }
+        .sym-s { width: 20px; height: 20px; border-bottom: 3px solid var(--accent); border-right: 3px solid var(--accent); transform: rotate(45deg); margin-top: 5px; }
+    </style>
 </head>
 <body>
     <header>
         <h1>Chapter VII: The Secret Lodge</h1>
         <div class="subtitle">Carrer del Veguer · 18th Century</div>
     </header>
-    <div class="img-container">
-        <img src="../imagenes/veguer.jpg" alt="Gothic facade of Padellàs House">
-    </div>
+    <div class="img-container"><img src="../imagenes/veguer.jpg" alt="Padellàs House Facade"></div>
     <section class="card">
-        <p>“You enter the Age of Enlightenment and Shadows. After the defeat of 1714, Barcelona changes. Order and reason are imposed, but dissent hides in secret societies.”</p>
-        <p class="narrative-text">“In front of you stands the **Padellàs House**, a Gothic palace that was moved stone by stone to this street in 1931. But its origin is noble. A Masonic lodge has left the encrypted surname of the family that built this palace.”</p>
+        <p>“You enter the Age of Enlightenment and Shadows. After 1714, order is imposed, but dissent hides in secret societies.”</p>
+        <p class="narrative-text">“You are facing <strong>Padellàs House</strong>, a Gothic palace moved stone by stone here in 1931. But its origin is noble. A Masonic lodge has encrypted the surname of the family that built it.”</p>
     </section>
     <div id="enigma-container">
         <section class="enigma-box">
@@ -26,20 +72,9 @@
             <p>Use the <strong>Master Key</strong> to find the letters in the grid and decipher the hidden surname.</p>
             <div style="text-align: center; font-size: 0.7rem; color: #aaa; margin-bottom: 5px;">REFERENCE KEYS</div>
             <div class="keys-container">
-                <div class="grid-key">
-                    <div class="cell">A</div><div class="cell">B</div><div class="cell">C</div>
-                    <div class="cell">D</div><div class="cell">E</div><div class="cell">F</div>
-                    <div class="cell">G</div><div class="cell">H</div><div class="cell">I</div>
-                </div>
-                <div class="grid-key">
-                    <div class="cell">J•</div><div class="cell">K•</div><div class="cell">L•</div>
-                    <div class="cell">M•</div><div class="cell">N•</div><div class="cell">O•</div>
-                    <div class="cell">P•</div><div class="cell">Q•</div><div class="cell">R•</div>
-                </div>
-                <div class="x-key">
-                    <div class="x-lines"></div>
-                    <div class="letter-s">S</div>
-                </div>
+                <div class="grid-key"><div class="cell">A</div><div class="cell">B</div><div class="cell">C</div><div class="cell">D</div><div class="cell">E</div><div class="cell">F</div><div class="cell">G</div><div class="cell">H</div><div class="cell">I</div></div>
+                <div class="grid-key"><div class="cell">J•</div><div class="cell">K•</div><div class="cell">L•</div><div class="cell">M•</div><div class="cell">N•</div><div class="cell">O•</div><div class="cell">P•</div><div class="cell">Q•</div><div class="cell">R•</div></div>
+                <div class="x-key"><div class="x-lines"></div><div class="letter-s">S</div></div>
             </div>
             <div style="text-align: center; font-size: 0.8rem; color: #aaa; border-top: 1px dashed #444; padding-top:10px;">DECIPHER THESE SYMBOLS:</div>
             <div class="message-row">
@@ -53,13 +88,13 @@
                 <div class="symbol sym-s" title="S"></div>
             </div>
             <label for="answer" style="display:none;">Your answer</label>
-            <input type="text" id="answer" placeholder="Enter the Surname">
+            <input type="text" id="answer" placeholder="Write your answer">
             <button class="btn btn-primary" onclick="checkAnswer()">Validate</button>
             <div id="feedback-msg"></div>
             <button class="info-toggle" onclick="toggleHint()">How do I read this?</button>
             <div id="hint-box" class="info-content">
-                <p>Look for the shape of the symbol in the grids above. The symbol is the "wall" surrounding the letter.</p>
-                <p>1. The first symbol has a roof and a right wall, and carries a dot. Look at the second grid (the one with dots). It is the <strong>P</strong>.</p>
+                <p>Look for the shape of the symbol in the grids above.</p>
+                <p>1. The first symbol has a roof and right wall, with a dot. It is <strong>P</strong>.</p>
             </div>
         </section>
     </div>
@@ -68,16 +103,10 @@
         function checkAnswer() {
             let userIn = document.getElementById('answer').value.toUpperCase().trim();
             userIn = userIn.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
-            if (userIn === SOLUTION) {
-                window.location.href = 'parada7-recompensa-en.html';
-            } else {
-                document.getElementById('feedback-msg').textContent = "Incorrect code. Look closely at the edges of each letter.";
-            }
+            if (userIn === SOLUTION) { window.location.href = 'parada7-recompensa-en.html'; } 
+            else { document.getElementById('feedback-msg').textContent = "Incorrect code. Check the borders carefully."; }
         }
-        function toggleHint() {
-            const box = document.getElementById('hint-box');
-            box.style.display = box.style.display === 'block' ? 'none' : 'block';
-        }
+        function toggleHint() { const box = document.getElementById('hint-box'); box.style.display = box.style.display === 'block' ? 'none' : 'block'; }
     </script>
 </body>
 </html>

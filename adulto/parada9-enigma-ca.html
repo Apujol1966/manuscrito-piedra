@@ -3,12 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Capítol I: Roma - El Manuscrit</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Lato:wght@400;700&display=swap" rel="stylesheet">
+    <title>Capítol Final: Present - El Manuscrit</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Lato:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        :root { --bg-color: #121212; --card-bg: #1e1e1e; --text-main: #e0d6c2; --text-muted: #a8a095; --accent: #c0392b; }
+        :root { --bg-color: #121212; --card-bg: #1e1e1e; --text-main: #e0d6c2; --text-muted: #a8a095; --accent: #c0392b; --gold: #f1c40f; }
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body { background-color: var(--bg-color); color: var(--text-main); font-family: 'Lato', sans-serif; line-height: 1.6; padding: 20px; max-width: 600px; margin: 0 auto; }
         h1, h3 { font-family: 'Cinzel', serif; color: #fff; letter-spacing: 1px; }
@@ -23,65 +21,49 @@
         input[type="text"] { width: 100%; padding: 15px; font-size: 1.5rem; font-family: 'Cinzel', serif; background-color: #1a1a1a; border: 2px solid #444; color: white; border-radius: 8px; margin: 15px 0; text-align: center; text-transform: uppercase; }
         .btn { width: 100%; padding: 15px; font-size: 1rem; font-weight: bold; text-transform: uppercase; border: none; border-radius: 8px; cursor: pointer; font-family: 'Cinzel', serif; }
         .btn-primary { background-color: var(--accent); color: white; }
-        .info-toggle { background: none; border: none; color: var(--text-muted); text-decoration: underline; cursor: pointer; font-size: 0.9rem; margin-top: 15px; display: block; width: 100%; }
-        .info-content { display: none; margin-top: 15px; font-size: 0.9rem; background: #151515; padding: 15px; border-radius: 8px; text-align: left; }
         #feedback-msg { margin-top: 15px; font-weight: bold; min-height: 1.5em; color: var(--accent); }
     </style>
 </head>
 <body>
     <header>
-        <h1>Capítol I: La Primera Tinta</h1>
-        <div class="subtitle">Plaça Nova · Porta Praetoria</div>
+        <h1>Capítol Final: El Cor de la Ciutat</h1>
+        <div class="subtitle">Plaça de Sant Jaume · Present</div>
     </header>
-
+    
     <div class="img-container">
-        <img src="../imagenes/roma.jpg" alt="Lletres Barcino a la Plaça Nova">
+        <img src="../imagenes/santjaume.jpg" alt="Plaça de Sant Jaume">
     </div>
 
     <section class="card">
-        <p>“Davant teu s'alcen les guardianes de la ciutat. Les dues torres de la Porta Praetoria són el vestigi més pur de la muralla romana. Han vist passar vint segles d'història.”</p>
-        <p class="narrative-text">“Però no busquis plaques petites ni cartells moderns. La ciutat crida el seu nom antic als quatre vents amb lletres de bronze gegants als peus de les torres.”</p>
+        <p>“Has completat el cercle. Fa 2000 anys, aquí hi havia el Fòrum Romà, l'encreuament de camins. Avui, segueix sent el centre del poder polític: la Generalitat i l'Ajuntament es miren cara a cara.”</p>
+        <p class="narrative-text">“Totes les capes de pedra que has creuat conflueixen sota els teus peus. Per signar el teu descobriment, has de tancar el cicle.”</p>
     </section>
 
     <div id="enigma-container">
         <section class="enigma-box">
-            <span class="enigma-icon">🏛️</span>
-            <h3>El Nom de Bronze</h3>
-            <p>“Mira a terra, davant de les torres. Hi ha un poema visual fet escultura. Quin nom romà de 7 lletres formen les peces de bronze que tens davant?”</p>
+            <span class="enigma-icon">🏁</span>
+            <h3>L'Última Clau</h3>
+            <p>“El teu viatge va començar amb el nom antic: BARCINO.”</p>
+            <p>“Ara, mira la façana de l'Ajuntament. Escriu el nom actual de la ciutat tal com apareix avui, amb totes les seves lletres.”</p>
             
             <label for="answer" style="display:none;">La teva resposta</label>
-            <input type="text" id="answer" placeholder="Escriu el nom" maxlength="7">
-            
-            <button class="btn btn-primary" onclick="checkAnswer()">Validar Nom</button>
+            <input type="text" id="answer" placeholder="Nom de la Ciutat">
+            <button class="btn btn-primary" onclick="checkAnswer()">Completar El Manuscrit</button>
             
             <div id="feedback-msg"></div>
-
-            <button class="info-toggle" onclick="toggleHint()">Necessites una pista?</button>
-            
-            <div id="hint-box" class="info-content">
-                <p>Són lletres grans i desordenades a terra.</p>
-                <p>Comença per <strong>B</strong>...</p>
-                <p>És el nom antic de Barcelona.</p>
-            </div>
         </section>
     </div>
 
     <script>
-        const SOLUTION = "BARCINO";
-        
+        const SOLUTION = "BARCELONA";
+
         function checkAnswer() {
             const userIn = document.getElementById('answer').value.toUpperCase().trim();
-            
             if (userIn === SOLUTION) {
-                window.location.href = 'parada1-recompensa-ca.html';
+                window.location.href = 'parada9-recompensa-ca.html';
             } else {
-                document.getElementById('feedback-msg').textContent = "Nom incorrecte. Mira bé les lletres a terra.";
+                document.getElementById('feedback-msg').textContent = "Nom incorrecte. Mira la façana de l'Ajuntament.";
             }
-        }
-
-        function toggleHint() {
-            const box = document.getElementById('hint-box');
-            box.style.display = box.style.display === 'block' ? 'none' : 'block';
         }
     </script>
 </body>

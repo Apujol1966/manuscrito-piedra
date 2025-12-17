@@ -4,10 +4,40 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Capítol III: Al-Àndalus - Descobert</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Lato:wght@400;700&display=swap" rel="stylesheet">
-    <style>:root{--bg-color:#121212;--card-bg:#1e1e1e;--text-main:#e0d6c2;--text-muted:#a8a095;--accent:#c0392b;--success:#27ae60}*{box-sizing:border-box;margin:0;padding:0}body{background-color:var(--bg-color);color:var(--text-main);font-family:'Lato',sans-serif;line-height:1.6;padding:20px;max-width:600px;margin:0 auto}h1,h2,h3,h4{font-family:'Cinzel',serif;color:#fff;letter-spacing:1px}h1{font-size:1.8rem;text-align:center;margin-bottom:25px}.card{background-color:var(--card-bg);padding:20px;border-radius:12px;margin-bottom:20px;box-shadow:0 4px 6px rgba(0,0,0,.3)}.btn{width:100%;padding:15px 20px;font-size:1rem;font-weight:700;text-transform:uppercase;border:none;border-radius:8px;cursor:pointer;font-family:'Cinzel',serif;text-decoration:none;display:inline-block;text-align:center;margin-top:10px}.btn-success{background-color:var(--success);color:#fff}.btn-secondary{background-color:transparent;border:1px solid var(--text-muted);color:var(--text-muted);font-size:.8rem}.btn-primary{background-color:var(--accent);color:#fff}.btn-map{background-color:#3498db;color:#fff}.source-text{font-size:.8rem;margin-top:10px;color:#666;display:block}.knowledge-reward{padding-top:20px;border-top:1px solid #444;text-align:left}.knowledge-reward h3{color:var(--success);text-align:center;margin-bottom:15px}.knowledge-reward p{margin-bottom:10px}.knowledge-reward strong{color:#fff}#next-clue-box{margin-top:20px;padding:15px;background-color:#2c2c2c;border-left:3px solid var(--success);border-radius:4px}.feedback-success{text-align:center;font-weight:700;color:var(--success);font-size:1.2rem;margin-bottom:20px;animation:fadeIn 1s ease-in}@keyframes fadeIn{from{opacity:0}to{opacity:1}}.modal-overlay{position:fixed;top:0;left:0;width:100%;height:100%;background-color:rgba(0,0,0,.85);display:none;align-items:center;justify-content:center;z-index:1000;padding:20px}.modal-content{background-color:var(--card-bg);padding:30px;border-radius:12px;text-align:center;width:100%;max-width:500px;border-top:4px solid var(--accent)}.modal-content h2{margin-bottom:15px}.modal-content p{color:var(--text-muted);margin-bottom:25px}.modal-input{width:100%;padding:10px;font-size:1rem;background-color:#1a1a1a;border:2px solid #444;color:#fff;border-radius:8px;margin:15px 0;text-align:center;text-transform:uppercase}#guardian-feedback{font-size:.9rem;color:var(--accent);min-height:1.2em;margin-top:10px}.extra-hint-content{display:none;margin-top:15px;padding-top:15px;border-top:1px dashed #444}</style>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Lato:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root { --bg-color: #121212; --card-bg: #1e1e1e; --text-main: #e0d6c2; --text-muted: #a8a095; --accent: #c0392b; --success: #27ae60; }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { background-color: var(--bg-color); color: var(--text-main); font-family: 'Lato', sans-serif; line-height: 1.6; padding: 20px; max-width: 600px; margin: 0 auto; }
+        h1, h2, h3, h4 { font-family: 'Cinzel', serif; color: #fff; letter-spacing: 1px; }
+        h1 { font-size: 1.8rem; text-align: center; margin-bottom: 25px; }
+        .card { background-color: var(--card-bg); padding: 20px; border-radius: 12px; margin-bottom: 20px; box-shadow: 0 4px 6px rgba(0,0,0,0.3); }
+        .btn { width: 100%; padding: 15px 20px; font-size: 1rem; font-weight: bold; text-transform: uppercase; border: none; border-radius: 8px; cursor: pointer; font-family: 'Cinzel', serif; text-decoration: none; display: inline-block; text-align: center; margin-top: 10px; }
+        .btn-success { background-color: var(--success); color: white; }
+        .btn-secondary { background-color: transparent; border: 1px solid var(--text-muted); color: var(--text-muted); font-size: 0.8rem; }
+        .btn-primary { background-color: var(--accent); color: white; }
+        .btn-map { background-color: #3498db; color: white; }
+        .source-text { font-size: 0.8rem; margin-top: 10px; color: #666; display: block; }
+        .knowledge-reward { padding-top: 20px; border-top: 1px solid #444; text-align: left; }
+        .knowledge-reward h3 { color: var(--success); text-align: center; margin-bottom: 15px; }
+        .knowledge-reward p { margin-bottom: 10px; }
+        .knowledge-reward strong { color: #fff; }
+        #next-clue-box { margin-top: 20px; padding: 15px; background-color: #2c2c2c; border-left: 3px solid var(--success); border-radius: 4px; }
+        .feedback-success { text-align: center; font-weight: bold; color: var(--success); font-size: 1.2rem; margin-bottom: 20px; animation: fadeIn 1s ease-in; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.85); display: none; align-items: center; justify-content: center; z-index: 1000; padding: 20px; }
+        .modal-content { background-color: var(--card-bg); padding: 30px; border-radius: 12px; text-align: center; width: 100%; max-width: 500px; border-top: 4px solid var(--accent); }
+        .modal-content h2 { margin-bottom: 15px; }
+        .modal-content p { color: var(--text-muted); margin-bottom: 25px; }
+        .modal-input { width: 100%; padding: 10px; font-size: 1rem; background-color: #1a1a1a; border: 2px solid #444; color: white; border-radius: 8px; margin: 15px 0; text-align: center; }
+        #guardian-feedback { font-size: 0.9rem; color: var(--accent); min-height: 1.2em; margin-top: 10px; }
+        .extra-hint-content { display: none; margin-top: 15px; padding-top: 15px; border-top: 1px dashed #444; }
+    </style>
 </head>
 <body>
+
     <div id="guardian-modal" class="modal-overlay">
         <div class="modal-content">
             <h2>Prova del Guardià</h2>
@@ -17,24 +47,34 @@
             <div id="guardian-feedback"></div>
         </div>
     </div>
+
     <header><h1>Capítol III: La Frontera Invisible</h1></header>
+
     <div id="reward-container">
         <div class="card">
-            <div class="feedback-success">Correcte! El Comte t'ha revelat el seu codi.</div>
+            <div class="feedback-success">Correcte! El codi del comte és 1008.</div>
+            
             <div class="knowledge-reward">
                 <h3>El Llegat de la Frontera</h3>
-                <p><strong>El Llegat d'Al-Àndalus:</strong> Encara que Barcelona va resistir com a ciutat cristiana, la seva posició a la frontera amb Al-Àndalus la va convertir en un gresol. La proximitat va permetre un flux vital de coneixements en <strong>medicina</strong>, <strong>matemàtiques</strong> i <strong>filosofia</strong> que arribaven des de Còrdova, ajudant a assentar les bases de la seva futura prosperitat.</p>
-                <p><strong>Curiositat del Lloc:</strong> Ramon Berenguer III, l'estàtua del qual contemples, no només va lluitar. També va establir aliances <strong>matrimonials</strong> i comercials amb senyors musulmans. Aquesta dualitat de conflicte i coexistència va definir la vida a la frontera.</p>
+                <p><strong>El Llegat d'Al-Àndalus:</strong> Encara que Barcelona va resistir com a ciutat cristiana, la seva posició a la frontera amb Al-Àndalus la va convertir en un gresol. El perill constant va fomentar el seu caràcter defensiu, però la proximitat va permetre un flux vital de coneixements en medicina, matemàtiques i filosofia que arribaven des de Còrdova.</p>
+                <p><strong>La Curiositat (Aliances):</strong> Ramon Berenguer III no només va lluitar amb l'espasa. També va establir aliances <strong>matrimonials</strong> i comercials amb senyors musulmans. Aquesta dualitat de conflicte i coexistència va definir la vida a la frontera.</p>
                 <span class="source-text">Font: "Al-Hakam I", doc. Vallvé 1992</span>
             </div>
+
             <div id="next-clue-box">
-                <p><strong>PISTA DE SALT:</strong><br>El número 1003 et transporta de la tensió de la frontera al cor del poder gòtic. Endinsa't al carrer que passa sota el famós i fotografiat pont que uneix dos palaus. Les bèsties de pedra t'observen des de dalt.</p>
+                <!-- PISTA NIVELL 1 -->
+                <p><strong>PISTA DE SALT:</strong><br>El número 1008 et transporta al cor del Gòtic. Endinsa't al carrer que passa sota el pont més famós i fotografiat del barri. Les bèsties de pedra t'observen des de dalt.</p>
+                
                 <button id="hint-btn-1" class="btn btn-secondary" onclick="askGuardian(1)">No saps on anar? Demana una Pista Directa</button>
+
+                <!-- PISTA NIVELL 2 (Oculta) -->
                 <div id="hint-level-2" class="extra-hint-content">
                     <h4>Pista Directa</h4>
-                    <p>Busca el <strong>Carrer del Bisbe</strong>. És el carrer que, des de la Plaça de Sant Jaume, va cap a la Catedral, passant per sota d'un icònic pont neogòtic.</p>
+                    <p>Busca el **Carrer del Bisbe**. És el carrer que va des de la Catedral cap a la Plaça de Sant Jaume, passant per sota d'un icònic pont neogòtic.</p>
                     <button id="hint-btn-2" class="btn btn-secondary" onclick="askGuardian(2)">Segueixo perdut/da. Mostra'm el mapa</button>
                 </div>
+                
+                <!-- PISTA NIVELL 3 (Oculta) -->
                 <div id="hint-level-3" class="extra-hint-content">
                      <h4>Ubicació Exacta</h4>
                      <a href="https://www.google.com/maps/search/?api=1&query=Carrer+del+Bisbe,Barcelona" target="_blank" class="btn btn-map">Obrir a Google Maps</a>
@@ -42,18 +82,66 @@
             </div>
         </div>
     </div>
+    
     <a href="parada4-enigma-ca.html" class="btn btn-success" onclick="saveProgress()">Iniciar Capítol IV (Gòtic)</a>
+
     <script>
-        function saveProgress() { localStorage.setItem('progresoJuego', '4'); }
+        function saveProgress() {
+            localStorage.setItem('progresoJuego', '4');
+        }
+
         const guardianPuzzles = [
-            { question: "El Guardià posa a prova la teva memòria. Dels coneixements que Al-Àndalus va aportar, escriu un dels tres camps que acabes de llegir.", answers: ["MEDICINA", "MATEMATIQUES", "FILOSOFIA"] },
-            { question: "Per desvelar el mapa, recorda la curiositat del lloc. Quin tipus d'aliances, a més de les comercials, va establir el Comte?", answers: ["MATRIMONIALS"] }
+            { question: "Quin tipus de coneixements van arribar des de Còrdova?", answer: "MEDICINA" }, // Accepta MATEMATIQUES o FILOSOFIA també
+            { question: "La pista directa esmenta un element arquitectònic icònic. Què és?", answer: "PONT" }
         ];
-        const feedbackError = 'Resposta incorrecta. La memòria d\'un arqueòleg ha de ser precisa.';
-        const modal = document.getElementById('guardian-modal'); const questionEl = document.getElementById('guardian-question'); const answerEl = document.getElementById('guardian-answer'); const submitBtn = document.getElementById('guardian-submit'); const feedbackEl = document.getElementById('guardian-feedback'); let levelToUnlock = 0;
-        function askGuardian(level) { levelToUnlock = level; const puzzle = guardianPuzzles[level - 1]; questionEl.textContent = puzzle.question; answerEl.value = ''; feedbackEl.textContent = ''; modal.style.display = 'flex'; answerEl.focus(); }
-        submitBtn.onclick = () => { const puzzle = guardianPuzzles[levelToUnlock - 1]; const userAnswer = answerEl.value.toUpperCase().trim(); if (puzzle.answers.includes(userAnswer)) { modal.style.display = 'none'; revealHint(levelToUnlock); } else { feedbackEl.textContent = feedbackError; } };
-        function revealHint(level) { if (level === 1) { document.getElementById('hint-level-2').style.display = 'block'; document.getElementById('hint-btn-1').style.display = 'none'; } else if (level === 2) { document.getElementById('hint-level-3').style.display = 'block'; document.getElementById('hint-btn-2').style.display = 'none'; } }
+        
+        const feedbackError = 'Resposta incorrecta. La resposta és al text que acabes de llegir.';
+        const modal = document.getElementById('guardian-modal');
+        const questionEl = document.getElementById('guardian-question');
+        const answerEl = document.getElementById('guardian-answer');
+        const submitBtn = document.getElementById('guardian-submit');
+        const feedbackEl = document.getElementById('guardian-feedback');
+        let levelToUnlock = 0;
+
+        function askGuardian(level) {
+            levelToUnlock = level;
+            const puzzle = guardianPuzzles[level - 1];
+            questionEl.textContent = puzzle.question;
+            answerEl.value = '';
+            feedbackEl.textContent = '';
+            modal.style.display = 'flex';
+            answerEl.focus();
+        }
+
+        submitBtn.onclick = () => {
+            const puzzle = guardianPuzzles[levelToUnlock - 1];
+            const userAnswer = answerEl.value.toUpperCase().trim();
+            if (levelToUnlock === 1) {
+                if (userAnswer.includes("MEDICINA") || userAnswer.includes("MATEMATICA") || userAnswer.includes("FILOSOFIA")) {
+                    modal.style.display = 'none';
+                    revealHint(levelToUnlock);
+                } else {
+                    feedbackEl.textContent = feedbackError;
+                }
+            } else {
+                if (userAnswer.includes(puzzle.answer)) {
+                    modal.style.display = 'none';
+                    revealHint(levelToUnlock);
+                } else {
+                    feedbackEl.textContent = feedbackError;
+                }
+            }
+        };
+
+        function revealHint(level) {
+            if (level === 1) {
+                document.getElementById('hint-level-2').style.display = 'block';
+                document.getElementById('hint-btn-1').style.display = 'none'; 
+            } else if (level === 2) {
+                document.getElementById('hint-level-3').style.display = 'block';
+                document.getElementById('hint-btn-2').style.display = 'none';
+            }
+        }
     </script>
 </body>
 </html>

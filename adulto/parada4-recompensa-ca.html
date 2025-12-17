@@ -5,9 +5,37 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Capítol IV: Gòtic - Descobert</title>
     <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Lato:wght@400;700&display=swap" rel="stylesheet">
-    <style>:root{--bg-color:#121212;--card-bg:#1e1e1e;--text-main:#e0d6c2;--text-muted:#a8a095;--accent:#c0392b;--success:#27ae60}*{box-sizing:border-box;margin:0;padding:0}body{background-color:var(--bg-color);color:var(--text-main);font-family:'Lato',sans-serif;line-height:1.6;padding:20px;max-width:600px;margin:0 auto}h1,h2,h3,h4{font-family:'Cinzel',serif;color:#fff;letter-spacing:1px}h1{font-size:1.8rem;text-align:center;margin-bottom:25px}.card{background-color:var(--card-bg);padding:20px;border-radius:12px;margin-bottom:20px;box-shadow:0 4px 6px rgba(0,0,0,.3)}.btn{width:100%;padding:15px 20px;font-size:1rem;font-weight:700;text-transform:uppercase;border:none;border-radius:8px;cursor:pointer;font-family:'Cinzel',serif;text-decoration:none;display:inline-block;text-align:center;margin-top:10px}.btn-success{background-color:var(--success);color:#fff}.btn-secondary{background-color:transparent;border:1px solid var(--text-muted);color:var(--text-muted);font-size:.8rem}.btn-primary{background-color:var(--accent);color:#fff}.btn-map{background-color:#3498db;color:#fff}.source-text{font-size:.8rem;margin-top:10px;color:#666;display:block}.knowledge-reward{padding-top:20px;border-top:1px solid #444;text-align:left}.knowledge-reward h3{color:var(--success);text-align:center;margin-bottom:15px}.knowledge-reward p{margin-bottom:10px}.knowledge-reward strong{color:#fff}#next-clue-box{margin-top:20px;padding:15px;background-color:#2c2c2c;border-left:3px solid var(--success);border-radius:4px}.feedback-success{text-align:center;font-weight:700;color:var(--success);font-size:1.2rem;margin-bottom:20px;animation:fadeIn 1s ease-in}@keyframes fadeIn{from{opacity:0}to{opacity:1}}.modal-overlay{position:fixed;top:0;left:0;width:100%;height:100%;background-color:rgba(0,0,0,.85);display:none;align-items:center;justify-content:center;z-index:1000;padding:20px}.modal-content{background-color:var(--card-bg);padding:30px;border-radius:12px;text-align:center;width:100%;max-width:500px;border-top:4px solid var(--accent)}.modal-content h2{margin-bottom:15px}.modal-content p{color:var(--text-muted);margin-bottom:25px}.modal-input{width:100%;padding:10px;font-size:1rem;background-color:#1a1a1a;border:2px solid #444;color:#fff;border-radius:8px;margin:15px 0;text-align:center;text-transform:uppercase}#guardian-feedback{font-size:.9rem;color:var(--accent);min-height:1.2em;margin-top:10px}.extra-hint-content{display:none;margin-top:15px;padding-top:15px;border-top:1px dashed #444}</style>
+    <style>
+        :root { --bg-color: #121212; --card-bg: #1e1e1e; --text-main: #e0d6c2; --text-muted: #a8a095; --accent: #c0392b; --success: #27ae60; }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { background-color: var(--bg-color); color: var(--text-main); font-family: 'Lato', sans-serif; line-height: 1.6; padding: 20px; max-width: 600px; margin: 0 auto; }
+        h1, h2, h3, h4 { font-family: 'Cinzel', serif; color: #fff; letter-spacing: 1px; }
+        h1 { font-size: 1.8rem; text-align: center; margin-bottom: 25px; }
+        .card { background-color: var(--card-bg); padding: 20px; border-radius: 12px; margin-bottom: 20px; box-shadow: 0 4px 6px rgba(0,0,0,0.3); }
+        .btn { width: 100%; padding: 15px 20px; font-size: 1rem; font-weight: bold; text-transform: uppercase; border: none; border-radius: 8px; cursor: pointer; font-family: 'Cinzel', serif; text-decoration: none; display: inline-block; text-align: center; margin-top: 10px; }
+        .btn-success { background-color: var(--success); color: white; }
+        .btn-secondary { background-color: transparent; border: 1px solid var(--text-muted); color: var(--text-muted); font-size: 0.8rem; }
+        .btn-primary { background-color: var(--accent); color: white; }
+        .btn-map { background-color: #3498db; color: white; }
+        .source-text { font-size: 0.8rem; margin-top: 10px; color: #666; display: block; }
+        .knowledge-reward { padding-top: 20px; border-top: 1px solid #444; text-align: left; }
+        .knowledge-reward h3 { color: var(--success); text-align: center; margin-bottom: 15px; }
+        .knowledge-reward p { margin-bottom: 10px; }
+        .knowledge-reward strong { color: #fff; }
+        #next-clue-box { margin-top: 20px; padding: 15px; background-color: #2c2c2c; border-left: 3px solid var(--success); border-radius: 4px; }
+        .feedback-success { text-align: center; font-weight: bold; color: var(--success); font-size: 1.2rem; margin-bottom: 20px; animation: fadeIn 1s ease-in; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.85); display: none; align-items: center; justify-content: center; z-index: 1000; padding: 20px; }
+        .modal-content { background-color: var(--card-bg); padding: 30px; border-radius: 12px; text-align: center; width: 100%; max-width: 500px; border-top: 4px solid var(--accent); }
+        .modal-content h2 { margin-bottom: 15px; }
+        .modal-content p { color: var(--text-muted); margin-bottom: 25px; }
+        .modal-input { width: 100%; padding: 10px; font-size: 1rem; background-color: #1a1a1a; border: 2px solid #444; color: white; border-radius: 8px; margin: 15px 0; text-align: center; }
+        #guardian-feedback { font-size: 0.9rem; color: var(--accent); min-height: 1.2em; margin-top: 10px; }
+        .extra-hint-content { display: none; margin-top: 15px; padding-top: 15px; border-top: 1px dashed #444; }
+    </style>
 </head>
 <body>
+
     <div id="guardian-modal" class="modal-overlay">
         <div class="modal-content">
             <h2>Prova del Guardià</h2>
@@ -17,24 +45,34 @@
             <div id="guardian-feedback"></div>
         </div>
     </div>
-    <header><h1>Capítol IV: L'Era de les Bèsties de Pedra</h1></header>
+
+    <header><h1>Capítol IV: Il·lusions Gòtiques</h1></header>
+
     <div id="reward-container">
         <div class="card">
-            <div class="feedback-success">Correcte! Has desxifrat el codi del picapedrer.</div>
+            <div class="feedback-success">¡4171! La maledicció s'ha trencat.</div>
+            
             <div class="knowledge-reward">
-                <h3>El Llegat Gòtic</h3>
-                <p><strong>El Llegat Gòtic:</strong> El Barri Gòtic és el llegat en si mateix. Durant aquesta era, Barcelona es va convertir en una potència del Mediterrani gràcies als seus gremis i el seu Consolat de Mar. Les grans famílies nobles van construir els palaus que encara avui defineixen el paisatge de la zona.</p>
-                <p><strong>Curiositat del Lloc:</strong> El famós Pont del Bisbe, malgrat la seva aparença, no és gòtic. És una creació neogòtica de 1928! L'arquitecte, Joan Rubió i Bellver, va incloure una calavera travessada per una daga a la part inferior, una suposada maledicció per a la ciutat si algun dia es retira.</p>
-                <span class="source-text">Font: Dietari de la ciutat f. 123r</span>
+                <h3>El Fals Gòtic</h3>
+                <p><strong>El Llegat (Història):</strong> Tot i que aquest pont sembla medieval i encaixa perfectament, va ser construït el 1928! És obra de l'arquitecte Joan Rubió i Bellver. És un dels màxims exponents de la recreació monumental que va transformar el barri a principis del segle XX per embellir la ciutat.</p>
+                <p><strong>La Curiositat (La Llegenda):</strong> Es diu que la calavera és autèntica, però ningú sap a qui va pertànyer. La llegenda urbana assegura que si la daga que la travessa arribés a caure, els fonaments de Barcelona s'enfonsarien amb ella.</p>
+                <span class="source-text">Font: Dietari de la ciutat</span>
             </div>
+
             <div id="next-clue-box">
-                <p><strong>PISTA DE SALT:</strong><br>La paraula FANTASMA ressona als carrers estrets. Endinsa't a l'antic barri jueu, el Call, i busca el carrer que avui honra la memòria del <strong>rabí més savi</strong> de la Barcelona medieval.</p>
+                <!-- PISTA NIVELL 1 CORREGIDA -->
+                <p><strong>PISTA DE SALT:</strong><br>Amb la maledicció desactivada, és hora de buscar pedres veritablement antigues. Endinsa't a l'antic barri jueu, el <strong>Call</strong>, i busca el carrer que avui honra la memòria del rabí més savi de la Barcelona medieval.</p>
+                
                 <button id="hint-btn-1" class="btn btn-secondary" onclick="askGuardian(1)">No saps on anar? Demana una Pista Directa</button>
+
+                <!-- PISTA NIVELL 2 (Oculta) -->
                 <div id="hint-level-2" class="extra-hint-content">
                     <h4>Pista Directa</h4>
-                    <p>Busca el <strong>Carrer de Salomó ben Adret</strong> (antigament Sant Domènec del Call). És un carrer estret que neix a prop de la Plaça Sant Jaume.</p>
+                    <p>Busca el <strong>Carrer de Salomó ben Adret</strong> (antigament conegut com Sant Domènec del Call). És un carreró estret que neix a prop de la Plaça Sant Jaume.</p>
                     <button id="hint-btn-2" class="btn btn-secondary" onclick="askGuardian(2)">Segueixo perdut/da. Mostra'm el mapa</button>
                 </div>
+                
+                <!-- PISTA NIVELL 3 (Oculta) -->
                 <div id="hint-level-3" class="extra-hint-content">
                      <h4>Ubicació Exacta</h4>
                      <a href="https://www.google.com/maps/search/?api=1&query=Carrer+de+Salomó+ben+Adret,Barcelona" target="_blank" class="btn btn-map">Obrir a Google Maps</a>
@@ -42,18 +80,57 @@
             </div>
         </div>
     </div>
-    <a href="parada5-enigma-ca.html" class="btn btn-success" onclick="saveProgress()">Iniciar Capítol V (Call)</a>
+    
+    <a href="parada5-enigma-ca.html" class="btn btn-success" onclick="saveProgress()">Iniciar Capítol V (El Call)</a>
+
     <script>
-        function saveProgress() { localStorage.setItem('progresoJuego', '5'); }
+        function saveProgress() {
+            localStorage.setItem('progresoJuego', '5');
+        }
+
         const guardianPuzzles = [
-            { question: "El pont que has observat no és Gòtic, sinó Neogòtic. En quin any es va construir?", answer: "1928" },
-            { question: "La pista directa esmenta un savi medieval. Quina era la seva 'professió' o títol?", answer: "RABI" }
+            { question: "En quin any es va construir realment el pont?", answer: "1928" },
+            { question: "Vas cap al barri jueu. Quin nom rep aquest barri en català?", answer: "CALL" }
         ];
-        const feedbackError = 'Resposta incorrecta. La resposta és al text que acabes de llegir.';
-        const modal = document.getElementById('guardian-modal'); const questionEl = document.getElementById('guardian-question'); const answerEl = document.getElementById('guardian-answer'); const submitBtn = document.getElementById('guardian-submit'); const feedbackEl = document.getElementById('guardian-feedback'); let levelToUnlock = 0;
-        function askGuardian(level) { levelToUnlock = level; const puzzle = guardianPuzzles[level - 1]; questionEl.textContent = puzzle.question; answerEl.value = ''; feedbackEl.textContent = ''; modal.style.display = 'flex'; answerEl.focus(); }
-        submitBtn.onclick = () => { const puzzle = guardianPuzzles[levelToUnlock - 1]; const userAnswer = answerEl.value.toUpperCase().trim(); if (userAnswer.includes(puzzle.answer)) { modal.style.display = 'none'; revealHint(levelToUnlock); } else { feedbackEl.textContent = feedbackError; } };
-        function revealHint(level) { if (level === 1) { document.getElementById('hint-level-2').style.display = 'block'; document.getElementById('hint-btn-1').style.display = 'none'; } else if (level === 2) { document.getElementById('hint-level-3').style.display = 'block'; document.getElementById('hint-btn-2').style.display = 'none'; } }
+        
+        const feedbackError = 'Resposta incorrecta. Revisa el text.';
+        const modal = document.getElementById('guardian-modal');
+        const questionEl = document.getElementById('guardian-question');
+        const answerEl = document.getElementById('guardian-answer');
+        const submitBtn = document.getElementById('guardian-submit');
+        const feedbackEl = document.getElementById('guardian-feedback');
+        let levelToUnlock = 0;
+
+        function askGuardian(level) {
+            levelToUnlock = level;
+            const puzzle = guardianPuzzles[level - 1];
+            questionEl.textContent = puzzle.question;
+            answerEl.value = '';
+            feedbackEl.textContent = '';
+            modal.style.display = 'flex';
+            answerEl.focus();
+        }
+
+        submitBtn.onclick = () => {
+            const puzzle = guardianPuzzles[levelToUnlock - 1];
+            const userAnswer = answerEl.value.toUpperCase().trim();
+            if (userAnswer.includes(puzzle.answer)) {
+                modal.style.display = 'none';
+                revealHint(levelToUnlock);
+            } else {
+                feedbackEl.textContent = feedbackError;
+            }
+        };
+
+        function revealHint(level) {
+            if (level === 1) {
+                document.getElementById('hint-level-2').style.display = 'block';
+                document.getElementById('hint-btn-1').style.display = 'none'; 
+            } else if (level === 2) {
+                document.getElementById('hint-level-3').style.display = 'block';
+                document.getElementById('hint-btn-2').style.display = 'none';
+            }
+        }
     </script>
 </body>
 </html>

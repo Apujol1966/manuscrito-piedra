@@ -25,28 +25,39 @@
         .info-content { display: none; margin-top: 15px; font-size: 0.9rem; background: #151515; padding: 15px; border-radius: 8px; text-align: left; }
         #feedback-msg { margin-top: 15px; font-weight: bold; min-height: 1.5em; color: var(--accent); }
 
-        /* ESTILS DEL XIFRATGE PIGPEN */
+        /* ESTILS DEL XIFRATGE MAÇÒNIC */
         .keys-container { display: flex; justify-content: center; gap: 15px; margin-bottom: 25px; flex-wrap: wrap; }
         .grid-key { display: grid; grid-template-columns: repeat(3, 1fr); width: 90px; height: 90px; }
-        .cell { display: flex; align-items: center; justify-content: center; font-family: 'Cinzel', serif; font-weight: bold; color: #fff; font-size: 14px; border-color: var(--line-color); border-style: solid; border-width: 0; }
-        .cell:nth-child(1) { border-right-width: 3px; border-bottom-width: 3px; }
-        .cell:nth-child(2) { border-left-width: 3px; border-right-width: 3px; border-bottom-width: 3px; }
-        .cell:nth-child(3) { border-left-width: 3px; border-bottom-width: 3px; }
-        .cell:nth-child(4) { border-top-width: 3px; border-right-width: 3px; border-bottom-width: 3px; }
-        .cell:nth-child(5) { border-width: 3px; }
-        .cell:nth-child(6) { border-top-width: 3px; border-left-width: 3px; border-bottom-width: 3px; }
-        .cell:nth-child(7) { border-top-width: 3px; border-right-width: 3px; }
-        .cell:nth-child(8) { border-left-width: 3px; border-right-width: 3px; border-top-width: 3px; }
+        .cell { 
+            display: flex; align-items: center; justify-content: center; 
+            font-family: 'Cinzel', serif; font-weight: bold; color: #fff; font-size: 14px;
+            border-color: var(--line-color); border-style: solid; border-width: 0;
+        }
+        /* Vores de la graella Clau */
+        .cell:nth-child(1) { border-right-width: 3px; border-bottom-width: 3px; } 
+        .cell:nth-child(2) { border-left-width: 3px; border-right-width: 3px; border-bottom-width: 3px; } 
+        .cell:nth-child(3) { border-left-width: 3px; border-bottom-width: 3px; } 
+        .cell:nth-child(4) { border-top-width: 3px; border-right-width: 3px; border-bottom-width: 3px; } 
+        .cell:nth-child(5) { border-width: 3px; } 
+        .cell:nth-child(6) { border-top-width: 3px; border-left-width: 3px; border-bottom-width: 3px; } 
+        .cell:nth-child(7) { border-top-width: 3px; border-right-width: 3px; } 
+        .cell:nth-child(8) { border-left-width: 3px; border-right-width: 3px; border-top-width: 3px; } 
         .cell:nth-child(9) { border-left-width: 3px; border-top-width: 3px; }
+
         .x-key { position: relative; width: 60px; height: 60px; margin-top: 15px; display: flex; align-items: center; justify-content: center; }
         .x-lines { position: absolute; width: 100%; height: 100%; top: 0; left: 0; }
         .x-lines::before, .x-lines::after { content: ''; position: absolute; background: var(--line-color); top: 50%; left: 50%; transform: translate(-50%, -50%) rotate(45deg); }
-        .x-lines::before { width: 100%; height: 3px; } .x-lines::after { width: 3px; height: 100%; }
+        .x-lines::before { width: 100%; height: 3px; } 
+        .x-lines::after { width: 3px; height: 100%; }
         .letter-s { position: absolute; top: 5px; font-family: 'Cinzel', serif; font-size: 14px; font-weight: bold; }
+
+        /* SÍMBOLS DEL MISSATGE (Dibuixats igual que la clau) */
         .message-row { display: flex; justify-content: center; gap: 8px; margin: 20px 0; flex-wrap: wrap; }
         .symbol { width: 30px; height: 30px; border-color: var(--accent); border-style: solid; border-width: 0; position: relative; }
         .symbol.dot::after { content: '•'; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: var(--accent); font-size: 20px; line-height: 0; }
-        .sym-p { border-top-width: 3px; border-right-width: 3px; }
+
+        /* Formes PADELLAS */
+        .sym-p { border-top-width: 3px; border-right-width: 3px; } 
         .sym-a { border-right-width: 3px; border-bottom-width: 3px; }
         .sym-d { border-top-width: 3px; border-right-width: 3px; border-bottom-width: 3px; }
         .sym-e { border-width: 3px; }
@@ -59,18 +70,22 @@
         <h1>Capítol VII: La Lògia Secreta</h1>
         <div class="subtitle">Carrer del Veguer · Segle XVIII</div>
     </header>
+    
     <div class="img-container">
         <img src="../imagenes/veguer.jpg" alt="Façana gòtica de la Casa Padellàs">
     </div>
+
     <section class="card">
         <p>“Entres al Segle de les Llums i les Ombres. Després de la derrota de 1714, Barcelona canvia. S'imposen l'ordre i la raó, però la dissidència s'amaga en societats secretes.”</p>
-        <p class="narrative-text">“Davant teu tens la **Casa Padellàs**, un palau gòtic que va ser traslladat pedra a pedra a aquest carrer el 1931. Però el seu origen és noble. Una lògia maçònica ha deixat encriptat el cognom de la família que va construir aquest palau.”</p>
+        <p class="narrative-text">“Davant teu tens la <strong>Casa Padellàs</strong>, un palau gòtic que va ser traslladat pedra a pedra a aquest carrer el 1931. Però el seu origen és noble. Una lògia maçònica ha deixat encriptat el cognom de la família que va construir aquest palau.”</p>
     </section>
+
     <div id="enigma-container">
         <section class="enigma-box">
             <span class="enigma-icon">👁️</span>
             <h3>El Codi Maçònic</h3>
             <p>Utilitza la <strong>Clau Mestra</strong> per trobar les lletres a la quadrícula i desxifrar el cognom ocult.</p>
+            
             <div style="text-align: center; font-size: 0.7rem; color: #aaa; margin-bottom: 5px;">CLAUS DE REFERÈNCIA</div>
             <div class="keys-container">
                 <div class="grid-key">
@@ -88,7 +103,9 @@
                     <div class="letter-s">S</div>
                 </div>
             </div>
+
             <div style="text-align: center; font-size: 0.8rem; color: #aaa; border-top: 1px dashed #444; padding-top:10px;">DESXIFRA AQUESTS SÍMBOLS:</div>
+            
             <div class="message-row">
                 <div class="symbol sym-p dot" title="P"></div>
                 <div class="symbol sym-a" title="A"></div>
@@ -99,10 +116,13 @@
                 <div class="symbol sym-a" title="A"></div>
                 <div class="symbol sym-s" title="S"></div>
             </div>
+            
             <label for="answer" style="display:none;">La teva resposta</label>
-            <input type="text" id="answer" placeholder="Escriu el Cognom">
+            <input type="text" id="answer" placeholder="Escriu la teva resposta">
             <button class="btn btn-primary" onclick="checkAnswer()">Validar</button>
+            
             <div id="feedback-msg"></div>
+            
             <button class="info-toggle" onclick="toggleHint()">Com es llegeix això?</button>
             <div id="hint-box" class="info-content">
                 <p>Busca la forma del símbol a les graelles de dalt. El símbol és el "mur" que envolta la lletra.</p>
@@ -110,17 +130,21 @@
             </div>
         </section>
     </div>
+
     <script>
         const SOLUTION = "PADELLAS";
+
         function checkAnswer() {
             let userIn = document.getElementById('answer').value.toUpperCase().trim();
             userIn = userIn.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+            
             if (userIn === SOLUTION) {
                 window.location.href = 'parada7-recompensa-ca.html';
             } else {
                 document.getElementById('feedback-msg').textContent = "Codi incorrecte. Fixa't bé en les vores de cada lletra.";
             }
         }
+
         function toggleHint() {
             const box = document.getElementById('hint-box');
             box.style.display = box.style.display === 'block' ? 'none' : 'block';

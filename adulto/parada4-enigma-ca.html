@@ -5,46 +5,83 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Capítol IV: Gòtic - El Manuscrit</title>
     <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Lato:wght@400;700&display=swap" rel="stylesheet">
-    <style>:root{--bg-color:#121212;--card-bg:#1e1e1e;--text-main:#e0d6c2;--text-muted:#a8a095;--accent:#c0392b}*{box-sizing:border-box;margin:0;padding:0}body{background-color:var(--bg-color);color:var(--text-main);font-family:'Lato',sans-serif;line-height:1.6;padding:20px;max-width:600px;margin:0 auto}h1,h3{font-family:'Cinzel',serif;color:#fff;letter-spacing:1px}h1{font-size:1.8rem;text-align:center;margin-bottom:10px;border-bottom:2px solid var(--accent);padding-bottom:10px}.subtitle{text-align:center;font-size:.9rem;color:var(--text-muted);margin-bottom:25px;text-transform:uppercase}.img-container{width:100%;max-height:250px;background-color:#333;border-radius:8px;margin-bottom:20px;overflow:hidden;border:1px solid #444}.img-container img{width:100%;height:100%;object-fit:cover;display:block}.card{background-color:var(--card-bg);padding:20px;border-radius:12px;margin-bottom:20px;box-shadow:0 4px 6px rgba(0,0,0,.3)}.narrative-text{font-style:italic;border-left:3px solid var(--accent);padding-left:15px;margin-top:15px;color:#dcdcdc}.enigma-box{background-color:#2c2c2c;border:1px solid var(--accent);padding:20px;border-radius:8px;margin-top:20px;text-align:center}.enigma-icon{font-size:2rem;margin-bottom:10px;display:block}input[type=text]{width:100%;padding:15px;font-size:1.5rem;font-family:'Cinzel',serif;background-color:#1a1a1a;border:2px solid #444;color:#fff;border-radius:8px;margin:15px 0;text-align:center;text-transform:uppercase}input[type=text]:focus{outline:0;border-color:var(--text-main)}.btn{width:100%;padding:15px;font-size:1rem;font-weight:700;text-transform:uppercase;border:none;border-radius:8px;cursor:pointer;font-family:'Cinzel',serif}.btn-primary{background-color:var(--accent);color:#fff}.info-toggle{background:0 0;border:none;color:var(--text-muted);text-decoration:underline;cursor:pointer;font-size:.9rem;margin-top:15px}.info-content{display:none;margin-top:15px;font-size:.9rem;background:#151515;padding:15px;border-radius:8px;text-align:left}#feedback-msg{margin-top:15px;font-weight:700;min-height:1.5em;color:var(--accent)}.cypher-key{margin-top:10px;padding:10px;background-color:#1a1a1a;border-radius:4px;font-size:.9rem;color:var(--text-muted)}</style>
+    <style>
+        :root { --bg-color: #121212; --card-bg: #1e1e1e; --text-main: #e0d6c2; --text-muted: #a8a095; --accent: #c0392b; }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { background-color: var(--bg-color); color: var(--text-main); font-family: 'Lato', sans-serif; line-height: 1.6; padding: 20px; max-width: 600px; margin: 0 auto; }
+        h1, h3 { font-family: 'Cinzel', serif; color: #fff; letter-spacing: 1px; }
+        h1 { font-size: 1.8rem; text-align: center; margin-bottom: 10px; border-bottom: 2px solid var(--accent); padding-bottom: 10px; }
+        .subtitle { text-align: center; font-size: 0.9rem; color: var(--text-muted); margin-bottom: 25px; text-transform: uppercase; }
+        .img-container { width: 100%; max-height: 250px; background-color: #333; border-radius: 8px; margin-bottom: 20px; overflow: hidden; border: 1px solid #444; }
+        .img-container img { width: 100%; height: 100%; object-fit: cover; display: block; }
+        .card { background-color: var(--card-bg); padding: 20px; border-radius: 12px; margin-bottom: 20px; box-shadow: 0 4px 6px rgba(0,0,0,0.3); }
+        .narrative-text { font-style: italic; border-left: 3px solid var(--accent); padding-left: 15px; margin-top: 15px; color: #dcdcdc; }
+        .enigma-box { background-color: #2c2c2c; border: 1px solid var(--accent); padding: 20px; border-radius: 8px; margin-top: 20px; text-align: center; }
+        .enigma-icon { font-size: 2rem; margin-bottom: 10px; display: block; }
+        input[type="number"] { width: 100%; padding: 15px; font-size: 1.5rem; font-family: 'Cinzel', serif; background-color: #1a1a1a; border: 2px solid #444; color: white; border-radius: 8px; margin: 15px 0; text-align: center; letter-spacing: 3px; }
+        .btn { width: 100%; padding: 15px; font-size: 1rem; font-weight: bold; text-transform: uppercase; border: none; border-radius: 8px; cursor: pointer; font-family: 'Cinzel', serif; }
+        .btn-primary { background-color: var(--accent); color: white; }
+        .info-toggle { background: none; border: none; color: var(--text-muted); text-decoration: underline; cursor: pointer; font-size: 0.9rem; margin-top: 15px; display: block; width: 100%; }
+        .info-content { display: none; margin-top: 15px; font-size: 0.9rem; background: #151515; padding: 15px; border-radius: 8px; text-align: left; }
+        #feedback-msg { margin-top: 15px; font-weight: bold; min-height: 1.5em; color: var(--accent); }
+        .cypher-key { margin-top: 10px; padding: 10px; background-color: #1a1a1a; border-radius: 4px; font-size: 0.8rem; color: var(--text-muted); font-family: monospace; }
+    </style>
 </head>
 <body>
     <header>
-        <h1>Capítol IV: L'Era de les Bèsties de Pedra</h1>
-        <div class="subtitle">Carrer del Bisbe · El Gòtic</div>
+        <h1>Capítol IV: La Maledicció del Bisbe</h1>
+        <div class="subtitle">Carrer del Bisbe · El Pont</div>
     </header>
+    
     <div class="img-container">
-        <img src="../imagenes/gotico.jpg" alt="Manuscrit il·luminat gòtic">
+        <img src="../imagenes/gotico.jpg" alt="El Pont del Bisbe">
     </div>
+
     <section class="card">
-        <p>“Has arribat a l'edat d'or de la Barcelona medieval. La ciutat s'expandeix, el comerç floreix i es construeixen grans catedrals i palaus. És una època de llum, però també d'ombres i superstició.”</p>
-        <p class="narrative-text">“El sol amb prou feines penetra en aquests carrers estrets. Des de dalt, les gàrgoles t'observen. No són simples ornaments, són guardianes que escupen l'aigua i els mals esperits lluny dels murs sagrats. Un mestre picapedrer anomenat GANS va signar la seva obra amb un enigma.”</p>
+        <p>“Ets sota un dels arcs més fotografiats de la ciutat. Uneix el Palau de la Generalitat amb la Casa dels Canonges. Però no et deixis enganyar per la seva bellesa. Oculta una maledicció.”</p>
+        <p class="narrative-text">“Busca sota l'arc, a la part inferior, una calavera tallada a la pedra. Fixa't bé: no està sola. Un objecte esmolat la travessa verticalment. Aquest objecte és la teva clau.”</p>
     </section>
+
     <div id="enigma-container">
         <section class="enigma-box">
-            <span class="enigma-icon">🐲</span>
-            <h3>El Codi de les Gàrgoles</h3>
-            <p>“Aixeca la vista i compta totes les gàrgoles que adornen el pont. Fes servir aquest número com a clau per desxifrar la paraula 'GANS' amb un xifratge Cèsar. Capgira el resultat per trobar una paraula amb ressò de fantasma, una pista cap al teu pròxim destí.”</p>
-            <div class="cypher-key">Xifratge Cèsar: Desplaça cada lletra a l'abecedari tantes posicions com indiqui la clau.</div>
+            <span class="enigma-icon">💀</span>
+            <h3>El Codi de l'Arma</h3>
+            <p>“Identifica l'arma que travessa la calavera (paraula de 4 lletres). Transforma el seu nom en un codi numèric utilitzant la posició de cada lletra a l'abecedari.”</p>
+            
+            <div class="cypher-key">
+                A=1 | B=2 | C=3 | D=4 ... G=7 ...
+            </div>
+            
             <label for="answer" style="display:none;">La teva resposta</label>
-            <input type="text" id="answer" placeholder="Introdueix la paraula" maxlength="4">
-            <button class="btn btn-primary" onclick="checkAnswer()">Validar Paraula</button>
+            <input type="number" id="answer" placeholder="Introdueix el codi">
+            <button class="btn btn-primary" onclick="checkAnswer()">Trencar la Maledicció</button>
+            
             <div id="feedback-msg"></div>
-            <button class="info-toggle" onclick="toggleHint()">Necessites una pista?</button>
+            
+            <button class="info-toggle" onclick="toggleHint()">Necessites ajuda?</button>
             <div id="hint-box" class="info-content">
-                <p>Hi ha **13** gàrgoles. Has d'aplicar un xifratge Cèsar +13 a la paraula 'GANS'. Per exemple, amb una clau +1, la A es converteix en B. Amb +13, la A es converteix en N. Després, llegeix el resultat a l'inrevés.</p>
+                <p>1. L'objecte és una <strong>DAGA</strong>.</p>
+                <p>2. D = 4</p>
+                <p>3. A = 1</p>
+                <p>4. G = 7</p>
+                <p>5. A = 1</p>
             </div>
         </section>
     </div>
+
     <script>
-        const SOLUTION = "FANT";
+        // Solució: DAGA -> 4-1-7-1
+        const SOLUTION = 4171;
+
         function checkAnswer() {
-            const userIn = document.getElementById('answer').value.toUpperCase().trim();
-            if (userIn === SOLUTION) {
+            const userIn = document.getElementById('answer').value;
+            if (parseInt(userIn) === SOLUTION) {
                 window.location.href = 'parada4-recompensa-ca.html';
             } else {
-                document.getElementById('feedback-msg').textContent = "Aquest no és el codi correcte. Les gàrgoles guarden silenci.";
+                document.getElementById('feedback-msg').textContent = "Codi incorrecte. Identifica bé l'objecte.";
             }
         }
+
         function toggleHint() {
             const box = document.getElementById('hint-box');
             box.style.display = box.style.display === 'block' ? 'none' : 'block';
