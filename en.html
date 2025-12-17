@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="google" content="notranslate">
     <title>The Manuscript of Stone Layers</title>
+    <!-- Mismos estilos CSS -->
     <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Lato:wght@400;700&display=swap" rel="stylesheet">
     <style>
         :root { --bg-color: #121212; --card-bg: #1e1e1e; --text-main: #e0d6c2; --text-muted: #a8a095; --accent: #c0392b; --success: #27ae60; }
@@ -57,20 +58,20 @@
     </div>
     <div id="main-content">
         <header><h1>The Manuscript of Stone Layers</h1></header>
-        <div class="img-container"><img src="imagenes/portada.jpg" alt="Mysterious alley in the Gothic Quarter"></div>
+        <div class="img-container"><img src="imagenes/portada.jpg" alt="Alley in the Gothic Quarter"></div>
         <main>
             <section class="card">
-                <p>"Welcome, Archaeologist of Time.<br>You are holding the map of a unique excavation. You will not seek gold or relics, but something far more valuable: the memory of Barcelona, engraved on its skin of stone."</p>
-                <p>"Today, your mission is to excavate its secrets. You will not use a pickaxe and shovel, but your ingenuity. Your job is to remove the dust of centuries to reveal the marks that each civilization left behind, turning the streets into your archaeological site."</p>
+                <p>"Welcome, Archaeologist of Time.<br>You hold the map of a unique excavation. You will not seek gold or relics, but something far more valuable: the memory of Barcelona, engraved on its skin of stone."</p>
+                <p>"Today, your mission is to excavate its secrets. You will not use a pickaxe and shovel, but your ingenuity. Your job is to remove the dust of centuries to reveal the marks that each civilization left behind."</p>
                 <div class="starting-point">
                     <h3>Starting Point: Plaça de Catalunya</h3>
                     <div id="hint-level-1">
-                        <p>"From the grand plaza, turn your back to the building with the bitten apple and look for, on the other side, the pedestrian avenue crowned by a <strong>giant thermometer</strong>. That thermometer is your compass. Go down that avenue until you run into the imposing <strong>Gothic Cathedral</strong>. Your first site awaits you to its left."</p>
+                        <p>"From the grand plaza, turn your back to the building with the bitten apple and look for, on the other side, the pedestrian avenue crowned by a <strong>giant thermometer</strong>. That thermometer is your compass. Go down that avenue until you run into the imposing <strong>Cathedral</strong> facade. Your first site awaits you to your <strong>RIGHT</strong>, where two square towers stand guard."</p>
                         <button id="hint-btn-1" class="btn btn-secondary" onclick="askGuardian(1)">I need a more direct clue</button>
                     </div>
                     <div id="hint-level-2" class="extra-hint-content">
                         <h4>Direct Clue</h4>
-                        <p>"Head to the <strong>Portal de l'Àngel</strong> avenue. Walk to the end, and you will find the Cathedral of Barcelona. The <strong>Plaça Nova</strong> is on the left of the main facade."</p>
+                        <p>"Head to the <strong>Portal de l'Àngel</strong> avenue. Walk to the end, and you will find the Cathedral of Barcelona. The <strong>Plaça Nova</strong> is to the right of the main facade."</p>
                         <button id="hint-btn-2" class="btn btn-secondary" onclick="askGuardian(2)">I'm still lost. Show me the map</button>
                     </div>
                     <div id="hint-level-3" class="extra-hint-content">
@@ -83,68 +84,25 @@
         </main>
     </div>
     <script>
-        function saveProgress(stopNumber) {
-            localStorage.setItem('progresoJuego', stopNumber.toString());
-        }
-
+        function saveProgress(stopNumber) { localStorage.setItem('progresoJuego', stopNumber.toString()); }
         document.addEventListener('DOMContentLoaded', () => {
             const progress = parseInt(localStorage.getItem('progresoJuego') || '1');
             if (progress > 1) {
-                const modal = document.getElementById('continue-modal');
+                const continueModal = document.getElementById('continue-modal');
                 const mainContent = document.getElementById('main-content');
                 mainContent.style.display = 'none';
-                modal.style.display = 'flex';
-                document.getElementById('continue-text').textContent = `We noticed you've already reached Chapter ${progress}. Would you like to continue from there?`;
-                document.getElementById('continue-btn').onclick = () => {
-                    window.location.href = `adulto/parada${progress}-enigma-en.html`;
-                };
-                document.getElementById('restart-btn').onclick = () => {
-                    localStorage.removeItem('progresoJuego');
-                    modal.style.display = 'none';
-                    mainContent.style.display = 'block';
-                };
+                continueModal.style.display = 'flex';
+                document.getElementById('continue-text').textContent = `We detected that you had already reached Chapter ${progress}. Do you want to continue from there?`;
+                document.getElementById('continue-btn').onclick = () => { window.location.href = `adulto/parada${progress}-enigma-en.html`; };
+                document.getElementById('restart-btn').onclick = () => { localStorage.removeItem('progresoJuego'); continueModal.style.display = 'none'; mainContent.style.display = 'block'; };
             }
         });
-
-        const guardianPuzzles = [
-            { question: "To receive your guide, prove you've understood your role. What is your mission?", answer: "EXCAVATE" },
-            { question: "Attention is your best tool. What object will serve as your 'compass' to find the way?", answer: "THERMOMETER" }
-        ];
+        const guardianPuzzles = [ { question: "To receive your guide, prove you've understood your role. What is your mission?", answer: "EXCAVATE" }, { question: "Attention is your best tool. What object will serve as your 'compass' to find the way?", answer: "THERMOMETER" } ];
         const feedbackError = 'Incorrect answer. Pay more attention.';
-        const modal = document.getElementById('guardian-modal');
-        const questionEl = document.getElementById('guardian-question');
-        const answerEl = document.getElementById('guardian-answer');
-        const submitBtn = document.getElementById('guardian-submit');
-        const feedbackEl = document.getElementById('guardian-feedback');
-        let levelToUnlock = 0;
-        function askGuardian(level) {
-            levelToUnlock = level;
-            const puzzle = guardianPuzzles[level - 1];
-            questionEl.textContent = puzzle.question;
-            answerEl.value = '';
-            feedbackEl.textContent = '';
-            modal.style.display = 'flex';
-            answerEl.focus();
-        }
-        submitBtn.onclick = () => {
-            const puzzle = guardianPuzzles[levelToUnlock - 1];
-            const userAnswer = answerEl.value.toUpperCase().trim();
-            if (userAnswer.includes(puzzle.answer)) {
-                modal.style.display = 'none';
-                revealHint(levelToUnlock);
-            } else {
-                feedbackEl.textContent = feedbackError;
-            }
-        };
-        function revealHint(level) {
-            if (level === 1) {
-                document.getElementById('hint-level-2').style.display = 'block';
-                document.getElementById('hint-btn-1').style.display = 'none'; 
-            } else if (level === 2) {
-                document.getElementById('hint-level-3').style.display = 'block';
-                document.getElementById('hint-btn-2').style.display = 'none';
-            }
-        }
+        const guardianModal = document.getElementById('guardian-modal'); const questionEl = document.getElementById('guardian-question'); const answerEl = document.getElementById('guardian-answer'); const submitBtn = document.getElementById('guardian-submit'); const feedbackEl = document.getElementById('guardian-feedback'); let levelToUnlock = 0;
+        function askGuardian(level) { levelToUnlock = level; const puzzle = guardianPuzzles[level - 1]; questionEl.textContent = puzzle.question; answerEl.value = ''; feedbackEl.textContent = ''; guardianModal.style.display = 'flex'; answerEl.focus(); }
+        submitBtn.onclick = () => { const puzzle = guardianPuzzles[levelToUnlock - 1]; const userAnswer = answerEl.value.toUpperCase().trim(); if (userAnswer.includes(puzzle.answer)) { guardianModal.style.display = 'none'; revealHint(levelToUnlock); } else { feedbackEl.textContent = feedbackError; } };
+        function revealHint(level) { if (level === 1) { document.getElementById('hint-level-2').style.display = 'block'; document.getElementById('hint-btn-1').style.display = 'none'; } else if (level === 2) { document.getElementById('hint-level-3').style.display = 'block'; document.getElementById('hint-btn-2').style.display = 'none'; } }
     </script>
 </body>
 </html>
