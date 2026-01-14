@@ -89,10 +89,10 @@
             transition: opacity 0.5s ease-in-out;
             pointer-events: none;
             /* --- CORRECCIÓN --- */
-            font-size: 1.1rem;
-            padding: 5px 8px;
-            white-space: nowrap;
-            max-width: 90%;
+            font-size: 1rem;
+            padding: 3px 6px;
+            max-width: 95%;
+            /* Se elimina white-space: nowrap; para permitir que el texto se parta si es necesario */
         }
         
         .final-text {
@@ -145,11 +145,7 @@
     </style>
 </head>
 <body>
-
-    <header>
-        <h1>El Mosaico de la Historia</h1>
-    </header>
-
+    <header><h1>El Mosaico de la Historia</h1></header>
     <div class="mosaic-grid">
         <div class="mosaic-item item-1" data-memory="BARCINO"><div class="zoom-container"><img src="../imagenes/roma.jpg" alt="Roma"><div class="mosaic-item-overlay"><span class="mosaic-item-title">ROMA</span></div><div class="memory-text"></div></div></div>
         <div class="mosaic-item item-2" data-memory="MARTI5"><div class="zoom-container"><img src="../imagenes/visigodos.jpg" alt="Visigodos"><div class="mosaic-item-overlay"><span class="mosaic-item-title">VISIGODOS</span></div><div class="memory-text"></div></div></div>
@@ -161,41 +157,28 @@
         <div class="mosaic-item item-8" data-memory="OCTÓGONO"><div class="zoom-container"><img src="../imagenes/felipneri.jpg" alt="Guerra Civil"><div class="mosaic-item-overlay"><span class="mosaic-item-title">GUERRA CIVIL</span></div><div class="memory-text"></div></div></div>
         <div class="mosaic-item item-9" data-memory="BARCELONA"><div class="zoom-container"><img src="../imagenes/santjaume.jpg" alt="Presente"><div class="mosaic-item-overlay"><span class="mosaic-item-title">PRESENTE</span></div><div class="memory-text"></div></div></div>
     </div>
-
-    <div class="final-text">
-        "Has descifrado la piedra, has leído el tiempo.<br>El Manuscrito ya no es un secreto de la ciudad,<br>ahora es parte de tu memoria."
-    </div>
-    
+    <div class="final-text">"Has descifrado la piedra, has leído el tiempo.<br>El Manuscrito ya no es un secreto de la ciudad,<br>ahora es parte de tu memoria."</div>
     <button id="final-btn" class="btn-restart" onclick="closeBook()">Cerrar el Manuscrito</button>
-
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const items = document.querySelectorAll('.mosaic-item');
-            
+            const grid = document.querySelector('.mosaic-grid');
             items.forEach(item => {
                 item.addEventListener('animationend', (event) => {
                     if (event.animationName === 'popIn') {
-                        
                         const zoomContainer = item.querySelector('.zoom-container');
                         if (!zoomContainer) return;
-
                         const itemRect = item.getBoundingClientRect();
-                        
                         const viewportWidth = (window.visualViewport) ? window.visualViewport.width : window.innerWidth;
                         const viewportHeight = (window.visualViewport) ? window.visualViewport.height : window.innerHeight;
-
                         const viewportCenterX = viewportWidth / 2;
                         const viewportCenterY = viewportHeight / 2;
-
                         const itemCenterX = itemRect.left + itemRect.width / 2;
                         const itemCenterY = itemRect.top + itemRect.height / 2;
-                        
                         const translateX = viewportCenterX - itemCenterX;
                         const translateY = viewportCenterY - itemCenterY;
-                        
                         zoomContainer.style.zIndex = '100';
                         zoomContainer.style.transform = `translate(${translateX}px, ${translateY}px) scale(4.5)`;
-
                         setTimeout(() => {
                             item.classList.add('reveal');
                             const memory = item.dataset.memory;
@@ -203,7 +186,6 @@
                             memoryTextElement.textContent = memory;
                             memoryTextElement.style.opacity = '1';
                         }, 800);
-
                         setTimeout(() => {
                             zoomContainer.style.transform = 'translate(0, 0) scale(1)';
                             zoomContainer.style.zIndex = '1';
@@ -212,7 +194,6 @@
                 });
             });
         });
-
         function closeBook() {
             localStorage.removeItem('progresoJuego');
             const btn = document.getElementById('final-btn');
