@@ -88,11 +88,15 @@
             opacity: 0;
             transition: opacity 0.5s ease-in-out;
             pointer-events: none;
-            /* --- CORRECCIÓN --- */
-            font-size: 1rem;
-            padding: 3px 6px;
+            font-size: 1.2rem;
+            padding: 5px 8px;
+            white-space: nowrap;
             max-width: 95%;
-            /* Se elimina white-space: nowrap; para permitir que el texto se parta si es necesario */
+        }
+        
+        /* ESTILO ESPECIAL PARA TEXTOS LARGOS */
+        .long-memory {
+            font-size: 0.9rem !important;
         }
         
         .final-text {
@@ -145,20 +149,29 @@
     </style>
 </head>
 <body>
+
     <header><h1>El Mosaico de la Historia</h1></header>
+
     <div class="mosaic-grid">
         <div class="mosaic-item item-1" data-memory="BARCINO"><div class="zoom-container"><img src="../imagenes/roma.jpg" alt="Roma"><div class="mosaic-item-overlay"><span class="mosaic-item-title">ROMA</span></div><div class="memory-text"></div></div></div>
         <div class="mosaic-item item-2" data-memory="MARTI5"><div class="zoom-container"><img src="../imagenes/visigodos.jpg" alt="Visigodos"><div class="mosaic-item-overlay"><span class="mosaic-item-title">VISIGODOS</span></div><div class="memory-text"></div></div></div>
         <div class="mosaic-item item-3" data-memory="1008"><div class="zoom-container"><img src="../imagenes/alandalus.jpg" alt="Al-Ándalus"><div class="mosaic-item-overlay"><span class="mosaic-item-title">AL-ÁNDALUS</span></div><div class="memory-text"></div></div></div>
         <div class="mosaic-item item-4" data-memory="4171"><div class="zoom-container"><img src="../imagenes/gotico.jpg" alt="Gótico"><div class="mosaic-item-overlay"><span class="mosaic-item-title">GÓTICO</span></div><div class="memory-text"></div></div></div>
         <div class="mosaic-item item-5" data-memory="72"><div class="zoom-container"><img src="../imagenes/call.jpg" alt="El Call"><div class="mosaic-item-overlay"><span class="mosaic-item-title">EL CALL</span></div><div class="memory-text"></div></div></div>
-        <div class="mosaic-item item-6" data-memory="2TESCUDO"><div class="zoom-container"><img src="../imagenes/ardiaca.jpg" alt="Renacimiento"><div class="mosaic-item-overlay"><span class="mosaic-item-title">RENACIMIENTO</span></div><div class="memory-text"></div></div></div>
-        <div class="mosaic-item item-7" data-memory="PADELLAS"><div class="zoom-container"><img src="../imagenes/veguer.jpg" alt="Ilustración"><div class="mosaic-item-overlay"><span class="mosaic-item-title">ILUSTRACIÓN</span></div><div class="memory-text"></div></div></div>
-        <div class="mosaic-item item-8" data-memory="OCTÓGONO"><div class="zoom-container"><img src="../imagenes/felipneri.jpg" alt="Guerra Civil"><div class="mosaic-item-overlay"><span class="mosaic-item-title">GUERRA CIVIL</span></div><div class="memory-text"></div></div></div>
-        <div class="mosaic-item item-9" data-memory="BARCELONA"><div class="zoom-container"><img src="../imagenes/santjaume.jpg" alt="Presente"><div class="mosaic-item-overlay"><span class="mosaic-item-title">PRESENTE</span></div><div class="memory-text"></div></div></div>
+        
+        <!-- TEXTOS LARGOS CON CLASE ESPECIAL -->
+        <div class="mosaic-item item-6" data-memory="2TESCUDO"><div class="zoom-container"><img src="../imagenes/ardiaca.jpg" alt="Renacimiento"><div class="mosaic-item-overlay"><span class="mosaic-item-title">RENACIMIENTO</span></div><div class="memory-text long-memory"></div></div></div>
+        <div class="mosaic-item item-7" data-memory="PADELLAS"><div class="zoom-container"><img src="../imagenes/veguer.jpg" alt="Ilustración"><div class="mosaic-item-overlay"><span class="mosaic-item-title">ILUSTRACIÓN</span></div><div class="memory-text long-memory"></div></div></div>
+        <div class="mosaic-item item-8" data-memory="OCTÓGONO"><div class="zoom-container"><img src="../imagenes/felipneri.jpg" alt="Guerra Civil"><div class="mosaic-item-overlay"><span class="mosaic-item-title">GUERRA CIVIL</span></div><div class="memory-text long-memory"></div></div></div>
+        <div class="mosaic-item item-9" data-memory="BARCELONA"><div class="zoom-container"><img src="../imagenes/santjaume.jpg" alt="Presente"><div class="mosaic-item-overlay"><span class="mosaic-item-title">PRESENTE</span></div><div class="memory-text long-memory"></div></div></div>
     </div>
-    <div class="final-text">"Has descifrado la piedra, has leído el tiempo.<br>El Manuscrito ya no es un secreto de la ciudad,<br>ahora es parte de tu memoria."</div>
+
+    <div class="final-text">
+        "Has descifrado la piedra, has leído el tiempo.<br>El Manuscrito ya no es un secreto de la ciudad,<br>ahora es parte de tu memoria."
+    </div>
+    
     <button id="final-btn" class="btn-restart" onclick="closeBook()">Cerrar el Manuscrito</button>
+
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const items = document.querySelectorAll('.mosaic-item');
