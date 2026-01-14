@@ -29,38 +29,31 @@
 <body>
     <header>
         <h1>Chapter VI: Stone Signals</h1>
-        <div class="subtitle">Casa de l'Ardiaca · Plaça Nova</div>
+        <div class="subtitle">Archdeacon's House · Carrer de Santa Llúcia</div>
     </header>
-    
     <div class="img-container">
         <img src="../imagenes/ardiaca.jpg" alt="Renaissance facade">
     </div>
-
     <section class="card">
-        <p>“You have returned to Plaça Nova. Before you stands the Archdeacon's House. Although its foundations are Roman, its portal speaks to you in the language of the Renaissance.”</p>
+        <p>“You have left the maze of the Call and are back next to the Cathedral. Your target is the <strong>Archdeacon's House</strong>. Although its walls are Roman, its portal speaks the language of the Renaissance.”</p>
         <p class="narrative-text">“Three signs guard the secret of this entrance. Look closely at the architecture framing the door, the heraldry crowning it, and the animal watching over it from the mailbox.”</p>
     </section>
-
     <div id="enigma-container">
         <section class="enigma-box">
             <span class="enigma-icon">🛡️</span>
             <h3>The Archdeacon's Combination</h3>
             <p>Observe the facade and complete the formula to get the code:</p>
             <ul style="text-align: left; list-style: none; padding-left: 10px; font-size: 0.9rem; line-height: 1.8;">
-                <li>1. Count the fluted <strong>columns</strong> flanking the door.</li>
-                <li>2. Find the initial of the <strong>animal</strong> (reptile) on the mailbox.</li>
-                <li>3. Name the heraldic object above the <strong>lintel</strong> of the door.</li>
+                <li>1. Number of fluted <strong>columns</strong> flanking the door.</li>
+                <li>2. Initial of the <strong>animal</strong> (reptile) on the mailbox.</li>
+                <li>3. Name of the heraldic object above the <strong>lintel</strong> of the door.</li>
             </ul>
-            
             <p style="margin-top:15px; font-weight: bold; color: var(--text-muted); font-size: 0.9rem;">FORMAT: Nº-LETTER-WORD</p>
-            
             <label for="answer" style="display:none;">Your answer</label>
             <input type="text" id="answer" placeholder="Ex: 4-B-ROSE">
             <button class="btn btn-primary" onclick="checkAnswer()">Validate Code</button>
-            
             <div id="feedback-msg"></div>
-            
-            <button class="info-toggle" onclick="toggleHint()">Need visual help?</button>
+            <button id="hint-toggle-btn" class="info-toggle" onclick="toggleHint()" style="display:none;">Need help?</button>
             <div id="hint-box" class="info-content">
                 <p>1. Look at the flanks of the door: there are <strong>2</strong> columns.</p>
                 <p>2. Look at the mailbox on the right: it is a Turtle (<strong>T</strong>).</p>
@@ -68,20 +61,24 @@
             </div>
         </section>
     </div>
-
     <script>
-        // Solution: 2TSHIELD
+        const SOLUTION = "2TSHIELD";
+        let failCount = 0;
         function checkAnswer() {
             let userIn = document.getElementById('answer').value.toUpperCase().trim();
             userIn = userIn.replace(/[\s-]/g, '');
-            
-            if (userIn === "2TSHIELD") {
+            const feedback = document.getElementById('feedback-msg');
+            const hintButton = document.getElementById('hint-toggle-btn');
+            if (userIn === SOLUTION) {
                 window.location.href = 'parada6-recompensa-en.html';
             } else {
-                document.getElementById('feedback-msg').textContent = "Incorrect combination. Look closely at the details.";
+                feedback.textContent = "Incorrect combination. Look closely at the details.";
+                failCount++;
+                if (failCount >= 3) {
+                    hintButton.style.display = 'block';
+                }
             }
         }
-
         function toggleHint() {
             const box = document.getElementById('hint-box');
             box.style.display = box.style.display === 'block' ? 'none' : 'block';

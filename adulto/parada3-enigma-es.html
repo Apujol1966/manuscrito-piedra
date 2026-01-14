@@ -33,29 +33,24 @@
         <h1>Capítulo III: La Frontera de Piedra</h1>
         <div class="subtitle">Plaça Ramon Berenguer el Gran</div>
     </header>
-    
     <div class="img-container">
         <img src="../imagenes/alandalus.jpg" alt="Estatua ecuestre de Ramon Berenguer">
     </div>
-
     <section class="card">
         <p>“Estás ante una imagen icónica: el Conde que cabalga eternamente sobre la muralla romana. Su figura marca la frontera histórica entre el mundo cristiano y el poder de Al-Ándalus.”</p>
-        <p class="narrative-text">“Acércate a la base de la estatua y lee su nombre completo <strong>grabado en la piedra</strong>. Parece simple, pero el latín esconde trampas para el ojo moderno. Una de sus letras no es lo que parece.”</p>
+        <p class="narrative-text">“Acércate a la base de la estatua y lee su nombre completo grabado en la piedra. Parece simple, pero el latín esconde trampas para el ojo moderno. Una de sus letras no es lo que parece.”</p>
     </section>
-
     <div id="enigma-container">
         <section class="enigma-box">
             <span class="enigma-icon">⚔️</span>
             <h3>La Trampa del Latín</h3>
-            <p>“Suma el valor numérico de <strong>TODOS</strong> los números romanos que encuentres escondidos en la <strong>inscripción de piedra</strong> (Nombre + Apellido + Numeral).”</p>
+            <p>“Suma el valor numérico de <strong>TODOS</strong> los números romanos que encuentres escondidos en la inscripción de piedra (Nombre + Apellido + Numeral).”</p>
             <p>“¡Atención! Recuerda que en latín la letra 'U' se escribía con la forma de un número...”</p>
-            
             <label for="answer" style="display:none;">Tu respuesta</label>
             <input type="number" id="answer" placeholder="Introduce la suma total">
             <button class="btn btn-primary" onclick="checkAnswer()">Validar Cifra</button>
             <div id="feedback-msg"></div>
-            
-            <button class="info-toggle" onclick="toggleHint()">¿No te salen las cuentas?</button>
+            <button id="hint-toggle-btn" class="info-toggle" onclick="toggleHint()" style="display:none;">¿No te salen las cuentas?</button>
             <div id="hint-box" class="info-content">
                 <p>1. Busca la <strong>M</strong> en RAMON (1000).</p>
                 <p>2. Busca la <strong>V</strong> en BERENGVER (5). ¡Sí, la U se escribe como V y suma 5!</p>
@@ -64,26 +59,28 @@
             </div>
         </section>
     </div>
-
     <script>
-        // Solución: 1008 (M + V + III)
         const SOLUTION = 1008;
-
+        let failCount = 0;
         function checkAnswer() {
             const userIn = document.getElementById('answer').value;
             const val = parseInt(userIn);
-
+            const feedback = document.getElementById('feedback-msg');
+            const hintButton = document.getElementById('hint-toggle-btn');
             if (val === SOLUTION) {
                 window.location.href = 'parada3-recompensa-es.html';
             } else {
+                failCount++;
                 if (val === 1003) {
-                    document.getElementById('feedback-msg').textContent = "Casi... ¿Has olvidado que la 'U' en latín es una 'V'? Esa letra también suma.";
+                    feedback.textContent = "Casi... ¿Has olvidado que la 'U' en latín es una 'V'? Esa letra también suma.";
                 } else {
-                    document.getElementById('feedback-msg').textContent = "Cálculo incorrecto. Revisa bien todas las letras del nombre.";
+                    feedback.textContent = "Cálculo incorrecto. Revisa bien todas las letras del nombre.";
+                }
+                if (failCount >= 3) {
+                    hintButton.style.display = 'block';
                 }
             }
         }
-
         function toggleHint() {
             const box = document.getElementById('hint-box');
             box.style.display = box.style.display === 'block' ? 'none' : 'block';

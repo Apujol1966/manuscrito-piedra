@@ -37,7 +37,6 @@
     </style>
 </head>
 <body>
-
     <div id="guardian-modal" class="modal-overlay">
         <div class="modal-content">
             <h2>Prova del Guardià</h2>
@@ -47,34 +46,24 @@
             <div id="guardian-feedback"></div>
         </div>
     </div>
-
     <header><h1>Capítol III: La Frontera Invisible</h1></header>
-
     <div id="reward-container">
         <div class="card">
             <div class="feedback-success">Correcte! El codi del comte és 1008.</div>
-            
             <div class="knowledge-reward">
                 <h3>El Llegat de la Frontera</h3>
-                <p><strong>El Llegat d'Al-Àndalus:</strong> Encara que Barcelona va resistir com a ciutat cristiana, la seva posició a la frontera amb Al-Àndalus la va convertir en un gresol. El perill constant va fomentar el seu caràcter defensiu, però la proximitat va permetre un flux vital de coneixements en medicina, matemàtiques i filosofia que arribaven des de Còrdova.</p>
+                <p><strong>El Llegat d'Al-Àndalus:</strong> Encara que Barcelona va resistir com a ciutat cristiana, la seva posició a la frontera amb Al-Àndalus la va convertir en un gresol. La proximitat va permetre un flux vital de coneixements en <strong>medicina</strong>, <strong>matemàtiques</strong> i <strong>filosofia</strong> que arribaven des de Còrdova.</p>
                 <p><strong>La Curiositat (Aliances):</strong> Ramon Berenguer III no només va lluitar amb l'espasa. També va establir aliances <strong>matrimonials</strong> i comercials amb senyors musulmans. Aquesta dualitat de conflicte i coexistència va definir la vida a la frontera.</p>
                 <span class="source-text">Font: "Al-Hakam I", doc. Vallvé 1992</span>
             </div>
-
             <div id="next-clue-box">
-                <!-- PISTA NIVELL 1 -->
                 <p><strong>PISTA DE SALT:</strong><br>El número 1008 et transporta al cor del Gòtic. Endinsa't al carrer que passa sota el pont més famós i fotografiat del barri. Les bèsties de pedra t'observen des de dalt.</p>
-                
                 <button id="hint-btn-1" class="btn btn-secondary" onclick="askGuardian(1)">No saps on anar? Demana una Pista Directa</button>
-
-                <!-- PISTA NIVELL 2 (Oculta) -->
                 <div id="hint-level-2" class="extra-hint-content">
                     <h4>Pista Directa</h4>
-                    <p>Busca el **Carrer del Bisbe**. És el carrer que va des de la Catedral cap a la Plaça de Sant Jaume, passant per sota d'un icònic pont neogòtic.</p>
+                    <p>Busca el <strong>Carrer del Bisbe</strong>. És el carrer que va des de la Catedral cap a la Plaça de Sant Jaume, passant per sota d'un icònic pont neogòtic.</p>
                     <button id="hint-btn-2" class="btn btn-secondary" onclick="askGuardian(2)">Segueixo perdut/da. Mostra'm el mapa</button>
                 </div>
-                
-                <!-- PISTA NIVELL 3 (Oculta) -->
                 <div id="hint-level-3" class="extra-hint-content">
                      <h4>Ubicació Exacta</h4>
                      <a href="https://www.google.com/maps/search/?api=1&query=Carrer+del+Bisbe,Barcelona" target="_blank" class="btn btn-map">Obrir a Google Maps</a>
@@ -82,19 +71,15 @@
             </div>
         </div>
     </div>
-    
     <a href="parada4-enigma-ca.html" class="btn btn-success" onclick="saveProgress()">Iniciar Capítol IV (Gòtic)</a>
-
     <script>
         function saveProgress() {
             localStorage.setItem('progresoJuego', '4');
         }
-
         const guardianPuzzles = [
-            { question: "Quin tipus de coneixements van arribar des de Còrdova?", answer: "MEDICINA" }, // Accepta MATEMATIQUES o FILOSOFIA també
+            { question: "Quin tipus de coneixements van arribar des de Còrdova?", answer: "MEDICINA" },
             { question: "La pista directa esmenta un element arquitectònic icònic. Què és?", answer: "PONT" }
         ];
-        
         const feedbackError = 'Resposta incorrecta. La resposta és al text que acabes de llegir.';
         const modal = document.getElementById('guardian-modal');
         const questionEl = document.getElementById('guardian-question');
@@ -102,7 +87,6 @@
         const submitBtn = document.getElementById('guardian-submit');
         const feedbackEl = document.getElementById('guardian-feedback');
         let levelToUnlock = 0;
-
         function askGuardian(level) {
             levelToUnlock = level;
             const puzzle = guardianPuzzles[level - 1];
@@ -112,12 +96,12 @@
             modal.style.display = 'flex';
             answerEl.focus();
         }
-
         submitBtn.onclick = () => {
             const puzzle = guardianPuzzles[levelToUnlock - 1];
-            const userAnswer = answerEl.value.toUpperCase().trim();
+            let userAnswer = answerEl.value.toUpperCase().trim();
+            userAnswer = userAnswer.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
             if (levelToUnlock === 1) {
-                if (userAnswer.includes("MEDICINA") || userAnswer.includes("MATEMATICA") || userAnswer.includes("FILOSOFIA")) {
+                if (userAnswer.includes("MEDICINA") || userAnswer.includes("MATEMATIQUES") || userAnswer.includes("FILOSOFIA")) {
                     modal.style.display = 'none';
                     revealHint(levelToUnlock);
                 } else {
@@ -132,7 +116,6 @@
                 }
             }
         };
-
         function revealHint(level) {
             if (level === 1) {
                 document.getElementById('hint-level-2').style.display = 'block';

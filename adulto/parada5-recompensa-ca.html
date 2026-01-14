@@ -35,7 +35,6 @@
     </style>
 </head>
 <body>
-
     <div id="guardian-modal" class="modal-overlay">
         <div class="modal-content">
             <h2>Prova del Guardià</h2>
@@ -45,35 +44,24 @@
             <div id="guardian-feedback"></div>
         </div>
     </div>
-
     <header><h1>Capítol V: La Saviesa Oculta</h1></header>
-
     <div id="reward-container">
         <div class="card">
             <div class="feedback-success">72! El número del coneixement.</div>
-            
             <div class="knowledge-reward">
                 <h3>El Savi del Call</h3>
-                <p><strong>Salomó ben Adret (Rashba):</strong> Aquest carrer porta el seu nom. Va ser el rabí de Barcelona durant 50 anys al segle XIII. La seva saviesa era tan respectada que reis i erudits de tot Europa li enviaven consultes. A més, va ser el prestamista del mateix Rei Jaume I.</p>
+                <p><strong>Salomó ben Adret (Rashba):</strong> Aquest carrer porta el seu nom. Va ser el rabí de Barcelona durant 50 anys al segle XIII. La seva saviesa era tan respectada que reis i erudits de tot Europa li enviaven consultes.</p>
                 <p><strong>La Casa més Antiga:</strong> L'edifici del número 6 (Casa Adret) es considera la casa habitada més antiga de Barcelona. Imagina les generacions que han creuat aquest llindar des del segle XII.</p>
                 <span class="source-text">Font: MUHBA / Call de Barcelona</span>
             </div>
-
             <div id="next-clue-box">
-                <!-- PISTA NIVELL 1 -->
                 <p><strong>PISTA DE SALT:</strong><br>El teu camí et porta ara cap al Renaixement. Has de sortir del laberint, tornar cap a la Catedral i buscar la <strong>Casa de l'Ardiaca</strong>. Allà, una bústia de marbre guarda secrets.</p>
-                
-                <!-- BOTÓ PER PISTA NIVELL 2 -->
                 <button id="hint-btn-1" class="btn btn-secondary" onclick="askGuardian(1)">No saps on anar? Demana una Pista Directa</button>
-
-                <!-- PISTA NIVELL 2 (Oculta) -->
                 <div id="hint-level-2" class="extra-hint-content">
                     <h4>Pista Directa</h4>
-                    <p>Dirigeix-te de nou a la <strong>Plaça Nova</strong> (on vas començar amb les lletres romanes, davant de la Catedral). A la dreta de la façana veuràs la <strong>Casa de l'Ardiaca</strong>. Busca una bústia amb orenetes.</p>
+                    <p>El teu destí és la <strong>Casa de l'Ardiaca</strong>. Es troba al carrer <strong>Santa Llúcia</strong>, just al costat de la façana principal de la Catedral. Busca la seva famosa bústia modernista.</p>
                     <button id="hint-btn-2" class="btn btn-secondary" onclick="askGuardian(2)">Segueixo perdut/da. Mostra'm el mapa</button>
                 </div>
-                
-                <!-- PISTA NIVELL 3 (Oculta) -->
                 <div id="hint-level-3" class="extra-hint-content">
                      <h4>Ubicació Exacta</h4>
                      <a href="https://www.google.com/maps/search/?api=1&query=Casa+de+l'Ardiaca,Barcelona" target="_blank" class="btn btn-map">Obrir a Google Maps</a>
@@ -81,19 +69,15 @@
             </div>
         </div>
     </div>
-    
     <a href="parada6-enigma-ca.html" class="btn btn-success" onclick="saveProgress()">Iniciar Capítol VI (Renaixement)</a>
-
     <script>
         function saveProgress() {
             localStorage.setItem('progresoJuego', '6');
         }
-
         const guardianPuzzles = [
-            { question: "A quin famós rabí està dedicat aquest carrer?", answer: "RASHBA" }, // Accepta també ADRET o SALOMO
-            { question: "Tornes a la plaça de l'inici. Quina casa has de buscar?", answer: "ARDIACA" } 
+            { question: "A quin famós rabí està dedicat aquest carrer?", answer: "RASHBA" },
+            { question: "Tornes a la plaça de l'inici. Quina casa has de buscar?", answer: "ARDIACA" }
         ];
-        
         const feedbackError = 'Resposta incorrecta. Revisa el text.';
         const modal = document.getElementById('guardian-modal');
         const questionEl = document.getElementById('guardian-question');
@@ -101,7 +85,6 @@
         const submitBtn = document.getElementById('guardian-submit');
         const feedbackEl = document.getElementById('guardian-feedback');
         let levelToUnlock = 0;
-
         function askGuardian(level) {
             levelToUnlock = level;
             const puzzle = guardianPuzzles[level - 1];
@@ -111,18 +94,16 @@
             modal.style.display = 'flex';
             answerEl.focus();
         }
-
         submitBtn.onclick = () => {
             const puzzle = guardianPuzzles[levelToUnlock - 1];
-            const userAnswer = answerEl.value.toUpperCase().trim();
-            
+            let userAnswer = answerEl.value.toUpperCase().trim();
+            userAnswer = userAnswer.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
             let isCorrect = false;
             if (levelToUnlock === 1) {
                 isCorrect = userAnswer.includes("RASHBA") || userAnswer.includes("ADRET") || userAnswer.includes("SALOMO");
             } else {
                 isCorrect = userAnswer.includes("ARDIACA") || userAnswer.includes("ARCHIDIACONO");
             }
-
             if (isCorrect) {
                 modal.style.display = 'none';
                 revealHint(levelToUnlock);
@@ -130,7 +111,6 @@
                 feedbackEl.textContent = feedbackError;
             }
         };
-
         function revealHint(level) {
             if (level === 1) {
                 document.getElementById('hint-level-2').style.display = 'block';

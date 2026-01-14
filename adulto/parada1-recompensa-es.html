@@ -59,25 +59,19 @@
                 
                 <p><strong>El Origen (Historia):</strong> Aquí se fundó la colonia <em>Iulia Augusta Faventia Paterna Barcino</em> en el siglo I a.C. Las dos torres que ves son la <em>Porta Praetoria</em>, la entrada principal a la ciudad amurallada, por donde pasaba el acueducto que traía agua a la ciudad.</p>
                 
-                <p><strong>La Curiosidad (El Poema Visual):</strong> Las letras de bronce no son solo un letrero, son un poema visual de <strong>Joan Brossa</strong>. Fíjate en la letra <strong>'R'</strong>: está caída. ¿Por qué? Para simbolizar la caída del Imperio Romano y el paso del tiempo.</p>
+                <p><strong>La Curiosidad (La Letra Brújula):</strong> Vuelve a mirar las letras de <strong>BARCINO</strong> en el suelo. Fíjate bien en la letra <strong>'N'</strong>. Es única por tres razones. Es de <strong>aluminio</strong>, no de bronce, para brillar con la luz del presente. Su forma evoca la <strong>vela de un barco</strong>, en honor al mar Mediterráneo. Y lo más importante: la letra entera actúa como una brújula, <strong>apuntando al Norte</strong>.</p>
                 
                 <span class="source-text">Fuente: MUHBA / Art Públic</span>
             </div>
 
             <div id="next-clue-box">
-                <!-- PISTA NIVEL 1 -->
                 <p><strong>PISTA DE SALTO:</strong><br>Deja atrás las torres romanas y adéntrate en el barrio. Tu camino continúa en la plaza donde los antiguos reyes impartían justicia. Busca el "Palacio Real Mayor".</p>
-                
                 <button id="hint-btn-1" class="btn btn-secondary" onclick="askGuardian(1)">¿No sabes dónde ir? Pide una Pista Directa</button>
-
-                <!-- PISTA NIVEL 2 (Oculta) -->
                 <div id="hint-level-2" class="extra-hint-content">
                     <h4>Pista Directa</h4>
                     <p>Dirígete a la <strong>Plaça del Rei</strong>. Rodea la Catedral por la derecha (Carrer del Bisbe) y gira a la izquierda después de la muralla.</p>
                     <button id="hint-btn-2" class="btn btn-secondary" onclick="askGuardian(2)">Sigo perdido/a. Muéstrame el mapa</button>
                 </div>
-                
-                <!-- PISTA NIVEL 3 (Oculta) -->
                 <div id="hint-level-3" class="extra-hint-content">
                      <h4>Ubicación Exacta</h4>
                      <a href="https://www.google.com/maps/search/?api=1&query=Plaça+del+Rei,Barcelona" target="_blank" class="btn btn-map">Abrir en Google Maps</a>
@@ -86,7 +80,6 @@
         </div>
     </div>
     
-    <!-- ENLACE A PARADA 2 (VISIGODOS) -->
     <a href="parada2-enigma-es.html" class="btn btn-success" onclick="saveProgress()">Iniciar Capítulo II (Visigodos)</a>
 
     <script>
@@ -95,8 +88,8 @@
         }
 
         const guardianPuzzles = [
-            { question: "¿Qué simboliza la letra 'R' caída en la escultura?", answer: "CAIDA" }, // Acepta CAIDA o IMPERIO o ROMA
-            { question: "La pista te envía a la plaza de los... ¿qué?", answer: "REYES" } // Acepta REYES o REI
+            { question: "¿Hacia qué punto cardinal apunta la letra 'N'?", answer: "NORTE" },
+            { question: "La pista te envía a la plaza de los... ¿qué?", answer: "REYES" }
         ];
         
         const feedbackError = 'Respuesta incorrecta. Lee el texto con más atención.';
@@ -119,7 +112,9 @@
 
         submitBtn.onclick = () => {
             const puzzle = guardianPuzzles[levelToUnlock - 1];
-            const userAnswer = answerEl.value.toUpperCase().trim();
+            let userAnswer = answerEl.value.toUpperCase().trim();
+            userAnswer = userAnswer.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+
             if (userAnswer.includes(puzzle.answer)) {
                 modal.style.display = 'none';
                 revealHint(levelToUnlock);

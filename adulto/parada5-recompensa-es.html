@@ -4,9 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Capítulo V: El Call - Descubierto</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Lato:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Lato:wght@400;700&display=swap" rel="stylesheet">
     <style>
         :root { --bg-color: #121212; --card-bg: #1e1e1e; --text-main: #e0d6c2; --text-muted: #a8a095; --accent: #c0392b; --success: #27ae60; }
         * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -37,7 +35,6 @@
     </style>
 </head>
 <body>
-
     <div id="guardian-modal" class="modal-overlay">
         <div class="modal-content">
             <h2>Prueba del Guardián</h2>
@@ -47,35 +44,24 @@
             <div id="guardian-feedback"></div>
         </div>
     </div>
-
     <header><h1>Capítulo V: La Sabiduría Oculta</h1></header>
-
     <div id="reward-container">
         <div class="card">
             <div class="feedback-success">¡72! El número del conocimiento.</div>
-            
             <div class="knowledge-reward">
                 <h3>El Sabio del Call</h3>
-                <p><strong>Salomó ben Adret (Rashba):</strong> Esta calle lleva su nombre. Fue el rabino de Barcelona durante 50 años en el siglo XIII. Su sabiduría era tan respetada que reyes y eruditos de toda Europa le enviaban consultas. Además, fue el prestamista del mismísimo Rey Jaime I.</p>
+                <p><strong>Salomó ben Adret (Rashba):</strong> Esta calle lleva su nombre. Fue el rabino de Barcelona durante 50 años en el siglo XIII. Su sabiduría era tan respetada que reyes y eruditos de toda Europa le enviaban consultas.</p>
                 <p><strong>La Casa más Antigua:</strong> El edificio del número 6 (Casa Adret) se considera la casa habitada más antigua de Barcelona. Imagina las generaciones que han cruzado ese umbral desde el siglo XII.</p>
                 <span class="source-text">Fuente: MUHBA / Call de Barcelona</span>
             </div>
-
             <div id="next-clue-box">
-                <!-- PISTA NIVEL 1 -->
-                <p><strong>PISTA DE SALTO:</strong><br>Tu camino te lleva ahora hacia el Renacimiento. Debes salir del laberinto, volver hacia la Catedral y buscar la <strong>Casa del Archidiácono</strong> (Casa de l'Ardiaca). Allí, un buzón de mármol guarda secretos.</p>
-                
-                <!-- BOTÓN PARA PISTA NIVEL 2 -->
+                <p><strong>PISTA DE SALTO:</strong><br>Tu camino te lleva ahora hacia el Renacimiento. Debes salir del laberinto, volver hacia la Catedral y buscar la <strong>Casa de l'Ardiaca</strong>. Allí, un buzón de mármol guarda secretos.</p>
                 <button id="hint-btn-1" class="btn btn-secondary" onclick="askGuardian(1)">¿No sabes dónde ir? Pide una Pista Directa</button>
-
-                <!-- PISTA NIVEL 2 (Oculta) -->
                 <div id="hint-level-2" class="extra-hint-content">
                     <h4>Pista Directa</h4>
-                    <p>Dirígete de nuevo a la <strong>Plaça Nova</strong> (donde empezaste con las letras romanas, frente a la Catedral). A la derecha de la fachada verás la <strong>Casa de l'Ardiaca</strong>. Busca un buzón con golondrinas.</p>
+                    <p>Tu destino es la <strong>Casa de l'Ardiaca</strong>. Está en la calle <strong>Santa Llúcia</strong>, justo al lado de la fachada principal de la Catedral. Busca su famoso buzón modernista.</p>
                     <button id="hint-btn-2" class="btn btn-secondary" onclick="askGuardian(2)">Sigo perdido/a. Muéstrame el mapa</button>
                 </div>
-                
-                <!-- PISTA NIVEL 3 (Oculta) -->
                 <div id="hint-level-3" class="extra-hint-content">
                      <h4>Ubicación Exacta</h4>
                      <a href="https://www.google.com/maps/search/?api=1&query=Casa+de+l'Ardiaca,Barcelona" target="_blank" class="btn btn-map">Abrir en Google Maps</a>
@@ -83,19 +69,15 @@
             </div>
         </div>
     </div>
-    
     <a href="parada6-enigma-es.html" class="btn btn-success" onclick="saveProgress()">Iniciar Capítulo VI (Renacimiento)</a>
-
     <script>
         function saveProgress() {
             localStorage.setItem('progresoJuego', '6');
         }
-
         const guardianPuzzles = [
-            { question: "¿A qué famoso rabino está dedicada esta calle?", answer: "RASHBA" }, // Acepta también ADRET o SALOMO
-            { question: "Vuelves a la plaza del inicio. ¿Qué casa debes buscar?", answer: "ARDIACA" } // Acepta ARCHIDIACONO
+            { question: "¿A qué famoso rabino está dedicada esta calle?", answer: "RASHBA" },
+            { question: "Vuelves junto a la Catedral. ¿Qué casa debes buscar?", answer: "ARDIACA" }
         ];
-        
         const feedbackError = 'Respuesta incorrecta. Revisa el texto.';
         const modal = document.getElementById('guardian-modal');
         const questionEl = document.getElementById('guardian-question');
@@ -103,7 +85,6 @@
         const submitBtn = document.getElementById('guardian-submit');
         const feedbackEl = document.getElementById('guardian-feedback');
         let levelToUnlock = 0;
-
         function askGuardian(level) {
             levelToUnlock = level;
             const puzzle = guardianPuzzles[level - 1];
@@ -113,18 +94,16 @@
             modal.style.display = 'flex';
             answerEl.focus();
         }
-
         submitBtn.onclick = () => {
             const puzzle = guardianPuzzles[levelToUnlock - 1];
-            const userAnswer = answerEl.value.toUpperCase().trim();
-            
+            let userAnswer = answerEl.value.toUpperCase().trim();
+            userAnswer = userAnswer.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
             let isCorrect = false;
             if (levelToUnlock === 1) {
                 isCorrect = userAnswer.includes("RASHBA") || userAnswer.includes("ADRET") || userAnswer.includes("SALOMO");
             } else {
                 isCorrect = userAnswer.includes("ARDIACA") || userAnswer.includes("ARCHIDIACONO");
             }
-
             if (isCorrect) {
                 modal.style.display = 'none';
                 revealHint(levelToUnlock);
@@ -132,7 +111,6 @@
                 feedbackEl.textContent = feedbackError;
             }
         };
-
         function revealHint(level) {
             if (level === 1) {
                 document.getElementById('hint-level-2').style.display = 'block';

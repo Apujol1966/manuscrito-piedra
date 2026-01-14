@@ -37,7 +37,6 @@
     </style>
 </head>
 <body>
-
     <div id="guardian-modal" class="modal-overlay">
         <div class="modal-content">
             <h2>Prueba del Guardián</h2>
@@ -47,34 +46,24 @@
             <div id="guardian-feedback"></div>
         </div>
     </div>
-
     <header><h1>Capítulo VIII: El Dolor de Barcelona</h1></header>
-
     <div id="reward-container">
         <div class="card">
-            <div class="feedback-success">145189. Código confirmado.</div>
-            
+            <div class="feedback-success">OCTÓGONO. La forma del recuerdo.</div>
             <div class="knowledge-reward">
                 <h3>Lo que ocurrió aquí</h3>
-                <p><strong>30 de Enero de 1938:</strong> La aviación legionaria italiana, aliada de Franco, bombardeó Barcelona. Una bomba cayó directamente sobre la iglesia, donde se refugiaban niños de una guardería. Murieron 42 personas, la mayoría niños.</p>
+                <p><strong>30 de Enero de 1938:</strong> La aviación legionaria italiana, aliada de Franco, bombardeó Barcelona. Una bomba cayó directamente sobre la iglesia, donde se refugiaban los <strong>pequeños</strong> de una guardería. Murieron 42 personas, la mayoría <strong>infantes</strong>.</p>
                 <p><strong>Desmintiendo el Mito:</strong> Durante la dictadura, se dijo que los agujeros de la fachada eran balas de fusilamientos de curas por parte de los anarquistas. Hoy sabemos la verdad: es la metralla de una bomba, la cicatriz del primer bombardeo sistemático sobre población civil.</p>
                 <span class="source-text">Fuente: Ajuntament de Barcelona / Memòria Democràtica</span>
             </div>
-
             <div id="next-clue-box">
-                <!-- PISTA NIVEL 1 -->
                 <p><strong>PISTA FINAL:</strong><br>Sal del silencio y dirígete al corazón del poder, donde todo confluye. Debes llegar a la plaza donde se encuentran el Palau de la Generalitat y el Ayuntamiento. Allí terminará tu viaje.</p>
-                
                 <button id="hint-btn-1" class="btn btn-secondary" onclick="askGuardian(1)">¿No sabes dónde ir? Pide una Pista Directa</button>
-
-                <!-- PISTA NIVEL 2 (Oculta) -->
                 <div id="hint-level-2" class="extra-hint-content">
                     <h4>Pista Directa</h4>
                     <p>Vuelve al Carrer del Bisbe y camina hasta el final. Llegarás a la <strong>Plaça de Sant Jaume</strong>.</p>
                     <button id="hint-btn-2" class="btn btn-secondary" onclick="askGuardian(2)">Sigo perdido/a. Muéstrame el mapa</button>
                 </div>
-                
-                <!-- PISTA NIVEL 3 (Oculta) -->
                 <div id="hint-level-3" class="extra-hint-content">
                      <h4>Ubicación Exacta</h4>
                      <a href="https://www.google.com/maps/search/?api=1&query=Plaça+de+Sant+Jaume,Barcelona" target="_blank" class="btn btn-map">Abrir en Google Maps</a>
@@ -82,20 +71,15 @@
             </div>
         </div>
     </div>
-    
-    <!-- ENLACE A PARADA 9 (FINAL) -->
     <a href="parada9-enigma-es.html" class="btn btn-success" onclick="saveProgress()">Iniciar Capítulo Final (Presente)</a>
-
     <script>
         function saveProgress() {
             localStorage.setItem('progresoJuego', '9');
         }
-
         const guardianPuzzles = [
-            { question: "¿Qué causó realmente los agujeros de la fachada, según el texto?", answer: "BOMBA" }, 
+            { question: "¿Qué causó realmente los agujeros de la fachada, según el texto?", answer: "BOMBA" },
             { question: "La pista final te envía al centro del poder político. ¿Cómo se llama la plaza?", answer: "SANT JAUME" }
         ];
-        
         const feedbackError = 'Respuesta incorrecta. Lee la historia con atención.';
         const modal = document.getElementById('guardian-modal');
         const questionEl = document.getElementById('guardian-question');
@@ -103,7 +87,6 @@
         const submitBtn = document.getElementById('guardian-submit');
         const feedbackEl = document.getElementById('guardian-feedback');
         let levelToUnlock = 0;
-
         function askGuardian(level) {
             levelToUnlock = level;
             const puzzle = guardianPuzzles[level - 1];
@@ -113,19 +96,17 @@
             modal.style.display = 'flex';
             answerEl.focus();
         }
-
         submitBtn.onclick = () => {
             const puzzle = guardianPuzzles[levelToUnlock - 1];
-            const userAnswer = answerEl.value.toUpperCase().trim();
+            let userAnswer = answerEl.value.toUpperCase().trim();
+            userAnswer = userAnswer.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
             
             let isCorrect = false;
             if (levelToUnlock === 1) {
-                // Aceptamos BOMBA, METRALLA, AVIACION, ITALIA...
                 isCorrect = userAnswer.includes("BOMBA") || userAnswer.includes("METRALLA") || userAnswer.includes("AVIACION");
             } else {
                 isCorrect = userAnswer.includes("SANT JAUME") || userAnswer.includes("JAIME");
             }
-
             if (isCorrect) {
                 modal.style.display = 'none';
                 revealHint(levelToUnlock);
@@ -133,7 +114,6 @@
                 feedbackEl.textContent = feedbackError;
             }
         };
-
         function revealHint(level) {
             if (level === 1) {
                 document.getElementById('hint-level-2').style.display = 'block';

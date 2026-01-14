@@ -29,15 +29,15 @@
 <body>
     <header>
         <h1>Capítulo VI: Señales de Piedra</h1>
-        <div class="subtitle">Casa de l'Ardiaca · Plaça Nova</div>
+        <div class="subtitle">Casa de l'Ardiaca · Carrer de Santa Llúcia</div>
     </header>
     
     <div class="img-container">
-        <img src="../imagenes/ardiaca.jpg" alt="Portada de la Casa de l'Ardiaca con buzón">
+        <img src="../imagenes/ardiaca.jpg" alt="Portada renacentista de la Casa de l'Ardiaca">
     </div>
 
     <section class="card">
-        <p>“Has regresado a la Plaça Nova. Frente a ti se alza la Casa del Archidiácono. Aunque sus cimientos son romanos, su portada te habla en el lenguaje del Renacimiento.”</p>
+        <p>“Has salido del laberinto del Call y estás de nuevo junto a la Catedral. Tu objetivo es la <strong>Casa de l'Ardiaca</strong>. Aunque sus muros son romanos, su portada te habla en el lenguaje del Renacimiento.”</p>
         <p class="narrative-text">“Tres señales guardan el secreto de esta entrada. Fíjate bien en la arquitectura que enmarca la puerta, en la heráldica que la corona y en el animal que la vigila desde el buzón.”</p>
     </section>
 
@@ -47,7 +47,7 @@
             <h3>La Combinación del Arcediano</h3>
             <p>Observa la fachada y completa la fórmula para obtener el código:</p>
             <ul style="text-align: left; list-style: none; padding-left: 10px; font-size: 0.9rem; line-height: 1.8;">
-                <li>1. Número de <strong>columnas</strong> estriadas a los lados de la puerta.</li>
+                <li>1. Número de <strong>columnas</strong> verticales que sostienen visualmente la entrada.</li>
                 <li>2. Inicial del <strong>animal</strong> (reptil) tallado en el buzón.</li>
                 <li>3. Nombre del objeto heráldico sobre el <strong>dintel</strong> de la puerta.</li>
             </ul>
@@ -55,13 +55,12 @@
             <p style="margin-top:15px; font-weight: bold; color: var(--text-muted); font-size: 0.9rem;">FORMATO: Nº-LETRA-PALABRA</p>
             
             <label for="answer" style="display:none;">Tu respuesta</label>
-            <!-- CORRECCIÓN: Ejemplo genérico para no dar la solución -->
             <input type="text" id="answer" placeholder="Ej: 4-B-ROSA">
             <button class="btn btn-primary" onclick="checkAnswer()">Validar Código</button>
             
             <div id="feedback-msg"></div>
             
-            <button class="info-toggle" onclick="toggleHint()">¿Necesitas ayuda visual?</button>
+            <button id="hint-toggle-btn" class="info-toggle" onclick="toggleHint()" style="display:none;">¿Necesitas ayuda?</button>
             <div id="hint-box" class="info-content">
                 <p>1. Mira a los flancos de la puerta: hay <strong>2</strong> columnas.</p>
                 <p>2. Mira el buzón a la derecha: es una Tortuga (<strong>T</strong>).</p>
@@ -71,16 +70,22 @@
     </div>
 
     <script>
-        // Solución Flexible: Acepta "2-T-ESCUDO", "2TESCUDO", "2 T ESCUDO"
+        const SOLUTION = "2TESCUDO";
+        let failCount = 0;
         function checkAnswer() {
             let userIn = document.getElementById('answer').value.toUpperCase().trim();
-            // Eliminamos espacios y guiones para facilitar la validación
             userIn = userIn.replace(/[\s-]/g, '');
+            const feedback = document.getElementById('feedback-msg');
+            const hintButton = document.getElementById('hint-toggle-btn');
             
-            if (userIn === "2TESCUDO") {
+            if (userIn === SOLUTION) {
                 window.location.href = 'parada6-recompensa-es.html';
             } else {
-                document.getElementById('feedback-msg').textContent = "Combinación incorrecta. Observa bien los detalles.";
+                feedback.textContent = "Combinación incorrecta. Observa bien los detalles de la entrada.";
+                failCount++;
+                if (failCount >= 3) {
+                    hintButton.style.display = 'block';
+                }
             }
         }
 

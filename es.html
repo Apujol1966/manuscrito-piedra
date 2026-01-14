@@ -65,12 +65,12 @@
                 <div class="starting-point">
                     <h3>Punto de Inicio: Plaça de Catalunya</h3>
                     <div id="hint-level-1">
-                        <p>"Desde la gran plaza, dale la espalda al edificio con la manzana mordida y busca, al otro lado, la avenida peatonal coronada por un <strong>gigantesco termómetro</strong>. Ese termómetro es tu brújula. Desciende por esa avenida hasta topar con la imponente fachada de la <strong>Catedral</strong>. Tu primer yacimiento te espera a tu <strong>DERECHA</strong>, donde dos torres cuadradas montan guardia."</p>
+                        <p>"Desde la gran plaza, dale la espalda al edificio con la manzana mordida y busca, al otro lado, la avenida peatonal coronada por un <strong>gigantesco termómetro</strong>. Ese termómetro es tu brújula. Desciende por esa avenida hasta topar con la imponente fachada de la <strong>Catedral</strong>. Tu primer yacimiento te espera justo <strong>FRENTE A TI</strong>, donde dos torres cuadradas montan guardia."</p>
                         <button id="hint-btn-1" class="btn btn-secondary" onclick="askGuardian(1)">Necesito una pista más directa</button>
                     </div>
                     <div id="hint-level-2" class="extra-hint-content">
                         <h4>Pista Directa</h4>
-                        <p>"Dirígete a la avenida <strong>Portal de l'Àngel</strong>. Camina hasta el final y encontrarás la Catedral de Barcelona. La <strong>Plaça Nova</strong> está a la derecha de la fachada principal."</p>
+                        <p>"Dirígete a la avenida <strong>Portal de l'Àngel</strong>. Camina hasta el final. Llegarás a la <strong>Plaça Nova</strong>, con la fachada de la Catedral y las torres romanas justo delante."</p>
                         <button id="hint-btn-2" class="btn btn-secondary" onclick="askGuardian(2)">Sigo perdido/a. Muéstrame el mapa</button>
                     </div>
                     <div id="hint-level-3" class="extra-hint-content">
@@ -84,6 +84,7 @@
     </div>
     <script>
         function saveProgress(stopNumber) { localStorage.setItem('progresoJuego', stopNumber.toString()); }
+        
         document.addEventListener('DOMContentLoaded', () => {
             const progress = parseInt(localStorage.getItem('progresoJuego') || '1');
             if (progress > 1) {
@@ -96,12 +97,54 @@
                 document.getElementById('restart-btn').onclick = () => { localStorage.removeItem('progresoJuego'); continueModal.style.display = 'none'; mainContent.style.display = 'block'; };
             }
         });
-        const guardianPuzzles = [ { question: "Para recibir tu guía, demuestra que has entendido tu rol. ¿Cuál es tu misión?", answer: "EXCAVAR" }, { question: "La atención es tu mejor herramienta. ¿Qué objeto te servirá como 'brújula' para encontrar el camino?", answer: "TERMOMETRO" } ];
+
+        const guardianPuzzles = [ 
+            { question: "Para recibir tu guía, demuestra que has entendido tu rol. ¿Cuál es tu misión?", answer: "EXCAVAR" }, 
+            { question: "La atención es tu mejor herramienta. ¿Qué objeto te servirá como 'brújula' para encontrar el camino?", answer: "TERMOMETRO" } 
+        ];
+        
         const feedbackError = 'Respuesta incorrecta. Lee el texto con más atención.';
-        const guardianModal = document.getElementById('guardian-modal'); const questionEl = document.getElementById('guardian-question'); const answerEl = document.getElementById('guardian-answer'); const submitBtn = document.getElementById('guardian-submit'); const feedbackEl = document.getElementById('guardian-feedback'); let levelToUnlock = 0;
-        function askGuardian(level) { levelToUnlock = level; const puzzle = guardianPuzzles[level - 1]; questionEl.textContent = puzzle.question; answerEl.value = ''; feedbackEl.textContent = ''; guardianModal.style.display = 'flex'; answerEl.focus(); }
-        submitBtn.onclick = () => { const puzzle = guardianPuzzles[levelToUnlock - 1]; const userAnswer = answerEl.value.toUpperCase().trim(); if (userAnswer.includes(puzzle.answer)) { guardianModal.style.display = 'none'; revealHint(levelToUnlock); } else { feedbackEl.textContent = feedbackError; } };
-        function revealHint(level) { if (level === 1) { document.getElementById('hint-level-2').style.display = 'block'; document.getElementById('hint-btn-1').style.display = 'none'; } else if (level === 2) { document.getElementById('hint-level-3').style.display = 'block'; document.getElementById('hint-btn-2').style.display = 'none'; } }
+        const guardianModal = document.getElementById('guardian-modal'); 
+        const questionEl = document.getElementById('guardian-question'); 
+        const answerEl = document.getElementById('guardian-answer'); 
+        const submitBtn = document.getElementById('guardian-submit'); 
+        const feedbackEl = document.getElementById('guardian-feedback'); 
+        let levelToUnlock = 0;
+        
+        function askGuardian(level) { 
+            levelToUnlock = level; 
+            const puzzle = guardianPuzzles[level - 1]; 
+            questionEl.textContent = puzzle.question; 
+            answerEl.value = ''; 
+            feedbackEl.textContent = ''; 
+            guardianModal.style.display = 'flex'; 
+            answerEl.focus(); 
+        }
+        
+        submitBtn.onclick = () => { 
+            const puzzle = guardianPuzzles[levelToUnlock - 1]; 
+            
+            // CONVIERTE A MAYÚSCULAS Y QUITA TILDES (NORMALIZA)
+            let userAnswer = answerEl.value.toUpperCase().trim();
+            userAnswer = userAnswer.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+
+            if (userAnswer.includes(puzzle.answer)) { 
+                guardianModal.style.display = 'none'; 
+                revealHint(levelToUnlock); 
+            } else { 
+                feedbackEl.textContent = feedbackError; 
+            } 
+        };
+        
+        function revealHint(level) { 
+            if (level === 1) { 
+                document.getElementById('hint-level-2').style.display = 'block'; 
+                document.getElementById('hint-btn-1').style.display = 'none'; 
+            } else if (level === 2) { 
+                document.getElementById('hint-level-3').style.display = 'block'; 
+                document.getElementById('hint-btn-2').style.display = 'none'; 
+            } 
+        }
     </script>
 </body>
-</html>
+</html>```

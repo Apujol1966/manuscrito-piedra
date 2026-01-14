@@ -29,39 +29,31 @@
 <body>
     <header>
         <h1>Capítol VI: Senyals de Pedra</h1>
-        <div class="subtitle">Casa de l'Ardiaca · Plaça Nova</div>
+        <div class="subtitle">Casa de l'Ardiaca · Carrer de Santa Llúcia</div>
     </header>
-    
     <div class="img-container">
         <img src="../imagenes/ardiaca.jpg" alt="Portada de la Casa de l'Ardiaca">
     </div>
-
     <section class="card">
-        <p>“Has tornat a la Plaça Nova. Davant teu s'alça la Casa de l'Ardiaca. Tot i que els seus fonaments són romans, la seva portada et parla en el llenguatge del Renaixement.”</p>
+        <p>“Has sortit del laberint del Call i ets de nou al costat de la Catedral. El teu objectiu és la <strong>Casa de l'Ardiaca</strong>. Encara que els seus murs són romans, la seva portada et parla en el llenguatge del Renaixement.”</p>
         <p class="narrative-text">“Tres senyals guarden el secret d'aquesta entrada. Fixa't bé en l'arquitectura que emmarca la porta, en l'heràldica que la corona i en l'animal que la vigila des de la bústia.”</p>
     </section>
-
     <div id="enigma-container">
         <section class="enigma-box">
             <span class="enigma-icon">🛡️</span>
             <h3>La Combinació de l'Ardiaca</h3>
             <p>Observa la façana i completa la fórmula per obtenir el codi:</p>
             <ul style="text-align: left; list-style: none; padding-left: 10px; font-size: 0.9rem; line-height: 1.8;">
-                <li>1. Compta les <strong>columnes</strong> estriades als costats de la porta.</li>
-                <li>2. Troba la inicial de l'<strong>animal</strong> (rèptil) de la bústia.</li>
-                <li>3. Anomena l'objecte heràldic sobre la <strong>llinda</strong> de la porta.</li>
+                <li>1. Nombre de <strong>columnes</strong> estriades als costats de la porta.</li>
+                <li>2. Inicial de l'<strong>animal</strong> (rèptil) de la bústia.</li>
+                <li>3. Nom de l'objecte heràldic sobre la <strong>llinda</strong> de la porta.</li>
             </ul>
-            
             <p style="margin-top:15px; font-weight: bold; color: var(--text-muted); font-size: 0.9rem;">FORMAT: Nº-LLETRA-PARAULA</p>
-            
             <label for="answer" style="display:none;">La teva resposta</label>
-            <!-- Exemple genèric -->
             <input type="text" id="answer" placeholder="Ex: 4-B-ROSA">
             <button class="btn btn-primary" onclick="checkAnswer()">Validar Codi</button>
-            
             <div id="feedback-msg"></div>
-            
-            <button class="info-toggle" onclick="toggleHint()">Necessites ajuda visual?</button>
+            <button id="hint-toggle-btn" class="info-toggle" onclick="toggleHint()" style="display:none;">Necessites ajuda?</button>
             <div id="hint-box" class="info-content">
                 <p>1. Mira als flancs de la porta: hi ha <strong>2</strong> columnes.</p>
                 <p>2. Mira la bústia a la dreta: és una Tortuga (<strong>T</strong>).</p>
@@ -69,21 +61,24 @@
             </div>
         </section>
     </div>
-
     <script>
-        // Solució Flexible: Accepta "2-T-ESCUT", "2TESCUT", "2 T ESCUT"
+        const SOLUTION = "2TESCUT";
+        let failCount = 0;
         function checkAnswer() {
             let userIn = document.getElementById('answer').value.toUpperCase().trim();
-            // Eliminem espais i guions per facilitar la validació
             userIn = userIn.replace(/[\s-]/g, '');
-            
-            if (userIn === "2TESCUT") {
+            const feedback = document.getElementById('feedback-msg');
+            const hintButton = document.getElementById('hint-toggle-btn');
+            if (userIn === SOLUTION) {
                 window.location.href = 'parada6-recompensa-ca.html';
             } else {
-                document.getElementById('feedback-msg').textContent = "Combinació incorrecta. Observa bé els detalls.";
+                feedback.textContent = "Combinació incorrecta. Observa bé els detalls.";
+                failCount++;
+                if (failCount >= 3) {
+                    hintButton.style.display = 'block';
+                }
             }
         }
-
         function toggleHint() {
             const box = document.getElementById('hint-box');
             box.style.display = box.style.display === 'block' ? 'none' : 'block';

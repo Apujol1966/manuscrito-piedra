@@ -33,32 +33,24 @@
         <h1>Capítulo I: La Primera Tinta</h1>
         <div class="subtitle">Plaça Nova · Porta Praetoria</div>
     </header>
-
     <div class="img-container">
-        <!-- Asegúrate de tener esta foto o usa la de las torres -->
         <img src="../imagenes/roma.jpg" alt="Letras Barcino en Plaça Nova">
     </div>
-
     <section class="card">
-        <p>“Ante ti se alzan las guardianas de la ciudad. Las dos torres de la Porta Praetoria son el vestigio más puro de la muralla romana. Han visto pasar veinte siglos de historia.”</p>
-        <p class="narrative-text">“Pero no busques placas pequeñas ni carteles modernos. La ciudad grita su nombre antiguo a los cuatro vientos con letras de bronce gigantes a los pies de las torres.”</p>
+        <p>“Ante ti se alzan las guardianas de la ciudad. Las dos torres de la Porta Praetoria son el vestigio más puro de la muralla romana.”</p>
+        <p class="narrative-text">“Pero no busques placas pequeñas. La ciudad grita su nombre antiguo a los cuatro vientos con letras de bronce gigantes a los pies de las torres.”</p>
     </section>
-
     <div id="enigma-container">
         <section class="enigma-box">
             <span class="enigma-icon">🏛️</span>
             <h3>El Nombre de Bronce</h3>
-            <p>“Mira al suelo, frente a las torres. Hay un poema visual hecho escultura. ¿Qué nombre romano de 7 letras forman las piezas de bronce que tienes delante?”</p>
-            
+            <p>“Mira al suelo, frente a las torres. Hay un poema visual hecho escultura. ¿Qué nombre romano de 7 letras forman las piezas de bronce?”</p>
             <label for="answer" style="display:none;">Tu respuesta</label>
             <input type="text" id="answer" placeholder="Escribe el nombre" maxlength="7">
-            
             <button class="btn btn-primary" onclick="checkAnswer()">Validar Nombre</button>
-            
             <div id="feedback-msg"></div>
-
-            <button class="info-toggle" onclick="toggleHint()">¿Necesitas una pista?</button>
-            
+            <!-- BOTÓN DE AYUDA OCULTO POR DEFECTO -->
+            <button id="hint-toggle-btn" class="info-toggle" onclick="toggleHint()" style="display:none;">¿Necesitas una pista?</button>
             <div id="hint-box" class="info-content">
                 <p>Son letras grandes y desordenadas en el suelo.</p>
                 <p>Empieza por <strong>B</strong>...</p>
@@ -66,17 +58,23 @@
             </div>
         </section>
     </div>
-
     <script>
         const SOLUTION = "BARCINO";
+        let failCount = 0; // Contador de fallos
         
         function checkAnswer() {
             const userIn = document.getElementById('answer').value.toUpperCase().trim();
+            const feedback = document.getElementById('feedback-msg');
+            const hintButton = document.getElementById('hint-toggle-btn');
             
             if (userIn === SOLUTION) {
                 window.location.href = 'parada1-recompensa-es.html';
             } else {
-                document.getElementById('feedback-msg').textContent = "Nombre incorrecto. Mira bien las letras en el suelo.";
+                feedback.textContent = "Nombre incorrecto. Mira bien las letras en el suelo.";
+                failCount++;
+                if (failCount >= 3) {
+                    hintButton.style.display = 'block'; // Mostrar el botón de ayuda
+                }
             }
         }
 

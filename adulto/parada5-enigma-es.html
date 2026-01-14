@@ -31,30 +31,24 @@
         <h1>Capítulo V: La Sabiduría Oculta</h1>
         <div class="subtitle">Carrer de Salomó ben Adret</div>
     </header>
-    
     <div class="img-container">
         <img src="../imagenes/call.jpg" alt="Callejón estrecho del barrio judío">
     </div>
-
     <section class="card">
         <p>“Te adentras en el Call, el laberinto que fue hogar de una de las comunidades judías más importantes de la Edad Media. Aquí, la ciencia y la fe convivían.”</p>
         <p class="narrative-text">“Estás en la calle que honra al rabino más sabio de su tiempo, 'Rashba'. Busca la casa marcada con el <strong>número 6</strong>, hoy conocida como <strong>Casa Adret</strong>. Es una de las casas habitadas más antiguas de Barcelona. Sus cimientos hunden sus raíces en el <strong>Siglo XII</strong>.”</p>
     </section>
-
     <div id="enigma-container">
         <section class="enigma-box">
             <span class="enigma-icon">✖️</span>
             <h3>El Cálculo del Tiempo</h3>
             <p>“Para obtener la clave que abre la siguiente capa de historia, haz hablar a las piedras:”</p>
             <p>“Multiplica el <strong>número del portal</strong> por el <strong>siglo de sus cimientos</strong>.”</p>
-            
             <label for="answer" style="display:none;">Tu respuesta</label>
             <input type="number" id="answer" placeholder="Introduce el resultado">
             <button class="btn btn-primary" onclick="checkAnswer()">Validar Clave</button>
-            
             <div id="feedback-msg"></div>
-            
-            <button class="info-toggle" onclick="toggleHint()">¿Necesitas ayuda matemática?</button>
+            <button id="hint-toggle-btn" class="info-toggle" onclick="toggleHint()" style="display:none;">¿Necesitas ayuda matemática?</button>
             <div id="hint-box" class="info-content">
                 <p>Revisa el texto narrativo de arriba:</p>
                 <p>1. El número del portal (Casa Adret) es <strong>6</strong>.</p>
@@ -63,20 +57,23 @@
             </div>
         </section>
     </div>
-
     <script>
-        // Solución: 6 * 12 = 72
         const SOLUTION = 72;
-
+        let failCount = 0;
         function checkAnswer() {
             const userIn = document.getElementById('answer').value;
+            const feedback = document.getElementById('feedback-msg');
+            const hintButton = document.getElementById('hint-toggle-btn');
             if (parseInt(userIn) === SOLUTION) {
                 window.location.href = 'parada5-recompensa-es.html';
             } else {
-                document.getElementById('feedback-msg').textContent = "El cálculo es incorrecto. Revisa el texto de arriba.";
+                feedback.textContent = "El cálculo es incorrecto. Revisa el texto de arriba.";
+                failCount++;
+                if (failCount >= 3) {
+                    hintButton.style.display = 'block';
+                }
             }
         }
-
         function toggleHint() {
             const box = document.getElementById('hint-box');
             box.style.display = box.style.display === 'block' ? 'none' : 'block';

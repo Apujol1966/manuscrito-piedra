@@ -4,33 +4,55 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chapter II: Visigoths - The Manuscript</title>
-    <!-- Styles same -->
-    <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Lato:wght@400;700&display=swap" rel="stylesheet">
-    <style>:root{--bg-color:#121212;--card-bg:#1e1e1e;--text-main:#e0d6c2;--text-muted:#a8a095;--accent:#c0392b}*{box-sizing:border-box;margin:0;padding:0}body{background-color:var(--bg-color);color:var(--text-main);font-family:'Lato',sans-serif;line-height:1.6;padding:20px;max-width:600px;margin:0 auto}h1,h3{font-family:'Cinzel',serif;color:#fff;letter-spacing:1px}h1{font-size:1.8rem;text-align:center;margin-bottom:10px;border-bottom:2px solid var(--accent);padding-bottom:10px}.subtitle{text-align:center;font-size:.9rem;color:var(--text-muted);margin-bottom:25px;text-transform:uppercase}.img-container{width:100%;max-height:250px;background-color:#333;border-radius:8px;margin-bottom:20px;overflow:hidden;border:1px solid #444}.img-container img{width:100%;height:100%;object-fit:cover;display:block}.card{background-color:var(--card-bg);padding:20px;border-radius:12px;margin-bottom:20px;box-shadow:0 4px 6px rgba(0,0,0,.3)}.narrative-text{font-style:italic;border-left:3px solid var(--accent);padding-left:15px;margin-top:15px;color:#dcdcdc}.enigma-box{background-color:#2c2c2c;border:1px solid var(--accent);padding:20px;border-radius:8px;margin-top:20px;text-align:center}.enigma-icon{font-size:2rem;margin-bottom:10px;display:block}input[type="text"]{width:100%;padding:15px;font-size:1.5rem;font-family:'Cinzel',serif;background-color:#1a1a1a;border:2px solid #444;color:#fff;border-radius:8px;margin:15px 0;text-align:center;text-transform:uppercase}.btn{width:100%;padding:15px;font-size:1rem;font-weight:700;text-transform:uppercase;border:none;border-radius:8px;cursor:pointer;font-family:'Cinzel',serif}.btn-primary{background-color:var(--accent);color:#fff}.info-toggle{background:0 0;border:none;color:var(--text-muted);text-decoration:underline;cursor:pointer;font-size:.9rem;margin-top:15px}.info-content{display:none;margin-top:15px;font-size:.9rem;background:#151515;padding:15px;border-radius:8px;text-align:left}#feedback-msg{margin-top:15px;font-weight:700;min-height:1.5em;color:var(--accent)}</style>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Lato:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root { --bg-color: #121212; --card-bg: #1e1e1e; --text-main: #e0d6c2; --text-muted: #a8a095; --accent: #c0392b; }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { background-color: var(--bg-color); color: var(--text-main); font-family: 'Lato', sans-serif; line-height: 1.6; padding: 20px; max-width: 600px; margin: 0 auto; }
+        h1, h3 { font-family: 'Cinzel', serif; color: #fff; letter-spacing: 1px; }
+        h1 { font-size: 1.8rem; text-align: center; margin-bottom: 10px; border-bottom: 2px solid var(--accent); padding-bottom: 10px; }
+        .subtitle { text-align: center; font-size: 0.9rem; color: var(--text-muted); margin-bottom: 25px; text-transform: uppercase; }
+        .img-container { width: 100%; max-height: 250px; background-color: #333; border-radius: 8px; margin-bottom: 20px; overflow: hidden; border: 1px solid #444; }
+        .img-container img { width: 100%; height: 100%; object-fit: cover; display: block; }
+        .card { background-color: var(--card-bg); padding: 20px; border-radius: 12px; margin-bottom: 20px; box-shadow: 0 4px 6px rgba(0,0,0,0.3); }
+        .narrative-text { font-style: italic; border-left: 3px solid var(--accent); padding-left: 15px; margin-top: 15px; color: #dcdcdc; }
+        .enigma-box { background-color: #2c2c2c; border: 1px solid var(--accent); padding: 20px; border-radius: 8px; margin-top: 20px; text-align: center; }
+        .enigma-icon { font-size: 2rem; margin-bottom: 10px; display: block; }
+        input[type="text"] { width: 100%; padding: 15px; font-size: 1.5rem; font-family: 'Cinzel', serif; background-color: #1a1a1a; border: 2px solid #444; color: white; border-radius: 8px; margin: 15px 0; text-align: center; text-transform: uppercase; }
+        .btn { width: 100%; padding: 15px; font-size: 1rem; font-weight: bold; text-transform: uppercase; border: none; border-radius: 8px; cursor: pointer; font-family: 'Cinzel', serif; }
+        .btn-primary { background-color: var(--accent); color: white; }
+        .info-toggle { background: none; border: none; color: var(--text-muted); text-decoration: underline; cursor: pointer; font-size: 0.9rem; margin-top: 15px; display: block; width: 100%; }
+        .info-content { display: none; margin-top: 15px; font-size: 0.9rem; background: #151515; padding: 15px; border-radius: 8px; text-align: left; }
+        #feedback-msg { margin-top: 15px; font-weight: bold; min-height: 1.5em; color: var(--accent); }
+    </style>
 </head>
 <body>
     <header>
         <h1>Chapter II: The Watchtower</h1>
         <div class="subtitle">Plaça del Rei · Palau Reial Major</div>
     </header>
-    <div class="img-container"><img src="../imagenes/visigodos.jpg" alt="Plaça del Rei and King Martin's Tower"></div>
+    <div class="img-container">
+        <img src="../imagenes/visigodos.jpg" alt="Plaça del Rei and King Martin's Tower">
+    </div>
     <section class="card">
         <p>“You have reached the noble heart of the city. Although the walls you see are medieval, they rest upon the foundations of Visigothic Barcelona (Barchinona).”</p>
-        <p class="narrative-text">“The Visigothic kings sleep underground, hidden in darkness. But above them, medieval kings wanted to touch the sky. Look up at the rectangular tower full of windows that dominates the square in one corner. It is the lookout of King Martin the Humane.”</p>
+        <p class="narrative-text">“The Visigothic kings sleep underground. But above them, medieval kings wanted to touch the sky. Look up at the rectangular tower that dominates the square. It is the lookout of King Martí.”</p>
     </section>
     <div id="enigma-container">
         <section class="enigma-box">
             <span class="enigma-icon">🏰</span>
             <h3>The Royal Password</h3>
-            <p>“To decipher the next layer, you need an access code. Combine the <strong>NAME</strong> of the builder king (use his <strong>Catalan name: MARTI</strong>) followed by the <strong>NUMBER</strong> of gallery floors (window levels) the tower has.”</p>
-            <p style="font-size:0.8rem; color:#aaa;">(Example: If it were King James with 3 floors, it would be JAUME3)</p>
+            <p>“To decipher the next layer, you need a code. Combine the <strong>NAME</strong> of the builder king (without accents) followed by the <strong>NUMBER</strong> of gallery floors (window levels).”</p>
+            <p style="font-size:0.8rem; color:#aaa;">(Example: If it were King James with 3 floors, it would be JAMES3)</p>
             <label for="answer" style="display:none;">Your answer</label>
             <input type="text" id="answer" placeholder="Enter the code">
             <button class="btn btn-primary" onclick="checkAnswer()">Validate Code</button>
             <div id="feedback-msg"></div>
-            <button class="info-toggle" onclick="toggleHint()">Need help?</button>
+            <button id="hint-toggle-btn" class="info-toggle" onclick="toggleHint()" style="display:none;">Need help?</button>
             <div id="hint-box" class="info-content">
-                <p>1. The King is <strong>MARTÍ</strong> (Martin).</p>
+                <p>1. The King is <strong>MARTÍ</strong>.</p>
                 <p>2. Count the levels of arches on the tower: there are <strong>5</strong>.</p>
                 <p>3. The code is: MARTI5</p>
             </div>
@@ -38,14 +60,26 @@
     </div>
     <script>
         const SOLUTION = "MARTI5";
+        let failCount = 0;
         function checkAnswer() {
             let userInput = document.getElementById('answer').value.toUpperCase().trim();
-            // Remove accents and spaces
             userInput = userInput.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
-            if (userInput === SOLUTION) { window.location.href = 'parada2-recompensa-en.html'; } 
-            else { document.getElementById('feedback-msg').textContent = "Incorrect code. Count the floors carefully."; }
+            const feedback = document.getElementById('feedback-msg');
+            const hintButton = document.getElementById('hint-toggle-btn');
+            if (userInput === SOLUTION) {
+                window.location.href = 'parada2-recompensa-en.html';
+            } else {
+                feedback.textContent = "Incorrect code. Check the name and count the floors.";
+                failCount++;
+                if (failCount >= 3) {
+                    hintButton.style.display = 'block';
+                }
+            }
         }
-        function toggleHint() { const box = document.getElementById('hint-box'); box.style.display = box.style.display === 'block' ? 'none' : 'block'; }
+        function toggleHint() {
+            const box = document.getElementById('hint-box');
+            box.style.display = box.style.display === 'block' ? 'none' : 'block';
+        }
     </script>
 </body>
 </html>

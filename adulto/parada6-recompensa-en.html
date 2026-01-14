@@ -35,41 +35,33 @@
     </style>
 </head>
 <body>
-
     <div id="guardian-modal" class="modal-overlay">
         <div class="modal-content">
             <h2>Guardian's Test</h2>
             <p id="guardian-question"></p>
             <input type="text" id="guardian-answer" class="modal-input">
-            <button id="guardian-submit" class="btn btn-primary">Validar</button>
+            <button id="guardian-submit" class="btn btn-primary">Validate</button>
             <div id="guardian-feedback"></div>
         </div>
     </div>
-
     <header><h1>Chapter VI: Renaissance</h1></header>
-
     <div id="reward-container">
         <div class="card">
             <div class="feedback-success">Code 2-T-SHIELD accepted!</div>
-            
             <div class="knowledge-reward">
                 <h3>The Archdeacon's Palace</h3>
-                <p><strong>Living History:</strong> You are facing the renovation that Lluís Desplà carried out in the 16th century, turning a medieval house into a <strong>Renaissance</strong> palace. But its story doesn't end there: today, this building guards the written memory of the city, as it is the headquarters of the <strong>Historical Archive</strong>.</p>
-                <p><strong>An Ironic Wink:</strong> The mailbox is <strong>Modernist</strong> (1902). The <strong>swallows</strong> symbolize the ideal swiftness of Justice, but the <strong>turtle</strong> represents the sad reality: the administrative bureaucracy.</p>
+                <p><strong>Living History:</strong> You are facing the <strong>Renaissance</strong> renovation that Lluís Desplà carried out in the 16th century. Today, this building guards the city's written memory as the headquarters of the <strong>Historical Archive of Barcelona</strong>.</p>
+                <p><strong>An Ironic Wink:</strong> The mailbox you used is <strong>Modernist</strong> (1902). The <strong>swallows</strong> symbolize the ideal swiftness of Justice, while the <strong>turtle</strong> represents the slow reality of bureaucracy.</p>
                 <span class="source-text">Source: City Historical Archive</span>
             </div>
-
             <div id="next-clue-box">
-                <p><strong>JUMP CLUE:</strong><br>Your excavation advances towards the Age of Enlightenment. Look for a street with the name of a "watchman" (Veguer) just behind the great King's Square. There, inventory numbers await you.</p>
-                
+                <p><strong>JUMP CLUE:</strong><br>Your excavation advances to the Age of Enlightenment. Look for a street named 'Veguer' just behind the great King's Square.</p>
                 <button id="hint-btn-1" class="btn btn-secondary" onclick="askGuardian(1)">Unsure where to go? Get a Direct Clue</button>
-
                 <div id="hint-level-2" class="extra-hint-content">
                     <h4>Direct Clue</h4>
-                    <p>Return to <strong>Plaça del Rei</strong>. On one of its corners begins <strong>Carrer del Veguer</strong>. It is a narrow alley leading down to the History Museum.</p>
+                    <p>Return to <strong>Plaça del Rei</strong>. On one of its corners begins <strong>Carrer del Veguer</strong>.</p>
                     <button id="hint-btn-2" class="btn btn-secondary" onclick="askGuardian(2)">I'm still lost. Show me the map</button>
                 </div>
-                
                 <div id="hint-level-3" class="extra-hint-content">
                      <h4>Exact Location</h4>
                      <a href="https://www.google.com/maps/search/?api=1&query=Carrer+del+Veguer,Barcelona" target="_blank" class="btn btn-map">Open in Google Maps</a>
@@ -77,19 +69,15 @@
             </div>
         </div>
     </div>
-    
     <a href="parada7-enigma-en.html" class="btn btn-success" onclick="saveProgress()">Begin Chapter VII (Enlightenment)</a>
-
     <script>
         function saveProgress() {
             localStorage.setItem('progresoJuego', '7');
         }
-
         const guardianPuzzles = [
-            { question: "What institution does this building house today?", answer: "ARCHIVE" },
-            { question: "The clue sends you to a street named after an old profession. What is it?", answer: "VEGUER" }
+            { question: "What important institution does this building house today?", answer: "ARCHIVE" },
+            { question: "The clue sends you to a street with a specific name. What is that name?", answer: "VEGUER" }
         ];
-        
         const feedbackError = 'Incorrect answer. Check the text.';
         const modal = document.getElementById('guardian-modal');
         const questionEl = document.getElementById('guardian-question');
@@ -97,7 +85,6 @@
         const submitBtn = document.getElementById('guardian-submit');
         const feedbackEl = document.getElementById('guardian-feedback');
         let levelToUnlock = 0;
-
         function askGuardian(level) {
             levelToUnlock = level;
             const puzzle = guardianPuzzles[level - 1];
@@ -107,10 +94,10 @@
             modal.style.display = 'flex';
             answerEl.focus();
         }
-
         submitBtn.onclick = () => {
             const puzzle = guardianPuzzles[levelToUnlock - 1];
-            const userAnswer = answerEl.value.toUpperCase().trim();
+            let userAnswer = answerEl.value.toUpperCase().trim();
+            userAnswer = userAnswer.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
             if (userAnswer.includes(puzzle.answer)) {
                 modal.style.display = 'none';
                 revealHint(levelToUnlock);
@@ -118,7 +105,6 @@
                 feedbackEl.textContent = feedbackError;
             }
         };
-
         function revealHint(level) {
             if (level === 1) {
                 document.getElementById('hint-level-2').style.display = 'block';

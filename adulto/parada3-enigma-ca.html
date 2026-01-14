@@ -33,29 +33,24 @@
         <h1>Capítol III: La Frontera de Pedra</h1>
         <div class="subtitle">Plaça Ramon Berenguer el Gran</div>
     </header>
-    
     <div class="img-container">
         <img src="../imagenes/alandalus.jpg" alt="Estàtua eqüestre de Ramon Berenguer">
     </div>
-
     <section class="card">
         <p>“Ets davant d'una imatge icònica: el Comte que cavalca eternament sobre la muralla romana. La seva figura marca la frontera històrica entre el món cristià i el poder d'Al-Àndalus.”</p>
-        <p class="narrative-text">“Acosta't a la base de l'estàtua i llegeix el seu nom complet <strong>gravat a la pedra</strong>. Sembla simple, però el llatí amaga trampes per a l'ull modern. Una de les seves lletres no és el que sembla.”</p>
+        <p class="narrative-text">“Acosta't a la base de l'estàtua i llegeix el seu nom complet gravat a la pedra. Sembla simple, però el llatí amaga trampes per a l'ull modern. Una de les seves lletres no és el que sembla.”</p>
     </section>
-
     <div id="enigma-container">
         <section class="enigma-box">
             <span class="enigma-icon">⚔️</span>
             <h3>La Trampa del Llatí</h3>
-            <p>“Suma el valor numèric de <strong>TOTS</strong> els nombres romans que trobis amagats a la <strong>inscripció de pedra</strong> (Nom + Cognom + Numeral).”</p>
+            <p>“Suma el valor numèric de <strong>TOTS</strong> els nombres romans que trobis amagats a la inscripció de pedra (Nom + Cognom + Numeral).”</p>
             <p>“Atenció! Recorda que en llatí la lletra 'U' s'escrivia amb la forma d'un número...”</p>
-            
             <label for="answer" style="display:none;">La teva resposta</label>
             <input type="number" id="answer" placeholder="Introdueix la suma total">
             <button class="btn btn-primary" onclick="checkAnswer()">Validar Xifra</button>
             <div id="feedback-msg"></div>
-            
-            <button class="info-toggle" onclick="toggleHint()">No et surten els comptes?</button>
+            <button id="hint-toggle-btn" class="info-toggle" onclick="toggleHint()" style="display:none;">No et surten els comptes?</button>
             <div id="hint-box" class="info-content">
                 <p>1. Busca la <strong>M</strong> a RAMON (1000).</p>
                 <p>2. Busca la <strong>V</strong> a BERENGVER (5). Sí, la U s'escriu com V i suma 5!</p>
@@ -64,26 +59,28 @@
             </div>
         </section>
     </div>
-
     <script>
-        // Solució: 1008 (M + V + III)
         const SOLUTION = 1008;
-
+        let failCount = 0;
         function checkAnswer() {
             const userIn = document.getElementById('answer').value;
             const val = parseInt(userIn);
-
+            const feedback = document.getElementById('feedback-msg');
+            const hintButton = document.getElementById('hint-toggle-btn');
             if (val === SOLUTION) {
                 window.location.href = 'parada3-recompensa-ca.html';
             } else {
+                failCount++;
                 if (val === 1003) {
-                    document.getElementById('feedback-msg').textContent = "Gairebé... Has oblidat que la 'U' en llatí és una 'V'? Aquesta lletra també suma.";
+                    feedback.textContent = "Gairebé... Has oblidat que la 'U' en llatí és una 'V'? Aquesta lletra també suma.";
                 } else {
-                    document.getElementById('feedback-msg').textContent = "Càlcul incorrecte. Revisa bé totes les lletres del nom.";
+                    feedback.textContent = "Càlcul incorrecte. Revisa bé totes les lletres del nom.";
+                }
+                if (failCount >= 3) {
+                    hintButton.style.display = 'block';
                 }
             }
         }
-
         function toggleHint() {
             const box = document.getElementById('hint-box');
             box.style.display = box.style.display === 'block' ? 'none' : 'block';

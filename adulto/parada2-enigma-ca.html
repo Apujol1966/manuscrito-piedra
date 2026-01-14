@@ -33,54 +33,49 @@
         <h1>Capítol II: La Torre del Guaita</h1>
         <div class="subtitle">Plaça del Rei · Palau Reial Major</div>
     </header>
-
     <div class="img-container">
         <img src="../imagenes/visigodos.jpg" alt="Plaça del Rei i Torre del Rei Martí">
     </div>
-
     <section class="card">
         <p>“Has arribat al cor noble de la ciutat. Tot i que els murs que veus són medievals, s'assenten sobre els fonaments de la Barcelona Visigoda (Barchinona).”</p>
-        <p class="narrative-text">“Els reis visigots dormen sota terra, ocults a la foscor. Però sobre ells, els reis medievals van voler tocar el cel. Alça la vista cap a la torre rectangular plena de finestrals que domina la plaça en una cantonada. És el mirador del Rei Martí l'Humà.”</p>
+        <p class="narrative-text">“Els reis visigots dormen sota terra. Però sobre ells, els reis medievals van voler tocar el cel. Alça la vista cap a la torre rectangular que domina la plaça. És el mirador del Rei Martí.”</p>
     </section>
-
     <div id="enigma-container">
         <section class="enigma-box">
             <span class="enigma-icon">🏰</span>
             <h3>La Contrasenya Reial</h3>
-            <p>“Per desxifrar la següent capa, necessites un codi d'accés. Combina el <strong>NOM</strong> del rei constructor de la torre (sense accent) seguit del <strong>NOMBRE</strong> de pisos de galeries (finestrals) que té la torre.”</p>
-            <p style="font-size:0.8rem; color:#aaa;">(Exemple: Si fos el Rei Jaume i tingués 3 pisos, seria JAUME3)</p>
-            
+            <p>“Per desxifrar la següent capa, necessites un codi. Combina el <strong>NOM</strong> del rei constructor de la torre (sense accent) seguit del <strong>NOMBRE</strong> de pisos de galeries (finestrals).”</p>
+            <p style="font-size:0.8rem; color:#aaa;">(Exemple: Si fos el Rei Jaume amb 3 pisos, seria JAUME3)</p>
             <label for="answer" style="display:none;">La teva resposta</label>
             <input type="text" id="answer" placeholder="Introdueix el codi">
-            
             <button class="btn btn-primary" onclick="checkAnswer()">Validar Codi</button>
-            
             <div id="feedback-msg"></div>
-
-            <button class="info-toggle" onclick="toggleHint()">Necessites ajuda?</button>
-            
+            <button id="hint-toggle-btn" class="info-toggle" onclick="toggleHint()" style="display:none;">Necessites ajuda?</button>
             <div id="hint-box" class="info-content">
-                <p>1. El Rei és <strong>MARTÍ</strong> (Martí l'Humà).</p>
+                <p>1. El Rei és <strong>MARTÍ</strong>.</p>
                 <p>2. Compta els nivells d'arcs de la torre: són <strong>5</strong>.</p>
                 <p>3. El codi és: MARTI5</p>
             </div>
         </section>
     </div>
-
     <script>
-        const SOLUTION = "MARTI5"; 
-
+        const SOLUTION = "MARTI5";
+        let failCount = 0;
         function checkAnswer() {
             let userInput = document.getElementById('answer').value.toUpperCase().trim();
             userInput = userInput.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
-
+            const feedback = document.getElementById('feedback-msg');
+            const hintButton = document.getElementById('hint-toggle-btn');
             if (userInput === SOLUTION) {
                 window.location.href = 'parada2-recompensa-ca.html';
             } else {
-                document.getElementById('feedback-msg').textContent = "Codi incorrecte. Compta bé els pisos.";
+                feedback.textContent = "Codi incorrecte. Revisa el nom i compta bé els pisos.";
+                failCount++;
+                if (failCount >= 3) {
+                    hintButton.style.display = 'block';
+                }
             }
         }
-
         function toggleHint() {
             const box = document.getElementById('hint-box');
             box.style.display = box.style.display === 'block' ? 'none' : 'block';

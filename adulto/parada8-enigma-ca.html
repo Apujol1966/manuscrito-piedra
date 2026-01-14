@@ -4,9 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Capítol VIII: Guerra Civil - El Manuscrit</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Lato:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Lato:wght@400;700&display=swap" rel="stylesheet">
     <style>
         :root { --bg-color: #121212; --card-bg: #1e1e1e; --text-main: #e0d6c2; --text-muted: #a8a095; --accent: #c0392b; }
         * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -20,13 +18,12 @@
         .narrative-text { font-style: italic; border-left: 3px solid var(--accent); padding-left: 15px; margin-top: 15px; color: #dcdcdc; }
         .enigma-box { background-color: #2c2c2c; border: 1px solid var(--accent); padding: 20px; border-radius: 8px; margin-top: 20px; text-align: center; }
         .enigma-icon { font-size: 2rem; margin-bottom: 10px; display: block; }
-        input[type="text"] { width: 100%; padding: 15px; font-size: 1.5rem; font-family: 'Cinzel', serif; background-color: #1a1a1a; border: 2px solid #444; color: white; border-radius: 8px; margin: 15px 0; text-align: center; letter-spacing: 2px; }
+        input[type="text"] { width: 100%; padding: 15px; font-size: 1.5rem; font-family: 'Cinzel', serif; background-color: #1a1a1a; border: 2px solid #444; color: white; border-radius: 8px; margin: 15px 0; text-align: center; text-transform: uppercase; }
         .btn { width: 100%; padding: 15px; font-size: 1rem; font-weight: bold; text-transform: uppercase; border: none; border-radius: 8px; cursor: pointer; font-family: 'Cinzel', serif; }
         .btn-primary { background-color: var(--accent); color: white; }
         .info-toggle { background: none; border: none; color: var(--text-muted); text-decoration: underline; cursor: pointer; font-size: 0.9rem; margin-top: 15px; display: block; width: 100%; }
         .info-content { display: none; margin-top: 15px; font-size: 0.9rem; background: #151515; padding: 15px; border-radius: 8px; text-align: left; }
         #feedback-msg { margin-top: 15px; font-weight: bold; min-height: 1.5em; color: var(--accent); }
-        .cypher-key { margin-top: 10px; padding: 10px; background-color: #1a1a1a; border-radius: 4px; font-size: 0.8rem; color: var(--text-muted); font-family: monospace; }
     </style>
 </head>
 <body>
@@ -34,57 +31,46 @@
         <h1>Capítol VIII: El Silenci de la Pedra</h1>
         <div class="subtitle">Plaça de Sant Felip Neri · Guerra Civil</div>
     </header>
-    
     <div class="img-container">
-        <img src="../imagenes/felipneri.jpg" alt="Murs de l'església marcats per la metralla">
+        <img src="../imagenes/felipneri.jpg" alt="Font i murs de l'església marcats per la metralla">
     </div>
-
     <section class="card">
         <p>“Has entrat en un parèntesi de silenci. Aquí, el soroll de la ciutat s'apaga. Però les pedres criden.”</p>
-        <p class="narrative-text">“Observa la façana de l'església. No és el desgast del temps. Són les cicatrius d'una bomba llançada el 1938. La tragèdia va quedar gravada per sempre a la pell de Barcelona.”</p>
+        <p class="narrative-text">“Al centre, una font intenta posar ordre en el caos de la memòria. La seva forma no és casual; és una figura geomètrica perfecta que es repeteix com a símbol d'equilibri i renaixement.”</p>
     </section>
-
     <div id="enigma-container">
         <section class="enigma-box">
-            <span class="enigma-icon">🥀</span>
-            <h3>El Codi del Sant</h3>
-            <p>“La placa a la façana anomena el sant que vigila aquest lloc: <strong>Sant Felip NERI</strong>.”</p>
-            <p>“La teva missió és transformar el seu cognom (<strong>NERI</strong>) en una seqüència numèrica usant l'abecedari. <strong>Atenció! No sumis els valors.</strong> Escriu els números seguits.”</p>
-            
-            <div class="cypher-key">A=1 | B=2 ... M=13 | N=14 ...</div>
-            
+            <span class="enigma-icon">🩸</span>
+            <h3>La Geometria Sagrada</h3>
+            <p>“Acosta't a la font. Quants costats té la seva base? Escriu la paraula que defineix aquesta figura geomètrica.”</p>
             <label for="answer" style="display:none;">La teva resposta</label>
-            <input type="text" id="answer" placeholder="Ex: 3-1-19-1">
+            <input type="text" id="answer" placeholder="Escriu la figura">
             <button class="btn btn-primary" onclick="checkAnswer()">Honrar la Memòria</button>
-            
             <div id="feedback-msg"></div>
-            
-            <button class="info-toggle" onclick="toggleHint()">Necessites ajuda amb els números?</button>
+            <button id="hint-toggle-btn" class="info-toggle" onclick="toggleHint()" style="display:none;">Necessites ajuda?</button>
             <div id="hint-box" class="info-content">
-                <p>N = 14</p>
-                <p>E = 5</p>
-                <p>R = 18</p>
-                <p>I = 9</p>
-                <p>Escriu-ho tot junt o amb guions.</p>
+                <p>La figura té <strong>8 costats</strong>. El seu nom comença per 'O'.</p>
             </div>
         </section>
     </div>
-
     <script>
-        // Solució: 145189 (NERI)
-        const SOLUTION = "145189";
-
+        const SOLUTION = "OCTAGON";
+        let failCount = 0;
         function checkAnswer() {
-            // Netejem l'entrada (treiem espais i guions) per validar només els números
-            let userIn = document.getElementById('answer').value.replace(/[^0-9]/g, '');
-            
+            let userIn = document.getElementById('answer').value.toUpperCase().trim();
+            userIn = userIn.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+            const feedback = document.getElementById('feedback-msg');
+            const hintButton = document.getElementById('hint-toggle-btn');
             if (userIn === SOLUTION) {
                 window.location.href = 'parada8-recompensa-ca.html';
             } else {
-                document.getElementById('feedback-msg').textContent = "Codi incorrecte. Revisa la posició de les lletres.";
+                feedback.textContent = "Forma incorrecta. Compta bé els costats de la font.";
+                failCount++;
+                if (failCount >= 3) {
+                    hintButton.style.display = 'block';
+                }
             }
         }
-
         function toggleHint() {
             const box = document.getElementById('hint-box');
             box.style.display = box.style.display === 'block' ? 'none' : 'block';

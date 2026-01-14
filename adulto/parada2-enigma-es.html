@@ -33,57 +33,49 @@
         <h1>Capítulo II: La Torre del Vigía</h1>
         <div class="subtitle">Plaça del Rei · Palau Reial Major</div>
     </header>
-
-    <!-- Asegúrate de tener una foto de la plaza o la torre llamada 'visigodos.jpg' -->
     <div class="img-container">
         <img src="../imagenes/visigodos.jpg" alt="Plaça del Rei y Torre del Rei Martí">
     </div>
-
     <section class="card">
         <p>“Has llegado al corazón noble de la ciudad. Aunque los muros que ves son medievales, se asientan sobre los cimientos de la Barcelona Visigoda (Barchinona).”</p>
-        <p class="narrative-text">“Los reyes visigodos duermen bajo tierra, ocultos en la oscuridad. Pero sobre ellos, los reyes medievales quisieron tocar el cielo. Alza la vista hacia la torre rectangular llena de ventanales que domina la plaza en una esquina. Es el mirador del Rey Martí el Humano.”</p>
+        <p class="narrative-text">“Los reyes visigodos duermen bajo tierra. Pero sobre ellos, los reyes medievales quisieron tocar el cielo. Alza la vista hacia la torre rectangular que domina la plaza. Es el mirador del Rey Martí.”</p>
     </section>
-
     <div id="enigma-container">
         <section class="enigma-box">
             <span class="enigma-icon">🏰</span>
             <h3>La Contraseña Real</h3>
-            <p>“Para descifrar la siguiente capa, necesitas un código de acceso. Combina el <strong>NOMBRE</strong> del rey constructor de la torre (en catalán, sin tilde) seguido del <strong>NÚMERO</strong> de pisos de galerías (ventanales) que tiene la torre.”</p>
-            <p style="font-size:0.8rem; color:#aaa;">(Ejemplo: Si fuera el Rey Jaime y tuviera 3 pisos, sería JAIME3)</p>
-            
+            <p>“Para descifrar la siguiente capa, necesitas un código. Combina el <strong>NOMBRE</strong> del rey constructor de la torre (sin tilde) seguido del <strong>NÚMERO</strong> de pisos de galerías (ventanales).”</p>
+            <p style="font-size:0.8rem; color:#aaa;">(Ejemplo: Si fuera el Rey Jaime con 3 pisos, sería JAIME3)</p>
             <label for="answer" style="display:none;">Tu respuesta</label>
             <input type="text" id="answer" placeholder="Introduce el código">
-            
             <button class="btn btn-primary" onclick="checkAnswer()">Validar Código</button>
-            
             <div id="feedback-msg"></div>
-
-            <button class="info-toggle" onclick="toggleHint()">¿Necesitas ayuda?</button>
-            
+            <button id="hint-toggle-btn" class="info-toggle" onclick="toggleHint()" style="display:none;">¿Necesitas ayuda?</button>
             <div id="hint-box" class="info-content">
-                <p>1. El Rey es <strong>MARTÍ</strong> (Martín el Humano).</p>
+                <p>1. El Rey es <strong>MARTÍ</strong>.</p>
                 <p>2. Cuenta los niveles de arcos de la torre: son <strong>5</strong>.</p>
                 <p>3. El código es: MARTI5</p>
             </div>
         </section>
     </div>
-
     <script>
-        // Solución: MARTI5
-        const SOLUTION = "MARTI5"; 
-
+        const SOLUTION = "MARTI5";
+        let failCount = 0;
         function checkAnswer() {
-            // Normalizamos: mayúsculas, sin espacios y sin tildes (MARTÍ -> MARTI)
             let userInput = document.getElementById('answer').value.toUpperCase().trim();
             userInput = userInput.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
-
+            const feedback = document.getElementById('feedback-msg');
+            const hintButton = document.getElementById('hint-toggle-btn');
             if (userInput === SOLUTION) {
                 window.location.href = 'parada2-recompensa-es.html';
             } else {
-                document.getElementById('feedback-msg').textContent = "Código incorrecto. Cuenta bien los pisos.";
+                feedback.textContent = "Código incorrecto. Revisa el nombre y cuenta bien los pisos.";
+                failCount++;
+                if (failCount >= 3) {
+                    hintButton.style.display = 'block';
+                }
             }
         }
-
         function toggleHint() {
             const box = document.getElementById('hint-box');
             box.style.display = box.style.display === 'block' ? 'none' : 'block';

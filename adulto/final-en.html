@@ -3,58 +3,90 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Completed Timeline</title>
-    <!-- Styles same as es.html -->
-    <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Lato:wght@400;700&display=swap" rel="stylesheet">
+    <title>The Mosaic of Memory</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Lato:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        :root { --bg-color: #121212; --card-bg: #1e1e1e; --text-main: #e0d6c2; --gold: #d4af37; --accent: #c0392b; }
+        :root { --bg-color: #121212; --card-bg: #1e1e1e; --text-main: #e0d6c2; --gold: #d4af37; }
         * { box-sizing: border-box; margin: 0; padding: 0; }
-        body { background-color: var(--bg-color); color: var(--text-main); font-family: 'Lato', sans-serif; padding: 20px; max-width: 600px; margin: 0 auto; padding-bottom: 50px; }
-        h1 { font-family: 'Cinzel', serif; text-align: center; color: var(--gold); margin-bottom: 10px; font-size: 1.8rem; }
-        .subtitle { text-align: center; margin-bottom: 40px; font-style: italic; color: #888; }
-        .timeline { position: relative; padding-left: 30px; margin: 20px 10px; border-left: 2px solid #333; }
-        .timeline::before { content: ''; position: absolute; top: 0; left: -2px; width: 2px; height: 100%; background-color: var(--gold); box-shadow: 0 0 10px var(--gold); animation: growLine 2s ease-out forwards; }
-        .timeline-item { position: relative; margin-bottom: 30px; opacity: 0; transform: translateX(-10px); animation: slideIn 0.5s forwards; }
-        .timeline-dot { position: absolute; left: -36px; top: 5px; width: 14px; height: 14px; background-color: var(--bg-color); border: 2px solid var(--gold); border-radius: 50%; z-index: 2; box-shadow: 0 0 5px var(--gold); }
-        .timeline-date { font-family: 'Cinzel', serif; font-weight: bold; color: var(--gold); font-size: 0.9rem; }
-        .timeline-content { background-color: var(--card-bg); padding: 15px; border-radius: 8px; margin-top: 5px; border-left: 3px solid var(--gold); }
-        .timeline-title { font-weight: bold; color: #fff; margin-bottom: 5px; display: block; }
-        .timeline-desc { font-size: 0.85rem; color: #aaa; }
-        .btn-restart { display: block; width: 100%; padding: 15px; background-color: transparent; border: 1px solid #555; color: #888; text-align: center; font-size: 1rem; text-decoration: none; border-radius: 8px; margin-top: 40px; font-family: 'Cinzel', serif; transition: all 0.3s; cursor: pointer; }
+        body { background-color: var(--bg-color); color: var(--text-main); font-family: 'Lato', sans-serif; padding: 20px; max-width: 600px; margin: 0 auto; text-align: center; overflow-x: hidden; }
+        h1 { font-family: 'Cinzel', serif; color: var(--gold); margin-bottom: 30px; font-size: 1.8rem; animation: fadeInTitle 1s ease-out; }
+        .mosaic-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 30px; perspective: 1500px; }
+        .mosaic-item { position: relative; width: 100%; padding-bottom: 100%; border-radius: 8px; overflow: visible; opacity: 0; animation: popIn 0.5s forwards; transform-style: preserve-3d; }
+        .zoom-container { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 8px rgba(0,0,0,0.5); transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1); z-index: 1; }
+        .mosaic-item img { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; filter: grayscale(100%); transition: filter 1s ease-in-out; }
+        .mosaic-item.reveal img { filter: grayscale(0%); }
+        .mosaic-item-overlay { position: absolute; bottom: 0; width: 100%; background: linear-gradient(to top, rgba(0,0,0,0.9), transparent); padding: 10px 5px 5px; text-align: center; }
+        .mosaic-item-title { font-family: 'Cinzel', serif; font-size: 0.7rem; font-weight: bold; color: #fff; text-shadow: 1px 1px 2px black; }
+        .memory-text { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-family: 'Cinzel', serif; font-size: 1.2rem; font-weight: bold; color: #111; background-color: rgba(224, 214, 194, 0.8); padding: 5px 10px; border-radius: 5px; box-shadow: 0 0 10px black; opacity: 0; transition: opacity 0.5s ease-in-out; pointer-events: none; }
+        .final-text { font-family: 'Cinzel', serif; font-weight: bold; font-size: 1.4rem; line-height: 1.8; color: var(--gold); text-shadow: 1px 1px 4px #000; margin-top: 40px; opacity: 0; animation: popIn 1s forwards; }
+        .btn-restart { display: inline-block; padding: 12px 25px; background-color: transparent; border: 1px solid #555; color: #888; font-size: 0.9rem; border-radius: 8px; margin-top: 30px; font-family: 'Cinzel', serif; transition: all 0.3s; cursor: pointer; opacity: 0; animation: popIn 1s forwards; }
         .btn-restart:hover { border-color: var(--gold); color: var(--gold); }
-        .btn-disabled { border-color: #333; color: #333; cursor: default; }
-        @keyframes growLine { from { height: 0; } to { height: 100%; } }
-        @keyframes slideIn { from { opacity: 0; transform: translateX(-20px); } to { opacity: 1; transform: translateX(0); } }
-        .item-1 { animation-delay: 0.2s; } .item-2 { animation-delay: 0.4s; } .item-3 { animation-delay: 0.6s; }
-        .item-4 { animation-delay: 0.8s; } .item-5 { animation-delay: 1.0s; } .item-6 { animation-delay: 1.2s; }
-        .item-7 { animation-delay: 1.4s; } .item-8 { animation-delay: 1.6s; } .item-9 { animation-delay: 1.8s; }
+        .btn-disabled { border-color: #333; color: #333; cursor: default; pointer-events: none; }
+        @keyframes fadeInTitle { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes popIn { from { opacity: 0; transform: scale(0.8); } to { opacity: 1; transform: scale(1); } }
+        .item-1 { animation-delay: 1.0s; } .item-2 { animation-delay: 4.0s; } .item-3 { animation-delay: 7.0s; } .item-4 { animation-delay: 10.0s; } .item-5 { animation-delay: 13.0s; } .item-6 { animation-delay: 16.0s; } .item-7 { animation-delay: 19.0s; } .item-8 { animation-delay: 22.0s; } .item-9 { animation-delay: 25.0s; } .final-text { animation-delay: 28.0s; } .btn-restart { animation-delay: 28.5s; }
     </style>
 </head>
 <body>
-    <header>
-        <h1>Timeline Completed</h1>
-        <div class="subtitle">You have restored all layers of history</div>
-    </header>
-    <div class="timeline">
-        <div class="timeline-item item-1"><div class="timeline-dot"></div><div class="timeline-date">1st Century BC</div><div class="timeline-content"><span class="timeline-title">ROME (Barcino)</span><span class="timeline-desc">Foundation of the colony.</span></div></div>
-        <div class="timeline-item item-2"><div class="timeline-dot"></div><div class="timeline-date">4th - 8th Century</div><div class="timeline-content"><span class="timeline-title">VISIGOTHS (Barchinona)</span><span class="timeline-desc">Hidden power underground.</span></div></div>
-        <div class="timeline-item item-3"><div class="timeline-dot"></div><div class="timeline-date">11th Century</div><div class="timeline-content"><span class="timeline-title">AL-ANDALUS (Frontier)</span><span class="timeline-desc">Cultural exchange.</span></div></div>
-        <div class="timeline-item item-4"><div class="timeline-dot"></div><div class="timeline-date">13th - 15th Century</div><div class="timeline-content"><span class="timeline-title">GOTHIC (Splendor)</span><span class="timeline-desc">Palaces and gargoyles.</span></div></div>
-        <div class="timeline-item item-5"><div class="timeline-dot"></div><div class="timeline-date">13th Century</div><div class="timeline-content"><span class="timeline-title">THE CALL (Wisdom)</span><span class="timeline-desc">Rashba and the Jewish community.</span></div></div>
-        <div class="timeline-item item-6"><div class="timeline-dot"></div><div class="timeline-date">16th Century</div><div class="timeline-content"><span class="timeline-title">RENAISSANCE (Ardiaca)</span><span class="timeline-desc">Transformation of palaces.</span></div></div>
-        <div class="timeline-item item-7"><div class="timeline-dot"></div><div class="timeline-date">18th Century</div><div class="timeline-content"><span class="timeline-title">ENLIGHTENMENT (Lights)</span><span class="timeline-desc">New Plant Decree and order.</span></div></div>
-        <div class="timeline-item item-8"><div class="timeline-dot"></div><div class="timeline-date">1938</div><div class="timeline-content"><span class="timeline-title">CIVIL WAR (Pain)</span><span class="timeline-desc">Scars of historical memory.</span></div></div>
-        <div class="timeline-item item-9"><div class="timeline-dot"></div><div class="timeline-date">TODAY</div><div class="timeline-content"><span class="timeline-title">PRESENT (Barcelona)</span><span class="timeline-desc">You are the last layer.</span></div></div>
+    <header><h1>The Mosaic of History</h1></header>
+    <div class="mosaic-grid">
+        <div class="mosaic-item item-1" data-memory="BARCINO"><div class="zoom-container"><img src="../imagenes/roma.jpg" alt="Rome"><div class="mosaic-item-overlay"><span class="mosaic-item-title">ROME</span></div><div class="memory-text"></div></div></div>
+        <div class="mosaic-item item-2" data-memory="MARTI5"><div class="zoom-container"><img src="../imagenes/visigodos.jpg" alt="Visigoths"><div class="mosaic-item-overlay"><span class="mosaic-item-title">VISIGOTHS</span></div><div class="memory-text"></div></div></div>
+        <div class="mosaic-item item-3" data-memory="1008"><div class="zoom-container"><img src="../imagenes/alandalus.jpg" alt="Al-Andalus"><div class="mosaic-item-overlay"><span class="mosaic-item-title">AL-ANDALUS</span></div><div class="memory-text"></div></div></div>
+        <div class="mosaic-item item-4" data-memory="4171"><div class="zoom-container"><img src="../imagenes/gotico.jpg" alt="Gothic"><div class="mosaic-item-overlay"><span class="mosaic-item-title">GOTHIC</span></div><div class="memory-text"></div></div></div>
+        <div class="mosaic-item item-5" data-memory="72"><div class="zoom-container"><img src="../imagenes/call.jpg" alt="The Call"><div class="mosaic-item-overlay"><span class="mosaic-item-title">THE CALL</span></div><div class="memory-text"></div></div></div>
+        <div class="mosaic-item item-6" data-memory="2TSHIELD"><div class="zoom-container"><img src="../imagenes/ardiaca.jpg" alt="Renaissance"><div class="mosaic-item-overlay"><span class="mosaic-item-title">RENAISSANCE</span></div><div class="memory-text"></div></div></div>
+        <div class="mosaic-item item-7" data-memory="PADELLAS"><div class="zoom-container"><img src="../imagenes/veguer.jpg" alt="Enlightenment"><div class="mosaic-item-overlay"><span class="mosaic-item-title">ENLIGHTENMENT</span></div><div class="memory-text"></div></div></div>
+        <div class="mosaic-item item-8" data-memory="OCTAGON"><div class="zoom-container"><img src="../imagenes/felipneri.jpg" alt="Civil War"><div class="mosaic-item-overlay"><span class="mosaic-item-title">CIVIL WAR</span></div><div class="memory-text"></div></div></div>
+        <div class="mosaic-item item-9" data-memory="BARCELONA"><div class="zoom-container"><img src="../imagenes/santjaume.jpg" alt="Present"><div class="mosaic-item-overlay"><span class="mosaic-item-title">PRESENT</span></div><div class="memory-text"></div></div></div>
     </div>
-    <button id="final-btn" class="btn-restart" onclick="closeBook()">Close the Book</button>
+    <div class="final-text">
+        "You have deciphered the stone, you have read the time.<br>The Manuscript is no longer a secret of the city,<br>it is now part of your memory."
+    </div>
+    <button id="final-btn" class="btn-restart" onclick="closeBook()">Close the Manuscript</button>
     <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const items = document.querySelectorAll('.mosaic-item');
+            const grid = document.querySelector('.mosaic-grid');
+            items.forEach(item => {
+                item.addEventListener('animationend', (event) => {
+                    if (event.animationName === 'popIn') {
+                        const zoomContainer = item.querySelector('.zoom-container');
+                        if (!zoomContainer) return;
+                        const itemRect = item.getBoundingClientRect();
+                        const gridRect = grid.getBoundingClientRect();
+                        const viewportWidth = (window.visualViewport) ? window.visualViewport.width : window.innerWidth;
+                        const viewportHeight = (window.visualViewport) ? window.visualViewport.height : window.innerHeight;
+                        const viewportCenterX = viewportWidth / 2;
+                        const viewportCenterY = viewportHeight / 2;
+                        const itemCenterX = itemRect.left + itemRect.width / 2;
+                        const itemCenterY = itemRect.top + itemRect.height / 2;
+                        const translateX = viewportCenterX - itemCenterX;
+                        const translateY = (viewportCenterY - itemCenterY) - gridRect.top;
+                        zoomContainer.style.transform = `translate(${translateX}px, ${translateY}px) scale(4.5)`;
+                        zoomContainer.style.zIndex = '100';
+                        setTimeout(() => {
+                            item.classList.add('reveal');
+                            const memory = item.dataset.memory;
+                            const memoryTextElement = item.querySelector('.memory-text');
+                            memoryTextElement.textContent = memory;
+                            memoryTextElement.style.opacity = '1';
+                        }, 800);
+                        setTimeout(() => {
+                            zoomContainer.style.transform = 'translate(0, 0) scale(1)';
+                            zoomContainer.style.zIndex = '1';
+                        }, 2500);
+                    }
+                });
+            });
+        });
         function closeBook() {
             localStorage.removeItem('progresoJuego');
             const btn = document.getElementById('final-btn');
-            btn.textContent = "The book is closed.";
+            btn.textContent = "The manuscript is closed.";
             btn.classList.add('btn-disabled');
-            btn.disabled = true;
-            alert("The Manuscript has been saved. Thank you for playing.");
         }
     </script>
 </body>

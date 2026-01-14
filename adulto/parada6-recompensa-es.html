@@ -35,7 +35,6 @@
     </style>
 </head>
 <body>
-
     <div id="guardian-modal" class="modal-overlay">
         <div class="modal-content">
             <h2>Prueba del Guardián</h2>
@@ -45,34 +44,24 @@
             <div id="guardian-feedback"></div>
         </div>
     </div>
-
     <header><h1>Capítulo VI: Renacimiento</h1></header>
-
     <div id="reward-container">
         <div class="card">
             <div class="feedback-success">¡Código 2-T-ESCUDO aceptado!</div>
-            
             <div class="knowledge-reward">
                 <h3>El Palacio del Arcediano</h3>
-                <p><strong>Historia Viva:</strong> Estás ante la reforma que Lluís Desplà realizó en el siglo XVI, convirtiendo una casa medieval en un palacete <strong>Renacentista</strong>. Pero su historia no acaba ahí: hoy en día, este edificio custodia la memoria escrita de todos los barceloneses, ya que es la sede del <strong>Archivo Histórico de la Ciudad de Barcelona</strong>.</p>
-                <p><strong>Un guiño irónico:</strong> El buzón que has usado para el enigma es <strong>Modernista</strong> (1902). Las <strong>golondrinas</strong> simbolizan la rapidez ideal de la Justicia, pero la <strong>tortuga</strong> representa la triste realidad: la burocracia administrativa que la hace lenta y pesada.</p>
+                <p><strong>Historia Viva:</strong> Estás ante la reforma que Lluís Desplà realizó en el siglo XVI, convirtiendo una casa medieval en un palacete <strong>Renacentista</strong>. Hoy, este edificio custodia la memoria escrita de la ciudad como sede del <strong>Archivo Histórico de Barcelona</strong>.</p>
+                <p><strong>Un guiño irónico:</strong> El buzón que has usado es <strong>Modernista</strong> (1902). Las <strong>golondrinas</strong> simbolizan la rapidez ideal de la Justicia, pero la <strong>tortuga</strong> representa la lenta realidad de la burocracia.</p>
                 <span class="source-text">Fuente: Arxiu Històric de la Ciutat</span>
             </div>
-
             <div id="next-clue-box">
-                <!-- PISTA NIVEL 1 -->
-                <p><strong>PISTA DE SALTO:</strong><br>Tu excavación avanza hacia el Siglo de las Luces. Busca una calle con nombre de "vigilante" (Veguer) justo detrás de la gran plaza del Rey. Allí, los números del inventario te esperan.</p>
-                
+                <p><strong>PISTA DE SALTO:</strong><br>Tu excavación avanza hacia el Siglo de las Luces. Busca una calle con nombre de 'Veguer' justo detrás de la gran plaza del Rey.</p>
                 <button id="hint-btn-1" class="btn btn-secondary" onclick="askGuardian(1)">¿No sabes dónde ir? Pide una Pista Directa</button>
-
-                <!-- PISTA NIVEL 2 (Oculta) -->
                 <div id="hint-level-2" class="extra-hint-content">
                     <h4>Pista Directa</h4>
-                    <p>Regresa a la <strong>Plaça del Rei</strong>. En una de sus esquinas nace el <strong>Carrer del Veguer</strong>. Es una callejuela que baja hacia el Museo de Historia.</p>
+                    <p>Regresa a la <strong>Plaça del Rei</strong>. En una de sus esquinas nace el <strong>Carrer del Veguer</strong>.</p>
                     <button id="hint-btn-2" class="btn btn-secondary" onclick="askGuardian(2)">Sigo perdido/a. Muéstrame el mapa</button>
                 </div>
-                
-                <!-- PISTA NIVEL 3 (Oculta) -->
                 <div id="hint-level-3" class="extra-hint-content">
                      <h4>Ubicación Exacta</h4>
                      <a href="https://www.google.com/maps/search/?api=1&query=Carrer+del+Veguer,Barcelona" target="_blank" class="btn btn-map">Abrir en Google Maps</a>
@@ -80,19 +69,15 @@
             </div>
         </div>
     </div>
-    
     <a href="parada7-enigma-es.html" class="btn btn-success" onclick="saveProgress()">Iniciar Capítulo VII (Ilustración)</a>
-
     <script>
         function saveProgress() {
             localStorage.setItem('progresoJuego', '7');
         }
-
         const guardianPuzzles = [
             { question: "¿Qué importante institución alberga hoy este edificio?", answer: "ARCHIVO" },
-            { question: "La pista te envía a una calle con nombre de oficio antiguo. ¿Cuál es?", answer: "VEGUER" }
+            { question: "La pista te envía a una calle con un nombre muy concreto. ¿Cuál es ese nombre?", answer: "VEGUER" }
         ];
-        
         const feedbackError = 'Respuesta incorrecta. Revisa el texto.';
         const modal = document.getElementById('guardian-modal');
         const questionEl = document.getElementById('guardian-question');
@@ -100,7 +85,6 @@
         const submitBtn = document.getElementById('guardian-submit');
         const feedbackEl = document.getElementById('guardian-feedback');
         let levelToUnlock = 0;
-
         function askGuardian(level) {
             levelToUnlock = level;
             const puzzle = guardianPuzzles[level - 1];
@@ -110,10 +94,10 @@
             modal.style.display = 'flex';
             answerEl.focus();
         }
-
         submitBtn.onclick = () => {
             const puzzle = guardianPuzzles[levelToUnlock - 1];
-            const userAnswer = answerEl.value.toUpperCase().trim();
+            let userAnswer = answerEl.value.toUpperCase().trim();
+            userAnswer = userAnswer.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
             if (userAnswer.includes(puzzle.answer)) {
                 modal.style.display = 'none';
                 revealHint(levelToUnlock);
@@ -121,7 +105,6 @@
                 feedbackEl.textContent = feedbackError;
             }
         };
-
         function revealHint(level) {
             if (level === 1) {
                 document.getElementById('hint-level-2').style.display = 'block';

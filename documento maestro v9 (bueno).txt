@@ -1,128 +1,99 @@
 ======================================================================
-DOCUMENTO MAESTRO DE CONTEXTO Y DESARROLLO v8.0
+DOCUMENTO MAESTRO DE CONTEXTO Y DESARROLLO v9.0 (Versión Test Hijos)
 PROYECTO: "El Manuscrito de las Capas de Piedra"
-PLATAFORMA: Web App Móvil (GitHub Pages)
 RUTA: Cronológica (Histórica)
-ESTADO: Enigmas revisados tras prueba de campo (Nivel "Pro")
+FECHA: 28/12/2025
 ======================================================================
 
 1. ESPECIFICACIONES TÉCNICAS
 ----------------------------------------------------------------------
-[STACK]
-- Lenguajes: HTML5, CSS3, JavaScript (Vanilla).
-- Frameworks: NINGUNO.
-- Diseño: Mobile First (Botones grandes, textos legibles, alto contraste).
-
-[ALMACENAMIENTO]
-- Sistema: localStorage del navegador.
-- Clave Principal: 'progresoJuego' (Valor: número de la siguiente parada, 2-9).
-- Reset: Archivo 'reset.html' para limpiar datos durante pruebas.
+- Stack: HTML5, CSS3, JavaScript (Vanilla).
+- Diseño: Mobile First.
+- Persistencia: localStorage ('progresoJuego').
+- Lógica de Ayuda: "Ayuda Progresiva" (Botón de pista aparece tras 3 fallos).
+- Lógica de Validación: Flexible (acepta mayúsculas/minúsculas y con/sin tildes).
+- Pantalla Final: Mosaico del Recuerdo con animación "Fly-out" (prueba-es.html).
 
 [ESTRUCTURA DE FICHEROS]
 / (Raíz)
-|-- index.html           (Selector de idioma)
-|-- es.html, ca.html, en.html (Intros + Pista inicial corregida "Derecha")
-|-- reset.html           (Herramienta QA)
-|-- imagenes/            (Todas las fotos .jpg, rutas relativas)
-|-- adulto/              (Carpeta de contenido del juego)
-    |-- parada1-enigma-[lang].html
-    |-- parada1-recompensa-[lang].html
-    ... (hasta parada 9)
-    |-- final-[lang].html (Timeline interactiva)
+|-- index.html, es.html, ca.html, en.html
+|-- reset.html
+|-- imagenes/
+|-- adulto/
+    |-- parada[X]-enigma-[lang].html
+    |-- parada[X]-recompensa-[lang].html
+    |-- prueba-[lang].html (Pantalla Final - Mosaico)
 
 ======================================================================
-2. GUIÓN DE JUEGO Y LÓGICA (RUTA CRONOLÓGICA)
+2. GUIÓN DE JUEGO Y LÓGICA (RUTA CRONOLÓGICA CORREGIDA)
 ======================================================================
 
 --- INICIO (Plaça Catalunya -> Catedral) ---
-- Pista Inicial: "Mirando la fachada de la Catedral, tu objetivo está a la DERECHA".
+- Pista Inicial: "Mirando la fachada de la Catedral, tu objetivo está FRENTE A TI".
 
 --- PARADA 1: ROMA (Plaça Nova) ---
-- Ubicación: Torres de la Muralla / Plaça Nova.
-- Elemento Visual: Las letras gigantes de bronce de Joan Brossa en el suelo.
-- Enigma: "¿Qué nombre romano de 7 letras forman las esculturas?"
+- Elemento: Letras de bronce de Joan Brossa.
+- Enigma: Nombre romano de 7 letras.
 - Solución: BARCINO
-- Pista Salto: Ir a la plaza donde los reyes impartían justicia (Plaça del Rei).
+- Curiosidad: La letra 'N' es de aluminio, parece una vela y apunta al Norte.
+- Pista Salto: Ir a la Plaça del Rei.
 
 --- PARADA 2: VISIGODOS (Plaça del Rei) ---
-- Ubicación: Centro de la plaza.
-- Elemento Visual: Torre del Rei Martí (La torre alta rectangular de 5 pisos).
-- Enigma: "Código alfanumérico: Nombre del rey constructor (sin tilde) + Número de pisos de galerías de su torre."
+- Elemento: Torre del Rei Martí.
+- Enigma: Nombre del rey (MARTI) + Nº de pisos (5).
 - Solución: MARTI5
-- Pista Salto: Cruzar la muralla y buscar la estatua ecuestre (Plaça Ramon Berenguer).
+- Curiosidad: Aquí recibieron los Reyes Católicos a Colón.
+- Pista Salto: Ir a la estatua de Ramon Berenguer.
 
 --- PARADA 3: AL-ÁNDALUS (Plaça Ramon Berenguer) ---
-- Ubicación: Estatua ecuestre en Via Laietana.
-- Elemento Visual: Inscripción "RAMON BERENGVER III".
-- Enigma (La Trampa del Latín): Sumar TODOS los números romanos del nombre, recordando que la 'U' se escribe 'V' y vale 5.
-  (M=1000) + (V=5) + (III=3).
+- Elemento: Inscripción de piedra "RAMON BERENGVER III".
+- Enigma (Trampa del Latín): Sumar M(1000) + V(5) + III(3).
 - Solución: 1008
-- Pista Salto: Ir al puente más famoso y fotografiado (Pont del Bisbe).
+- Pista Salto: Ir al Pont del Bisbe.
 
 --- PARADA 4: GÓTICO (Pont del Bisbe) ---
-- Ubicación: Debajo del puente.
-- Elemento Visual: La calavera atravesada por una daga.
-- Enigma (Criptografía): Identificar el objeto (DAGA) y convertirlo a números (A=1, B=2...).
-  D(4) - A(1) - G(7) - A(1).
+- Elemento: Calavera con daga.
+- Enigma (Criptografía): Convertir DAGA a números (A=1...).
 - Solución: 4171
-- Pista Salto: Ir al Call (Barrio Judío), calle del rabino sabio (Salomó ben Adret).
+- Pista Salto: Ir al Call (Carrer Salomó ben Adret).
 
---- PARADA 5: EL CALL (Carrer de Salomó ben Adret) ---
-- Ubicación: Altura del número 6 (Casa Adret).
-- Elemento Visual: Fachada antigua / Cartel "Casa Adret" para confirmar ubicación.
-- Enigma: Multiplicar el número del portal (6) por el siglo de los cimientos (XII).
-  *Nota: El texto menciona "Casa Adret" para facilitar la localización.*
+--- PARADA 5: EL CALL (Carrer Salomó ben Adret) ---
+- Elemento: Casa Adret (Nº 6).
+- Enigma: Multiplicar número del portal (6) x Siglo (12).
 - Solución: 72
-- Pista Salto: Volver a Plaça Nova, buscar buzón modernista (Casa de l'Ardiaca).
+- Pista Salto: Ir a la Casa de l'Ardiaca (Carrer Santa Llúcia).
 
 --- PARADA 6: RENACIMIENTO (Casa de l'Ardiaca) ---
-- Ubicación: Plaça Nova (frente Catedral).
-- Elemento Visual: Fachada principal, buzón y dintel.
-- Enigma (Observación): Código compuesto "Nº Columnas - Inicial Animal - Objeto Dintel".
-  2 Columnas estriadas - T (Tortuga) - ESCUDO.
-- Solución: 2TESCUDO (o 2-T-ESCUDO).
-- Pista Salto: Buscar calle "Veguer" detrás de Plaça del Rei.
+- Elemento: Fachada (Columnas, Buzón, Escudo).
+- Enigma: Código visual Nº-Letra-Palabra.
+- Solución: 2TESCUDO (CA: 2TESCUT, EN: 2TSHIELD).
+- Pista Salto: Ir al Carrer del Veguer.
 
 --- PARADA 7: ILUSTRACIÓN (Carrer del Veguer) ---
-- Ubicación: Frente al MUHBA (Casa Padellàs).
-- Elemento Visual: Fachada gótica trasladada.
-- Enigma (Jeroglífico): Cifrado Masónico (Pigpen) en la pantalla del móvil.
+- Elemento: Fachada Casa Padellàs (MUHBA).
+- Enigma: Cifrado Masónico (Pigpen).
 - Solución: PADELLAS
-- Recompensa (Contexto): Explicación de la familia Padellàs, el traslado de 1931 y el fin del Veguer (Nueva Planta).
-- Pista Salto: Plaza escondida con marcas de metralla (Sant Felip Neri).
+- Pista Salto: Ir a Plaça Sant Felip Neri.
 
 --- PARADA 8: GUERRA CIVIL (Plaça Sant Felip Neri) ---
-- Ubicación: Centro de la plaza.
-- Elemento Visual: Placa conmemorativa y fachada de la iglesia.
-- Enigma (Código NERI): Convertir el apellido del santo en secuencia numérica (A=1...). NO SUMAR.
-  N(14) - E(5) - R(18) - I(9).
-- Solución: 145189 (o 14-5-18-9).
-- Pista Salto: Ir al centro del poder político (Plaça Sant Jaume).
+- Elemento: Fuente octogonal.
+- Enigma: Escribir el nombre de la figura geométrica de la fuente.
+- Solución: OCTOGONO (CA: OCTÀGON, EN: OCTAGON).
+- Recompensa: Texto sobre los "pequeños/infantes" para evitar repetición.
+- Pista Salto: Ir a Plaça Sant Jaume.
 
---- PARADA 9: PRESENTE / FINAL (Plaça Sant Jaume) ---
-- Ubicación: Centro de la plaza.
-- Elemento Visual: Fachada del Ayuntamiento (Ajuntament).
-- Enigma: "¿Cómo se llama la ciudad hoy? (Cierre del ciclo Barcino -> Barcelona)".
+--- PARADA 9: FINAL (Plaça Sant Jaume) ---
+- Elemento: Fachada del Ayuntamiento.
+- Enigma: Nombre actual de la ciudad.
 - Solución: BARCELONA
-- Recompensa: Epílogo narrativo ("Tú eres la última capa").
-- Acción Final: Botón "Cerrar el Libro" -> TIMELINE VISUAL (final-es.html).
+- Recompensa: Epílogo completo mencionando las 8 épocas.
+- Acción Final: Botón "Ver el Desenlace" -> Mosaico del Recuerdo.
+
+--- PANTALLA FINAL: Mosaico del Recuerdo ---
+- Concepto: Cuadrícula 3x3 con las 9 imágenes de las paradas.
+- Animación: Cada imagen aparece secuencialmente, hace un zoom "fly-out" al centro, se colorea, muestra la solución del enigma y vuelve a su sitio.
+- Frase Final Épica: "Has descifrado la piedra, has leído el tiempo. El Manuscrito ya no es un secreto de la ciudad, ahora es parte de tu memoria."
 
 ======================================================================
-3. LISTADO DE IMÁGENES (ASSETS)
-======================================================================
-Las imágenes deben estar en la carpeta /imagenes/ con estos nombres exactos (respetando minúsculas):
-
-1. portada.jpg    (Callejón genérico)
-2. roma.jpg       (Letras BARCINO o Torres)
-3. visigodos.jpg  (Torre del Rei Martí)
-4. alandalus.jpg  (Estatua Ramon Berenguer)
-5. gotico.jpg     (Pont del Bisbe)
-6. call.jpg       (Callejón estrecho)
-7. ardiaca.jpg    (Fachada Ardiaca / Buzón)
-8. veguer.jpg     (Fachada Casa Padellàs)
-9. felipneri.jpg  (Muros iglesia)
-10. santjaume.jpg (Vista general Plaza)
-
-======================================================================
-FIN DEL DOCUMENTO MAESTRO v8.0
+FIN DEL DOCUMENTO MAESTRO
 ======================================================================

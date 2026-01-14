@@ -57,27 +57,21 @@
             <div class="knowledge-reward">
                 <h3>El Llegat de Roma</h3>
                 
-                <p><strong>L'Origen (Història):</strong> Aquí es va fundar la colònia <em>Iulia Augusta Faventia Paterna Barcino</em> al segle I a.C. Les dues torres que veus són la <em>Porta Praetoria</em>, l'entrada principal a la ciutat emmurallada, per on passava l'aqüeducte que portava aigua a la ciutat.</p>
+                <p><strong>L'Origen (Història):</strong> Aquí es va fundar la colònia <em>Iulia Augusta Faventia Paterna Barcino</em> al segle I a.C. Les dues torres que veus són la <em>Porta Praetoria</em>, l'entrada principal a la ciutat emmurallada.</p>
                 
-                <p><strong>La Curiositat (El Poema Visual):</strong> Les lletres de bronze no són només un rètol, són un poema visual de <strong>Joan Brossa</strong>. Fixa't en la lletra <strong>'R'</strong>: està caiguda. Per què? Per simbolitzar la caiguda de l'Imperi Romà i el pas del temps.</p>
+                <p><strong>La Curiositat (La Lletra Brúixola):</strong> Torna a mirar les lletres de <strong>BARCINO</strong> a terra. Fixa't bé en la lletra <strong>'N'</strong>. És única per tres raons. És d'<strong>alumini</strong>, no de bronze, per brillar amb la llum del present. La seva forma evoca la <strong>vela d'un vaixell</strong>, en honor al mar Mediterrani. I el més important: la lletra sencera actua com una brúixola, <strong>apuntant al Nord</strong>.</p>
                 
                 <span class="source-text">Font: MUHBA / Art Públic</span>
             </div>
 
             <div id="next-clue-box">
-                <!-- PISTA NIVELL 1 -->
                 <p><strong>PISTA DE SALT:</strong><br>Deixa enrere les torres romanes i endinsa't al barri. El teu camí continua a la plaça on els antics reis impartien justícia. Busca el "Palau Reial Major".</p>
-                
                 <button id="hint-btn-1" class="btn btn-secondary" onclick="askGuardian(1)">No saps on anar? Demana una Pista Directa</button>
-
-                <!-- PISTA NIVELL 2 (Oculta) -->
                 <div id="hint-level-2" class="extra-hint-content">
                     <h4>Pista Directa</h4>
                     <p>Dirigeix-te a la <strong>Plaça del Rei</strong>. Envolta la Catedral per la dreta (Carrer del Bisbe) i gira a l'esquerra després de la muralla.</p>
                     <button id="hint-btn-2" class="btn btn-secondary" onclick="askGuardian(2)">Segueixo perdut/da. Mostra'm el mapa</button>
                 </div>
-                
-                <!-- PISTA NIVELL 3 (Oculta) -->
                 <div id="hint-level-3" class="extra-hint-content">
                      <h4>Ubicació Exacta</h4>
                      <a href="https://www.google.com/maps/search/?api=1&query=Plaça+del+Rei,Barcelona" target="_blank" class="btn btn-map">Obrir a Google Maps</a>
@@ -86,7 +80,6 @@
         </div>
     </div>
     
-    <!-- ENLLAÇ A PARADA 2 (VISIGOTS) -->
     <a href="parada2-enigma-ca.html" class="btn btn-success" onclick="saveProgress()">Iniciar Capítol II (Visigots)</a>
 
     <script>
@@ -95,8 +88,8 @@
         }
 
         const guardianPuzzles = [
-            { question: "Quin artista va crear les lletres de bronze del terra?", answer: "BROSSA" }, // Accepta JOAN BROSSA
-            { question: "La pista t'envia a la plaça dels... què?", answer: "REIS" } // Accepta REIS o REI
+            { question: "Cap a quin punt cardinal apunta la lletra 'N'?", answer: "NORD" },
+            { question: "La pista t'envia a la plaça dels... què?", answer: "REIS" }
         ];
         
         const feedbackError = 'Resposta incorrecta. Llegeix el text amb més atenció.';
@@ -119,7 +112,8 @@
 
         submitBtn.onclick = () => {
             const puzzle = guardianPuzzles[levelToUnlock - 1];
-            const userAnswer = answerEl.value.toUpperCase().trim();
+            let userAnswer = answerEl.value.toUpperCase().trim();
+            userAnswer = userAnswer.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
             if (userAnswer.includes(puzzle.answer)) {
                 modal.style.display = 'none';
                 revealHint(levelToUnlock);

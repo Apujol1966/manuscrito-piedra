@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="google" content="notranslate">
     <title>El Manuscrit de les Capes de Pedra</title>
-    <!-- Mismos estilos CSS que en es.html -->
     <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Lato:wght@400;700&display=swap" rel="stylesheet">
     <style>
         :root { --bg-color: #121212; --card-bg: #1e1e1e; --text-main: #e0d6c2; --text-muted: #a8a095; --accent: #c0392b; --success: #27ae60; }
@@ -62,15 +61,16 @@
         <main>
             <section class="card">
                 <p>"Benvingut/da, Arqueòleg/a del Temps.<br>Sostens a les teves mans el mapa d'una excavació única. No buscaràs or ni relíquies, sinó quelcom molt més valuós: la memòria de Barcelona, gravada a la seva pell de pedra."</p>
+                <p>"Avui, la teva missió és excavar els seus secrets. No faràs servir un pic i una pala, sinó el teu enginy. La teva feina serà retirar la pols dels segles per revelar les marques que cada civilització va deixar enrere."</p>
                 <div class="starting-point">
                     <h3>Punt d'Inici: Plaça de Catalunya</h3>
                     <div id="hint-level-1">
-                        <p>"Des de la gran plaça, dona l'esquena a l'edifici amb la poma mossegada i busca, a l'altre costat, l'avinguda de vianants coronada per un <strong>termòmetre gegant</strong>. Aquest termòmetre és la teva brúixola. Baixa per aquesta avinguda fins a topar amb la imponent façana de la <strong>Catedral</strong>. El teu primer jaciment t'espera a la teva <strong>DRETA</strong>, on dues torres quadrades fan guàrdia."</p>
+                        <p>"Des de la gran plaça, dona l'esquena a l'edifici amb la poma mossegada i busca, a l'altre costat, l'avinguda de vianants coronada per un <strong>termòmetre gegant</strong>. Aquest termòmetre és la teva brúixola. Baixa per aquesta avinguda fins a topar amb la imponent façana de la <strong>Catedral</strong>. El teu primer jaciment t'espera just <strong>DAVANT TEU</strong>, on dues torres quadrades fan guàrdia."</p>
                         <button id="hint-btn-1" class="btn btn-secondary" onclick="askGuardian(1)">Necessito una pista més directa</button>
                     </div>
                     <div id="hint-level-2" class="extra-hint-content">
                         <h4>Pista Directa</h4>
-                        <p>"Dirigeix-te a l'avinguda <strong>Portal de l'Àngel</strong>. Camina fins al final i trobaràs la Catedral de Barcelona. La <strong>Plaça Nova</strong> és a la dreta de la façana principal."</p>
+                        <p>"Dirigeix-te a l'avinguda <strong>Portal de l'Àngel</strong>. Camina fins al final. Arribaràs a la <strong>Plaça Nova</strong>, amb la façana de la Catedral i les torres romanes just davant."</p>
                         <button id="hint-btn-2" class="btn btn-secondary" onclick="askGuardian(2)">Segueixo perdut/da. Mostra'm el mapa</button>
                     </div>
                     <div id="hint-level-3" class="extra-hint-content">
@@ -84,6 +84,7 @@
     </div>
     <script>
         function saveProgress(stopNumber) { localStorage.setItem('progresoJuego', stopNumber.toString()); }
+        
         document.addEventListener('DOMContentLoaded', () => {
             const progress = parseInt(localStorage.getItem('progresoJuego') || '1');
             if (progress > 1) {
@@ -96,12 +97,53 @@
                 document.getElementById('restart-btn').onclick = () => { localStorage.removeItem('progresoJuego'); continueModal.style.display = 'none'; mainContent.style.display = 'block'; };
             }
         });
-        const guardianPuzzles = [ { question: "Per rebre la teva guia, demostra que has entès el teu rol. Quina és la teva missió?", answer: "EXCAVAR" }, { question: "L'atenció és la teva millor eina. Quin objecte et servirà com a 'brúixola' per trobar el camí?", answer: "TERMOMETRE" } ];
-        const feedbackError = 'Resposta incorrecta. Para més atenció.';
-        const guardianModal = document.getElementById('guardian-modal'); const questionEl = document.getElementById('guardian-question'); const answerEl = document.getElementById('guardian-answer'); const submitBtn = document.getElementById('guardian-submit'); const feedbackEl = document.getElementById('guardian-feedback'); let levelToUnlock = 0;
-        function askGuardian(level) { levelToUnlock = level; const puzzle = guardianPuzzles[level - 1]; questionEl.textContent = puzzle.question; answerEl.value = ''; feedbackEl.textContent = ''; guardianModal.style.display = 'flex'; answerEl.focus(); }
-        submitBtn.onclick = () => { const puzzle = guardianPuzzles[levelToUnlock - 1]; const userAnswer = answerEl.value.toUpperCase().trim(); if (userAnswer.includes(puzzle.answer)) { guardianModal.style.display = 'none'; revealHint(levelToUnlock); } else { feedbackEl.textContent = feedbackError; } };
-        function revealHint(level) { if (level === 1) { document.getElementById('hint-level-2').style.display = 'block'; document.getElementById('hint-btn-1').style.display = 'none'; } else if (level === 2) { document.getElementById('hint-level-3').style.display = 'block'; document.getElementById('hint-btn-2').style.display = 'none'; } }
+
+        const guardianPuzzles = [ 
+            { question: "Per rebre la teva guia, demostra que has entès el teu rol. Quina és la teva missió?", answer: "EXCAVAR" }, 
+            { question: "L'atenció és la teva millor eina. Quin objecte et servirà com a 'brúixola' per trobar el camí?", answer: "TERMOMETRE" } 
+        ];
+        
+        const feedbackError = 'Resposta incorrecta. Llegeix el text amb més atenció.';
+        const guardianModal = document.getElementById('guardian-modal'); 
+        const questionEl = document.getElementById('guardian-question'); 
+        const answerEl = document.getElementById('guardian-answer'); 
+        const submitBtn = document.getElementById('guardian-submit'); 
+        const feedbackEl = document.getElementById('guardian-feedback'); 
+        let levelToUnlock = 0;
+        
+        function askGuardian(level) { 
+            levelToUnlock = level; 
+            const puzzle = guardianPuzzles[level - 1]; 
+            questionEl.textContent = puzzle.question; 
+            answerEl.value = ''; 
+            feedbackEl.textContent = ''; 
+            guardianModal.style.display = 'flex'; 
+            answerEl.focus(); 
+        }
+        
+        submitBtn.onclick = () => { 
+            const puzzle = guardianPuzzles[levelToUnlock - 1]; 
+            
+            let userAnswer = answerEl.value.toUpperCase().trim();
+            userAnswer = userAnswer.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+
+            if (userAnswer.includes(puzzle.answer)) { 
+                guardianModal.style.display = 'none'; 
+                revealHint(levelToUnlock); 
+            } else { 
+                feedbackEl.textContent = feedbackError; 
+            } 
+        };
+        
+        function revealHint(level) { 
+            if (level === 1) { 
+                document.getElementById('hint-level-2').style.display = 'block'; 
+                document.getElementById('hint-btn-1').style.display = 'none'; 
+            } else if (level === 2) { 
+                document.getElementById('hint-level-3').style.display = 'block'; 
+                document.getElementById('hint-btn-2').style.display = 'none'; 
+            } 
+        }
     </script>
 </body>
 </html>

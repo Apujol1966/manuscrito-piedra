@@ -35,7 +35,6 @@
     </style>
 </head>
 <body>
-
     <div id="guardian-modal" class="modal-overlay">
         <div class="modal-content">
             <h2>Prova del Guardià</h2>
@@ -45,34 +44,24 @@
             <div id="guardian-feedback"></div>
         </div>
     </div>
-
     <header><h1>Capítol VI: Renaixement</h1></header>
-
     <div id="reward-container">
         <div class="card">
             <div class="feedback-success">Codi 2-T-ESCUT acceptat!</div>
-            
             <div class="knowledge-reward">
                 <h3>El Palau de l'Ardiaca</h3>
-                <p><strong>Història Viva:</strong> Ets davant de la reforma que Lluís Desplà va realitzar al segle XVI, convertint una casa medieval en un palauet <strong>Renaixentista</strong>. Però la seva història no acaba aquí: avui dia, aquest edifici custòdia la memòria escrita de tots els barcelonins, ja que és la seu de l'<strong>Arxiu Històric de la Ciutat de Barcelona</strong>.</p>
-                <p><strong>Un gest irònic:</strong> La bústia que has fet servir per a l'enigma és <strong>Modernista</strong> (1902). Les <strong>orenetes</strong> simbolitzen la rapidesa ideal de la Justícia, però la <strong>tortuga</strong> representa la trista realitat: la burocràcia administrativa que la fa lenta i pesada.</p>
+                <p><strong>Història Viva:</strong> Ets davant de la reforma que Lluís Desplà va fer al segle XVI, convertint una casa medieval en un palauet <strong>Renaixentista</strong>. Avui, aquest edifici custodia la memòria escrita de la ciutat com a seu de l'<strong>Arxiu Històric de Barcelona</strong>.</p>
+                <p><strong>Un gest irònic:</strong> La bústia que has fet servir és <strong>Modernista</strong> (1902). Les <strong>orenetes</strong> simbolitzen la rapidesa ideal de la Justícia, però la <strong>tortuga</strong> representa la lenta realitat de la burocràcia.</p>
                 <span class="source-text">Font: Arxiu Històric de la Ciutat</span>
             </div>
-
             <div id="next-clue-box">
-                <!-- PISTA NIVELL 1 -->
-                <p><strong>PISTA DE SALT:</strong><br>La teva excavació avança cap al Segle de les Llums. Busca un carrer amb nom de "vigilant" (Veguer) just darrere de la gran plaça del Rei. Allà, els números de l'inventari t'esperen.</p>
-                
+                <p><strong>PISTA DE SALT:</strong><br>La teva excavació avança cap al Segle de les Llums. Busca un carrer amb nom de 'Veguer' just darrere de la gran plaça del Rei.</p>
                 <button id="hint-btn-1" class="btn btn-secondary" onclick="askGuardian(1)">No saps on anar? Demana una Pista Directa</button>
-
-                <!-- PISTA NIVELL 2 (Oculta) -->
                 <div id="hint-level-2" class="extra-hint-content">
                     <h4>Pista Directa</h4>
-                    <p>Torna a la <strong>Plaça del Rei</strong>. En una de les seves cantonades neix el <strong>Carrer del Veguer</strong>. És un carreró que baixa cap al Museu d'Història.</p>
+                    <p>Torna a la <strong>Plaça del Rei</strong>. En una de les seves cantonades neix el <strong>Carrer del Veguer</strong>.</p>
                     <button id="hint-btn-2" class="btn btn-secondary" onclick="askGuardian(2)">Segueixo perdut/da. Mostra'm el mapa</button>
                 </div>
-                
-                <!-- PISTA NIVELL 3 (Oculta) -->
                 <div id="hint-level-3" class="extra-hint-content">
                      <h4>Ubicació Exacta</h4>
                      <a href="https://www.google.com/maps/search/?api=1&query=Carrer+del+Veguer,Barcelona" target="_blank" class="btn btn-map">Obrir a Google Maps</a>
@@ -80,19 +69,15 @@
             </div>
         </div>
     </div>
-    
     <a href="parada7-enigma-ca.html" class="btn btn-success" onclick="saveProgress()">Iniciar Capítol VII (Il·lustració)</a>
-
     <script>
         function saveProgress() {
             localStorage.setItem('progresoJuego', '7');
         }
-
         const guardianPuzzles = [
             { question: "Quina important institució alberga avui aquest edifici?", answer: "ARXIU" },
-            { question: "La pista t'envia a un carrer amb nom d'ofici antic. Quin és?", answer: "VEGUER" }
+            { question: "La pista t'envia a un carrer amb un nom molt concret. Quin és aquest nom?", answer: "VEGUER" }
         ];
-        
         const feedbackError = 'Resposta incorrecta. Revisa el text.';
         const modal = document.getElementById('guardian-modal');
         const questionEl = document.getElementById('guardian-question');
@@ -100,7 +85,6 @@
         const submitBtn = document.getElementById('guardian-submit');
         const feedbackEl = document.getElementById('guardian-feedback');
         let levelToUnlock = 0;
-
         function askGuardian(level) {
             levelToUnlock = level;
             const puzzle = guardianPuzzles[level - 1];
@@ -110,10 +94,10 @@
             modal.style.display = 'flex';
             answerEl.focus();
         }
-
         submitBtn.onclick = () => {
             const puzzle = guardianPuzzles[levelToUnlock - 1];
-            const userAnswer = answerEl.value.toUpperCase().trim();
+            let userAnswer = answerEl.value.toUpperCase().trim();
+            userAnswer = userAnswer.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
             if (userAnswer.includes(puzzle.answer)) {
                 modal.style.display = 'none';
                 revealHint(levelToUnlock);
@@ -121,7 +105,6 @@
                 feedbackEl.textContent = feedbackError;
             }
         };
-
         function revealHint(level) {
             if (level === 1) {
                 document.getElementById('hint-level-2').style.display = 'block';

@@ -33,31 +33,23 @@
         <h1>Capítol I: La Primera Tinta</h1>
         <div class="subtitle">Plaça Nova · Porta Praetoria</div>
     </header>
-
     <div class="img-container">
         <img src="../imagenes/roma.jpg" alt="Lletres Barcino a la Plaça Nova">
     </div>
-
     <section class="card">
-        <p>“Davant teu s'alcen les guardianes de la ciutat. Les dues torres de la Porta Praetoria són el vestigi més pur de la muralla romana. Han vist passar vint segles d'història.”</p>
-        <p class="narrative-text">“Però no busquis plaques petites ni cartells moderns. La ciutat crida el seu nom antic als quatre vents amb lletres de bronze gegants als peus de les torres.”</p>
+        <p>“Davant teu s'alcen les guardianes de la ciutat. Les dues torres de la Porta Praetoria són el vestigi més pur de la muralla romana.”</p>
+        <p class="narrative-text">“Però no busquis plaques petites. La ciutat crida el seu nom antic als quatre vents amb lletres de bronze gegants als peus de les torres.”</p>
     </section>
-
     <div id="enigma-container">
         <section class="enigma-box">
             <span class="enigma-icon">🏛️</span>
             <h3>El Nom de Bronze</h3>
-            <p>“Mira a terra, davant de les torres. Hi ha un poema visual fet escultura. Quin nom romà de 7 lletres formen les peces de bronze que tens davant?”</p>
-            
+            <p>“Mira a terra, davant de les torres. Hi ha un poema visual fet escultura. Quin nom romà de 7 lletres formen les peces de bronze?”</p>
             <label for="answer" style="display:none;">La teva resposta</label>
             <input type="text" id="answer" placeholder="Escriu el nom" maxlength="7">
-            
             <button class="btn btn-primary" onclick="checkAnswer()">Validar Nom</button>
-            
             <div id="feedback-msg"></div>
-
-            <button class="info-toggle" onclick="toggleHint()">Necessites una pista?</button>
-            
+            <button id="hint-toggle-btn" class="info-toggle" onclick="toggleHint()" style="display:none;">Necessites una pista?</button>
             <div id="hint-box" class="info-content">
                 <p>Són lletres grans i desordenades a terra.</p>
                 <p>Comença per <strong>B</strong>...</p>
@@ -65,20 +57,23 @@
             </div>
         </section>
     </div>
-
     <script>
         const SOLUTION = "BARCINO";
-        
+        let failCount = 0;
         function checkAnswer() {
             const userIn = document.getElementById('answer').value.toUpperCase().trim();
-            
+            const feedback = document.getElementById('feedback-msg');
+            const hintButton = document.getElementById('hint-toggle-btn');
             if (userIn === SOLUTION) {
                 window.location.href = 'parada1-recompensa-ca.html';
             } else {
-                document.getElementById('feedback-msg').textContent = "Nom incorrecte. Mira bé les lletres a terra.";
+                feedback.textContent = "Nom incorrecte. Mira bé les lletres a terra.";
+                failCount++;
+                if (failCount >= 3) {
+                    hintButton.style.display = 'block';
+                }
             }
         }
-
         function toggleHint() {
             const box = document.getElementById('hint-box');
             box.style.display = box.style.display === 'block' ? 'none' : 'block';

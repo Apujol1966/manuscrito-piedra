@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="google" content="notranslate">
     <title>The Manuscript of Stone Layers</title>
-    <!-- Mismos estilos CSS -->
     <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Lato:wght@400;700&display=swap" rel="stylesheet">
     <style>
         :root { --bg-color: #121212; --card-bg: #1e1e1e; --text-main: #e0d6c2; --text-muted: #a8a095; --accent: #c0392b; --success: #27ae60; }
@@ -66,12 +65,12 @@
                 <div class="starting-point">
                     <h3>Starting Point: Plaça de Catalunya</h3>
                     <div id="hint-level-1">
-                        <p>"From the grand plaza, turn your back to the building with the bitten apple and look for, on the other side, the pedestrian avenue crowned by a <strong>giant thermometer</strong>. That thermometer is your compass. Go down that avenue until you run into the imposing <strong>Cathedral</strong> facade. Your first site awaits you to your <strong>RIGHT</strong>, where two square towers stand guard."</p>
+                        <p>"From the grand plaza, turn your back to the building with the bitten apple and look for, on the other side, the pedestrian avenue crowned by a <strong>giant thermometer</strong>. That thermometer is your compass. Go down that avenue until you run into the imposing <strong>Cathedral</strong> facade. Your first site awaits you right <strong>IN FRONT OF YOU</strong>, where two square towers stand guard."</p>
                         <button id="hint-btn-1" class="btn btn-secondary" onclick="askGuardian(1)">I need a more direct clue</button>
                     </div>
                     <div id="hint-level-2" class="extra-hint-content">
                         <h4>Direct Clue</h4>
-                        <p>"Head to the <strong>Portal de l'Àngel</strong> avenue. Walk to the end, and you will find the Cathedral of Barcelona. The <strong>Plaça Nova</strong> is to the right of the main facade."</p>
+                        <p>"Head to the <strong>Portal de l'Àngel</strong> avenue. Walk to the end. You will arrive at <strong>Plaça Nova</strong>, with the Cathedral facade and the Roman towers right in front."</p>
                         <button id="hint-btn-2" class="btn btn-secondary" onclick="askGuardian(2)">I'm still lost. Show me the map</button>
                     </div>
                     <div id="hint-level-3" class="extra-hint-content">
@@ -85,6 +84,7 @@
     </div>
     <script>
         function saveProgress(stopNumber) { localStorage.setItem('progresoJuego', stopNumber.toString()); }
+        
         document.addEventListener('DOMContentLoaded', () => {
             const progress = parseInt(localStorage.getItem('progresoJuego') || '1');
             if (progress > 1) {
@@ -97,12 +97,53 @@
                 document.getElementById('restart-btn').onclick = () => { localStorage.removeItem('progresoJuego'); continueModal.style.display = 'none'; mainContent.style.display = 'block'; };
             }
         });
-        const guardianPuzzles = [ { question: "To receive your guide, prove you've understood your role. What is your mission?", answer: "EXCAVATE" }, { question: "Attention is your best tool. What object will serve as your 'compass' to find the way?", answer: "THERMOMETER" } ];
-        const feedbackError = 'Incorrect answer. Pay more attention.';
-        const guardianModal = document.getElementById('guardian-modal'); const questionEl = document.getElementById('guardian-question'); const answerEl = document.getElementById('guardian-answer'); const submitBtn = document.getElementById('guardian-submit'); const feedbackEl = document.getElementById('guardian-feedback'); let levelToUnlock = 0;
-        function askGuardian(level) { levelToUnlock = level; const puzzle = guardianPuzzles[level - 1]; questionEl.textContent = puzzle.question; answerEl.value = ''; feedbackEl.textContent = ''; guardianModal.style.display = 'flex'; answerEl.focus(); }
-        submitBtn.onclick = () => { const puzzle = guardianPuzzles[levelToUnlock - 1]; const userAnswer = answerEl.value.toUpperCase().trim(); if (userAnswer.includes(puzzle.answer)) { guardianModal.style.display = 'none'; revealHint(levelToUnlock); } else { feedbackEl.textContent = feedbackError; } };
-        function revealHint(level) { if (level === 1) { document.getElementById('hint-level-2').style.display = 'block'; document.getElementById('hint-btn-1').style.display = 'none'; } else if (level === 2) { document.getElementById('hint-level-3').style.display = 'block'; document.getElementById('hint-btn-2').style.display = 'none'; } }
+
+        const guardianPuzzles = [ 
+            { question: "To receive your guide, prove you've understood your role. What is your mission?", answer: "EXCAVATE" }, 
+            { question: "Attention is your best tool. What object will serve as your 'compass' to find the way?", answer: "THERMOMETER" } 
+        ];
+        
+        const feedbackError = 'Incorrect answer. Read the text more carefully.';
+        const guardianModal = document.getElementById('guardian-modal'); 
+        const questionEl = document.getElementById('guardian-question'); 
+        const answerEl = document.getElementById('guardian-answer'); 
+        const submitBtn = document.getElementById('guardian-submit'); 
+        const feedbackEl = document.getElementById('guardian-feedback'); 
+        let levelToUnlock = 0;
+        
+        function askGuardian(level) { 
+            levelToUnlock = level; 
+            const puzzle = guardianPuzzles[level - 1]; 
+            questionEl.textContent = puzzle.question; 
+            answerEl.value = ''; 
+            feedbackEl.textContent = ''; 
+            guardianModal.style.display = 'flex'; 
+            answerEl.focus(); 
+        }
+        
+        submitBtn.onclick = () => { 
+            const puzzle = guardianPuzzles[levelToUnlock - 1]; 
+            
+            let userAnswer = answerEl.value.toUpperCase().trim();
+            userAnswer = userAnswer.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+
+            if (userAnswer.includes(puzzle.answer)) { 
+                guardianModal.style.display = 'none'; 
+                revealHint(levelToUnlock); 
+            } else { 
+                feedbackEl.textContent = feedbackError; 
+            } 
+        };
+        
+        function revealHint(level) { 
+            if (level === 1) { 
+                document.getElementById('hint-level-2').style.display = 'block'; 
+                document.getElementById('hint-btn-1').style.display = 'none'; 
+            } else if (level === 2) { 
+                document.getElementById('hint-level-3').style.display = 'block'; 
+                document.getElementById('hint-btn-2').style.display = 'none'; 
+            } 
+        }
     </script>
 </body>
 </html>

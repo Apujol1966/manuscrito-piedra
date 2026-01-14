@@ -32,56 +32,47 @@
         <h1>Capítol IV: La Maledicció del Bisbe</h1>
         <div class="subtitle">Carrer del Bisbe · El Pont</div>
     </header>
-    
     <div class="img-container">
         <img src="../imagenes/gotico.jpg" alt="El Pont del Bisbe">
     </div>
-
     <section class="card">
         <p>“Ets sota un dels arcs més fotografiats de la ciutat. Uneix el Palau de la Generalitat amb la Casa dels Canonges. Però no et deixis enganyar per la seva bellesa. Oculta una maledicció.”</p>
         <p class="narrative-text">“Busca sota l'arc, a la part inferior, una calavera tallada a la pedra. Fixa't bé: no està sola. Un objecte esmolat la travessa verticalment. Aquest objecte és la teva clau.”</p>
     </section>
-
     <div id="enigma-container">
         <section class="enigma-box">
             <span class="enigma-icon">💀</span>
             <h3>El Codi de l'Arma</h3>
             <p>“Identifica l'arma que travessa la calavera (paraula de 4 lletres). Transforma el seu nom en un codi numèric utilitzant la posició de cada lletra a l'abecedari.”</p>
-            
-            <div class="cypher-key">
-                A=1 | B=2 | C=3 | D=4 ... G=7 ...
-            </div>
-            
+            <div class="cypher-key">A=1 | B=2 | C=3 | D=4 ... G=7 ...</div>
             <label for="answer" style="display:none;">La teva resposta</label>
             <input type="number" id="answer" placeholder="Introdueix el codi">
             <button class="btn btn-primary" onclick="checkAnswer()">Trencar la Maledicció</button>
-            
             <div id="feedback-msg"></div>
-            
-            <button class="info-toggle" onclick="toggleHint()">Necessites ajuda?</button>
+            <button id="hint-toggle-btn" class="info-toggle" onclick="toggleHint()" style="display:none;">Necessites ajuda?</button>
             <div id="hint-box" class="info-content">
                 <p>1. L'objecte és una <strong>DAGA</strong>.</p>
-                <p>2. D = 4</p>
-                <p>3. A = 1</p>
-                <p>4. G = 7</p>
-                <p>5. A = 1</p>
+                <p>2. D = 4, A = 1, G = 7, A = 1</p>
             </div>
         </section>
     </div>
-
     <script>
-        // Solució: DAGA -> 4-1-7-1
         const SOLUTION = 4171;
-
+        let failCount = 0;
         function checkAnswer() {
             const userIn = document.getElementById('answer').value;
+            const feedback = document.getElementById('feedback-msg');
+            const hintButton = document.getElementById('hint-toggle-btn');
             if (parseInt(userIn) === SOLUTION) {
                 window.location.href = 'parada4-recompensa-ca.html';
             } else {
-                document.getElementById('feedback-msg').textContent = "Codi incorrecte. Identifica bé l'objecte.";
+                feedback.textContent = "Codi incorrecte. Identifica bé l'objecte.";
+                failCount++;
+                if (failCount >= 3) {
+                    hintButton.style.display = 'block';
+                }
             }
         }
-
         function toggleHint() {
             const box = document.getElementById('hint-box');
             box.style.display = box.style.display === 'block' ? 'none' : 'block';
