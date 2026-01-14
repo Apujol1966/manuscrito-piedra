@@ -27,6 +27,7 @@
             width: 100%;
             padding-bottom: 100%;
             border-radius: 8px;
+            overflow: visible;
             opacity: 0;
             animation: popIn 0.5s forwards;
             transform-style: preserve-3d;
@@ -79,16 +80,19 @@
             left: 50%;
             transform: translate(-50%, -50%);
             font-family: 'Cinzel', serif;
-            font-size: 1.2rem;
             font-weight: bold;
             color: #111;
             background-color: rgba(224, 214, 194, 0.8);
-            padding: 5px 10px;
             border-radius: 5px;
             box-shadow: 0 0 10px black;
             opacity: 0;
             transition: opacity 0.5s ease-in-out;
             pointer-events: none;
+            /* --- CORRECCIÓN --- */
+            font-size: 1.1rem;
+            padding: 5px 8px;
+            white-space: nowrap;
+            max-width: 90%;
         }
         
         .final-text {
@@ -177,7 +181,6 @@
 
                         const itemRect = item.getBoundingClientRect();
                         
-                        // CÓDIGO UNIVERSAL (PC Y MÓVIL)
                         const viewportWidth = (window.visualViewport) ? window.visualViewport.width : window.innerWidth;
                         const viewportHeight = (window.visualViewport) ? window.visualViewport.height : window.innerHeight;
 
@@ -190,11 +193,9 @@
                         const translateX = viewportCenterX - itemCenterX;
                         const translateY = viewportCenterY - itemCenterY;
                         
-                        // Aplicar zoom
                         zoomContainer.style.zIndex = '100';
                         zoomContainer.style.transform = `translate(${translateX}px, ${translateY}px) scale(4.5)`;
 
-                        // Colorear y mostrar texto
                         setTimeout(() => {
                             item.classList.add('reveal');
                             const memory = item.dataset.memory;
@@ -203,7 +204,6 @@
                             memoryTextElement.style.opacity = '1';
                         }, 800);
 
-                        // Devolver a su sitio
                         setTimeout(() => {
                             zoomContainer.style.transform = 'translate(0, 0) scale(1)';
                             zoomContainer.style.zIndex = '1';
