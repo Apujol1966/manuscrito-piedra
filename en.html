@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="google" content="notranslate">
-    <title>The Manuscript of Stone Layers</title>
+    <title>The Stone Manuscript</title>
     <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Lato:wght@400;700&display=swap" rel="stylesheet">
     <style>
         :root { --bg-color: #121212; --card-bg: #1e1e1e; --text-main: #e0d6c2; --text-muted: #a8a095; --accent: #c0392b; --success: #27ae60; }
@@ -56,29 +56,29 @@
         </div>
     </div>
     <div id="main-content">
-        <header><h1>The Manuscript of Stone Layers</h1></header>
+        <header><h1>The Stone Manuscript</h1></header>
         <div class="img-container"><img src="imagenes/portada.jpg" alt="Alley in the Gothic Quarter"></div>
         <main>
             <section class="card">
                 <p>"Welcome, Archaeologist of Time.<br>You hold the map of a unique excavation. You will not seek gold or relics, but something far more valuable: the memory of Barcelona, engraved on its skin of stone."</p>
                 <p>"Today, your mission is to excavate its secrets. You will not use a pickaxe and shovel, but your ingenuity. Your job is to remove the dust of centuries to reveal the marks that each civilization left behind."</p>
-                <div class="starting-point">
-                    <h3>Starting Point: Plaça de Catalunya</h3>
-                    <div id="hint-level-1">
-                        <p>"From the grand plaza, turn your back to the building with the bitten apple and look for, on the other side, the pedestrian avenue crowned by a <strong>giant thermometer</strong>. That thermometer is your compass. Go down that avenue until you run into the imposing <strong>Cathedral</strong> facade. Your first site awaits you right <strong>IN FRONT OF YOU</strong>, where two square towers stand guard."</p>
-                        <button id="hint-btn-1" class="btn btn-secondary" onclick="askGuardian(1)">I need a more direct clue</button>
-                    </div>
-                    <div id="hint-level-2" class="extra-hint-content">
-                        <h4>Direct Clue</h4>
-                        <p>"Head to the <strong>Portal de l'Àngel</strong> avenue. Walk to the end. You will arrive at <strong>Plaça Nova</strong>, with the Cathedral facade and the Roman towers right in front."</p>
-                        <button id="hint-btn-2" class="btn btn-secondary" onclick="askGuardian(2)">I'm still lost. Show me the map</button>
-                    </div>
-                    <div id="hint-level-3" class="extra-hint-content">
-                         <h4>Exact Location</h4>
-                         <a href="https://www.google.com/maps/search/?api=1&query=Plaça+Nova,Barcelona" target="_blank" class="btn btn-map">Open in Google Maps</a>
-                    </div>
-                </div>
             </section>
+            <div class="starting-point">
+                <h3>Starting Point: Plaça de Catalunya</h3>
+                <div id="hint-level-1">
+                    <p>"From the grand <strong>square</strong>, turn your back to the building with the bitten apple and look for, on the other side, the pedestrian avenue crowned by a <strong>giant thermometer</strong>. That is your compass. Go down that avenue until you meet the imposing <strong>Cathedral</strong> facade. Your first site awaits you right <strong>IN FRONT OF YOU</strong>, where two square towers stand guard."</p>
+                    <button id="hint-btn-1" class="btn btn-secondary" onclick="askGuardian(1)">I need a clearer clue</button>
+                </div>
+                <div id="hint-level-2" class="extra-hint-content">
+                    <h4>Direct Clue</h4>
+                    <p>"Head to <strong>Portal de l'Àngel</strong> avenue. Walk to the end. You will arrive at <strong>Plaça Nova</strong>, with the Cathedral facade and the Roman towers right in front."</p>
+                    <button id="hint-btn-2" class="btn btn-secondary" onclick="askGuardian(2)">I'm still lost. Show me the map</button>
+                </div>
+                <div id="hint-level-3" class="extra-hint-content">
+                     <h4>Exact Location</h4>
+                     <a href="https://www.google.com/maps/search/?api=1&query=Plaça+Nova,Barcelona" target="_blank" class="btn btn-map">Open in Google Maps</a>
+                </div>
+            </div>
             <a href="adulto/parada1-enigma-en.html" class="btn btn-start" onclick="saveProgress(1)">I have reached the Roman gate. Begin Expedition</a>
         </main>
     </div>

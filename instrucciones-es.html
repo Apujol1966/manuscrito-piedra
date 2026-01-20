@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instrucciones - El Manuscrito de Piedra</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Lato:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root { --bg-color: #121212; --card-bg: #1e1e1e; --text-main: #e0d6c2; --gold: #d4af37; --accent: #c0392b; }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { background-color: var(--bg-color); color: var(--text-main); font-family: 'Lato', sans-serif; line-height: 1.7; padding: 20px; max-width: 600px; margin: 0 auto; display: flex; flex-direction: column; justify-content: center; min-height: 100vh; }
+        h1 { font-family: 'Cinzel', serif; color: var(--gold); text-align: center; margin-bottom: 30px; font-size: 2rem; }
+        .instructions-list { background-color: var(--card-bg); padding: 30px; border-radius: 12px; border-top: 4px solid var(--accent); list-style: none; }
+        .instructions-list li { padding-left: 35px; position: relative; margin-bottom: 25px; }
+        .instructions-list li:last-child { margin-bottom: 0; }
+        .instructions-list li::before { content: '✓'; position: absolute; left: 0; top: 0; font-size: 1.5rem; color: var(--gold); font-weight: bold; }
+        .instructions-list strong { font-family: 'Cinzel', serif; color: #fff; display: block; margin-bottom: 5px; font-size: 1.1rem; }
+        .btn { width: 100%; padding: 15px 20px; font-size: 1.2rem; font-weight: bold; text-transform: uppercase; border: none; border-radius: 8px; cursor: pointer; font-family: 'Cinzel', serif; text-decoration: none; display: inline-block; text-align: center; margin-top: 30px; background-color: var(--accent); color: white; transition: transform 0.2s; }
+        .btn:hover { transform: scale(1.03); }
+    </style>
+</head>
+<body>
+    <div>
+        <h1>Antes de Empezar</h1>
+        <ul class="instructions-list">
+            <li>
+                <strong>TU MISIÓN</strong>
+                Resuelve una serie de enigmas históricos usando el entorno y tu ingenio. La aventura dura entre 90 y 120 minutos.
+            </li>
+            <li>
+                <strong>AYUDA EN ENIGMAS</strong>
+                Si te atascas en una prueba, ¡no te preocupes! Tras 3 intentos fallidos aparecerá un botón para ayudarte.
+            </li>
+            <li>
+                <strong>AYUDA PARA NAVEGAR</strong>
+                Para ir de una parada a otra te daremos una pista. Si no es suficiente, superando pequeños tests de atención, podrás desbloquear una Pista Directa y si aún no es suficiente otra pista con un Mapa.
+            </li>
+            <li>
+                <strong>JUEGA A TU RITMO... ¡O COMPITE!</strong>
+                Disfruta del paseo sin prisas... ¡o reta a tus amigos para ver quién descifra antes el manuscrito!
+            </li>
+        </ul>
+        <a href="es.html" class="btn">Entendido, ¡A Jugar!</a>
+    </div>
+</body>
+</html>

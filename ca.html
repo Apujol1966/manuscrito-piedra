@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="google" content="notranslate">
-    <title>El Manuscrit de les Capes de Pedra</title>
+    <title>El Manuscrit de Pedra</title>
     <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Lato:wght@400;700&display=swap" rel="stylesheet">
     <style>
         :root { --bg-color: #121212; --card-bg: #1e1e1e; --text-main: #e0d6c2; --text-muted: #a8a095; --accent: #c0392b; --success: #27ae60; }
@@ -56,29 +56,29 @@
         </div>
     </div>
     <div id="main-content">
-        <header><h1>El Manuscrit de les Capes de Pedra</h1></header>
+        <header><h1>El Manuscrit de Pedra</h1></header>
         <div class="img-container"><img src="imagenes/portada.jpg" alt="Carreró del Barri Gòtic"></div>
         <main>
             <section class="card">
                 <p>"Benvingut/da, Arqueòleg/a del Temps.<br>Sostens a les teves mans el mapa d'una excavació única. No buscaràs or ni relíquies, sinó quelcom molt més valuós: la memòria de Barcelona, gravada a la seva pell de pedra."</p>
                 <p>"Avui, la teva missió és excavar els seus secrets. No faràs servir un pic i una pala, sinó el teu enginy. La teva feina serà retirar la pols dels segles per revelar les marques que cada civilització va deixar enrere."</p>
-                <div class="starting-point">
-                    <h3>Punt d'Inici: Plaça de Catalunya</h3>
-                    <div id="hint-level-1">
-                        <p>"Des de la gran plaça, dona l'esquena a l'edifici amb la poma mossegada i busca, a l'altre costat, l'avinguda de vianants coronada per un <strong>termòmetre gegant</strong>. Aquest termòmetre és la teva brúixola. Baixa per aquesta avinguda fins a topar amb la imponent façana de la <strong>Catedral</strong>. El teu primer jaciment t'espera just <strong>DAVANT TEU</strong>, on dues torres quadrades fan guàrdia."</p>
-                        <button id="hint-btn-1" class="btn btn-secondary" onclick="askGuardian(1)">Necessito una pista més directa</button>
-                    </div>
-                    <div id="hint-level-2" class="extra-hint-content">
-                        <h4>Pista Directa</h4>
-                        <p>"Dirigeix-te a l'avinguda <strong>Portal de l'Àngel</strong>. Camina fins al final. Arribaràs a la <strong>Plaça Nova</strong>, amb la façana de la Catedral i les torres romanes just davant."</p>
-                        <button id="hint-btn-2" class="btn btn-secondary" onclick="askGuardian(2)">Segueixo perdut/da. Mostra'm el mapa</button>
-                    </div>
-                    <div id="hint-level-3" class="extra-hint-content">
-                         <h4>Ubicació Exacta</h4>
-                         <a href="https://www.google.com/maps/search/?api=1&query=Plaça+Nova,Barcelona" target="_blank" class="btn btn-map">Obrir a Google Maps</a>
-                    </div>
-                </div>
             </section>
+            <div class="starting-point">
+                <h3>Punt d'Inici: Plaça de Catalunya</h3>
+                <div id="hint-level-1">
+                    <p>"Des de la gran plaça, dona l'esquena a l'edifici amb la poma mossegada i busca, a l'altre costat, l'avinguda de vianants coronada per un <strong>termòmetre gegant</strong>. Aquest termòmetre és la teva brúixola. Baixa per aquesta avinguda fins a topar amb la imponent façana de la <strong>Catedral</strong>. El teu primer jaciment t'espera just <strong>DAVANT TEU</strong>, on dues torres quadrades fan guàrdia."</p>
+                    <button id="hint-btn-1" class="btn btn-secondary" onclick="askGuardian(1)">Necessito una pista més clara</button>
+                </div>
+                <div id="hint-level-2" class="extra-hint-content">
+                    <h4>Pista Directa</h4>
+                    <p>"Dirigeix-te a l'avinguda <strong>Portal de l'Àngel</strong>. Camina fins al final. Arribaràs a la <strong>Plaça Nova</strong>, amb la façana de la Catedral i les torres romanes just davant."</p>
+                    <button id="hint-btn-2" class="btn btn-secondary" onclick="askGuardian(2)">Segueixo perdut/da. Mostra'm el mapa</button>
+                </div>
+                <div id="hint-level-3" class="extra-hint-content">
+                     <h4>Ubicació Exacta</h4>
+                     <a href="https://www.google.com/maps/search/?api=1&query=Plaça+Nova,Barcelona" target="_blank" class="btn btn-map">Obrir a Google Maps</a>
+                </div>
+            </div>
             <a href="adulto/parada1-enigma-ca.html" class="btn btn-start" onclick="saveProgress(1)">He arribat a la porta romana. Iniciar Expedició</a>
         </main>
     </div>
@@ -103,7 +103,7 @@
             { question: "L'atenció és la teva millor eina. Quin objecte et servirà com a 'brúixola' per trobar el camí?", answer: "TERMOMETRE" } 
         ];
         
-        const feedbackError = 'Resposta incorrecta. Llegeix el text amb més atenció.';
+        const feedbackError = 'Resposta incorrecta. Para més atenció.';
         const guardianModal = document.getElementById('guardian-modal'); 
         const questionEl = document.getElementById('guardian-question'); 
         const answerEl = document.getElementById('guardian-answer'); 

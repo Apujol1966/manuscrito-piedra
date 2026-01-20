@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>El Manuscrito de las Capas de Piedra - Un Escape Room Urbano por Barcelona</title>
+    <meta name="description" content="Descubre los secretos ocultos del Barrio Gótico de Barcelona en un escape room urbano para móvil. Resuelve enigmas, explora la historia y conviértete en un Arqueólogo del Tiempo.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Lato:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root { --bg-color: #121212; --card-bg: #1e1e1e; --text-main: #e0d6c2; --gold: #d4af37; --accent: #c0392b; }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+        body { background-color: var(--bg-color); color: var(--text-main); font-family: 'Lato', sans-serif; line-height: 1.7; }
+
+        .container { max-width: 900px; margin: 0 auto; padding: 0 20px; }
+        section { padding: 80px 20px; text-align: center; border-bottom: 1px solid #2a2a2a; }
+        h2 { font-family: 'Cinzel', serif; font-size: 2.5rem; color: var(--gold); margin-bottom: 20px; }
+        p { color: #ccc; margin-bottom: 20px; max-width: 600px; margin-left: auto; margin-right: auto; }
+
+        /* HERO */
+        .hero {
+            height: 100vh;
+            background-image: linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.75)), url('imagenes/portada.jpg');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+        }
+        .hero h1 { font-family: 'Cinzel', serif; font-size: 3.5rem; color: #fff; text-shadow: 2px 2px 8px #000; margin: 0; }
+        .hero .subtitle { font-size: 1.3rem; color: var(--gold); margin-top: 10px; font-style: italic; }
+        .cta-button {
+            display: inline-block;
+            margin-top: 40px;
+            padding: 18px 40px;
+            font-family: 'Cinzel', serif;
+            font-size: 1.3rem;
+            color: #111;
+            background-color: var(--gold);
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+        }
+        .cta-button:hover { transform: scale(1.05); box-shadow: 0 6px 20px rgba(0,0,0,0.6); }
+        .hero-features { display: flex; gap: 20px; margin-top: 40px; color: #ccc; font-family: 'Cinzel', serif; }
+        .hero-features span { background-color: rgba(0,0,0,0.5); padding: 5px 10px; border-radius: 5px; font-size: 0.9rem; }
+
+        /* TEASER DEL VIAJE */
+        .journey-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-top: 40px; }
+        .journey-card { background-color: var(--card-bg); border-radius: 10px; overflow: hidden; text-align: left; }
+        .journey-card img { width: 100%; height: 150px; object-fit: cover; display: block; }
+        .journey-card-content { padding: 20px; }
+        .journey-card h3 { font-family: 'Cinzel', serif; color: var(--gold); }
+
+        /* OPINIONES */
+        .testimonials { background-color: var(--card-bg); }
+        .testimonial-item { max-width: 600px; margin: 40px auto; }
+        .testimonial-text { font-style: italic; font-size: 1.2rem; color: #fff; margin-bottom: 10px; }
+        .testimonial-author { color: var(--gold); font-family: 'Cinzel', serif; font-weight: bold; }
+
+        /* FOOTER */
+        footer { text-align: center; padding: 40px 20px; font-size: 0.9rem; color: #777; }
+    </style>
+</head>
+<body>
+
+    <section class="hero">
+        <h1>El Manuscrito de las Capas de Piedra</h1>
+        <p class="subtitle">Un Escape Room Urbano por el Gótico de Barcelona</p>
+        <div class="hero-features">
+            <span>📍 Barrio Gótico</span>
+            <span>⏱️ 90-120 Min</span>
+            <span>🧠 Dificultad Media</span>
+        </div>
+        <a href="index.html" class="cta-button">EMPEZAR A JUGAR</a>
+    </section>
+
+    <div class="container">
+        <section id="about">
+            <h2>Descubre la Historia Oculta</h2>
+            <p>La ciudad es un libro escrito en piedra. Cada civilización ha dejado su huella, oculta a simple vista. Tu misión, como Arqueólogo del Tiempo, es seguir un rastro de enigmas por el Barrio Gótico, desde la fundación de Barcino hasta las cicatrices de la Guerra Civil, para descifrar el secreto final que aguarda en el corazón de Barcelona.</p>
+        </section>
+
+        <section id="journey">
+            <h2>El Viaje te Espera</h2>
+            <div class="journey-grid">
+                <div class="journey-card">
+                    <img src="imagenes/roma.jpg" alt="Letras de Barcino">
+                    <div class="journey-card-content">
+                        <h3>Los Cimientos de Roma</h3>
+                        <p>Tu aventura empieza hace 2000 años, descifrando el nombre original de la ciudad.</p>
+                    </div>
+                </div>
+                <div class="journey-card">
+                    <img src="imagenes/gotico.jpg" alt="Puente del Obispo">
+                    <div class="journey-card-content">
+                        <h3>La Maldición del Gótico</h3>
+                        <p>Bajo un puente icónico, una calavera y una daga guardan un código mortal.</p>
+                    </div>
+                </div>
+                <div class="journey-card">
+                    <img src="imagenes/felipneri.jpg" alt="Plaza Sant Felip Neri">
+                    <div class="journey-card-content">
+                        <h3>Las Cicatrices de la Guerra</h3>
+                        <p>En la plaza más silenciosa de Barcelona, las paredes gritan una historia que debe ser escuchada.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="testimonials" class="testimonials">
+            <h2>Lo que dicen los Arqueólogos</h2>
+            <div class="testimonial-item">
+                <p class="testimonial-text">"Una forma increíble de redescubrir el Gótico. Aprendí más en dos horas que en años viviendo aquí. ¡Los enigmas son geniales!"</p>
+                <p class="testimonial-author">- Laura G., Barcelona</p>
+            </div>
+            <div class="testimonial-item">
+                <p class="testimonial-text">"Perfecto para hacer con amigos. Nos lo pasamos en grande compitiendo por ver quién resolvía antes cada pista. ¡Muy recomendable!"</p>
+                <p class="testimonial-author">- Marcos P., Visitante</p>
+            </div>
+        </section>
+        
+        <section id="start-final">
+            <h2>¿Aceptas el Reto?</h2>
+            <p>El Manuscrito está abierto. La primera página te espera en Plaça Catalunya.</p>
+            <a href="index.html" class="cta-button">EMPEZAR A JUGAR</a>
+        </section>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 - El Manuscrito de las Capas de Piedra. Todos los derechos reservados.</p>
+    </footer>
+
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instruccions - El Manuscrit de Pedra</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Lato:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root { --bg-color: #121212; --card-bg: #1e1e1e; --text-main: #e0d6c2; --gold: #d4af37; --accent: #c0392b; }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { background-color: var(--bg-color); color: var(--text-main); font-family: 'Lato', sans-serif; line-height: 1.7; padding: 20px; max-width: 600px; margin: 0 auto; display: flex; flex-direction: column; justify-content: center; min-height: 100vh; }
+        h1 { font-family: 'Cinzel', serif; color: var(--gold); text-align: center; margin-bottom: 30px; font-size: 2rem; }
+        .instructions-list { background-color: var(--card-bg); padding: 30px; border-radius: 12px; border-top: 4px solid var(--accent); list-style: none; }
+        .instructions-list li { padding-left: 35px; position: relative; margin-bottom: 25px; }
+        .instructions-list li:last-child { margin-bottom: 0; }
+        .instructions-list li::before { content: '✓'; position: absolute; left: 0; top: 0; font-size: 1.5rem; color: var(--gold); font-weight: bold; }
+        .instructions-list strong { font-family: 'Cinzel', serif; color: #fff; display: block; margin-bottom: 5px; font-size: 1.1rem; }
+        .btn { width: 100%; padding: 15px 20px; font-size: 1.2rem; font-weight: bold; text-transform: uppercase; border: none; border-radius: 8px; cursor: pointer; font-family: 'Cinzel', serif; text-decoration: none; display: inline-block; text-align: center; margin-top: 30px; background-color: var(--accent); color: white; transition: transform 0.2s; }
+        .btn:hover { transform: scale(1.03); }
+    </style>
+</head>
+<body>
+    <div>
+        <h1>Abans de Començar</h1>
+        <ul class="instructions-list">
+            <li>
+                <strong>LA TEVA MISSIÓ</strong>
+                Resol una sèrie d'enigmes històrics fent servir l'entorn i el teu enginy. L'aventura dura entre 90 i 120 minuts.
+            </li>
+            <li>
+                <strong>AJUDA ALS ENIGMES</strong>
+                Si t'encalles en una prova, no et preocupis! Després de 3 intents fallits, apareixerà un botó per ajudar-te.
+            </li>
+            <li>
+                <strong>AJUDA PER NAVEGAR</strong>
+                Per anar d'una parada a una altra et donarem una pista. Si no n'hi ha prou, superant petits tests d'atenció, podràs desbloquejar una Pista Directa i si encara no és suficient una altra pista amb un Mapa.
+            </li>
+            <li>
+                <strong>JUGA AL TEU RITME... O COMPETIU!</strong>
+                Gaudeix del passeig sense presses... o repta els teus amics per veure qui desxifra abans el manuscrit!
+            </li>
+        </ul>
+        <a href="ca.html" class="btn">Entès, A Jugar!</a>
+    </div>
+</body>
+</html>

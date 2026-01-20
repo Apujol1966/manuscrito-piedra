@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instructions - The Stone Manuscript</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Lato:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root { --bg-color: #121212; --card-bg: #1e1e1e; --text-main: #e0d6c2; --gold: #d4af37; --accent: #c0392b; }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { background-color: var(--bg-color); color: var(--text-main); font-family: 'Lato', sans-serif; line-height: 1.7; padding: 20px; max-width: 600px; margin: 0 auto; display: flex; flex-direction: column; justify-content: center; min-height: 100vh; }
+        h1 { font-family: 'Cinzel', serif; color: var(--gold); text-align: center; margin-bottom: 30px; font-size: 2rem; }
+        .instructions-list { background-color: var(--card-bg); padding: 30px; border-radius: 12px; border-top: 4px solid var(--accent); list-style: none; }
+        .instructions-list li { padding-left: 35px; position: relative; margin-bottom: 25px; }
+        .instructions-list li:last-child { margin-bottom: 0; }
+        .instructions-list li::before { content: '✓'; position: absolute; left: 0; top: 0; font-size: 1.5rem; color: var(--gold); font-weight: bold; }
+        .instructions-list strong { font-family: 'Cinzel', serif; color: #fff; display: block; margin-bottom: 5px; font-size: 1.1rem; }
+        .btn { width: 100%; padding: 15px 20px; font-size: 1.2rem; font-weight: bold; text-transform: uppercase; border: none; border-radius: 8px; cursor: pointer; font-family: 'Cinzel', serif; text-decoration: none; display: inline-block; text-align: center; margin-top: 30px; background-color: var(--accent); color: white; transition: transform 0.2s; }
+        .btn:hover { transform: scale(1.03); }
+    </style>
+</head>
+<body>
+    <div>
+        <h1>Before You Start</h1>
+        <ul class="instructions-list">
+            <li>
+                <strong>YOUR MISSION</strong>
+                Solve a series of historical riddles using your wits and the city itself. The adventure takes about 90 to 120 minutes.
+            </li>
+            <li>
+                <strong>PUZZLE HINTS</strong>
+                If you get stuck on a puzzle, don't worry! After 3 wrong guesses, a hint button will appear to help you out.
+            </li>
+            <li>
+                <strong>GETTING AROUND</strong>
+                To get from one stop to the next, you'll get a clue. If that's not enough, you can unlock a <strong>Direct Clue</strong> by passing a small attention test, and if you're still lost, another test will unlock a <strong>Map link</strong>.
+            </li>
+            <li>
+                <strong>PLAY YOUR WAY... OR COMPETE!</strong>
+                Enjoy the walk and explore at your own pace... or challenge your friends to see who can decipher the manuscript first!
+            </li>
+        </ul>
+        <a href="en.html" class="btn">Got It, Let's Play!</a>
+    </div>
+</body>
+</html>

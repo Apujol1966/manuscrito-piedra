@@ -11,6 +11,7 @@
         :root { --bg-color: #121212; --card-bg: #1e1e1e; --text-main: #e0d6c2; --gold: #d4af37; }
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body { background-color: var(--bg-color); color: var(--text-main); font-family: 'Lato', sans-serif; padding: 20px; max-width: 600px; margin: 0 auto; text-align: center; overflow-x: hidden; }
+        
         h1 { font-family: 'Cinzel', serif; color: var(--gold); margin-bottom: 30px; font-size: 1.8rem; animation: fadeInTitle 1s ease-out; }
         .mosaic-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 30px; perspective: 1500px; }
         .mosaic-item { position: relative; width: 100%; padding-bottom: 100%; border-radius: 8px; overflow: visible; opacity: 0; animation: popIn 0.5s forwards; transform-style: preserve-3d; }
@@ -19,7 +20,16 @@
         .mosaic-item.reveal img { filter: grayscale(0%); }
         .mosaic-item-overlay { position: absolute; bottom: 0; width: 100%; background: linear-gradient(to top, rgba(0,0,0,0.9), transparent); padding: 10px 5px 5px; text-align: center; }
         .mosaic-item-title { font-family: 'Cinzel', serif; font-size: 0.7rem; font-weight: bold; color: #fff; text-shadow: 1px 1px 2px black; }
-        .memory-text { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-family: 'Cinzel', serif; font-size: 1.2rem; font-weight: bold; color: #111; background-color: rgba(224, 214, 194, 0.8); padding: 5px 10px; border-radius: 5px; box-shadow: 0 0 10px black; opacity: 0; transition: opacity 0.5s ease-in-out; pointer-events: none; }
+        .memory-text {
+            position: absolute; top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            font-family: 'Cinzel', serif; font-weight: bold;
+            color: #111; background-color: rgba(224, 214, 194, 0.85);
+            border-radius: 5px; box-shadow: 0 0 10px black;
+            opacity: 0; transition: opacity 0.5s ease-in-out;
+            pointer-events: none;
+            font-size: 14px; padding: 4px 8px; white-space: nowrap;
+        }
         .final-text { font-family: 'Cinzel', serif; font-weight: bold; font-size: 1.4rem; line-height: 1.8; color: var(--gold); text-shadow: 1px 1px 4px #000; margin-top: 40px; opacity: 0; animation: popIn 1s forwards; }
         .btn-restart { display: inline-block; padding: 12px 25px; background-color: transparent; border: 1px solid #555; color: #888; font-size: 0.9rem; border-radius: 8px; margin-top: 30px; font-family: 'Cinzel', serif; transition: all 0.3s; cursor: pointer; opacity: 0; animation: popIn 1s forwards; }
         .btn-restart:hover { border-color: var(--gold); color: var(--gold); }
@@ -42,21 +52,17 @@
         <div class="mosaic-item item-8" data-memory="OCTÀGON"><div class="zoom-container"><img src="../imagenes/felipneri.jpg" alt="Guerra Civil"><div class="mosaic-item-overlay"><span class="mosaic-item-title">GUERRA CIVIL</span></div><div class="memory-text"></div></div></div>
         <div class="mosaic-item item-9" data-memory="BARCELONA"><div class="zoom-container"><img src="../imagenes/santjaume.jpg" alt="Present"><div class="mosaic-item-overlay"><span class="mosaic-item-title">PRESENT</span></div><div class="memory-text"></div></div></div>
     </div>
-    <div class="final-text">
-        "Has desxifrat la pedra, has llegit el temps.<br>El Manuscrit ja no és un secret de la ciutat,<br>ara és part de la teva memòria."
-    </div>
+    <div class="final-text">"Has desxifrat la pedra, has llegit el temps.<br>El Manuscrit ja no és un secret de la ciutat,<br>ara és part de la teva memòria."</div>
     <button id="final-btn" class="btn-restart" onclick="closeBook()">Tancar el Manuscrit</button>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const items = document.querySelectorAll('.mosaic-item');
-            const grid = document.querySelector('.mosaic-grid');
             items.forEach(item => {
                 item.addEventListener('animationend', (event) => {
                     if (event.animationName === 'popIn') {
                         const zoomContainer = item.querySelector('.zoom-container');
                         if (!zoomContainer) return;
                         const itemRect = item.getBoundingClientRect();
-                        const gridRect = grid.getBoundingClientRect();
                         const viewportWidth = (window.visualViewport) ? window.visualViewport.width : window.innerWidth;
                         const viewportHeight = (window.visualViewport) ? window.visualViewport.height : window.innerHeight;
                         const viewportCenterX = viewportWidth / 2;
@@ -64,9 +70,9 @@
                         const itemCenterX = itemRect.left + itemRect.width / 2;
                         const itemCenterY = itemRect.top + itemRect.height / 2;
                         const translateX = viewportCenterX - itemCenterX;
-                        const translateY = (viewportCenterY - itemCenterY) - gridRect.top;
-                        zoomContainer.style.transform = `translate(${translateX}px, ${translateY}px) scale(4.5)`;
+                        const translateY = viewportCenterY - itemCenterY;
                         zoomContainer.style.zIndex = '100';
+                        zoomContainer.style.transform = `translate(${translateX}px, ${translateY}px) scale(4.5)`;
                         setTimeout(() => {
                             item.classList.add('reveal');
                             const memory = item.dataset.memory;
