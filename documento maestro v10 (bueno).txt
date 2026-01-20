@@ -1,0 +1,93 @@
+======================================================================
+DOCUMENTO MAESTRO DE PROYECTO v10.0 (FINAL PRE-TEST)
+PROYECTO: "El Manuscrito de Piedra"
+RUTA: Cronológica (Histórica)
+FECHA: 29/12/2025
+======================================================================
+
+1. ESPECIFICACIONES TÉCNICAS Y DE DISEÑO
+----------------------------------------------------------------------
+- TÍTULO OFICIAL: El Manuscrito de Piedra
+- STACK: HTML5, CSS3, JavaScript (Vanilla).
+- DISEÑO: Mobile First.
+- PERSISTENCIA: localStorage ('progresoJuego').
+- LÓGICA DE AYUDA (ENIGMAS): "Ayuda Progresiva". Botón de pista aparece tras 3 fallos.
+- LÓGICA DE AYUDA (NAVEGACIÓN): Sistema de 2 niveles (Pista Directa + Mapa) desbloqueado con tests de atención.
+- LÓGICA DE VALIDACIÓN: Flexible (acepta mayúsculas/minúsculas y con/sin tildes).
+
+[ESTRUCTURA DE FICHEROS]
+/ (Raíz)
+|-- index.html           (Selector de idioma -> apunta a instrucciones)
+|-- instrucciones-es.html, instrucciones-ca.html, instrucciones-en.html (NUEVO)
+|-- es.html, ca.html, en.html (Ahora son el inicio real del juego)
+|-- reset.html
+|-- imagenes/
+|-- adulto/
+    |-- parada[X]-enigma-[lang].html
+    |-- parada[X]-recompensa-[lang].html
+    |-- final-[lang].html (Mosaico del Recuerdo)
+
+======================================================================
+2. GUIÓN DE JUEGO Y LÓGICA (RUTA CRONOLÓGICA CORREGIDA)
+======================================================================
+
+--- INICIO (Plaça Catalunya -> Catedral) ---
+- Pista Inicial: "Mirando la fachada de la Catedral, tu objetivo está FRENTE A TI".
+
+--- PARADA 1: ROMA (Plaça Nova) ---
+- Enigma: Letras Brossa.
+- Solución: BARCINO
+- Curiosidad: La letra 'N' (aluminio, vela, brújula).
+- Pista Salto: Ir a la Plaça del Rei.
+
+--- PARADA 2: VISIGODOS (Plaça del Rei) ---
+- Enigma: Torre del Rei Martí.
+- Solución: MARTI5
+- Curiosidad: Recepción de Cristóbal Colón.
+- Pista Salto: Ir a la estatua de Ramon Berenguer.
+
+--- PARADA 3: AL-ÁNDALUS (Plaça Ramon Berenguer) ---
+- Enigma (Trampa del Latín): Sumar M(1000) + V(5) + III(3).
+- Solución: 1008
+- Pista Salto: Ir al Pont del Bisbe.
+
+--- PARADA 4: GÓTICO (Pont del Bisbe) ---
+- Enigma (Criptografía): Convertir DAGA a números (A=1...).
+- Solución: 4171
+- Pista Salto: Ir al Call (Carrer Salomó ben Adret).
+
+--- PARADA 5: EL CALL (Carrer Salomó ben Adret) ---
+- Enigma: Multiplicar número del portal (6) x Siglo (12). Ref. "Casa Adret".
+- Solución: 72
+- Pista Salto: Ir a la Casa de l'Ardiaca (Carrer Santa Llúcia).
+
+--- PARADA 6: RENACIMIENTO (Casa de l'Ardiaca) ---
+- Enigma (Observación): Código visual Nº-Letra-Palabra.
+- Solución: 2TESCUDO (CA: 2TESCUT, EN: 2TSHIELD).
+- Pista Salto: Ir al Carrer del Veguer.
+
+--- PARADA 7: ILUSTRACIÓN (Carrer del Veguer) ---
+- Enigma: Cifrado Masónico (Pigpen).
+- Solución: PADELLAS
+- Pista Salto: Ir a Plaça Sant Felip Neri.
+
+--- PARADA 8: GUERRA CIVIL (Plaça Sant Felip Neri) ---
+- Enigma: Escribir el nombre de la figura geométrica de la fuente.
+- Solución: OCTOGONO (CA: OCTÀGON, EN: OCTAGON).
+- Recompensa: Texto sobre "pequeños/infantes".
+- Pista Salto: Ir a Plaça Sant Jaume.
+
+--- PARADA 9: FINAL (Plaça Sant Jaume) ---
+- Enigma: Nombre actual de la ciudad.
+- Solución: BARCELONA
+- Recompensa: Epílogo completo mencionando las 8 épocas.
+- Acción Final: Botón "Ver el Desenlace" -> Mosaico del Recuerdo.
+
+--- PANTALLA FINAL: Mosaico del Recuerdo ---
+- Concepto: Cuadrícula 3x3 con las 9 imágenes.
+- Animación: "Fly-out" centrado y secuencial, con revelación de la solución.
+- Frase Final Épica: "Has descifrado la piedra, has leído el tiempo. El Manuscrito ya no es un secreto de la ciudad, ahora es parte de tu memoria."
+
+======================================================================
+FIN DEL DOCUMENTO MAESTRO v10.0
+======================================================================
