@@ -1,0 +1,105 @@
+======================================================================
+PROPUESTA TÉCNICA: Sistema de Códigos de un Solo Uso
+Juego: "El Manuscrito de Piedra"
+======================================================================
+
+OBJETIVO:
+Implementar un sistema de acceso seguro para el juego que garantice que cada compra genera un acceso único e intransferible. Esto evita que los enlaces y códigos se compartan, protegiendo la comercialización del producto.
+
+----------------------------------------------------------------------
+COMPONENTES DEL SISTEMA
+----------------------------------------------------------------------
+
+El sistema se basa en tres elementos que trabajan juntos en tu servidor:
+
+1. UNA PÁGINA DE LOGIN (`login.html`):
+   - Es la puerta de entrada al juego.
+   - Contiene un único campo donde el cliente introduce el código personal que ha recibido al comprar.
+   - El diseño de esta página seguirá la estética del juego (Cinzel, fondos oscuros, etc.).
+
+2. UN ARCHIVO DE VALIDACIÓN (el "Cerebro"):
+   - Este es un pequeño script que se ejecuta en el servidor (por ejemplo, `validar.php`). No es visible para el usuario.
+   - Su única función es recibir el código enviado desde la página de login y comprobar su estado.
+
+3. UNA LISTA DE CÓDIGOS (la "Base de Datos"):
+   - Un simple fichero de texto en el servidor (ej: `codigos.csv`) que contiene todos los códigos de acceso válidos y su estado (disponible/usado).
+   - El formato sería muy sencillo, línea por línea:
+     CODIGO_1,disponible
+     CODIGO_2,disponible
+     CODIGO_3,usado
+     ...
+
+----------------------------------------------------------------------
+FLUJO DE FUNCIONAMIENTO (Paso a Paso)
+----------------------------------------------------------------------
+
+1. GENERACIÓN DE CÓDIGOS:
+   - Se genera una lista de códigos únicos (ej: ABC-123, XYZ-789) y se suben al archivo `codigos.csv` en el servidor, todos marcados como "disponible".
+
+2. PROCESO DE VENTA:
+   - El cliente compra el juego en tu web (`otiumescaperoom.es`).
+   - Tu sistema de venta (o tú manualmente) le asigna uno de los códigos "disponibles" de la lista.
+   - El email de confirmación del cliente contiene el enlace a `login.html` y su código personal.
+
+3. EL JUGADOR INTRODUCE EL CÓDIGO:
+   - El jugador abre el enlace y escribe su código en la página `login.html`.
+   - El JavaScript de la página envía este código al script `validar.php` del servidor.
+
+4. VALIDACIÓN EN EL SERVIDOR:
+   - El script `validar.php` abre el archivo `codigos.csv`.
+   - Busca el código recibido.
+   - Si el código existe Y está marcado como "disponible":
+     a) Modifica el archivo `codigos.csv`, cambiando el estado de ese código a "usado".
+     b) Responde a la página de login con una señal de "ÉXITO".
+   - Si el código no existe o ya está "usado", responde con una señal de "ERROR".
+
+5. ACCESO AL JUEGO:
+   - Si la página de login recibe la señal de "ÉXITO", redirige automáticamente al jugador al inicio del juego (`index.html` o `instrucciones-es.html`).
+   - Si recibe "ERROR", muestra un mensaje de "Código no válido o ya utilizado".
+
+----------------------------------------------------------------------
+VENTAJAS DE ESTE SISTEMA
+----------------------------------------------------------------------
+- MÁXIMA SEGURIDAD: Cada venta corresponde a un único acceso. Imposible compartir.
+- INDEPENDENCIA TOTAL: No dependes de servicios de terceros como Typeform. Tienes el control absoluto.
+- EXPERIENCIA LIMPIA: El jugador interactúa directamente con el juego, sin interfaces externas.
+- GESTIÓN SENCILLA: Añadir nuevos códigos es tan fácil como editar un fichero de texto.
+
+======================================================================
+FIN DEL DOCUMENTO
+======================================================================
+AQUI SE DETALLA LA FORMA QUE UTILIZARA SI EL MOVIL SE APAGA O PIERDE INTERNET 
+
+PROPUESTA TÉCNICA: Sistema de Códigos de un Solo Uso (con Sesión Segura)
+Juego: "El Manuscrito de Piedra"
+... (Las secciones anteriores de Componentes y Flujo de Venta se mantienen igual) ...
+FLUJO DE FUNCIONAMIENTO (Paso a Paso)
+... (Los pasos 1 a 3 son iguales) ...
+VALIDACIÓN EN EL SERVIDOR:
+El script validar.php abre el archivo codigos.csv.
+Busca el código recibido.
+Si el código existe Y está marcado como "disponible":
+a) NO marca el código como "usado" todavía.
+b) Genera un "token de sesión" único y seguro (una cadena de texto aleatoria, ej: "sess_aHR0cHM6Ly93d3cueW91dHViZS5jb20L3dhdGNoP3Y9ZFF3NHc5V2dYY1E").
+c) Responde a la página de login con "ÉXITO" y este "token de sesión".
+Si el código no existe o ya está "usado" (ver punto 6), responde con "ERROR".
+ACCESO AL JUEGO Y GUARDADO DE SESIÓN:
+Al recibir la señal de "ÉXITO" y el "token", el JavaScript de login.html hace dos cosas ANTES de redirigir:
+a) Guarda el token en el localStorage del navegador del jugador. (ej: localStorage.setItem('session_token', 'sess_aHR0...')).
+b) Redirige al jugador al inicio del juego.
+FINALIZACIÓN Y BLOQUEO DEL CÓDIGO:
+Cuando el jugador llega a la pantalla final del juego (el Mosaico), el JavaScript de esa página hace una llamada final al servidor.
+Esta llamada envía el "token de sesión" guardado.
+El servidor verifica el token y, solo entonces, marca el código original como "usado" en el archivo codigos.csv.
+De esta forma, el código solo se invalida cuando el juego se ha completado con éxito.
+MANEJO DE INTERRUPCIONES Y RE-ACCESO (SOLUCIÓN AL PROBLEMA)
+Si un jugador sale del juego a mitad (se le acaba la batería, pierde internet, etc.), el sistema funcionará así:
+El jugador vuelve a abrir el enlace del juego (login.html).
+El JavaScript de login.html, ANTES de mostrar el campo para escribir el código, comprueba:
+"¿Existe un 'session_token' guardado en el localStorage de este navegador?"
+Si la respuesta es SÍ:
+Se salta la petición de código.
+Envía el token guardado directamente al servidor para re-validarlo.
+Si el servidor confirma que el token es válido y el código asociado aún no se ha marcado como "usado", deja pasar al jugador directamente al juego.
+El juego, gracias a la clave progresoJuego que ya usamos, le mostrará el modal de "Continuar desde la Parada X".
+Esto garantiza que un cliente que ha pagado siempre podrá volver a entrar en su partida desde el mismo dispositivo, pero no podrá compartir su acceso, ya que el token de sesión es único de su navegador.

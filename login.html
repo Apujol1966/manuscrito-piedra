@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Access - El Manuscrito</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Lato:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root { --bg-color: #000; --text-main: #e0d6c2; --gold: #d4af37; --error: #c0392b; }
+        body { background-color: var(--bg-color); color: var(--text-main); font-family: 'Lato', sans-serif; display: flex; flex-direction: column; justify-content: center; align-items: center; min-height: 100vh; margin: 0; padding: 20px; text-align: center; }
+        
+        h1 { font-family: 'Cinzel', serif; color: var(--gold); margin-bottom: 20px; font-size: 1.8rem; line-height: 1.4; }
+        h1 span { display: block; margin-top: 5px; }
+        
+        .instructions { font-size: 1rem; color: #aaa; margin-bottom: 30px; line-height: 1.6; }
+        .instructions span { display: block; margin-bottom: 5px; }
+        
+        .login-box { 
+            background: #1a1a1a; 
+            padding: 30px; 
+            border-radius: 10px; 
+            border: 1px solid #333; 
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+            width: 100%;
+            max-width: 320px;
+        }
+
+        input { 
+            width: 100%; 
+            padding: 15px; 
+            font-size: 1.2rem; 
+            text-align: center; 
+            border-radius: 5px; 
+            border: 2px solid var(--gold); 
+            background: #000; 
+            color: white; 
+            box-sizing: border-box; 
+            margin-bottom: 20px;
+            font-family: 'Cinzel', serif;
+            text-transform: uppercase;
+        }
+        
+        button { 
+            width: 100%;
+            padding: 15px; 
+            font-size: 1rem; 
+            font-weight: bold; 
+            background-color: var(--gold); 
+            color: #000;
+            border: none; 
+            border-radius: 5px; 
+            cursor: pointer; 
+            text-transform: uppercase; 
+            font-family: 'Cinzel', serif;
+            transition: transform 0.2s;
+        }
+        button:active { transform: scale(0.98); }
+
+        #error { 
+            color: var(--error); 
+            margin-top: 15px; 
+            display: none; 
+            font-weight: bold; 
+            font-size: 0.9rem;
+        }
+        
+        /* Animación de error */
+        @keyframes shake { 0% { transform: translateX(0); } 25% { transform: translateX(-5px); } 75% { transform: translateX(5px); } 100% { transform: translateX(0); } }
+    </style>
+</head>
+<body>
+
+    <!-- TÍTULOS EN LOS 3 IDIOMAS -->
+    <h1>
+        EL MANUSCRITO DE PIEDRA
+        <span style="font-size: 0.7em; color: #ccc;">EL MANUSCRIT DE PEDRA</span>
+        <span style="font-size: 0.6em; color: #888;">The Stone Manuscript</span>
+    </h1>
+    
+    <div class="login-box">
+        <div class="instructions">
+            <span>Introduce tu código de acceso:</span>
+            <span style="color: #ddd;">Introdueix el teu codi d'accés:</span>
+            <span style="color: #bbb;">Enter your access code:</span>
+        </div>
+    
+        <input type="text" id="password" placeholder="CODE / CÓDIGO">
+        <button onclick="entrar()">ENTRAR / ENTER</button>
+        
+        <div id="error">
+            Código incorrecto / Codi incorrecte / Invalid code
+        </div>
+    </div>
+
+    <script>
+        // --- CONTRASEÑA MAESTRA (Cámbiala aquí) ---
+        const CLAVE_SECRETA = "BARCINO2025"; 
+
+        function entrar() {
+            const input = document.getElementById('password').value.trim().toUpperCase();
+            
+            if (input === CLAVE_SECRETA) {
+                localStorage.setItem('acceso_manuscrito', 'permitido');
+                window.location.href = 'index.html';
+            } else {
+                const errorDiv = document.getElementById('error');
+                errorDiv.style.display = 'block';
+                const box = document.querySelector('.login-box');
+                box.style.animation = "shake 0.3s";
+                setTimeout(() => box.style.animation = "", 300);
+            }
+        }
+        
+        document.getElementById("password").addEventListener("keypress", function(event) {
+            if (event.key === "Enter") entrar();
+        });
+    </script>
+</body>
+</html>

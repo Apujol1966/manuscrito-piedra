@@ -1,0 +1,68 @@
+======================================================================
+DOCUMENTO DE INTEGRACIÓN TÉCNICA: "El Manuscrito de Piedra"
+======================================================================
+
+OBJETIVO:
+Este documento describe la arquitectura de los ficheros del juego "El Manuscrito de Piedra" y el procedimiento para su integración en una plataforma externa como Typeform, garantizando la seguridad del acceso y el flujo completo de la experiencia de juego.
+
+----------------------------------------------------------------------
+ESTRUCTURA DE FICHEROS POR PARADA
+----------------------------------------------------------------------
+
+Cada parada del juego se compone de dos ficheros HTML independientes:
+
+1. FICHERO DE ENIGMA (ej: `parada1-enigma-es.html`)
+   - Propósito: Presentar el enigma al jugador.
+   - Funcionamiento: Contiene el texto narrativo, la pregunta y el campo de respuesta. Al validar la solución correcta, el código JavaScript redirige internamente al fichero de recompensa correspondiente (`window.location.href = 'parada1-recompensa-es.html'`).
+
+2. FICHERO DE RECOMPENSA (ej: `parada1-recompensa-es.html`)
+   - Propósito: Presentar la información histórica/curiosidad y la pista para la siguiente ubicación.
+   - Funcionamiento: Muestra el contenido narrativo. Incluye el sistema de pistas de navegación (Pista Directa y Mapa). El botón principal ("Continuar Aventura") ejecuta la lógica de avance.
+
+----------------------------------------------------------------------
+INTEGRACIÓN CON TYPEFORM (FLUJO DE EJECUCIÓN)
+----------------------------------------------------------------------
+
+La integración se basa en incrustar (embed) los ficheros "enigma" dentro de las preguntas de Typeform y usar los ficheros "recompensa" como un paso intermedio que devuelve el control a Typeform.
+
+EL FLUJO DETALLADO ES EL SIGUIENTE:
+
+1. PREGUNTA DE TYPEFORM (N):
+   - Se configura para mostrar contenido "embed".
+   - Se incrusta la URL del fichero de enigma (ej: `.../paradaN-enigma-es.html`).
+
+2. JUGADOR RESUELVE EL ENIGMA:
+   - El jugador interactúa con el HTML incrustado.
+   - Al introducir la respuesta correcta, el JavaScript del fichero `enigma` lo redirige a la página de `recompensa` (ej: `.../paradaN-recompensa-es.html`). La página de recompensa se carga DENTRO del mismo marco (iframe) de Typeform.
+
+3. JUGADOR LEE LA RECOMPENSA Y CONTINÚA:
+   - El jugador lee la historia y las pistas en la página de recompensa.
+   - Al pulsar el botón "Continuar Aventura", el código JavaScript de este fichero ejecuta la siguiente instrucción:
+     `window.parent.postMessage({ type: 'enigma-solved', parada: N }, '*');`
+
+4. TYPEFORM RECIBE LA SEÑAL:
+   - La página principal (Typeform) "escucha" este mensaje (`postMessage`).
+   - Al recibirlo, la lógica de Typeform (configurada con "Logic Jumps") avanza automáticamente a la siguiente pregunta (N+1).
+
+5. CICLO:
+   - La pregunta N+1 de Typeform carga el siguiente fichero de enigma (`.../parada(N+1)-enigma-es.html`), repitiendo el proceso.
+
+----------------------------------------------------------------------
+FUNCIONALIDAD DEL MAPA
+----------------------------------------------------------------------
+
+La funcionalidad de Google Maps se mantiene intacta. Los enlaces del mapa dentro de los ficheros de recompensa utilizan el atributo `target="_blank"`.
+
+- Efecto: Al ser pulsado, el enlace abrirá la aplicación de Google Maps o una nueva pestaña en el navegador del móvil.
+- No interrumpe el juego: La sesión de Typeform permanece abierta en la pestaña/aplicación original, permitiendo al jugador volver a ella fácilmente tras consultar el mapa.
+
+----------------------------------------------------------------------
+RESUMEN PARA EL IMPLEMENTADOR
+----------------------------------------------------------------------
+- El sistema de acceso y "un solo uso" es gestionado íntegramente por Typeform mediante sus códigos de acceso.
+- El juego está preparado para que solo necesites incrustar la URL de cada fichero `enigma` en el orden correcto dentro de las preguntas de Typeform.
+- Los ficheros `recompensa` se encargarán automáticamente de devolver el control a Typeform para avanzar de parada.
+
+======================================================================
+FIN DEL DOCUMENTO
+======================================================================

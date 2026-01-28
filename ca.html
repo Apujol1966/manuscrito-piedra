@@ -1,3 +1,10 @@
+<script>
+    // CANDADO DE SEGURIDAD
+    // Si no tiene el "ticket" guardado, lo echa a la página de login
+    if (localStorage.getItem('acceso_manuscrito') !== 'permitido') {
+        window.location.href = 'login.html';
+    }
+</script>
 <!DOCTYPE html>
 <html lang="ca" translate="no">
 <head>
