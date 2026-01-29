@@ -1,16 +1,24 @@
-<script>
-    // CANDADO DE SEGURIDAD
-    // Si no tiene el "ticket" guardado, lo echa a la página de login
-    if (localStorage.getItem('acceso_manuscrito') !== 'permitido') {
-        window.location.href = 'login.html';
-    }
-</script>
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>El Manuscrito de Piedra</title>
+    
+    <!-- 1. CARGAMOS LA CONFIGURACIÓN -->
+    <script src="config.js"></script>
+
+    <!-- 2. EL CANDADO INTELIGENTE -->
+    <script>
+        // Verificamos si la clave guardada coincide con la actual del servidor
+        // Si no coincide (o no existe), mandamos al login
+        var claveUsuario = localStorage.getItem('clave_guardada');
+        
+        if (typeof CLAVE_ACTUAL === 'undefined' || claveUsuario !== CLAVE_ACTUAL) {
+            window.location.href = 'login.html';
+        }
+    </script>
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&display=swap" rel="stylesheet">
@@ -25,6 +33,7 @@
 
     <h1>Elige tu idioma</h1>
     
+    <!-- Enlaces a las páginas de instrucciones -->
     <a href="instrucciones-es.html" class="lang-link">Español</a>
     <a href="instrucciones-ca.html" class="lang-link">Català</a>
     <a href="instrucciones-en.html" class="lang-link">English</a>

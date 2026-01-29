@@ -4,6 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Access - El Manuscrito</title>
+    
+    <!-- IMPORTANTE: Cargamos la configuración -->
+    <script src="config.js"></script>
+
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Lato:wght@400;700&display=swap" rel="stylesheet">
     <style>
         :root { --bg-color: #000; --text-main: #e0d6c2; --gold: #d4af37; --error: #c0392b; }
@@ -64,13 +68,11 @@
             font-size: 0.9rem;
         }
         
-        /* Animación de error */
         @keyframes shake { 0% { transform: translateX(0); } 25% { transform: translateX(-5px); } 75% { transform: translateX(5px); } 100% { transform: translateX(0); } }
     </style>
 </head>
 <body>
 
-    <!-- TÍTULOS EN LOS 3 IDIOMAS -->
     <h1>
         EL MANUSCRITO DE PIEDRA
         <span style="font-size: 0.7em; color: #ccc;">EL MANUSCRIT DE PEDRA</span>
@@ -93,14 +95,13 @@
     </div>
 
     <script>
-        // --- CONTRASEÑA MAESTRA (Cámbiala aquí) ---
-        const CLAVE_SECRETA = "BARCINO2025"; 
-
         function entrar() {
             const input = document.getElementById('password').value.trim().toUpperCase();
             
-            if (input === CLAVE_SECRETA) {
-                localStorage.setItem('acceso_manuscrito', 'permitido');
+            // Comprobamos contra la variable que viene de config.js
+            if (typeof CLAVE_ACTUAL !== 'undefined' && input === CLAVE_ACTUAL) {
+                // Guardamos LA CLAVE EXACTA en el navegador
+                localStorage.setItem('clave_guardada', input);
                 window.location.href = 'index.html';
             } else {
                 const errorDiv = document.getElementById('error');

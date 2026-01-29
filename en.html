@@ -1,10 +1,4 @@
-<script>
-    // CANDADO DE SEGURIDAD
-    // Si no tiene el "ticket" guardado, lo echa a la página de login
-    if (localStorage.getItem('acceso_manuscrito') !== 'permitido') {
-        window.location.href = 'login.html';
-    }
-</script>
+
 <!DOCTYPE html>
 <html lang="en" translate="no">
 <head>
@@ -12,6 +6,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="google" content="notranslate">
     <title>The Stone Manuscript</title>
+	 <!-- === NUEVO CANDADO DE SEGURIDAD === -->
+    <script src="config.js"></script>
+    <script>
+        // Comprueba si la clave guardada es igual a la actual
+        if (typeof CLAVE_ACTUAL === 'undefined' || localStorage.getItem('clave_guardada') !== CLAVE_ACTUAL) {
+            window.location.href = 'login.html';
+        }
+    </script>
+    <!-- ================================== -->
     <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Lato:wght@400;700&display=swap" rel="stylesheet">
     <style>
         :root { --bg-color: #121212; --card-bg: #1e1e1e; --text-main: #e0d6c2; --text-muted: #a8a095; --accent: #c0392b; --success: #27ae60; }
