@@ -1,93 +1,135 @@
-======================================================================
-DOCUMENTO MAESTRO DE PROYECTO v10.0 (FINAL PRE-TEST)
+================================================================================
+DOCUMENTO MAESTRO DE DESARROLLO Y DISEÑO - VERSIÓN DEFINITIVA (EXTENDED)
 PROYECTO: "El Manuscrito de Piedra"
-RUTA: Cronológica (Histórica)
-FECHA: 29/12/2025
-======================================================================
+TIPO: Web App (Escape Room Urbano)
+ESTADO: GOLD MASTER (Listo para producción)
+FECHA: 30/01/2026
+================================================================================
 
-1. ESPECIFICACIONES TÉCNICAS Y DE DISEÑO
-----------------------------------------------------------------------
-- TÍTULO OFICIAL: El Manuscrito de Piedra
-- STACK: HTML5, CSS3, JavaScript (Vanilla).
-- DISEÑO: Mobile First.
-- PERSISTENCIA: localStorage ('progresoJuego').
-- LÓGICA DE AYUDA (ENIGMAS): "Ayuda Progresiva". Botón de pista aparece tras 3 fallos.
-- LÓGICA DE AYUDA (NAVEGACIÓN): Sistema de 2 niveles (Pista Directa + Mapa) desbloqueado con tests de atención.
-- LÓGICA DE VALIDACIÓN: Flexible (acepta mayúsculas/minúsculas y con/sin tildes).
+1. FILOSOFÍA Y EXPERIENCIA DE USUARIO (UX)
+--------------------------------------------------------------------------------
+Este no es un simple formulario. Es una aplicación web diseñada con filosofía "Mobile First" para ser jugada en la calle, bajo el sol, y por usuarios de cualquier edad.
 
-[ESTRUCTURA DE FICHEROS]
-/ (Raíz)
-|-- index.html           (Selector de idioma -> apunta a instrucciones)
-|-- instrucciones-es.html, instrucciones-ca.html, instrucciones-en.html (NUEVO)
-|-- es.html, ca.html, en.html (Ahora son el inicio real del juego)
-|-- reset.html
-|-- imagenes/
-|-- adulto/
-    |-- parada[X]-enigma-[lang].html
-    |-- parada[X]-recompensa-[lang].html
-    |-- final-[lang].html (Mosaico del Recuerdo)
+- ENFOQUE: "Arqueología Emocional". No es una gincana de correr, es un paseo para redescubrir la ciudad.
+- SIN BARRERAS: No requiere descargas (Web App). Funciona en cualquier navegador.
+- TOLERANCIA A ERRORES: El sistema de validación ha sido programado para ser "amable". Acepta respuestas en mayúsculas, minúsculas y, crucialmente, con o sin tildes (normalización de caracteres NFD).
+- CURVA DE DIFICULTAD: Implementamos "Ayuda Progresiva". El botón de pistas no aparece de inmediato; el jugador debe fallar 3 veces para que el sistema le ofrezca ayuda, fomentando el esfuerzo inicial.
 
-======================================================================
-2. GUIÓN DE JUEGO Y LÓGICA (RUTA CRONOLÓGICA CORREGIDA)
-======================================================================
+2. ARQUITECTURA TÉCNICA Y SEGURIDAD
+--------------------------------------------------------------------------------
+El sistema se ha blindado para permitir la comercialización manual (sin automatización de servidores complejos).
 
---- INICIO (Plaça Catalunya -> Catedral) ---
-- Pista Inicial: "Mirando la fachada de la Catedral, tu objetivo está FRENTE A TI".
+A. SISTEMA DE "LLAVE MAESTRA" (SECURITY LAYER)
+   - Archivo `config.js`: Contiene la variable `const CLAVE_ACTUAL`. Este es el único punto que se edita para cambiar la contraseña mensual.
+   - Archivo `login.html`: Interfaz trilingüe que valida la entrada del usuario contra `config.js`.
+   - El "Candado": Un script inyectado en el `<head>` de todos los archivos de entrada (`index.html`, `es.html`, `instrucciones.html`...) que verifica el `localStorage`.
+   - Lógica de Expulsión: Si la clave guardada en el navegador del usuario no coincide con la `CLAVE_ACTUAL` del servidor, el usuario es redirigido forzosamente al Login.
 
---- PARADA 1: ROMA (Plaça Nova) ---
-- Enigma: Letras Brossa.
-- Solución: BARCINO
-- Curiosidad: La letra 'N' (aluminio, vela, brújula).
-- Pista Salto: Ir a la Plaça del Rei.
+B. PERSISTENCIA DE DATOS
+   - Se usa `localStorage` para guardar:
+     1. `clave_guardada`: El token de acceso.
+     2. `progresoJuego`: El número de la parada actual (para el botón "Continuar Partida").
 
---- PARADA 2: VISIGODOS (Plaça del Rei) ---
-- Enigma: Torre del Rei Martí.
-- Solución: MARTI5
-- Curiosidad: Recepción de Cristóbal Colón.
-- Pista Salto: Ir a la estatua de Ramon Berenguer.
+3. ESTRUCTURA DEL SISTEMA DE ARCHIVOS
+--------------------------------------------------------------------------------
+/ (Raíz del Servidor)
+|-- config.js            [SISTEMA] Archivo de configuración de contraseña.
+|-- login.html           [SISTEMA] Puerta de entrada. Gestiona el acceso.
+|-- index.html           [MENÚ] Selector de idioma (Protegido).
+|-- reset.html           [QA] Herramienta para borrar caché/progreso y testear.
+|-- promo.html           [MARKETING] Landing page comercial.
+|
+|-- [INSTRUCCIONES Y BIENVENIDA]
+|   |-- instrucciones-es.html, -ca.html, -en.html (Reglas del juego)
+|   |-- es.html, ca.html, en.html (Intro narrativa y Pista 1)
+|
+|-- /imagenes/           [ASSETS] 11 imágenes optimizadas.
+|
+|-- /adulto/             [CORE DEL JUEGO]
+    |-- Se compone de 2 archivos por parada x 9 paradas x 3 idiomas = 54 archivos.
+    |-- Estructura: parada[N]-enigma-[lang].html y parada[N]-recompensa-[lang].html
+    |-- final-es.html, final-ca.html, final-en.html (El desenlace interactivo)
 
---- PARADA 3: AL-ÁNDALUS (Plaça Ramon Berenguer) ---
-- Enigma (Trampa del Latín): Sumar M(1000) + V(5) + III(3).
-- Solución: 1008
-- Pista Salto: Ir al Pont del Bisbe.
+4. GUION DETALLADO Y SOLUCIONARIO (RUTA OPTIMIZADA)
+--------------------------------------------------------------------------------
+La ruta se ha reordenado geográficamente para eliminar el "efecto yo-yó" y evitar que el jugador camine innecesariamente.
 
---- PARADA 4: GÓTICO (Pont del Bisbe) ---
-- Enigma (Criptografía): Convertir DAGA a números (A=1...).
-- Solución: 4171
-- Pista Salto: Ir al Call (Carrer Salomó ben Adret).
+► INICIO (Plaça Catalunya -> Catedral)
+  - Pista Inicial Corregida: "Mirando la fachada de la Catedral, tu objetivo está FRENTE A TI" (Plaça Nova).
 
---- PARADA 5: EL CALL (Carrer Salomó ben Adret) ---
-- Enigma: Multiplicar número del portal (6) x Siglo (12). Ref. "Casa Adret".
-- Solución: 72
-- Pista Salto: Ir a la Casa de l'Ardiaca (Carrer Santa Llúcia).
+► PARADA 1: ROMA (Plaça Nova)
+  - Elemento: Escultura visual de letras de bronce de Joan Brossa.
+  - Enigma: Identificar el nombre romano de 7 letras.
+  - Solución: BARCINO
+  - Curiosidad: La letra 'N' es de aluminio (no bronce), apunta al Norte y tiene forma de vela de barco.
+  - Salto: Hacia la misma plaza, lado derecho (Renacimiento).
 
---- PARADA 6: RENACIMIENTO (Casa de l'Ardiaca) ---
-- Enigma (Observación): Código visual Nº-Letra-Palabra.
-- Solución: 2TESCUDO (CA: 2TESCUT, EN: 2TSHIELD).
-- Pista Salto: Ir al Carrer del Veguer.
+► PARADA 2: VISIGODOS (Plaça del Rei)
+  - Elemento: La Torre del Rei Martí (Mirador).
+  - Enigma: Combinación del nombre del rey + número de pisos de galerías.
+  - Solución: MARTI5
+  - Curiosidad: El subsuelo oculta la verdadera ciudad visigoda. Arriba, se recibió a Colón.
+  - Salto: Cruzar la muralla hacia la Via Laietana.
 
---- PARADA 7: ILUSTRACIÓN (Carrer del Veguer) ---
-- Enigma: Cifrado Masónico (Pigpen).
-- Solución: PADELLAS
-- Pista Salto: Ir a Plaça Sant Felip Neri.
+► PARADA 3: AL-ÁNDALUS (Plaça Ramon Berenguer)
+  - Elemento: Estatua ecuestre. Inscripción en piedra.
+  - Enigma: "La Trampa del Latín". Sumar M(1000) + V(5) (que es una U) + III(3).
+  - Solución: 1008
+  - Curiosidad: Las alianzas matrimoniales entre condes y musulmanes.
+  - Salto: Ir hacia el puente del Bisbe.
 
---- PARADA 8: GUERRA CIVIL (Plaça Sant Felip Neri) ---
-- Enigma: Escribir el nombre de la figura geométrica de la fuente.
-- Solución: OCTOGONO (CA: OCTÀGON, EN: OCTAGON).
-- Recompensa: Texto sobre "pequeños/infantes".
-- Pista Salto: Ir a Plaça Sant Jaume.
+► PARADA 4: GÓTICO (Pont del Bisbe)
+  - Elemento: La calavera bajo el puente atravesada por una daga.
+  - Enigma: Criptografía. Convertir la palabra DAGA en números (A=1, B=2...).
+  - Solución: 4171
+  - Curiosidad: El puente es un "Falso Gótico" de 1928. Leyenda de la destrucción de BCN si cae la daga.
+  - Salto: Bajar hacia el Call (Barrio Judío).
 
---- PARADA 9: FINAL (Plaça Sant Jaume) ---
-- Enigma: Nombre actual de la ciudad.
-- Solución: BARCELONA
-- Recompensa: Epílogo completo mencionando las 8 épocas.
-- Acción Final: Botón "Ver el Desenlace" -> Mosaico del Recuerdo.
+► PARADA 5: EL CALL (Carrer de Salomó ben Adret)
+  - Elemento: Casa marcada con el nº 6 (Referencia visual: "Casa Adret").
+  - Enigma: Matemático. Multiplicar número portal (6) x Siglo cimientos (12).
+  - Solución: 72
+  - Curiosidad: La historia de Rashba (el sabio) y la casa habitada más antigua.
+  - Salto: Volver a subir a la Catedral (Carrer Santa Llúcia).
 
---- PANTALLA FINAL: Mosaico del Recuerdo ---
-- Concepto: Cuadrícula 3x3 con las 9 imágenes.
-- Animación: "Fly-out" centrado y secuencial, con revelación de la solución.
-- Frase Final Épica: "Has descifrado la piedra, has leído el tiempo. El Manuscrito ya no es un secreto de la ciudad, ahora es parte de tu memoria."
+► PARADA 6: RENACIMIENTO (Casa de l'Ardiaca)
+  - Elemento: Fachada principal, buzón de mármol y dintel.
+  - Enigma: Código Visual Combinado.
+    1. Nº Columnas estriadas (2).
+    2. Inicial del animal/reptil (T - Tortuga).
+    3. Objeto en el dintel (ESCUDO / ESCUT / SHIELD).
+  - Solución: 2TESCUDO (ES) / 2TESCUT (CA) / 2TSHIELD (EN).
+  - Curiosidad: Sede del Archivo Histórico. Simbolismo Justicia (Golondrina rápida vs Tortuga lenta).
+  - Salto: Buscar la calle del Veguer detrás de la Plaza del Rey.
 
-======================================================================
-FIN DEL DOCUMENTO MAESTRO v10.0
-======================================================================
+► PARADA 7: ILUSTRACIÓN (Carrer del Veguer)
+  - Elemento: Fachada gótica de la Casa Padellàs (MUHBA).
+  - Enigma: Jeroglífico. Cifrado Masónico (Pigpen) dibujado en CSS en pantalla.
+  - Solución: PADELLAS
+  - Curiosidad: La casa "viajera" que se movió piedra a piedra en 1931. El fin del Veguer y el Decreto de Nueva Planta.
+  - Salto: Plaza escondida cercana con marcas de metralla.
+
+► PARADA 8: GUERRA CIVIL (Plaça Sant Felip Neri)
+  - Elemento: Fuente central octogonal.
+  - Enigma: Geometría. Escribir el nombre de la figura de la fuente.
+  - Solución: OCTOGONO (ES) / OCTÀGON (CA) / OCTAGON (EN).
+  - Curiosidad: La verdad sobre el bombardeo de 1938 (no fueron fusilamientos). Homenaje a los "infantes/pequeños".
+  - Salto: Ir al centro del poder político.
+
+► PARADA 9: FINAL (Plaça Sant Jaume)
+  - Elemento: Fachada del Ayuntamiento.
+  - Enigma: Nombre actual de la ciudad (Cierre de ciclo).
+  - Solución: BARCELONA
+  - Recompensa: Epílogo narrativo completo.
+
+5. EL DESENLACE: "EL MOSAICO DEL RECUERDO"
+--------------------------------------------------------------------------------
+Se ha sustituido el diploma tradicional por una experiencia visual interactiva en el archivo `final-[lang].html`.
+
+- Mecánica: Una cuadrícula de 9 imágenes (las de las paradas) aparece vacía.
+- Animación "Fly-out": Mediante JavaScript asíncrono, cada imagen sale del mosaico, ocupa la pantalla (zoom), se revela a color, muestra la solución del enigma como un "recuerdo desbloqueado" y vuelve a su sitio.
+- Cross-Selling (Comercial): Al terminar la animación, aparece una sección "Post-Créditos" promocionando el juego "El Tesoro de Barcino" con enlace directo a la tienda de Otium.
+
+================================================================================
+FIN DEL DOCUMENTO MAESTRO EXTENDIDO
+================================================================================

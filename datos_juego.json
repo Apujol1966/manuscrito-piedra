@@ -1,100 +1,113 @@
 {
-  "config": {
-    "titulo_proyecto": "El Manuscrito de las Capas de Piedra",
-    "version": "9.0",
-    "idiomas_disponibles": ["es", "ca", "en"]
+  "meta": {
+    "proyecto": "El Manuscrito de Piedra",
+    "version": "11.0",
+    "idiomas": ["es", "ca", "en"],
+    "seguridad": { "metodo": "Clave Maestra", "archivo_config": "config.js" }
+  },
+  "ruta": {
+    "tipo": "Geográfica Optimizada",
+    "orden_paradas": [1, 2, 3, 4, 5, 6, 7, 8, 9]
   },
   "paradas": [
     {
-      "id": 1, "slug": "roma", "imagen": "roma.jpg",
-      "titulo": { "es": "Capítulo I: Roma", "ca": "Capítol I: Roma", "en": "Chapter I: Rome" },
+      "id": 1,
+      "nombre": "Roma",
+      "ubicacion": "Plaça Nova",
       "enigma": {
-        "pregunta": { "es": "¿Qué nombre romano de 7 letras forman las esculturas?", "ca": "Quin nom romà de 7 lletres formen les escultures?", "en": "What 7-letter Roman name do the sculptures form?" },
+        "tipo": "Visual",
+        "pregunta_es": "¿Qué nombre romano forman las letras?",
         "solucion": "BARCINO"
       },
-      "recompensa": {
-        "curiosidad": { "es": "La letra 'N' es de aluminio, parece una vela y apunta al Norte.", "ca": "La lletra 'N' és d'alumini, sembla una vela i apunta al Nord.", "en": "The 'N' letter is aluminum, looks like a sail, and points North." },
-        "pista_salto_mapa": "Plaça del Rei, Barcelona"
-      }
+      "curiosidad_clave": "La N de aluminio es una brújula y una vela."
     },
     {
-      "id": 2, "slug": "visigodos", "imagen": "visigodos.jpg",
-      "titulo": { "es": "Capítulo II: Visigodos", "ca": "Capítol II: Visigots", "en": "Chapter II: Visigoths" },
+      "id": 2,
+      "nombre": "Visigodos",
+      "ubicacion": "Plaça del Rei",
       "enigma": {
-        "pregunta": { "es": "Código: Nombre del rey constructor (sin tilde) + Pisos de la torre.", "ca": "Codi: Nom del rei constructor + Pisos de la torre.", "en": "Code: Name of the builder king + Floors of the tower." },
+        "tipo": "Alfanumérico",
+        "pregunta_es": "Nombre Rey + Pisos Torre",
         "solucion": "MARTI5"
       },
-      "recompensa": {
-        "curiosidad": { "es": "Aquí recibieron los Reyes Católicos a Cristóbal Colón.", "ca": "Aquí van rebre els Reis Catòlics a Cristòfor Colom.", "en": "The Catholic Monarchs received Christopher Columbus here." },
-        "pista_salto_mapa": "Plaça de Ramon Berenguer el Gran, Barcelona"
-      }
+      "curiosidad_clave": "El subsuelo visigodo y la recepción de Colón."
     },
     {
-      "id": 3, "slug": "alandalus", "imagen": "alandalus.jpg",
-      "titulo": { "es": "Capítulo III: Al-Ándalus", "ca": "Capítol III: Al-Àndalus", "en": "Chapter III: Al-Andalus" },
+      "id": 3,
+      "nombre": "Al-Ándalus",
+      "ubicacion": "Plaça Ramon Berenguer",
       "enigma": {
-        "pregunta": { "es": "Suma TODOS los números romanos en 'RAMON BERENGVER III' (U=V=5).", "ca": "Suma TOTS els nombres romans a 'RAMON BERENGVER III' (U=V=5).", "en": "Sum ALL Roman numerals in 'RAMON BERENGVER III' (U=V=5)." },
+        "tipo": "Matemático/Trampa",
+        "pregunta_es": "Suma Romanos (M+V+III)",
         "solucion": "1008"
       },
-      "recompensa": { "pista_salto_mapa": "Carrer del Bisbe, Barcelona" }
+      "curiosidad_clave": "Alianzas y saber de Córdoba."
     },
     {
-      "id": 4, "slug": "gotico", "imagen": "gotico.jpg",
-      "titulo": { "es": "Capítulo IV: Gótico", "ca": "Capítol IV: Gòtic", "en": "Chapter IV: Gothic" },
+      "id": 4,
+      "nombre": "Gótico",
+      "ubicacion": "Pont del Bisbe",
       "enigma": {
-        "pregunta": { "es": "Convierte el arma que atraviesa la calavera (DAGA) a números (A=1...).", "ca": "Converteix l'arma que travessa la calavera (DAGA) a números (A=1...).", "en": "Convert the weapon piercing the skull (DAGA) to numbers (A=1...)." },
+        "tipo": "Criptografía",
+        "pregunta_es": "Código numérico DAGA",
         "solucion": "4171"
       },
-      "recompensa": { "pista_salto_mapa": "Carrer de Salomó ben Adret, Barcelona" }
+      "curiosidad_clave": "Falso gótico de 1928."
     },
     {
-      "id": 5, "slug": "call", "imagen": "call.jpg",
-      "titulo": { "es": "Capítulo V: El Call", "ca": "Capítol V: El Call", "en": "Chapter V: The Call" },
+      "id": 5,
+      "nombre": "El Call",
+      "ubicacion": "Carrer Salomó ben Adret",
       "enigma": {
-        "pregunta": { "es": "Multiplica el número del portal (6) por el siglo de los cimientos (XII).", "ca": "Multiplica el número del portal (6) pel segle dels fonaments (XII).", "en": "Multiply the door number (6) by the century of the foundations (XII)." },
+        "tipo": "Matemático",
+        "pregunta_es": "Portal (6) x Siglo (12)",
         "solucion": "72"
       },
-      "recompensa": { "pista_salto_mapa": "Casa de l'Ardiaca, Barcelona" }
+      "curiosidad_clave": "Casa Adret y el sabio Rashba."
     },
     {
-      "id": 6, "slug": "renacimiento", "imagen": "ardiaca.jpg",
-      "titulo": { "es": "Capítulo VI: Renacimiento", "ca": "Capítol VI: Renaixement", "en": "Chapter VI: Renaissance" },
+      "id": 6,
+      "nombre": "Renacimiento",
+      "ubicacion": "Casa Ardiaca",
       "enigma": {
-        "pregunta": { "es": "Código: Nº Columnas - Inicial Animal - Objeto Dintel.", "ca": "Codi: Nº Columnes - Inicial Animal - Objecte Llinda.", "en": "Code: Nº Columns - Animal Initial - Lintel Object." },
+        "tipo": "Observación Combinada",
+        "pregunta_es": "Columnas + Animal + Dintel",
         "soluciones": { "es": "2TESCUDO", "ca": "2TESCUT", "en": "2TSHIELD" }
       },
-      "recompensa": { "pista_salto_mapa": "Carrer del Veguer, Barcelona" }
+      "curiosidad_clave": "Archivo Histórico y buzón modernista."
     },
     {
-      "id": 7, "slug": "ilustracion", "imagen": "veguer.jpg",
-      "titulo": { "es": "Capítulo VII: Ilustración", "ca": "Capítol VII: Il·lustració", "en": "Chapter VII: Enlightenment" },
+      "id": 7,
+      "nombre": "Ilustración",
+      "ubicacion": "Carrer del Veguer",
       "enigma": {
-        "pregunta": { "es": "Descifra el apellido con la clave masónica.", "ca": "Desxifra el cognom amb la clau maçònica.", "en": "Decipher the surname using the Masonic key." },
+        "tipo": "Jeroglífico Pigpen",
+        "pregunta_es": "Descifra el apellido",
         "solucion": "PADELLAS"
       },
-      "recompensa": { "pista_salto_mapa": "Plaça de Sant Felip Neri, Barcelona" }
+      "curiosidad_clave": "Casa trasladada y fin del Veguer."
     },
     {
-      "id": 8, "slug": "guerracivil", "imagen": "felipneri.jpg",
-      "titulo": { "es": "Capítulo VIII: Guerra Civil", "ca": "Capítol VIII: Guerra Civil", "en": "Chapter VIII: Civil War" },
+      "id": 8,
+      "nombre": "Guerra Civil",
+      "ubicacion": "Sant Felip Neri",
       "enigma": {
-        "pregunta": { "es": "¿Qué figura geométrica tiene la fuente?", "ca": "Quina figura geomètrica té la font?", "en": "What geometric shape does the fountain have?" },
+        "tipo": "Geometría",
+        "pregunta_es": "Forma de la fuente",
         "soluciones": { "es": "OCTOGONO", "ca": "OCTAGON", "en": "OCTAGON" }
       },
-      "recompensa": { "pista_salto_mapa": "Plaça de Sant Jaume, Barcelona" }
+      "curiosidad_clave": "Bombardeo de 1938."
     },
     {
-      "id": 9, "slug": "final", "imagen": "santjaume.jpg",
-      "titulo": { "es": "Capítulo Final: Presente", "ca": "Capítol Final: Present", "en": "Final Chapter: Present" },
+      "id": 9,
+      "nombre": "Final",
+      "ubicacion": "Sant Jaume",
       "enigma": {
-        "pregunta": { "es": "Nombre actual de la ciudad.", "ca": "Nom actual de la ciutat.", "en": "Current name of the city." },
+        "tipo": "Cierre",
+        "pregunta_es": "Nombre actual ciudad",
         "solucion": "BARCELONA"
       },
-      "recompensa": {}
+      "accion_final": "Mostrar Mosaico y Cross-Selling"
     }
   ]
-}```
-
----
-
-Cuando estés listo para generar el código, solo tienes que pedirlo. ¡Mucha suerte con el testeo
+}

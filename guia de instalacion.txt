@@ -1,0 +1,83 @@
+======================================================================
+MANUAL DE IMPLANTACIÓN: "EL MANUSCRITO DE PIEDRA"
+======================================================================
+
+1. RESUMEN DEL PRODUCTO
+----------------------------------------------------------------------
+"El Manuscrito de Piedra" es una Web App (Aplicación Web) estática.
+No requiere base de datos, ni PHP, ni instalaciones complejas.
+Funciona en cualquier servidor web estándar (Apache, Nginx, GitHub Pages).
+
+2. ESTRUCTURA DE ARCHIVOS (LO QUE TIENES QUE SUBIR)
+----------------------------------------------------------------------
+Debes subir la carpeta completa al servidor manteniendo ESTA estructura exacta. Si cambias archivos de lugar, el juego dejará de funcionar.
+
+/ (Carpeta Raíz del juego, por ejemplo: /manuscrito)
+|-- config.js            <-- IMPORTANTE: Aquí se gestiona la contraseña.
+|-- login.html           <-- Puerta de entrada.
+|-- index.html           <-- Menú principal (protegido).
+|-- es.html, ca.html...  <-- Inicios de juego.
+|-- instrucciones-xx...  <-- Páginas de reglas.
+|-- reset.html           <-- Herramienta de limpieza.
+|-- promo.html           <-- Landing page comercial.
+|
+|-- /imagenes/           <-- Todas las fotos (.jpg).
+|-- /adulto/             <-- Todos los enigmas y recompensas (.html).
+
+3. DÓNDE ALOJARLO (OPCIONES)
+----------------------------------------------------------------------
+
+OPCIÓN A: En tu propio Hosting (RECOMENDADA)
+Si ya tienes una web (otiumescaperoom.es), lo ideal es alojarlo ahí.
+- Por qué: Da imagen profesional. La URL será "otiumescaperoom.es/manuscrito".
+- Cómo:
+  1. Entra al administrador de archivos de tu hosting (cPanel, FTP, FileZilla).
+  2. Dentro de la carpeta `public_html`, crea una carpeta nueva llamada `manuscrito` (o el nombre que quieras para la URL).
+  3. Sube TODOS los archivos y carpetas dentro de esa nueva carpeta.
+
+OPCIÓN B: GitHub Pages (Gratuito)
+- Por qué: Coste cero, servidor rápido y seguro (HTTPS).
+- Cómo:
+  1. Crea un repositorio público en GitHub.
+  2. Sube los archivos.
+  3. Activa "GitHub Pages" en la configuración (Settings > Pages).
+  4. La URL será: "nombre-usuario.github.io/manuscrito".
+
+4. GESTIÓN COMERCIAL: EL SISTEMA DE SEGURIDAD
+----------------------------------------------------------------------
+El juego cuenta con un sistema de "Llave Maestra" diseñado para la venta manual (Bizum/Transferencia/Bono).
+
+¿CÓMO FUNCIONA EL ACCESO?
+1. El juego está bloqueado. Si alguien entra a `index.html`, es expulsado a `login.html`.
+2. El usuario solo puede entrar si introduce la contraseña correcta definida en el servidor.
+
+¿CÓMO CAMBIAR LA CONTRASEÑA? (MANTENIMIENTO MENSUAL)
+Para evitar que un cliente comparta el juego con todo el mundo eternamente, se recomienda cambiar la contraseña periódicamente (ej: cada mes).
+
+1. Abre el archivo `config.js` en tu servidor.
+2. Verás esta línea:
+   const CLAVE_ACTUAL = "BARCINO2025";
+3. Cambia el texto entre comillas por la nueva clave (ej: "FEBRERO24").
+4. Guarda el archivo.
+   
+EFECTO INMEDIATO:
+- Cualquier usuario nuevo necesitará la clave "FEBRERO24".
+- Cualquier usuario antiguo que intente entrar con la clave vieja será expulsado automáticamente al Login.
+
+5. FLUJO DE VENTA AL CLIENTE
+----------------------------------------------------------------------
+Cuando recibas un pedido/pago:
+
+1. Envía un email/WhatsApp al cliente con:
+   - EL ENLACE: https://tu-web.com/manuscrito/
+   - LA CLAVE: "Tu código de acceso es: BARCINO2025"
+
+2. El cliente entra, pone la clave y juega. No tiene que registrarse ni dar datos.
+
+6. PROMOCIÓN CRUZADA (CROSS-SELLING)
+----------------------------------------------------------------------
+Al finalizar el juego, en la pantalla del "Mosaico del Recuerdo", aparece automáticamente un banner promocionando "El Tesoro de Barcino" con un botón de compra que redirige a tu tienda principal.
+
+======================================================================
+FIN DEL MANUAL
+======================================================================
