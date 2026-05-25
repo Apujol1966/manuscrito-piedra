@@ -25,4 +25,4 @@
 |   |
 |   `-- diploma.html       (Página final para generar el diploma, probablemente multilingüe)
 |
-`-- verificar.html         (Página para la validación de diplomas)
+`-- verificar.html         (Página para la validación de diplomas
