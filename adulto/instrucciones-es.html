@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instrucciones - El Manuscrito de Piedra</title>
+    <script src="config.js"></script>
+    <script>
+        if (localStorage.getItem('clave_guardada') !== CLAVE_ACTUAL) { window.location.href = 'login.html'; }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Lato:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root { --bg-color: #121212; --card-bg: #1e1e1e; --text-main: #e0d6c2; --gold: #d4af37; --accent: #c0392b; }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { background-color: var(--bg-color); color: var(--text-main); font-family: 'Lato', sans-serif; line-height: 1.7; padding: 20px; max-width: 600px; margin: 0 auto; display: flex; flex-direction: column; justify-content: center; min-height: 100vh; }
+        h1 { font-family: 'Cinzel', serif; color: var(--gold); text-align: center; margin-bottom: 30px; font-size: 2rem; }
+        .instructions-list { background-color: var(--card-bg); padding: 30px; border-radius: 12px; border-top: 4px solid var(--accent); list-style: none; }
+        .instructions-list li { padding-left: 35px; position: relative; margin-bottom: 25px; }
+        .instructions-list li:last-child { margin-bottom: 0; }
+        .instructions-list li::before { content: '✓'; position: absolute; left: 0; top: 0; font-size: 1.5rem; color: var(--gold); font-weight: bold; }
+        .instructions-list strong { font-family: 'Cinzel', serif; color: #fff; display: block; margin-bottom: 5px; font-size: 1.1rem; }
+        .btn { width: 100%; padding: 15px 20px; font-size: 1.2rem; font-weight: bold; text-transform: uppercase; border: none; border-radius: 8px; cursor: pointer; font-family: 'Cinzel', serif; text-decoration: none; display: inline-block; text-align: center; margin-top: 30px; background-color: var(--accent); color: white; }
+        .btn-master { background: none; border: 1px solid #555; color: #888; font-size: 0.8rem; margin-top: 20px; width: 100%; padding: 10px; border-radius: 8px; font-family: 'Cinzel', serif; cursor: pointer; }
+        .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.9); display: none; align-items: center; justify-content: center; z-index: 1000; padding: 20px; }
+        .modal-content { background-color: var(--card-bg); padding: 30px; border-radius: 12px; text-align: center; width: 100%; max-width: 500px; border-top: 4px solid var(--accent); }
+    </style>
+</head>
+<body>
+    <div>
+        <h1>Antes de Empezar</h1>
+        <ul class="instructions-list">
+            <li>
+                <strong>TU MISIÓN</strong>
+                Resuelve una serie de enigmas históricos usando el entorno y tu ingenio. La aventura dura entre 60 y 120 minutos. El juego empieza en la Plaça de Catalunya.
+            </li>
+            <li>
+                <strong>AYUDA EN ENIGMAS</strong>
+                Si te atascas en una prueba, ¡no te preocupes! Tras 3 intentos fallidos aparecerá un botón para ayudarte.
+            </li>
+            <li>
+                <strong>AYUDA PARA NAVEGAR</strong>
+                Para ir de una parada a otra te daremos una pista. Si no es suficiente, superando pequeños tests de atención, podrás desbloquear una Pista Directa y si aún no es suficiente otra pista con un Mapa.
+            </li>
+            <li>
+                <strong>JUEGA A TU RITMO... ¡O COMPITE!</strong>
+                Disfruta del paseo sin prisas... ¡o reta a tus amigos para ver quién descifra antes el manuscrito!
+            </li>
+            <li>
+                <strong>AYUDA DIRECTA</strong>
+                Si en cualquier momento tienes un problema técnico o una duda sobre el juego, busca el botón "Contacta con el Master" al final de esta página.
+            </li>
+        </ul>
+        <a href="es.html" class="btn">Entendido, ¡A Jugar!</a>
+        <button class="btn-master" onclick="openMasterModal()">🆘 Contacta con el Master</button>
+    </div>
+
+    <div id="master-modal" class="modal-overlay" onclick="closeMasterModal()">
+        <div class="modal-content" onclick="event.stopPropagation();">
+            <h2 style="font-family:'Cinzel', serif; color:#fff; margin-bottom:15px;">Contacta con el Master</h2>
+            <p style="color:#a8a095; margin-bottom:20px;">Si tienes alguna incidencia técnica o duda, contacta conmigo.</p>
+            <p style="font-size: 1.2rem; font-weight: bold; color: var(--gold);">WhatsApp: 664 252 723</p>
+            <button class="btn" style="margin-top:20px;" onclick="closeMasterModal()">Cerrar</button>
+        </div>
+    </div>
+
+    <script>
+        function openMasterModal() { document.getElementById('master-modal').style.display = 'flex'; }
+        function closeMasterModal() { document.getElementById('master-modal').style.display = 'none'; }
+    </script>
+</body>
+</html>
