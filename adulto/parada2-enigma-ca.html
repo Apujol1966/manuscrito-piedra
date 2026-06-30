@@ -64,7 +64,6 @@
             <span class="enigma-icon">🏰</span>
             <h3>La Contrasenya Reial</h3>
             <p>“Per desxifrar la següent capa, necessites un codi. Combina el <strong>NOM</strong> del rei constructor de la torre (sense accent) seguit del <strong>NOMBRE</strong> de pisos de galeries (finestrals).”</p>
-            <p style="font-size:0.8rem; color:#aaa;">(Exemple: Si fos el Rei Jaume amb 3 pisos, seria JAUME3)</p>
             <label for="answer" style="display:none;">La teva resposta</label>
             <input type="text" id="answer" placeholder="Introdueix el codi">
             <button class="btn btn-primary" onclick="checkAnswer()">Validar Codi</button>
@@ -102,6 +101,8 @@
             const box = document.getElementById('hint-box');
             box.style.display = box.style.display === 'block' ? 'none' : 'block';
         }
+        function openMasterModal() { document.getElementById('master-modal').style.display = 'flex'; }
+        function closeMasterModal() { document.getElementById('master-modal').style.display = 'none'; }
     </script>
 </body>
 </html>

@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="google" content="notranslate">
-    <title>Capítulo II: Visigodos - El Manuscrit</title>
+    <title>Capítulo II: Visigodos - El Manuscrito</title>
     
     <script src="../config.js"></script>
     <script src="../manuscrito-funciones.js"></script>
@@ -21,7 +21,6 @@
         h1 { font-size: 1.8rem; text-align: center; margin-bottom: 10px; border-bottom: 2px solid var(--accent); padding-bottom: 10px; }
         .subtitle { text-align: center; font-size: 0.9rem; color: var(--text-muted); margin-bottom: 25px; text-transform: uppercase; }
         
-        /* AJUSTE DE FOTOS CORREGIDO */
         .img-container { 
             width: 100%; 
             height: auto;
@@ -85,7 +84,6 @@
             <span class="enigma-icon">🏰</span>
             <h3>La Contraseña Real</h3>
             <p>“Para descifrar la siguiente capa, necesitas un código. Combina el <strong>NOMBRE</strong> del rey constructor de la torre (sin tilde) seguido del <strong>NÚMERO</strong> de pisos de galerías (ventanales).”</p>
-            <p style="font-size:0.8rem; color:#aaa;">(Ejemplo: Si fuera el Rey Jaime con 3 pisos, sería JAIME3)</p>
             <label for="answer" style="display:none;">Tu respuesta</label>
             <input type="text" id="answer" placeholder="Introduce el código">
             <button class="btn btn-primary" onclick="checkAnswer()">Validar Código</button>
@@ -123,6 +121,8 @@
             const box = document.getElementById('hint-box');
             box.style.display = box.style.display === 'block' ? 'none' : 'block';
         }
+        function openMasterModal() { document.getElementById('master-modal').style.display = 'flex'; }
+        function closeMasterModal() { document.getElementById('master-modal').style.display = 'none'; }
     </script>
 </body>
 </html>
