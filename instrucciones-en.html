@@ -4,17 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Instructions - The Stone Manuscript</title>
-	 <!-- === NUEVO CANDADO DE SEGURIDAD === -->
     <script src="config.js"></script>
     <script>
-        // Comprueba si la clave guardada es igual a la actual
-        if (typeof CLAVE_ACTUAL === 'undefined' || localStorage.getItem('clave_guardada') !== CLAVE_ACTUAL) {
-            window.location.href = 'login.html';
-        }
+        if (localStorage.getItem('clave_guardada') !== CLAVE_ACTUAL) { window.location.href = 'login.html'; }
     </script>
-    <!-- ================================== -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Lato:wght@400;700&display=swap" rel="stylesheet">
     <style>
         :root { --bg-color: #121212; --card-bg: #1e1e1e; --text-main: #e0d6c2; --gold: #d4af37; --accent: #c0392b; }
@@ -26,8 +19,10 @@
         .instructions-list li:last-child { margin-bottom: 0; }
         .instructions-list li::before { content: '✓'; position: absolute; left: 0; top: 0; font-size: 1.5rem; color: var(--gold); font-weight: bold; }
         .instructions-list strong { font-family: 'Cinzel', serif; color: #fff; display: block; margin-bottom: 5px; font-size: 1.1rem; }
-        .btn { width: 100%; padding: 15px 20px; font-size: 1.2rem; font-weight: bold; text-transform: uppercase; border: none; border-radius: 8px; cursor: pointer; font-family: 'Cinzel', serif; text-decoration: none; display: inline-block; text-align: center; margin-top: 30px; background-color: var(--accent); color: white; transition: transform 0.2s; }
-        .btn:hover { transform: scale(1.03); }
+        .btn { width: 100%; padding: 15px 20px; font-size: 1.2rem; font-weight: bold; text-transform: uppercase; border: none; border-radius: 8px; cursor: pointer; font-family: 'Cinzel', serif; text-decoration: none; display: inline-block; text-align: center; margin-top: 30px; background-color: var(--accent); color: white; }
+        .btn-master { background: none; border: 1px solid #555; color: #888; font-size: 0.8rem; margin-top: 20px; width: 100%; padding: 10px; border-radius: 8px; font-family: 'Cinzel', serif; cursor: pointer; }
+        .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.9); display: none; align-items: center; justify-content: center; z-index: 1000; padding: 20px; }
+        .modal-content { background-color: var(--card-bg); padding: 30px; border-radius: 12px; text-align: center; width: 100%; max-width: 500px; border-top: 4px solid var(--accent); }
     </style>
 </head>
 <body>
@@ -36,22 +31,37 @@
         <ul class="instructions-list">
             <li>
                 <strong>YOUR MISSION</strong>
-                Solve a series of historical riddles using your wits and the city itself. The adventure takes about 90 to 120 minutes.
+                Solve a series of historical riddles using the surroundings and your wits. The adventure lasts between 90 and 120 minutes. The game starts at Plaça de Catalunya.
             </li>
             <li>
-                <strong>PUZZLE HINTS</strong>
-                If you get stuck on a puzzle, don't worry! After 3 wrong guesses, a hint button will appear to help you out.
+                <strong>RIDDLE HINTS</strong>
+                If you get stuck on a puzzle, don't worry! After 3 failed attempts, a button will appear to help you.
             </li>
             <li>
-                <strong>GETTING AROUND</strong>
-                To get from one stop to the next, you'll get a clue. If that's not enough, you can unlock a <strong>Direct Clue</strong> by passing a small attention test, and if you're still lost, another test will unlock a <strong>Map link</strong>.
+                <strong>NAVIGATION HELP</strong>
+                To get from one stop to another, we'll give you a hint. If that's not enough, by passing small attention tests, you can unlock a Direct Hint, and if it's still not enough, another hint with a Map.
             </li>
             <li>
-                <strong>PLAY YOUR WAY... OR COMPETE!</strong>
-                Enjoy the walk and explore at your own pace... or challenge your friends to see who can decipher the manuscript first!
+                <strong>PLAY AT YOUR PACE... OR COMPETE!</strong>
+                Enjoy the walk at your own pace... or challenge your friends to see who deciphers the manuscript first!
             </li>
         </ul>
         <a href="en.html" class="btn">Got It, Let's Play!</a>
+        <button class="btn-master" onclick="openMasterModal()">🆘 Contact the Master</button>
     </div>
+
+    <div id="master-modal" class="modal-overlay" onclick="closeMasterModal()">
+        <div class="modal-content" onclick="event.stopPropagation();">
+            <h2 style="font-family:'Cinzel', serif; color:#fff; margin-bottom:15px;">Contact the Master</h2>
+            <p style="color:#a8a095; margin-bottom:20px;">If you have any technical issues or a doubt, contact me.</p>
+            <p style="font-size: 1.2rem; font-weight: bold; color: var(--gold);">WhatsApp: 664 252 723</p>
+            <button class="btn" style="margin-top:20px;" onclick="closeMasterModal()">Close</button>
+        </div>
+    </div>
+
+    <script>
+        function openMasterModal() { document.getElementById('master-modal').style.display = 'flex'; }
+        function closeMasterModal() { document.getElementById('master-modal').style.display = 'none'; }
+    </script>
 </body>
 </html>

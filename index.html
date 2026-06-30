@@ -5,15 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>El Manuscrito de Piedra</title>
     
-    <!-- 1. CARGAMOS LA CONFIGURACIÓN -->
     <script src="config.js"></script>
 
-    <!-- 2. EL CANDADO INTELIGENTE -->
     <script>
-        // Verificamos si la clave guardada coincide con la actual del servidor
-        // Si no coincide (o no existe), mandamos al login
         var claveUsuario = localStorage.getItem('clave_guardada');
-        
         if (typeof CLAVE_ACTUAL === 'undefined' || claveUsuario !== CLAVE_ACTUAL) {
             window.location.href = 'login.html';
         }
@@ -27,16 +22,32 @@
         h1 { font-family: 'Cinzel', serif; font-size: 2.5rem; color: #e0d6c2; margin-bottom: 50px; }
         .lang-link { display: block; width: 100%; max-width: 300px; padding: 20px; margin: 10px 0; border: 2px solid #a8a095; color: #e0d6c2; background-color: #1e1e1e; border-radius: 8px; text-decoration: none; font-size: 1.5rem; font-family: 'Cinzel', serif; transition: background-color 0.3s, transform 0.2s; }
         .lang-link:hover { background-color: #c0392b; border-color: #c0392b; transform: scale(1.05); }
+        .btn-master { background: none; border: 1px solid #a8a095; color: #a8a095; padding: 10px 20px; border-radius: 8px; cursor: pointer; margin-top: 30px; font-family: 'Cinzel', serif; text-transform: uppercase; font-size: 0.8rem; }
     </style>
 </head>
 <body>
 
     <h1>Elige tu idioma</h1>
     
-    <!-- Enlaces a las páginas de instrucciones -->
     <a href="instrucciones-es.html" class="lang-link">Español</a>
     <a href="instrucciones-ca.html" class="lang-link">Català</a>
     <a href="instrucciones-en.html" class="lang-link">English</a>
 
+    <button class="btn-master" onclick="openMasterModal()">🆘 Contacta con el Master</button>
+
+    <!-- Modal Master -->
+    <div id="master-modal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.9); z-index:1000; justify-content:center; align-items:center;">
+        <div style="background:#1e1e1e; padding:30px; border-radius:12px; border-top:4px solid #c0392b; text-align:center; max-width:400px; color:#e0d6c2;">
+            <h2 style="font-family:'Cinzel', serif; color:#fff; margin-bottom:15px;">Contacta con el Master</h2>
+            <p>Si tienes alguna incidencia técnica o duda, contacta conmigo.</p>
+            <p style="font-size: 1.2rem; font-weight: bold; color: #d4af37; margin: 20px 0;">WhatsApp: 664 252 723</p>
+            <button onclick="closeMasterModal()" style="background:#c0392b; color:white; border:none; padding:10px 20px; border-radius:8px; cursor:pointer; font-family:'Cinzel', serif; text-transform:uppercase;">Cerrar</button>
+        </div>
+    </div>
+
+    <script>
+        function openMasterModal() { document.getElementById('master-modal').style.display = 'flex'; }
+        function closeMasterModal() { document.getElementById('master-modal').style.display = 'none'; }
+    </script>
 </body>
 </html>

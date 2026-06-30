@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="ca">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Instrucciones - El Manuscrito de Piedra</title>
+    <title>Instruccions - El Manuscrit de Pedra</title>
     <script src="config.js"></script>
     <script>
         if (localStorage.getItem('clave_guardada') !== CLAVE_ACTUAL) { window.location.href = 'login.html'; }
@@ -27,39 +27,39 @@
 </head>
 <body>
     <div>
-        <h1>Antes de Empezar</h1>
+        <h1>Abans de Començar</h1>
         <ul class="instructions-list">
             <li>
-                <strong>TU MISIÓN</strong>
-                Resuelve una serie de enigmas históricos usando el entorno y tu ingenio. La aventura dura entre 90 y 120 minutos. El juego empieza en la Plaça de Catalunya.
+                <strong>LA TEVA MISSIÓ</strong>
+                Resol una sèrie d'enigmes històrics fent servir l'entorn i el teu enginy. L'aventura dura entre 90 i 120 minuts. El joc comença a la Plaça de Catalunya.
             </li>
             <li>
-                <strong>AYUDA EN ENIGMAS</strong>
-                Si te atascas en una prueba, ¡no te preocupes! Tras 3 intentos fallidos aparecerá un botón para ayudarte.
+                <strong>AJUDA ALS ENIGMES</strong>
+                Si t'encalles en una prova, no et preocupis! Després de 3 intents fallits, apareixerà un botó per ajudar-te.
             </li>
             <li>
-                <strong>AYUDA PARA NAVEGAR</strong>
-                Para ir de una parada a otra te daremos una pista. Si no es suficiente, superando pequeños tests de atención, podrás desbloquear una Pista Directa y si aún no es suficiente otra pista con un Mapa.
+                <strong>AJUDA PER NAVEGAR</strong>
+                Per anar d'una parada a una altra et donarem una pista. Si no n'hi ha prou, superant petits tests d'atenció, podràs desbloquejar una Pista Directa i si encara no és suficient una altra pista amb un Mapa.
             </li>
             <li>
-                <strong>JUEGA A TU RITMO... ¡O COMPITE!</strong>
-                Disfruta del paseo sin prisas... ¡o reta a tus amigos para ver quién descifra antes el manuscrito!
+                <strong>JUGA AL TEU RITME... O COMPETIU!</strong>
+                Gaudeix del passeig sense presses... o repta els teus amics per veure qui desxifra abans el manuscrit!
             </li>
             <li>
-                <strong>AYUDA DIRECTA</strong>
-                Si en cualquier momento tienes un problema técnico o una duda sobre el juego, busca el botón "Contacta con el Master" al final de esta página.
+                <strong>AJUDA DIRECTA</strong>
+                Si en qualsevol moment tens un problema tècnic o un dubte sobre el joc, busca el botó "Contacta amb el Màster" al final d'aquesta pàgina.
             </li>
         </ul>
-        <a href="es.html" class="btn">Entendido, ¡A Jugar!</a>
-        <button class="btn-master" onclick="openMasterModal()">🆘 Contacta con el Master</button>
+        <a href="ca.html" class="btn">Entès, A Jugar!</a>
+        <button class="btn-master" onclick="openMasterModal()">🆘 Contacta amb el Màster</button>
     </div>
 
     <div id="master-modal" class="modal-overlay" onclick="closeMasterModal()">
         <div class="modal-content" onclick="event.stopPropagation();">
-            <h2 style="font-family:'Cinzel', serif; color:#fff; margin-bottom:15px;">Contacta con el Master</h2>
-            <p style="color:#a8a095; margin-bottom:20px;">Si tienes alguna incidencia técnica o duda, contacta conmigo.</p>
+            <h2 style="font-family:'Cinzel', serif; color:#fff; margin-bottom:15px;">Contacta amb el Màster</h2>
+            <p style="color:#a8a095; margin-bottom:20px;">Si tens cap incidència tècnica o dubte, contacta amb mi.</p>
             <p style="font-size: 1.2rem; font-weight: bold; color: var(--gold);">WhatsApp: 664 252 723</p>
-            <button class="btn" style="margin-top:20px;" onclick="closeMasterModal()">Cerrar</button>
+            <button class="btn" style="margin-top:20px;" onclick="closeMasterModal()">Tancar</button>
         </div>
     </div>
 
