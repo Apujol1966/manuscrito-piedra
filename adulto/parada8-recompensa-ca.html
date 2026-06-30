@@ -3,14 +3,48 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="google" content="notranslate">
     <title>Capítol VIII: Guerra Civil - Descobert</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Lato:wght@400;700&display=swap" rel="stylesheet">
+    
+    <!-- CÀRREGA DE CONFIGURACIÓ I FUNCIONS -->
+    <script src="../config.js"></script>
+    <script src="../manuscrito-funciones.js"></script>
+    <script>verificarAcceso();</script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Lato:wght@400;700&display=swap" rel="stylesheet">
+    
     <style>
+        /* EL TEU CSS ORIGINAL INTACTE */
         :root { --bg-color: #121212; --card-bg: #1e1e1e; --text-main: #e0d6c2; --text-muted: #a8a095; --accent: #c0392b; --success: #27ae60; }
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body { background-color: var(--bg-color); color: var(--text-main); font-family: 'Lato', sans-serif; line-height: 1.6; padding: 20px; max-width: 600px; margin: 0 auto; }
         h1, h2, h3, h4 { font-family: 'Cinzel', serif; color: #fff; letter-spacing: 1px; }
         h1 { font-size: 1.8rem; text-align: center; margin-bottom: 25px; }
+        
+        /* AJUST DE FOTOS CORREGIT */
+        .img-container { 
+            width: 100%; 
+            height: auto;
+            max-height: 450px; 
+            background-color: #000; 
+            border-radius: 8px; 
+            margin-bottom: 20px; 
+            overflow: hidden; 
+            border: 1px solid #444; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+        }
+        .img-container img { 
+            width: 100%; 
+            height: auto; 
+            max-height: 450px;
+            object-fit: contain; 
+            display: block; 
+        }
+
         .card { background-color: var(--card-bg); padding: 20px; border-radius: 12px; margin-bottom: 20px; box-shadow: 0 4px 6px rgba(0,0,0,0.3); }
         .btn { width: 100%; padding: 15px 20px; font-size: 1rem; font-weight: bold; text-transform: uppercase; border: none; border-radius: 8px; cursor: pointer; font-family: 'Cinzel', serif; text-decoration: none; display: inline-block; text-align: center; margin-top: 10px; }
         .btn-success { background-color: var(--success); color: white; }
@@ -25,16 +59,29 @@
         #next-clue-box { margin-top: 20px; padding: 15px; background-color: #2c2c2c; border-left: 3px solid var(--success); border-radius: 4px; }
         .feedback-success { text-align: center; font-weight: bold; color: var(--success); font-size: 1.2rem; margin-bottom: 20px; animation: fadeIn 1s ease-in; }
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        
+        /* MODALS */
         .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.85); display: none; align-items: center; justify-content: center; z-index: 1000; padding: 20px; }
         .modal-content { background-color: var(--card-bg); padding: 30px; border-radius: 12px; text-align: center; width: 100%; max-width: 500px; border-top: 4px solid var(--accent); }
-        .modal-content h2 { margin-bottom: 15px; }
-        .modal-content p { color: var(--text-muted); margin-bottom: 25px; }
         .modal-input { width: 100%; padding: 10px; font-size: 1rem; background-color: #1a1a1a; border: 2px solid #444; color: white; border-radius: 8px; margin: 15px 0; text-align: center; }
         #guardian-feedback { font-size: 0.9rem; color: var(--accent); min-height: 1.2em; margin-top: 10px; }
         .extra-hint-content { display: none; margin-top: 15px; padding-top: 15px; border-top: 1px dashed #444; }
+        .btn-master { background-color: transparent; border: 1px solid var(--text-muted); color: var(--text-muted); font-size: 0.8rem; margin-top: 20px; text-decoration: none; display: inline-block; width: 100%; text-align: center; }
     </style>
 </head>
 <body>
+
+    <!-- MODAL DEL MASTER -->
+    <div id="master-modal" class="modal-overlay" onclick="closeMasterModal()">
+        <div class="modal-content" onclick="event.stopPropagation();">
+            <h2 id="master-titulo" style="margin-bottom: 15px; font-family: 'Cinzel', serif; color: #fff;"></h2>
+            <p id="master-descripcion" style="color: var(--text-muted); margin-bottom: 25px;"></p>
+            <p style="font-size: 1.2rem; font-weight: bold; color: #d4af37; text-align: center;">WhatsApp: 664 252 723</p>
+            <button class="btn btn-primary" id="master-cerrar" onclick="closeMasterModal()" style="margin-top: 20px;"></button>
+        </div>
+    </div>
+
+    <!-- MODAL DEL GUARDIÀ -->
     <div id="guardian-modal" class="modal-overlay">
         <div class="modal-content">
             <h2>Prova del Guardià</h2>
@@ -44,24 +91,36 @@
             <div id="guardian-feedback"></div>
         </div>
     </div>
+
     <header><h1>Capítol VIII: El Dolor de Barcelona</h1></header>
+
+    <!-- IMATGE AMB NOM NEUTRE I CSS CORREGIT -->
+    <div class="img-container">
+        <img src="../imagenes/parada8-recompensa.jpg" alt="Recompensa Capítol VIII">
+    </div>
+
     <div id="reward-container">
         <div class="card">
             <div class="feedback-success">OCTÀGON. La forma del record.</div>
+            
             <div class="knowledge-reward">
                 <h3>El que va passar aquí</h3>
                 <p><strong>30 de Gener de 1938:</strong> L'aviació legionària italiana, aliada de Franco, va bombardejar Barcelona. Una bomba va caure directament sobre l'església, on es refugiaven els <strong>petits</strong> d'una escola bressol. Van morir 42 persones, la majoria <strong>infants</strong>.</p>
                 <p><strong>Desmentint el Mite:</strong> Durant la dictadura, es va dir que els forats de la façana eren bales d'afusellaments de capellans per part dels anarquistes. Avui sabem la veritat: és la metralla d'una bomba, la cicatriu del primer bombardeig sistemàtic sobre població civil.</p>
                 <span class="source-text">Font: Ajuntament de Barcelona / Memòria Democràtica</span>
             </div>
+
             <div id="next-clue-box">
                 <p><strong>PISTA FINAL:</strong><br>Surt del silenci i dirigeix-te al cor del poder, on tot conflueix. Has d'arribar a la plaça on es troben el Palau de la Generalitat i l'Ajuntament. Allà acabarà el teu viatge.</p>
+                
                 <button id="hint-btn-1" class="btn btn-secondary" onclick="askGuardian(1)">No saps on anar? Demana una Pista Directa</button>
+
                 <div id="hint-level-2" class="extra-hint-content">
                     <h4>Pista Directa</h4>
                     <p>Torna al Carrer del Bisbe i camina fins al final. Arribaràs a la <strong>Plaça de Sant Jaume</strong>.</p>
                     <button id="hint-btn-2" class="btn btn-secondary" onclick="askGuardian(2)">Segueixo perdut/da. Mostra'm el mapa</button>
                 </div>
+                
                 <div id="hint-level-3" class="extra-hint-content">
                      <h4>Ubicació Exacta</h4>
                      <a href="https://www.google.com/maps/search/?api=1&query=Plaça+de+Sant+Jaume,Barcelona" target="_blank" class="btn btn-map">Obrir a Google Maps</a>
@@ -69,15 +128,19 @@
             </div>
         </div>
     </div>
-    <a href="parada9-enigma-ca.html" class="btn btn-success" onclick="saveProgress()">Iniciar Capítol Final (Present)</a>
+    
+    <!-- BOTÓ D'AVANÇ CENTRALITZAT -->
+    <button class="btn btn-success" onclick="avanzarA('parada9-enigma')">Iniciar Capítol Final (Present)</button>
+
+    <!-- BOTÓ DEL MASTER -->
+    <button class="btn btn-master" onclick="openMasterModal()">🆘 Contacta amb el Màster</button>
+
     <script>
-        function saveProgress() {
-            localStorage.setItem('progresoJuego', '9');
-        }
         const guardianPuzzles = [
             { question: "Què va causar realment els forats de la façana, segons el text?", answer: "BOMBA" },
             { question: "La pista final t'envia al centre del poder polític. Com es diu la plaça?", answer: "SANT JAUME" }
         ];
+        
         const feedbackError = 'Resposta incorrecta. Llegeix la història amb atenció.';
         const modal = document.getElementById('guardian-modal');
         const questionEl = document.getElementById('guardian-question');
@@ -85,6 +148,7 @@
         const submitBtn = document.getElementById('guardian-submit');
         const feedbackEl = document.getElementById('guardian-feedback');
         let levelToUnlock = 0;
+
         function askGuardian(level) {
             levelToUnlock = level;
             const puzzle = guardianPuzzles[level - 1];
@@ -94,16 +158,18 @@
             modal.style.display = 'flex';
             answerEl.focus();
         }
+
         submitBtn.onclick = () => {
             const puzzle = guardianPuzzles[levelToUnlock - 1];
-            let userAnswer = answerEl.value.toUpperCase().trim();
-            userAnswer = userAnswer.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+            let userAnswer = answerEl.value.toUpperCase().trim().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+            
             let isCorrect = false;
             if (levelToUnlock === 1) {
                 isCorrect = userAnswer.includes("BOMBA") || userAnswer.includes("METRALLA") || userAnswer.includes("AVIACI");
             } else {
                 isCorrect = userAnswer.includes("SANT JAUME") || userAnswer.includes("JAUME");
             }
+
             if (isCorrect) {
                 modal.style.display = 'none';
                 revealHint(levelToUnlock);
@@ -111,6 +177,7 @@
                 feedbackEl.textContent = feedbackError;
             }
         };
+
         function revealHint(level) {
             if (level === 1) {
                 document.getElementById('hint-level-2').style.display = 'block';
@@ -120,6 +187,10 @@
                 document.getElementById('hint-btn-2').style.display = 'none';
             }
         }
+
+        // FUNCIONS DEL MASTER
+        function openMasterModal() { document.getElementById('master-modal').style.display = 'flex'; }
+        function closeMasterModal() { document.getElementById('master-modal').style.display = 'none'; }
     </script>
 </body>
 </html>

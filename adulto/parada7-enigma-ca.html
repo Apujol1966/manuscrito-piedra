@@ -3,8 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="google" content="notranslate">
     <title>Capítol VII: Il·lustració - El Manuscrit</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Lato:wght@400;700&display=swap" rel="stylesheet">
+    
+    <!-- CARREGA DE CONFIGURACIÓ I FUNCIONS -->
+    <script src="../config.js"></script>
+    <script src="../manuscrito-funciones.js"></script>
+    <script>verificarAcceso();</script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Lato:wght@400;700&display=swap" rel="stylesheet">
     <style>
         :root { --bg-color: #121212; --card-bg: #1e1e1e; --text-main: #e0d6c2; --text-muted: #a8a095; --accent: #c0392b; --line-color: #e0d6c2; }
         * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -12,8 +21,29 @@
         h1, h3 { font-family: 'Cinzel', serif; color: #fff; letter-spacing: 1px; }
         h1 { font-size: 1.8rem; text-align: center; margin-bottom: 10px; border-bottom: 2px solid var(--accent); padding-bottom: 10px; }
         .subtitle { text-align: center; font-size: 0.9rem; color: var(--text-muted); margin-bottom: 25px; text-transform: uppercase; }
-        .img-container { width: 100%; max-height: 250px; background-color: #333; border-radius: 8px; margin-bottom: 20px; overflow: hidden; border: 1px solid #444; }
-        .img-container img { width: 100%; height: 100%; object-fit: cover; display: block; }
+        
+        /* AJUST DE FOTOS CORREGIT */
+        .img-container { 
+            width: 100%; 
+            height: auto;
+            max-height: 450px; 
+            background-color: #000; 
+            border-radius: 8px; 
+            margin-bottom: 20px; 
+            overflow: hidden; 
+            border: 1px solid #444; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+        }
+        .img-container img { 
+            width: 100%; 
+            height: auto; 
+            max-height: 450px;
+            object-fit: contain; 
+            display: block; 
+        }
+
         .card { background-color: var(--card-bg); padding: 20px; border-radius: 12px; margin-bottom: 20px; box-shadow: 0 4px 6px rgba(0,0,0,0.3); }
         .narrative-text { font-style: italic; border-left: 3px solid var(--accent); padding-left: 15px; margin-top: 15px; color: #dcdcdc; }
         .enigma-box { background-color: #2c2c2c; border: 1px solid var(--accent); padding: 20px; border-radius: 8px; margin-top: 20px; text-align: center; }
@@ -24,6 +54,8 @@
         .info-toggle { background: none; border: none; color: var(--text-muted); text-decoration: underline; cursor: pointer; font-size: 0.9rem; margin-top: 15px; display: block; width: 100%; }
         .info-content { display: none; margin-top: 15px; font-size: 0.9rem; background: #151515; padding: 15px; border-radius: 8px; text-align: left; }
         #feedback-msg { margin-top: 15px; font-weight: bold; min-height: 1.5em; color: var(--accent); }
+        
+        /* CODI MAÇÒNIC */
         .keys-container { display: flex; justify-content: center; gap: 15px; margin-bottom: 25px; flex-wrap: wrap; }
         .grid-key { display: grid; grid-template-columns: repeat(3, 1fr); width: 90px; height: 90px; }
         .cell { display: flex; align-items: center; justify-content: center; font-family: 'Cinzel', serif; font-weight: bold; color: #fff; font-size: 14px; border-color: var(--line-color); border-style: solid; border-width: 0; }
@@ -37,9 +69,24 @@
         .symbol { width: 30px; height: 30px; border-color: var(--accent); border-style: solid; border-width: 0; position: relative; }
         .symbol.dot::after { content: '•'; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: var(--accent); font-size: 20px; line-height: 0; }
         .sym-p { border-top-width: 3px; border-right-width: 3px; } .sym-a { border-right-width: 3px; border-bottom-width: 3px; } .sym-d { border-top-width: 3px; border-right-width: 3px; border-bottom-width: 3px; } .sym-e { border-width: 3px; } .sym-l { border-left-width: 3px; border-bottom-width: 3px; } .sym-s { width: 20px; height: 20px; border-bottom: 3px solid var(--accent); border-right: 3px solid var(--accent); transform: rotate(45deg); margin-top: 5px; }
+
+        /* ESTILS MASTER */
+        .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.85); display: none; align-items: center; justify-content: center; z-index: 1000; padding: 20px; }
+        .modal-content { background-color: var(--card-bg); padding: 30px; border-radius: 12px; text-align: center; width: 100%; max-width: 500px; border-top: 4px solid var(--accent); }
+        .btn-master { background-color: transparent; border: 1px solid var(--text-muted); color: var(--text-muted); font-size: 0.8rem; margin-top: 20px; text-decoration: none; display: inline-block; width: 100%; text-align: center; }
     </style>
 </head>
 <body>
+    <!-- MODAL DEL MASTER -->
+    <div id="master-modal" class="modal-overlay" onclick="closeMasterModal()">
+        <div class="modal-content" onclick="event.stopPropagation();">
+            <h2 id="master-titulo" style="margin-bottom: 15px; font-family: 'Cinzel', serif; color: #fff;"></h2>
+            <p id="master-descripcion" style="color: var(--text-muted); margin-bottom: 25px;"></p>
+            <p style="font-size: 1.2rem; font-weight: bold; color: #d4af37; text-align: center;">WhatsApp: 664 252 723</p>
+            <button class="btn btn-primary" id="master-cerrar" onclick="closeMasterModal()" style="margin-top: 20px;"></button>
+        </div>
+    </div>
+
     <header>
         <h1>Capítol VII: La Lògia Secreta</h1>
         <div class="subtitle">Carrer del Veguer · Segle XVIII</div>
@@ -77,16 +124,21 @@
             </div>
         </section>
     </div>
+
+    <button class="btn btn-master" onclick="openMasterModal()">🆘 Contacta amb el Màster</button>
+
     <script>
         const SOLUTION = "PADELLAS";
         let failCount = 0;
+
         function checkAnswer() {
             let userIn = document.getElementById('answer').value.toUpperCase().trim();
             userIn = userIn.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
             const feedback = document.getElementById('feedback-msg');
             const hintButton = document.getElementById('hint-toggle-btn');
+            
             if (userIn === SOLUTION) {
-                window.location.href = 'parada7-recompensa-ca.html';
+                avanzarA('parada7-recompensa');
             } else {
                 feedback.textContent = "Codi incorrecte. Fixa't bé en les vores de cada lletra.";
                 failCount++;
@@ -95,10 +147,14 @@
                 }
             }
         }
+
         function toggleHint() {
             const box = document.getElementById('hint-box');
             box.style.display = box.style.display === 'block' ? 'none' : 'block';
         }
+
+        function openMasterModal() { document.getElementById('master-modal').style.display = 'flex'; }
+        function closeMasterModal() { document.getElementById('master-modal').style.display = 'none'; }
     </script>
 </body>
 </html>

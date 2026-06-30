@@ -3,14 +3,48 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="google" content="notranslate">
     <title>Epílogo: El Manuscrito Completo</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Lato:wght@400;700&display=swap" rel="stylesheet">
+    
+    <!-- CARGA DE CONFIGURACIÓN Y FUNCIONES -->
+    <script src="../config.js"></script>
+    <script src="../manuscrito-funciones.js"></script>
+    <script>verificarAcceso();</script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Lato:wght@400;700&display=swap" rel="stylesheet">
+    
     <style>
+        /* TU CSS ORIGINAL INTACTO */
         :root { --bg-color: #121212; --card-bg: #1e1e1e; --text-main: #e0d6c2; --text-muted: #a8a095; --accent: #c0392b; --success: #27ae60; --gold: #d4af37; }
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body { background-color: var(--bg-color); color: var(--text-main); font-family: 'Lato', sans-serif; line-height: 1.6; padding: 20px; max-width: 600px; margin: 0 auto; }
         h1, h2, h3, h4 { font-family: 'Cinzel', serif; color: #fff; letter-spacing: 1px; }
         h1 { font-size: 1.8rem; text-align: center; margin-bottom: 25px; }
+        
+        /* AJUSTE DE FOTOS CORREGIDO */
+        .img-container { 
+            width: 100%; 
+            height: auto;
+            max-height: 450px; 
+            background-color: #000; 
+            border-radius: 8px; 
+            margin-bottom: 20px; 
+            overflow: hidden; 
+            border: 1px solid #444; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+        }
+        .img-container img { 
+            width: 100%; 
+            height: auto; 
+            max-height: 450px;
+            object-fit: contain; 
+            display: block; 
+        }
+
         .card { background-color: var(--card-bg); padding: 20px; border-radius: 12px; margin-bottom: 20px; box-shadow: 0 4px 6px rgba(0,0,0,0.3); }
         .btn { width: 100%; padding: 15px 20px; font-size: 1rem; font-weight: bold; text-transform: uppercase; border: none; border-radius: 8px; cursor: pointer; font-family: 'Cinzel', serif; text-decoration: none; display: inline-block; text-align: center; margin-top: 10px; }
         .btn-gold { background-color: var(--gold); color: #121212; }
@@ -20,11 +54,31 @@
         .final-message { font-style: italic; color: #fff; text-align: center; margin: 30px 0; font-size: 1.2rem; border: 1px solid var(--accent); padding: 20px; border-radius: 8px; background: rgba(192, 57, 43, 0.1); }
         .feedback-success { text-align: center; font-weight: bold; color: var(--success); font-size: 1.2rem; margin-bottom: 20px; animation: fadeIn 1s ease-in; }
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+        /* MODALES */
+        .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.85); display: none; align-items: center; justify-content: center; z-index: 1000; padding: 20px; }
+        .modal-content { background-color: var(--card-bg); padding: 30px; border-radius: 12px; text-align: center; width: 100%; max-width: 500px; border-top: 4px solid var(--accent); }
+        .btn-master { background-color: transparent; border: 1px solid var(--text-muted); color: var(--text-muted); font-size: 0.8rem; margin-top: 20px; text-decoration: none; display: inline-block; width: 100%; text-align: center; }
     </style>
 </head>
 <body>
 
+    <!-- MODAL DEL MASTER -->
+    <div id="master-modal" class="modal-overlay" onclick="closeMasterModal()">
+        <div class="modal-content" onclick="event.stopPropagation();">
+            <h2 id="master-titulo" style="margin-bottom: 15px; font-family: 'Cinzel', serif; color: #fff;"></h2>
+            <p id="master-descripcion" style="color: var(--text-muted); margin-bottom: 25px;"></p>
+            <p style="font-size: 1.2rem; font-weight: bold; color: #d4af37; text-align: center;">WhatsApp: 664 252 723</p>
+            <button class="btn btn-primary" id="master-cerrar" onclick="closeMasterModal()" style="margin-top: 20px;"></button>
+        </div>
+    </div>
+
     <header><h1>Epílogo: La Última Capa</h1></header>
+
+    <!-- IMAGEN CON NOMBRE NEUTRO Y CSS CORREGIDO -->
+    <div class="img-container">
+        <img src="../imagenes/parada9-recompensa.jpg" alt="El Manuscrito de Piedra Completo">
+    </div>
 
     <div id="reward-container">
         <div class="card">
@@ -36,21 +90,27 @@
                 <p>Has tocado las murallas de <strong>Roma</strong>, descendido a la oscuridad de los <strong>Visigodos</strong> y cruzado la frontera de <strong>Al-Ándalus</strong>. Te has maravillado con la ambición del <strong>Gótico</strong> y has escuchado los secretos del <strong>Call</strong> judío.</p> 
                 <p>Has visto renacer la cultura en el <strong>Renacimiento</strong>, has impuesto la razón en la <strong>Ilustración</strong> y has sentido el dolor de las bombas de la <strong>Guerra Civil</strong>.</p>
                 
-                <p>Barcelona no es solo piedra. Es un palimpsesto: un pergamino reescrito cientos de veces.</p>
+                <p>Barcelona no es solo piedra. Es un palimpsesto: un pergamino que ha sido escrito, borrado y reescrito cientos de veces.</p>
 
                 <div class="final-message">
                     "Y hoy, al caminar por estas calles y rescatar sus secretos, tú has añadido tu propia línea a la historia. <br><br>
-                    Tú eres la última capa de este manuscrito."
+                    Tú eres la última capa de este manuscrit."
                 </div>
             </div>
             
-            <!-- EL BOTÓN AQUÍ DEPENDE DE LO QUE ELIJAS ABAJO -->
             <a href="final-es.html" class="btn btn-gold">Ver el Desenlace</a>
         </div>
     </div>
 
+    <!-- BOTÓN DEL MASTER -->
+    <button class="btn btn-master" onclick="openMasterModal()">🆘 Contacta con el Master</button>
+
     <script>
+        // MARCAMOS EL FINAL DEL JUEGO
         localStorage.setItem('progresoJuego', 'fin');
+
+        function openMasterModal() { document.getElementById('master-modal').style.display = 'flex'; }
+        function closeMasterModal() { document.getElementById('master-modal').style.display = 'none'; }
     </script>
 </body>
 </html>

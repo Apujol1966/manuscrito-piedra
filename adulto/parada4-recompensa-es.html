@@ -3,14 +3,45 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="google" content="notranslate">
     <title>Capítulo IV: Gótico - Descubierto</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Lato:wght@400;700&display=swap" rel="stylesheet">
+    
+    <script src="../config.js"></script>
+    <script src="../manuscrito-funciones.js"></script>
+    <script>verificarAcceso();</script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Lato:wght@400;700&display=swap" rel="stylesheet">
     <style>
         :root { --bg-color: #121212; --card-bg: #1e1e1e; --text-main: #e0d6c2; --text-muted: #a8a095; --accent: #c0392b; --success: #27ae60; }
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body { background-color: var(--bg-color); color: var(--text-main); font-family: 'Lato', sans-serif; line-height: 1.6; padding: 20px; max-width: 600px; margin: 0 auto; }
         h1, h2, h3, h4 { font-family: 'Cinzel', serif; color: #fff; letter-spacing: 1px; }
         h1 { font-size: 1.8rem; text-align: center; margin-bottom: 25px; }
+        
+        /* AJUSTE DE FOTOS CORREGIDO */
+        .img-container { 
+            width: 100%; 
+            height: auto;
+            max-height: 450px; 
+            background-color: #000; 
+            border-radius: 8px; 
+            margin-bottom: 20px; 
+            overflow: hidden; 
+            border: 1px solid #444; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+        }
+        .img-container img { 
+            width: 100%; 
+            height: auto; 
+            max-height: 450px;
+            object-fit: contain; 
+            display: block; 
+        }
+
         .card { background-color: var(--card-bg); padding: 20px; border-radius: 12px; margin-bottom: 20px; box-shadow: 0 4px 6px rgba(0,0,0,0.3); }
         .btn { width: 100%; padding: 15px 20px; font-size: 1rem; font-weight: bold; text-transform: uppercase; border: none; border-radius: 8px; cursor: pointer; font-family: 'Cinzel', serif; text-decoration: none; display: inline-block; text-align: center; margin-top: 10px; }
         .btn-success { background-color: var(--success); color: white; }
@@ -32,9 +63,19 @@
         .modal-input { width: 100%; padding: 10px; font-size: 1rem; background-color: #1a1a1a; border: 2px solid #444; color: white; border-radius: 8px; margin: 15px 0; text-align: center; }
         #guardian-feedback { font-size: 0.9rem; color: var(--accent); min-height: 1.2em; margin-top: 10px; }
         .extra-hint-content { display: none; margin-top: 15px; padding-top: 15px; border-top: 1px dashed #444; }
+        .btn-master { background-color: transparent; border: 1px solid var(--text-muted); color: var(--text-muted); font-size: 0.8rem; margin-top: 20px; text-decoration: none; display: inline-block; width: 100%; text-align: center; }
     </style>
 </head>
 <body>
+    <!-- MODAL DEL MASTER -->
+    <div id="master-modal" class="modal-overlay" onclick="closeMasterModal()">
+        <div class="modal-content" onclick="event.stopPropagation();">
+            <h2 id="master-titulo" style="margin-bottom: 15px; font-family: 'Cinzel', serif; color: #fff;"></h2>
+            <p id="master-descripcion" style="color: var(--text-muted); margin-bottom: 25px;"></p>
+            <p style="font-size: 1.2rem; font-weight: bold; color: #d4af37; text-align: center;">WhatsApp: 664 252 723</p>
+            <button class="btn btn-primary" id="master-cerrar" onclick="closeMasterModal()" style="margin-top: 20px;"></button>
+        </div>
+    </div>
 
     <div id="guardian-modal" class="modal-overlay">
         <div class="modal-content">
@@ -48,6 +89,11 @@
 
     <header><h1>Capítulo IV: Ilusiones Góticas</h1></header>
 
+    <!-- IMAGEN CON NOMBRE NEUTRO Y CSS CORREGIDO -->
+    <div class="img-container">
+        <img src="../imagenes/parada4-recompensa.jpg" alt="Recompensa Capítulo IV">
+    </div>
+
     <div id="reward-container">
         <div class="card">
             <div class="feedback-success">¡4171! La maldición se ha roto.</div>
@@ -60,19 +106,16 @@
             </div>
 
             <div id="next-clue-box">
-                <!-- PISTA NIVEL 1 CORREGIDA -->
                 <p><strong>PISTA DE SALTO:</strong><br>Con la maldición desactivada, es hora de buscar piedras verdaderamente antiguas. Adéntrate en el antiguo barrio judío, el <strong>Call</strong>, y busca la calle que hoy honra la memoria del rabino más sabio de la Barcelona medieval.</p>
                 
                 <button id="hint-btn-1" class="btn btn-secondary" onclick="askGuardian(1)">¿No sabes dónde ir? Pide una Pista Directa</button>
 
-                <!-- PISTA NIVEL 2 (Oculta) -->
                 <div id="hint-level-2" class="extra-hint-content">
                     <h4>Pista Directa</h4>
                     <p>Busca el <strong>Carrer de Salomó ben Adret</strong> (antiguamente conocido como Sant Domènec del Call). Es una callejuela estrecha que nace cerca de la Plaça Sant Jaume.</p>
                     <button id="hint-btn-2" class="btn btn-secondary" onclick="askGuardian(2)">Sigo perdido/a. Muéstrame el mapa</button>
                 </div>
                 
-                <!-- PISTA NIVEL 3 (Oculta) -->
                 <div id="hint-level-3" class="extra-hint-content">
                      <h4>Ubicación Exacta</h4>
                      <a href="https://www.google.com/maps/search/?api=1&query=Carrer+de+Salomó+ben+Adret,Barcelona" target="_blank" class="btn btn-map">Abrir en Google Maps</a>
@@ -81,13 +124,10 @@
         </div>
     </div>
     
-    <a href="parada5-enigma-es.html" class="btn btn-success" onclick="saveProgress()">Iniciar Capítulo V (El Call)</a>
+    <button class="btn btn-success" onclick="avanzarA('parada5-enigma')">Iniciar Capítulo V (El Call)</button>
+    <button class="btn btn-master" onclick="openMasterModal()">🆘 Contacta con el Master</button>
 
     <script>
-        function saveProgress() {
-            localStorage.setItem('progresoJuego', '5');
-        }
-
         const guardianPuzzles = [
             { question: "¿En qué año se construyó realmente el puente?", answer: "1928" },
             { question: "Vas hacia el barrio judío. ¿Qué nombre recibe este barrio en catalán?", answer: "CALL" }

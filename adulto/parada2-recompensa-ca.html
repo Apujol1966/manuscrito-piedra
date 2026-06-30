@@ -3,7 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="google" content="notranslate">
     <title>Capítol II: Visigots - Descobert</title>
+    
+    <script src="../config.js"></script>
+    <script src="../manuscrito-funciones.js"></script>
+    <script>verificarAcceso();</script>
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Lato:wght@400;700&display=swap" rel="stylesheet">
@@ -13,6 +19,29 @@
         body { background-color: var(--bg-color); color: var(--text-main); font-family: 'Lato', sans-serif; line-height: 1.6; padding: 20px; max-width: 600px; margin: 0 auto; }
         h1, h2, h3, h4 { font-family: 'Cinzel', serif; color: #fff; letter-spacing: 1px; }
         h1 { font-size: 1.8rem; text-align: center; margin-bottom: 25px; }
+        
+        /* AJUSTE DE FOTOS CORREGIDO */
+        .img-container { 
+            width: 100%; 
+            height: auto;
+            max-height: 450px; 
+            background-color: #000; 
+            border-radius: 8px; 
+            margin-bottom: 20px; 
+            overflow: hidden; 
+            border: 1px solid #444; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+        }
+        .img-container img { 
+            width: 100%; 
+            height: auto; 
+            max-height: 450px;
+            object-fit: contain; 
+            display: block; 
+        }
+
         .card { background-color: var(--card-bg); padding: 20px; border-radius: 12px; margin-bottom: 20px; box-shadow: 0 4px 6px rgba(0,0,0,0.3); }
         .btn { width: 100%; padding: 15px 20px; font-size: 1rem; font-weight: bold; text-transform: uppercase; border: none; border-radius: 8px; cursor: pointer; font-family: 'Cinzel', serif; text-decoration: none; display: inline-block; text-align: center; margin-top: 10px; }
         .btn-success { background-color: var(--success); color: white; }
@@ -34,9 +63,19 @@
         .modal-input { width: 100%; padding: 10px; font-size: 1rem; background-color: #1a1a1a; border: 2px solid #444; color: white; border-radius: 8px; margin: 15px 0; text-align: center; }
         #guardian-feedback { font-size: 0.9rem; color: var(--accent); min-height: 1.2em; margin-top: 10px; }
         .extra-hint-content { display: none; margin-top: 15px; padding-top: 15px; border-top: 1px dashed #444; }
+        .btn-master { background-color: transparent; border: 1px solid var(--text-muted); color: var(--text-muted); font-size: 0.8rem; margin-top: 20px; text-decoration: none; display: inline-block; width: 100%; text-align: center; }
     </style>
 </head>
 <body>
+    <!-- MODAL DEL MASTER -->
+    <div id="master-modal" class="modal-overlay" onclick="closeMasterModal()">
+        <div class="modal-content" onclick="event.stopPropagation();">
+            <h2 id="master-titulo" style="margin-bottom: 15px; font-family: 'Cinzel', serif; color: #fff;"></h2>
+            <p id="master-descripcion" style="color: var(--text-muted); margin-bottom: 25px;"></p>
+            <p style="font-size: 1.2rem; font-weight: bold; color: #d4af37; text-align: center;">WhatsApp: 664 252 723</p>
+            <button class="btn btn-primary" id="master-cerrar" onclick="closeMasterModal()" style="margin-top: 20px;"></button>
+        </div>
+    </div>
 
     <div id="guardian-modal" class="modal-overlay">
         <div class="modal-content">
@@ -50,36 +89,31 @@
 
     <header><h1>Capítol II: Capes de Temps</h1></header>
 
+    <!-- IMAGEN CON NOMBRE NEUTRO Y CSS CORREGIDO -->
+    <div class="img-container">
+        <img src="../imagenes/parada2-recompensa.jpg" alt="Recompensa Capítol II">
+    </div>
+
     <div id="reward-container">
         <div class="card">
             <div class="feedback-success">Correcte! MARTI5 és la clau.</div>
             
             <div class="knowledge-reward">
                 <h3>El Secret del Subsol</h3>
-                
                 <p><strong>El Cel Medieval:</strong> La Torre del Rei Martí (s. XVI) va ser l'últim gran afegit al Palau Reial Major. Des dels seus 5 pisos de galeries, el rei podia vigilar el mar i la ciutat.</p>
-                
                 <p><strong>El Sòl Visigot:</strong> Però el veritable tresor està a sota. Just sota el terra d'aquesta plaça es troba el complex episcopal de la Barcelona visigoda (segles IV-VIII). Allà baix es conserven l'aula règia, el baptisteri i el palau episcopal d'aquella època fosca i fascinant.</p>
-                
                 <p><strong>La Curiositat (Colom):</strong> Aquestes escales han vist la història. Es diu que va ser aquí, al Palau Reial Major, on els <strong>Reis Catòlics van rebre Cristòfor Colom</strong> al seu retorn d'Amèrica el 1493.</p>
-                
                 <span class="source-text">Font: MUHBA / Carta Arqueològica</span>
             </div>
 
             <div id="next-clue-box">
-                <!-- PISTA NIVELL 1 -->
                 <p><strong>PISTA DE SALT:</strong><br>Per arribar a la següent etapa, has de creuar la muralla romana. Surt de la plaça, gira cap a la gran avinguda (Via Laietana) i busca la imponent estàtua eqüestre d'un Comte que vigila la frontera.</p>
-                
                 <button id="hint-btn-1" class="btn btn-secondary" onclick="askGuardian(1)">No saps on anar? Demana una Pista Directa</button>
-
-                <!-- PISTA NIVELL 2 (Oculta) -->
                 <div id="hint-level-2" class="extra-hint-content">
                     <h4>Pista Directa</h4>
                     <p>El teu destí és la <strong>Plaça de Ramon Berenguer el Gran</strong>. Està just darrere de la muralla que tanca la Plaça del Rei.</p>
                     <button id="hint-btn-2" class="btn btn-secondary" onclick="askGuardian(2)">Segueixo perdut/da. Mostra'm el mapa</button>
                 </div>
-                
-                <!-- PISTA NIVELL 3 (Oculta) -->
                 <div id="hint-level-3" class="extra-hint-content">
                      <h4>Ubicació Exacta</h4>
                      <a href="https://www.google.com/maps/search/?api=1&query=Plaça+de+Ramon+Berenguer+el+Gran,Barcelona" target="_blank" class="btn btn-map">Obrir a Google Maps</a>
@@ -88,17 +122,13 @@
         </div>
     </div>
     
-    <!-- ENLLAÇ A PARADA 3 (AL-ÁNDALUS) -->
-    <a href="parada3-enigma-ca.html" class="btn btn-success" onclick="saveProgress()">Iniciar Capítol III (Al-Àndalus)</a>
+    <button class="btn btn-success" onclick="avanzarA('parada3-enigma')">Iniciar Capítol III (Al-Àndalus)</button>
+    <button class="btn btn-master" onclick="openMasterModal()">🆘 Contacta amb el Màster</button>
 
     <script>
-        function saveProgress() {
-            localStorage.setItem('progresoJuego', '3');
-        }
-
         const guardianPuzzles = [
-            { question: "Quina civilització es troba oculta sota el terra de la plaça?", answer: "VISIGO" }, // Accepta VISIGODA o VISIGOTS
-            { question: "A quin famós navegant van rebre els Reis aquí?", answer: "COLOM" } // Accepta CRISTOFOL COLOM
+            { question: "Quina civilització es troba oculta sota el terra de la plaça?", answer: "VISIGO" },
+            { question: "A quin famós navegant van rebre els Reis aquí?", answer: "COLOM" }
         ];
         
         const feedbackError = 'Resposta incorrecta. Llegeix el text amb més atenció.';
@@ -122,7 +152,6 @@
         submitBtn.onclick = () => {
             const puzzle = guardianPuzzles[levelToUnlock - 1];
             const userAnswer = answerEl.value.toUpperCase().trim().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
-            
             if (userAnswer.includes(puzzle.answer)) {
                 modal.style.display = 'none';
                 revealHint(levelToUnlock);

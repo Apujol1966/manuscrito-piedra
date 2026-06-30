@@ -4,10 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Capítulo I: Roma - El Manuscrito</title>
+    
+    <!-- CARGA DE CONFIGURACIÓN Y FUNCIONES -->
+    <script src="../config.js"></script>
+    <script src="../manuscrito-funciones.js"></script>
+    <script>verificarAcceso();</script>
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Lato:wght@400;700&display=swap" rel="stylesheet">
+    
     <style>
+        /* TU CSS ORIGINAL INTACTO */
         :root { --bg-color: #121212; --card-bg: #1e1e1e; --text-main: #e0d6c2; --text-muted: #a8a095; --accent: #c0392b; }
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body { background-color: var(--bg-color); color: var(--text-main); font-family: 'Lato', sans-serif; line-height: 1.6; padding: 20px; max-width: 600px; margin: 0 auto; }
@@ -26,20 +34,39 @@
         .info-toggle { background: none; border: none; color: var(--text-muted); text-decoration: underline; cursor: pointer; font-size: 0.9rem; margin-top: 15px; display: block; width: 100%; }
         .info-content { display: none; margin-top: 15px; font-size: 0.9rem; background: #151515; padding: 15px; border-radius: 8px; text-align: left; }
         #feedback-msg { margin-top: 15px; font-weight: bold; min-height: 1.5em; color: var(--accent); }
+
+        /* ESTILOS AÑADIDOS SOLO PARA EL MASTER */
+        .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.85); display: none; align-items: center; justify-content: center; z-index: 1000; padding: 20px; }
+        .modal-content { background-color: var(--card-bg); padding: 30px; border-radius: 12px; text-align: center; width: 100%; max-width: 500px; border-top: 4px solid var(--accent); }
+        .btn-master { background-color: transparent; border: 1px solid var(--text-muted); color: var(--text-muted); font-size: 0.8rem; margin-top: 20px; }
     </style>
 </head>
 <body>
+
+    <!-- MODAL DEL MASTER -->
+    <div id="master-modal" class="modal-overlay" onclick="closeMasterModal()">
+        <div class="modal-content" onclick="event.stopPropagation();">
+            <h2 id="master-titulo" style="margin-bottom: 15px; font-family: 'Cinzel', serif; color: #fff;"></h2>
+            <p id="master-descripcion" style="color: var(--text-muted); margin-bottom: 25px;"></p>
+            <p style="font-size: 1.2rem; font-weight: bold; color: #d4af37; margin-bottom: 20px;">WhatsApp: 664 252 723</p>
+            <button class="btn btn-primary" id="master-cerrar" onclick="closeMasterModal()"></button>
+        </div>
+    </div>
+
     <header>
         <h1>Capítulo I: La Primera Tinta</h1>
         <div class="subtitle">Plaça Nova · Porta Praetoria</div>
     </header>
+    
     <div class="img-container">
         <img src="../imagenes/roma.jpg" alt="Letras Barcino en Plaça Nova">
     </div>
+    
     <section class="card">
         <p>“Ante ti se alzan las guardianas de la ciudad. Las dos torres de la Porta Praetoria son el vestigio más puro de la muralla romana.”</p>
         <p class="narrative-text">“Pero no busques placas pequeñas. La ciudad grita su nombre antiguo a los cuatro vientos con letras de bronce gigantes a los pies de las torres.”</p>
     </section>
+    
     <div id="enigma-container">
         <section class="enigma-box">
             <span class="enigma-icon">🏛️</span>
@@ -47,9 +74,12 @@
             <p>“Mira al suelo, frente a las torres. Hay un poema visual hecho escultura. ¿Qué nombre romano de 7 letras forman las piezas de bronce?”</p>
             <label for="answer" style="display:none;">Tu respuesta</label>
             <input type="text" id="answer" placeholder="Escribe el nombre" maxlength="7">
+            
+            <!-- BOTÓN ORIGINAL -->
             <button class="btn btn-primary" onclick="checkAnswer()">Validar Nombre</button>
+            
             <div id="feedback-msg"></div>
-            <!-- BOTÓN DE AYUDA OCULTO POR DEFECTO -->
+            
             <button id="hint-toggle-btn" class="info-toggle" onclick="toggleHint()" style="display:none;">¿Necesitas una pista?</button>
             <div id="hint-box" class="info-content">
                 <p>Son letras grandes y desordenadas en el suelo.</p>
@@ -58,22 +88,27 @@
             </div>
         </section>
     </div>
+
+    <!-- BOTÓN DEL MASTER -->
+    <button class="btn btn-master" onclick="openMasterModal()">🆘 Contacta con el Master</button>
+
     <script>
         const SOLUTION = "BARCINO";
-        let failCount = 0; // Contador de fallos
+        let failCount = 0;
         
         function checkAnswer() {
-            const userIn = document.getElementById('answer').value.toUpperCase().trim();
+            const userIn = document.getElementById('answer').value.toUpperCase().trim().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
             const feedback = document.getElementById('feedback-msg');
             const hintButton = document.getElementById('hint-toggle-btn');
             
             if (userIn === SOLUTION) {
-                window.location.href = 'parada1-recompensa-es.html';
+                // CAMBIO A avanzarA PARA GUARDAR PROGRESO
+                avanzarA('parada1-recompensa');
             } else {
                 feedback.textContent = "Nombre incorrecto. Mira bien las letras en el suelo.";
                 failCount++;
                 if (failCount >= 3) {
-                    hintButton.style.display = 'block'; // Mostrar el botón de ayuda
+                    hintButton.style.display = 'block';
                 }
             }
         }

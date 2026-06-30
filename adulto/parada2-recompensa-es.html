@@ -3,7 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="google" content="notranslate">
     <title>Capítulo II: Visigodos - Descubierto</title>
+    
+    <script src="../config.js"></script>
+    <script src="../manuscrito-funciones.js"></script>
+    <script>verificarAcceso();</script>
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Lato:wght@400;700&display=swap" rel="stylesheet">
@@ -13,6 +19,29 @@
         body { background-color: var(--bg-color); color: var(--text-main); font-family: 'Lato', sans-serif; line-height: 1.6; padding: 20px; max-width: 600px; margin: 0 auto; }
         h1, h2, h3, h4 { font-family: 'Cinzel', serif; color: #fff; letter-spacing: 1px; }
         h1 { font-size: 1.8rem; text-align: center; margin-bottom: 25px; }
+        
+        /* AJUSTE DE FOTOS CORREGIDO */
+        .img-container { 
+            width: 100%; 
+            height: auto;
+            max-height: 450px; 
+            background-color: #000; 
+            border-radius: 8px; 
+            margin-bottom: 20px; 
+            overflow: hidden; 
+            border: 1px solid #444; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+        }
+        .img-container img { 
+            width: 100%; 
+            height: auto; 
+            max-height: 450px;
+            object-fit: contain; 
+            display: block; 
+        }
+
         .card { background-color: var(--card-bg); padding: 20px; border-radius: 12px; margin-bottom: 20px; box-shadow: 0 4px 6px rgba(0,0,0,0.3); }
         .btn { width: 100%; padding: 15px 20px; font-size: 1rem; font-weight: bold; text-transform: uppercase; border: none; border-radius: 8px; cursor: pointer; font-family: 'Cinzel', serif; text-decoration: none; display: inline-block; text-align: center; margin-top: 10px; }
         .btn-success { background-color: var(--success); color: white; }
@@ -34,9 +63,19 @@
         .modal-input { width: 100%; padding: 10px; font-size: 1rem; background-color: #1a1a1a; border: 2px solid #444; color: white; border-radius: 8px; margin: 15px 0; text-align: center; }
         #guardian-feedback { font-size: 0.9rem; color: var(--accent); min-height: 1.2em; margin-top: 10px; }
         .extra-hint-content { display: none; margin-top: 15px; padding-top: 15px; border-top: 1px dashed #444; }
+        .btn-master { background-color: transparent; border: 1px solid var(--text-muted); color: var(--text-muted); font-size: 0.8rem; margin-top: 20px; text-decoration: none; display: inline-block; width: 100%; text-align: center; }
     </style>
 </head>
 <body>
+    <!-- MODAL DEL MASTER -->
+    <div id="master-modal" class="modal-overlay" onclick="closeMasterModal()">
+        <div class="modal-content" onclick="event.stopPropagation();">
+            <h2 id="master-titulo" style="margin-bottom: 15px; font-family: 'Cinzel', serif; color: #fff;"></h2>
+            <p id="master-descripcion" style="color: var(--text-muted); margin-bottom: 25px;"></p>
+            <p style="font-size: 1.2rem; font-weight: bold; color: #d4af37; text-align: center;">WhatsApp: 664 252 723</p>
+            <button class="btn btn-primary" id="master-cerrar" onclick="closeMasterModal()" style="margin-top: 20px;"></button>
+        </div>
+    </div>
 
     <div id="guardian-modal" class="modal-overlay">
         <div class="modal-content">
@@ -50,34 +89,30 @@
 
     <header><h1>Capítulo II: Capas de Tiempo</h1></header>
 
+    <!-- IMAGEN CON NOMBRE NEUTRO Y CSS CORREGIDO -->
+    <div class="img-container">
+        <img src="../imagenes/parada2-recompensa.jpg" alt="Recompensa Capítulo II">
+    </div>
+
     <div id="reward-container">
         <div class="card">
             <div class="feedback-success">¡Correcto! MARTI5 es la llave.</div>
             
             <div class="knowledge-reward">
                 <h3>El Secreto del Subsuelo</h3>
-                
-                <p><strong>El Legado (Historia):</strong> Estás en una plaza engañosa. Lo que pisas no es el suelo original. Cuatro metros más abajo se encuentra la verdadera <strong>Barcino Visigoda</strong> (siglos IV-VIII). Allí abajo se conservan el aula regia, el baptisterio y el palacio episcopal de aquella época.</p>
-                
+                <p><strong>El Legado (Historia):</strong> Estás en una plaza engañosa. Lo que pisas no es el suelo original. Cuatro metros más abajo se encuentra la verdadera <strong>Barcino Visigoda</strong> (siglos IV-VIII). Allí abajo se conservan el aula regia, el baptisterio y el palacio episcopal d'aquella época.</p>
                 <p><strong>La Curiosidad (Colón):</strong> Estas escaleras han visto la historia. Se dice que fue aquí, en el Palau Reial Major, donde los <strong>Reyes Católicos recibieron a Cristóbal Colón</strong> a su regreso de América en 1493.</p>
-                
                 <span class="source-text">Fuente: MUHBA / Historia de Barcelona</span>
             </div>
 
             <div id="next-clue-box">
-                <!-- PISTA NIVEL 1 -->
                 <p><strong>PISTA DE SALTO:</strong><br>Para llegar a la siguiente etapa, debes cruzar la muralla romana. Sal de la plaza, gira hacia la gran avenida (Via Laietana) y busca la imponente estatua ecuestre de un Conde que vigila la frontera.</p>
-                
                 <button id="hint-btn-1" class="btn btn-secondary" onclick="askGuardian(1)">¿No sabes dónde ir? Pide una Pista Directa</button>
-
-                <!-- PISTA NIVEL 2 (Oculta) -->
                 <div id="hint-level-2" class="extra-hint-content">
                     <h4>Pista Directa</h4>
                     <p>Tu destino es la <strong>Plaça de Ramon Berenguer el Gran</strong>. Está justo detrás de la muralla que cierra la Plaça del Rei.</p>
                     <button id="hint-btn-2" class="btn btn-secondary" onclick="askGuardian(2)">Sigo perdido/a. Muéstrame el mapa</button>
                 </div>
-                
-                <!-- PISTA NIVEL 3 (Oculta) -->
                 <div id="hint-level-3" class="extra-hint-content">
                      <h4>Ubicación Exacta</h4>
                      <a href="https://www.google.com/maps/search/?api=1&query=Plaça+de+Ramon+Berenguer+el+Gran,Barcelona" target="_blank" class="btn btn-map">Abrir en Google Maps</a>
@@ -86,17 +121,13 @@
         </div>
     </div>
     
-    <!-- ENLACE A PARADA 3 (AL-ÁNDALUS) -->
-    <a href="parada3-enigma-es.html" class="btn btn-success" onclick="saveProgress()">Iniciar Capítulo III (Al-Ándalus)</a>
+    <button class="btn btn-success" onclick="avanzarA('parada3-enigma')">Iniciar Capítulo III (Al-Ándalus)</button>
+    <button class="btn btn-master" onclick="openMasterModal()">🆘 Contacta con el Master</button>
 
     <script>
-        function saveProgress() {
-            localStorage.setItem('progresoJuego', '3');
-        }
-
         const guardianPuzzles = [
-            { question: "¿Qué civilización se encuentra oculta bajo el suelo de la plaza?", answer: "VISIGOD" }, // Acepta VISIGODA o VISIGODOS
-            { question: "¿A qué famoso navegante recibieron los Reyes aquí?", answer: "COLON" } // Acepta CRISTOBAL COLON
+            { question: "¿Qué civilización se encuentra oculta bajo el suelo de la plaza?", answer: "VISIGOD" },
+            { question: "¿A qué famoso navegante recibieron los Reyes aquí?", answer: "COLON" }
         ];
         
         const feedbackError = 'Respuesta incorrecta. Lee el texto con más atención.';
@@ -119,9 +150,7 @@
 
         submitBtn.onclick = () => {
             const puzzle = guardianPuzzles[levelToUnlock - 1];
-            // Normalizamos para quitar acentos
             const userAnswer = answerEl.value.toUpperCase().trim().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
-            
             if (userAnswer.includes(puzzle.answer)) {
                 modal.style.display = 'none';
                 revealHint(levelToUnlock);
