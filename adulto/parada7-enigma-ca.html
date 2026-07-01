@@ -6,7 +6,6 @@
     <meta name="google" content="notranslate">
     <title>Capítol VII: Il·lustració - El Manuscrit</title>
     
-    <!-- CARREGA DE CONFIGURACIÓ I FUNCIONS -->
     <script src="../config.js"></script>
     <script src="../manuscrito-funciones.js"></script>
     <script>verificarAcceso();</script>
@@ -22,27 +21,8 @@
         h1 { font-size: 1.8rem; text-align: center; margin-bottom: 10px; border-bottom: 2px solid var(--accent); padding-bottom: 10px; }
         .subtitle { text-align: center; font-size: 0.9rem; color: var(--text-muted); margin-bottom: 25px; text-transform: uppercase; }
         
-        /* AJUST DE FOTOS CORREGIT */
-        .img-container { 
-            width: 100%; 
-            height: auto;
-            max-height: 450px; 
-            background-color: #000; 
-            border-radius: 8px; 
-            margin-bottom: 20px; 
-            overflow: hidden; 
-            border: 1px solid #444; 
-            display: flex; 
-            align-items: center; 
-            justify-content: center; 
-        }
-        .img-container img { 
-            width: 100%; 
-            height: auto; 
-            max-height: 450px;
-            object-fit: contain; 
-            display: block; 
-        }
+        .img-container { width: 100%; height: auto; max-height: 450px; background-color: #000; border-radius: 8px; margin-bottom: 20px; overflow: hidden; border: 1px solid #444; display: flex; align-items: center; justify-content: center; }
+        .img-container img { width: 100%; height: auto; max-height: 450px; object-fit: contain; display: block; }
 
         .card { background-color: var(--card-bg); padding: 20px; border-radius: 12px; margin-bottom: 20px; box-shadow: 0 4px 6px rgba(0,0,0,0.3); }
         .narrative-text { font-style: italic; border-left: 3px solid var(--accent); padding-left: 15px; margin-top: 15px; color: #dcdcdc; }
@@ -55,7 +35,6 @@
         .info-content { display: none; margin-top: 15px; font-size: 0.9rem; background: #151515; padding: 15px; border-radius: 8px; text-align: left; }
         #feedback-msg { margin-top: 15px; font-weight: bold; min-height: 1.5em; color: var(--accent); }
         
-        /* CODI MAÇÒNIC */
         .keys-container { display: flex; justify-content: center; gap: 15px; margin-bottom: 25px; flex-wrap: wrap; }
         .grid-key { display: grid; grid-template-columns: repeat(3, 1fr); width: 90px; height: 90px; }
         .cell { display: flex; align-items: center; justify-content: center; font-family: 'Cinzel', serif; font-weight: bold; color: #fff; font-size: 14px; border-color: var(--line-color); border-style: solid; border-width: 0; }
@@ -70,14 +49,12 @@
         .symbol.dot::after { content: '•'; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: var(--accent); font-size: 20px; line-height: 0; }
         .sym-p { border-top-width: 3px; border-right-width: 3px; } .sym-a { border-right-width: 3px; border-bottom-width: 3px; } .sym-d { border-top-width: 3px; border-right-width: 3px; border-bottom-width: 3px; } .sym-e { border-width: 3px; } .sym-l { border-left-width: 3px; border-bottom-width: 3px; } .sym-s { width: 20px; height: 20px; border-bottom: 3px solid var(--accent); border-right: 3px solid var(--accent); transform: rotate(45deg); margin-top: 5px; }
 
-        /* ESTILS MASTER */
         .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.85); display: none; align-items: center; justify-content: center; z-index: 1000; padding: 20px; }
         .modal-content { background-color: var(--card-bg); padding: 30px; border-radius: 12px; text-align: center; width: 100%; max-width: 500px; border-top: 4px solid var(--accent); }
         .btn-master { background-color: transparent; border: 1px solid var(--text-muted); color: var(--text-muted); font-size: 0.8rem; margin-top: 20px; text-decoration: none; display: inline-block; width: 100%; text-align: center; }
     </style>
 </head>
 <body>
-    <!-- MODAL DEL MASTER -->
     <div id="master-modal" class="modal-overlay" onclick="closeMasterModal()">
         <div class="modal-content" onclick="event.stopPropagation();">
             <h2 id="master-titulo" style="margin-bottom: 15px; font-family: 'Cinzel', serif; color: #fff;"></h2>
@@ -96,7 +73,7 @@
     </div>
     <section class="card">
         <p>“Entres al Segle de les Llums i les Ombres. Després de la derrota de 1714, Barcelona canvia. S'imposen l'ordre i la raó, però la dissidència s'amaga en societats secretes.”</p>
-        <p class="narrative-text">“Davant teu tens la <strong>Casa Padellàs</strong>, un palau gòtic que va ser traslladat pedra a pedra a aquest carrer el 1931. Però el seu origen és noble. Una lògia maçònica ha deixat encriptat el cognom de la família que va construir aquest palau.”</p>
+        <p class="narrative-text">“Davant teu tens el <strong>MUHBA</strong> (Museu d'Història de Barcelona), el palau gòtic que va ser traslladat pedra a pedra a aquest carrer el 1931. Però el seu origen és noble. Una lògia maçònica ha deixat encriptat el cognom de la família que va construir aquest palau.”</p>
     </section>
     <div id="enigma-container">
         <section class="enigma-box">
@@ -120,7 +97,8 @@
             <button id="hint-toggle-btn" class="info-toggle" onclick="toggleHint()" style="display:none;">Com es llegeix això?</button>
             <div id="hint-box" class="info-content">
                 <p>Busca la forma del símbol a les graelles de dalt. El símbol és el "mur" que envolta la lletra.</p>
-                <p>1. El primer símbol té sostre i paret dreta, i porta punt. Busca a la segona graella. És la <strong>P</strong>.</p>
+                <p>1. El primer símbol té sostre i paret dreta, i porta punt. Busca a la segona graella.</p>
+                <p><strong>Pista:</strong> Compara la forma de cada quadre amb les taules de referència.</p>
             </div>
         </section>
     </div>
@@ -147,12 +125,10 @@
                 }
             }
         }
-
         function toggleHint() {
             const box = document.getElementById('hint-box');
             box.style.display = box.style.display === 'block' ? 'none' : 'block';
         }
-
         function openMasterModal() { document.getElementById('master-modal').style.display = 'flex'; }
         function closeMasterModal() { document.getElementById('master-modal').style.display = 'none'; }
     </script>

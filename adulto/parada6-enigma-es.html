@@ -6,7 +6,6 @@
     <meta name="google" content="notranslate">
     <title>Capítulo VI: Renacimiento - El Manuscrito</title>
     
-    <!-- CARGA DE CONFIGURACIÓN Y FUNCIONES -->
     <script src="../config.js"></script>
     <script src="../manuscrito-funciones.js"></script>
     <script>verificarAcceso();</script>
@@ -22,27 +21,8 @@
         h1 { font-size: 1.8rem; text-align: center; margin-bottom: 10px; border-bottom: 2px solid var(--accent); padding-bottom: 10px; }
         .subtitle { text-align: center; font-size: 0.9rem; color: var(--text-muted); margin-bottom: 25px; text-transform: uppercase; }
         
-        /* AJUSTE DE FOTOS CORREGIDO */
-        .img-container { 
-            width: 100%; 
-            height: auto;
-            max-height: 450px; 
-            background-color: #000; 
-            border-radius: 8px; 
-            margin-bottom: 20px; 
-            overflow: hidden; 
-            border: 1px solid #444; 
-            display: flex; 
-            align-items: center; 
-            justify-content: center; 
-        }
-        .img-container img { 
-            width: 100%; 
-            height: auto; 
-            max-height: 450px;
-            object-fit: contain; 
-            display: block; 
-        }
+        .img-container { width: 100%; height: auto; max-height: 450px; background-color: #000; border-radius: 8px; margin-bottom: 20px; overflow: hidden; border: 1px solid #444; display: flex; align-items: center; justify-content: center; }
+        .img-container img { width: 100%; height: auto; max-height: 450px; object-fit: contain; display: block; }
 
         .card { background-color: var(--card-bg); padding: 20px; border-radius: 12px; margin-bottom: 20px; box-shadow: 0 4px 6px rgba(0,0,0,0.3); }
         .narrative-text { font-style: italic; border-left: 3px solid var(--accent); padding-left: 15px; margin-top: 15px; color: #dcdcdc; }
@@ -55,19 +35,17 @@
         .info-content { display: none; margin-top: 15px; font-size: 0.9rem; background: #151515; padding: 15px; border-radius: 8px; text-align: left; }
         #feedback-msg { margin-top: 15px; font-weight: bold; min-height: 1.5em; color: var(--accent); }
 
-        /* ESTILOS MASTER */
         .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.85); display: none; align-items: center; justify-content: center; z-index: 1000; padding: 20px; }
         .modal-content { background-color: var(--card-bg); padding: 30px; border-radius: 12px; text-align: center; width: 100%; max-width: 500px; border-top: 4px solid var(--accent); }
         .btn-master { background-color: transparent; border: 1px solid var(--text-muted); color: var(--text-muted); font-size: 0.8rem; margin-top: 20px; text-decoration: none; display: inline-block; width: 100%; text-align: center; }
     </style>
 </head>
 <body>
-    <!-- MODAL DEL MASTER -->
     <div id="master-modal" class="modal-overlay" onclick="closeMasterModal()">
         <div class="modal-content" onclick="event.stopPropagation();">
             <h2 id="master-titulo" style="margin-bottom: 15px; font-family: 'Cinzel', serif; color: #fff;"></h2>
             <p id="master-descripcion" style="color: var(--text-muted); margin-bottom: 25px;"></p>
-            <p style="font-size: 1.2rem; font-weight: bold; color: #d4af37; text-align: center;">WhatsApp: 664 252 723</p>
+            <p style="font-size: 1.2rem; font-weight: bold; color: var(--gold); text-align: center;">WhatsApp: 664 252 723</p>
             <button class="btn btn-primary" id="master-cerrar" onclick="closeMasterModal()" style="margin-top: 20px;"></button>
         </div>
     </div>
@@ -93,20 +71,20 @@
                 <li>2. Inicial del <strong>animal</strong> (reptil) tallado en el buzón.</li>
                 <li>3. Nombre del objeto heráldico sobre el <strong>dintel</strong> de la puerta.</li>
             </ul>
-            
-            <p style="margin-top:15px; font-weight: bold; color: var(--text-muted); font-size: 0.9rem;">FORMATO: Nº-LETRA-PALABRA</p>
-            
+            <p style="margin-top:15px; font-weight: bold; color: var(--text-muted); font-size: 0.9rem;">FORMATO: NºLETRAOBJETO</p>
             <label for="answer" style="display:none;">Tu respuesta</label>
-            <input type="text" id="answer" placeholder="Ej: 4-B-ROSA">
+            <input type="text" id="answer" placeholder="Ej: 1AOBJETO">
+            
             <button class="btn btn-primary" onclick="checkAnswer()">Validar Código</button>
             
             <div id="feedback-msg"></div>
             
             <button id="hint-toggle-btn" class="info-toggle" onclick="toggleHint()" style="display:none;">¿Necesitas ayuda?</button>
             <div id="hint-box" class="info-content">
-                <p>1. Mira a los flancos de la puerta: hay <strong>2</strong> columnas.</p>
-                <p>2. Mira el buzón a la derecha: es una Tortuga (<strong>T</strong>).</p>
-                <p>3. Mira arriba del todo, en el triángulo: es un <strong>ESCUDO</strong>.</p>
+                <p>1. Cuenta las columnas verticales a los lados de la puerta.</p>
+                <p>2. Identifica el animal del buzón y toma su inicial.</p>
+                <p>3. Identifica el objeto heráldico sobre la parte superior de la puerta.</p>
+                <p><strong>Pista:</strong> Une los tres datos en el formato indicado.</p>
             </div>
         </section>
     </div>
@@ -126,19 +104,17 @@
             if (userIn === SOLUTION) {
                 avanzarA('parada6-recompensa');
             } else {
-                feedback.textContent = "Combinación incorrecta. Observa bien los detalles de la entrada.";
+                feedback.textContent = "Combinación incorrecta. Observa bien los detalles.";
                 failCount++;
                 if (failCount >= 3) {
                     hintButton.style.display = 'block';
                 }
             }
         }
-
         function toggleHint() {
             const box = document.getElementById('hint-box');
             box.style.display = box.style.display === 'block' ? 'none' : 'block';
         }
-
         function openMasterModal() { document.getElementById('master-modal').style.display = 'flex'; }
         function closeMasterModal() { document.getElementById('master-modal').style.display = 'none'; }
     </script>

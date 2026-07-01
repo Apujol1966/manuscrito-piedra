@@ -21,27 +21,8 @@
         h1 { font-size: 1.8rem; text-align: center; margin-bottom: 10px; border-bottom: 2px solid var(--accent); padding-bottom: 10px; }
         .subtitle { text-align: center; font-size: 0.9rem; color: var(--text-muted); margin-bottom: 25px; text-transform: uppercase; }
         
-        /* AJUSTE DE FOTOS CORREGIDO */
-        .img-container { 
-            width: 100%; 
-            height: auto;
-            max-height: 450px; 
-            background-color: #000; 
-            border-radius: 8px; 
-            margin-bottom: 20px; 
-            overflow: hidden; 
-            border: 1px solid #444; 
-            display: flex; 
-            align-items: center; 
-            justify-content: center; 
-        }
-        .img-container img { 
-            width: 100%; 
-            height: auto; 
-            max-height: 450px;
-            object-fit: contain; 
-            display: block; 
-        }
+        .img-container { width: 100%; height: auto; max-height: 450px; background-color: #000; border-radius: 8px; margin-bottom: 20px; overflow: hidden; border: 1px solid #444; display: flex; align-items: center; justify-content: center; }
+        .img-container img { width: 100%; height: auto; max-height: 450px; object-fit: contain; display: block; }
 
         .card { background-color: var(--card-bg); padding: 20px; border-radius: 12px; margin-bottom: 20px; box-shadow: 0 4px 6px rgba(0,0,0,0.3); }
         .narrative-text { font-style: italic; border-left: 3px solid var(--accent); padding-left: 15px; margin-top: 15px; color: #dcdcdc; }
@@ -54,14 +35,12 @@
         .info-content { display: none; margin-top: 15px; font-size: 0.9rem; background: #151515; padding: 15px; border-radius: 8px; text-align: left; }
         #feedback-msg { margin-top: 15px; font-weight: bold; min-height: 1.5em; color: var(--accent); }
 
-        /* ESTILOS MASTER */
         .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.85); display: none; align-items: center; justify-content: center; z-index: 1000; padding: 20px; }
         .modal-content { background-color: var(--card-bg); padding: 30px; border-radius: 12px; text-align: center; width: 100%; max-width: 500px; border-top: 4px solid var(--accent); }
         .btn-master { background-color: transparent; border: 1px solid var(--text-muted); color: var(--text-muted); font-size: 0.8rem; margin-top: 20px; text-decoration: none; display: inline-block; width: 100%; text-align: center; }
     </style>
 </head>
 <body>
-    <!-- MODAL DEL MASTER -->
     <div id="master-modal" class="modal-overlay" onclick="closeMasterModal()">
         <div class="modal-content" onclick="event.stopPropagation();">
             <h2 id="master-titulo" style="margin-bottom: 15px; font-family: 'Cinzel', serif; color: #fff;"></h2>
@@ -92,12 +71,12 @@
             <input type="number" id="answer" placeholder="Introduce la suma total">
             <button class="btn btn-primary" onclick="checkAnswer()">Validar Cifra</button>
             <div id="feedback-msg"></div>
-            <button id="hint-toggle-btn" class="info-toggle" onclick="toggleHint()" style="display:none;">¿No te salen las cuentas?</button>
+            <button id="hint-toggle-btn" class="info-toggle" onclick="toggleHint()" style="display:none;">¿Necesitas un empujón?</button>
             <div id="hint-box" class="info-content">
-                <p>1. Busca la <strong>M</strong> en RAMON (1000).</p>
-                <p>2. Busca la <strong>V</strong> en BERENGVER (5). ¡Sí, la U se escribe como V y suma 5!</p>
-                <p>3. Busca el <strong>III</strong> final (3).</p>
-                <p>La operación es: 1000 + 5 + 3.</p>
+                <p>1. Busca la <strong>M</strong> en RAMON.</p>
+                <p>2. Busca la <strong>V</strong> en BERENGVER. ¡Recuerda la trampa del latín!.</p>
+                <p>3. Busca el <strong>III</strong> final.</p>
+                <p><strong>Pista:</strong> Solo tienes que sumar esos tres números.</p>
             </div>
         </section>
     </div>
@@ -116,13 +95,10 @@
                 avanzarA('parada3-recompensa');
             } else {
                 failCount++;
-                if (val === 1003) {
-                    feedback.textContent = "Casi... ¿Has olvidado que la 'U' en latín es una 'V'? Esa letra también suma.";
-                } else {
-                    feedback.textContent = "Cálculo incorrecto. Revisa bien todas las letras del nombre.";
-                }
+                feedback.textContent = "Cálculo incorrecto. Revisa bien las letras de la inscripción.";
                 if (failCount >= 3) {
                     hintButton.style.display = 'block';
+                    feedback.textContent = "Te estás acercando, pero el número no es exacto. ¡Usa la pista!";
                 }
             }
         }
@@ -130,6 +106,8 @@
             const box = document.getElementById('hint-box');
             box.style.display = box.style.display === 'block' ? 'none' : 'block';
         }
+        function openMasterModal() { document.getElementById('master-modal').style.display = 'flex'; }
+        function closeMasterModal() { document.getElementById('master-modal').style.display = 'none'; }
     </script>
 </body>
 </html>

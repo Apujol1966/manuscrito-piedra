@@ -13,6 +13,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Lato:wght@400;700&display=swap" rel="stylesheet">
+    
     <style>
         :root { --bg-color: #121212; --card-bg: #1e1e1e; --text-main: #e0d6c2; --text-muted: #a8a095; --accent: #c0392b; --success: #27ae60; }
         * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -20,7 +21,6 @@
         h1, h2, h3, h4 { font-family: 'Cinzel', serif; color: #fff; letter-spacing: 1px; }
         h1 { font-size: 1.8rem; text-align: center; margin-bottom: 25px; }
         
-        /* AJUSTE DE FOTOS CORREGIDO */
         .img-container { 
             width: 100%; 
             height: auto;
@@ -58,8 +58,6 @@
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
         .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.85); display: none; align-items: center; justify-content: center; z-index: 1000; padding: 20px; }
         .modal-content { background-color: var(--card-bg); padding: 30px; border-radius: 12px; text-align: center; width: 100%; max-width: 500px; border-top: 4px solid var(--accent); }
-        .modal-content h2 { margin-bottom: 15px; }
-        .modal-content p { color: var(--text-muted); margin-bottom: 25px; }
         .modal-input { width: 100%; padding: 10px; font-size: 1rem; background-color: #1a1a1a; border: 2px solid #444; color: white; border-radius: 8px; margin: 15px 0; text-align: center; }
         #guardian-feedback { font-size: 0.9rem; color: var(--accent); min-height: 1.2em; margin-top: 10px; }
         .extra-hint-content { display: none; margin-top: 15px; padding-top: 15px; border-top: 1px dashed #444; }
@@ -84,12 +82,12 @@
             <input type="text" id="guardian-answer" class="modal-input">
             <button id="guardian-submit" class="btn btn-primary">Validar</button>
             <div id="guardian-feedback"></div>
+            <button onclick="document.getElementById('guardian-modal').style.display='none'" class="btn-master" style="border:none; margin-top:10px; cursor:pointer;">Cancelar</button>
         </div>
     </div>
 
     <header><h1>Capítulo II: Capas de Tiempo</h1></header>
 
-    <!-- IMAGEN CON NOMBRE NEUTRO Y CSS CORREGIDO -->
     <div class="img-container">
         <img src="../imagenes/parada2-recompensa.jpg" alt="Recompensa Capítulo II">
     </div>
@@ -100,7 +98,7 @@
             
             <div class="knowledge-reward">
                 <h3>El Secreto del Subsuelo</h3>
-                <p><strong>El Legado (Historia):</strong> Estás en una plaza engañosa. Lo que pisas no es el suelo original. Cuatro metros más abajo se encuentra la verdadera <strong>Barcino Visigoda</strong> (siglos IV-VIII). Allí abajo se conservan el aula regia, el baptisterio y el palacio episcopal d'aquella época.</p>
+                <p><strong>El Legado (Historia):</strong> Estás en una plaza engañosa. Lo que pisas no es el suelo original. Cuatro metros más abajo se encuentra la verdadera <strong>Barchinona Visigoda</strong> (siglos IV-VIII). Allí abajo se conservan el aula regia, el baptisterio y el palacio episcopal de aquella época.</p>
                 <p><strong>La Curiosidad (Colón):</strong> Estas escaleras han visto la historia. Se dice que fue aquí, en el Palau Reial Major, donde los <strong>Reyes Católicos recibieron a Cristóbal Colón</strong> a su regreso de América en 1493.</p>
                 <span class="source-text">Fuente: MUHBA / Historia de Barcelona</span>
             </div>
@@ -150,8 +148,16 @@
 
         submitBtn.onclick = () => {
             const puzzle = guardianPuzzles[levelToUnlock - 1];
-            const userAnswer = answerEl.value.toUpperCase().trim().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
-            if (userAnswer.includes(puzzle.answer)) {
+            let userAnswer = answerEl.value.toUpperCase().trim().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+            
+            let isCorrect = false;
+            if (levelToUnlock === 2) {
+                isCorrect = userAnswer.includes("COLON") || userAnswer.includes("CRISTOBAL COLON");
+            } else {
+                isCorrect = userAnswer.includes(puzzle.answer);
+            }
+
+            if (isCorrect) {
                 modal.style.display = 'none';
                 revealHint(levelToUnlock);
             } else {
@@ -168,6 +174,9 @@
                 document.getElementById('hint-btn-2').style.display = 'none';
             }
         }
+
+        function openMasterModal() { document.getElementById('master-modal').style.display = 'flex'; }
+        function closeMasterModal() { document.getElementById('master-modal').style.display = 'none'; }
     </script>
 </body>
 </html>

@@ -6,7 +6,6 @@
     <meta name="google" content="notranslate">
     <title>Capítulo VII: Ilustración - Descubierto</title>
     
-    <!-- CARGA DE CONFIGURACIÓN Y FUNCIONES -->
     <script src="../config.js"></script>
     <script src="../manuscrito-funciones.js"></script>
     <script>verificarAcceso();</script>
@@ -16,34 +15,14 @@
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Lato:wght@400;700&display=swap" rel="stylesheet">
     
     <style>
-        /* TU CSS ORIGINAL INTACTO */
         :root { --bg-color: #121212; --card-bg: #1e1e1e; --text-main: #e0d6c2; --text-muted: #a8a095; --accent: #c0392b; --success: #27ae60; }
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body { background-color: var(--bg-color); color: var(--text-main); font-family: 'Lato', sans-serif; line-height: 1.6; padding: 20px; max-width: 600px; margin: 0 auto; }
         h1, h2, h3, h4 { font-family: 'Cinzel', serif; color: #fff; letter-spacing: 1px; }
         h1 { font-size: 1.8rem; text-align: center; margin-bottom: 25px; }
         
-        /* AJUSTE DE FOTOS CORREGIDO */
-        .img-container { 
-            width: 100%; 
-            height: auto;
-            max-height: 450px; 
-            background-color: #000; 
-            border-radius: 8px; 
-            margin-bottom: 20px; 
-            overflow: hidden; 
-            border: 1px solid #444; 
-            display: flex; 
-            align-items: center; 
-            justify-content: center; 
-        }
-        .img-container img { 
-            width: 100%; 
-            height: auto; 
-            max-height: 450px;
-            object-fit: contain; 
-            display: block; 
-        }
+        .img-container { width: 100%; height: auto; max-height: 450px; background-color: #000; border-radius: 8px; margin-bottom: 20px; overflow: hidden; border: 1px solid #444; display: flex; align-items: center; justify-content: center; }
+        .img-container img { width: 100%; height: auto; max-height: 450px; object-fit: contain; display: block; }
 
         .card { background-color: var(--card-bg); padding: 20px; border-radius: 12px; margin-bottom: 20px; box-shadow: 0 4px 6px rgba(0,0,0,0.3); }
         .btn { width: 100%; padding: 15px 20px; font-size: 1rem; font-weight: bold; text-transform: uppercase; border: none; border-radius: 8px; cursor: pointer; font-family: 'Cinzel', serif; text-decoration: none; display: inline-block; text-align: center; margin-top: 10px; }
@@ -60,7 +39,6 @@
         .feedback-success { text-align: center; font-weight: bold; color: var(--success); font-size: 1.2rem; margin-bottom: 20px; animation: fadeIn 1s ease-in; }
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
         
-        /* MODALES */
         .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.85); display: none; align-items: center; justify-content: center; z-index: 1000; padding: 20px; }
         .modal-content { background-color: var(--card-bg); padding: 30px; border-radius: 12px; text-align: center; width: 100%; max-width: 500px; border-top: 4px solid var(--accent); }
         .modal-input { width: 100%; padding: 10px; font-size: 1rem; background-color: #1a1a1a; border: 2px solid #444; color: white; border-radius: 8px; margin: 15px 0; text-align: center; }
@@ -71,7 +49,6 @@
 </head>
 <body>
 
-    <!-- MODAL DEL MASTER -->
     <div id="master-modal" class="modal-overlay" onclick="closeMasterModal()">
         <div class="modal-content" onclick="event.stopPropagation();">
             <h2 id="master-titulo" style="margin-bottom: 15px; font-family: 'Cinzel', serif; color: #fff;"></h2>
@@ -81,7 +58,6 @@
         </div>
     </div>
 
-    <!-- MODAL DEL GUARDIÁN -->
     <div id="guardian-modal" class="modal-overlay">
         <div class="modal-content">
             <h2>Prueba del Guardián</h2>
@@ -89,12 +65,12 @@
             <input type="text" id="guardian-answer" class="modal-input">
             <button id="guardian-submit" class="btn btn-primary">Validar</button>
             <div id="guardian-feedback"></div>
+            <button onclick="document.getElementById('guardian-modal').style.display='none'" class="btn-master" style="border:none; margin-top:10px; cursor:pointer;">Cancelar</button>
         </div>
     </div>
 
     <header><h1>Capítulo VII: La Razón y el Orden</h1></header>
 
-    <!-- IMAGEN CON NOMBRE NEUTRO Y CSS CORREGIDO -->
     <div class="img-container">
         <img src="../imagenes/parada7-recompensa.jpg" alt="Recompensa Capítulo VII">
     </div>
@@ -107,7 +83,7 @@
                 <h3>Luces y Sombras (Siglo XVIII)</h3>
                 <p><strong>La Casa Viajera:</strong> Has descubierto la Casa Padellàs. Aunque es un palacio gótico del s. XV, originalmente estaba en otra calle. En 1931, para salvarla de la demolición al abrir la Via Laietana, fue trasladada <strong>piedra a piedra</strong> a este lugar.</p>
                 <p><strong>El Fin de una Era:</strong> Estás en la Calle del Veguer. El "Veguer" era la autoridad medieval catalana. Tras la derrota de 1714, el rey Felipe V impuso el <strong>Decreto de Nueva Planta</strong>, eliminando las instituciones catalanas e imponiendo la figura del "Corregidor". Esta calle es un recuerdo silencioso de aquel mundo que desapareció.</p>
-                <span class="source-text">Fuente: MUHBA / Història Urbana</span>
+                <span class="source-text">Fuente: MUHBA / Historia de Barcelona</span>
             </div>
 
             <div id="next-clue-box">
@@ -129,15 +105,12 @@
         </div>
     </div>
     
-    <!-- BOTÓN DE AVANCE CENTRALIZADO -->
     <button class="btn btn-success" onclick="avanzarA('parada8-enigma')">Iniciar Capítulo VIII (Guerra Civil)</button>
-
-    <!-- BOTÓN DEL MASTER -->
     <button class="btn btn-master" onclick="openMasterModal()">🆘 Contacta con el Master</button>
 
     <script>
         const guardianPuzzles = [
-            { question: "¿Qué decreto del siglo XVIII eliminó las instituciones catalanas?", answer: "NOVA PLANTA" }, 
+            { question: "¿Qué decreto del siglo XVIII eliminó las instituciones catalanas?", answer: ["NOVA PLANTA", "NUEVA PLANTA"] }, 
             { question: "La pista te dirige a una plaza con nombre de santo. ¿Cuál es?", answer: "FELIP NERI" }
         ];
         
@@ -163,7 +136,14 @@
             const puzzle = guardianPuzzles[levelToUnlock - 1];
             let userAnswer = answerEl.value.toUpperCase().trim().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
             
-            if (userAnswer.includes(puzzle.answer)) {
+            let isCorrect = false;
+            if (levelToUnlock === 1) {
+                isCorrect = puzzle.answer.some(ans => userAnswer.includes(ans));
+            } else {
+                isCorrect = userAnswer.includes(puzzle.answer);
+            }
+
+            if (isCorrect) {
                 modal.style.display = 'none';
                 revealHint(levelToUnlock);
             } else {
@@ -181,7 +161,6 @@
             }
         }
 
-        // FUNCIONES DEL MASTER
         function openMasterModal() { document.getElementById('master-modal').style.display = 'flex'; }
         function closeMasterModal() { document.getElementById('master-modal').style.display = 'none'; }
     </script>

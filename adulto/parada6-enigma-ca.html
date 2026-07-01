@@ -6,7 +6,6 @@
     <meta name="google" content="notranslate">
     <title>Capítol VI: Renaixement - El Manuscrit</title>
     
-    <!-- CARREGA DE CONFIGURACIÓ I FUNCIONS -->
     <script src="../config.js"></script>
     <script src="../manuscrito-funciones.js"></script>
     <script>verificarAcceso();</script>
@@ -22,27 +21,8 @@
         h1 { font-size: 1.8rem; text-align: center; margin-bottom: 10px; border-bottom: 2px solid var(--accent); padding-bottom: 10px; }
         .subtitle { text-align: center; font-size: 0.9rem; color: var(--text-muted); margin-bottom: 25px; text-transform: uppercase; }
         
-        /* AJUST DE FOTOS CORREGIT */
-        .img-container { 
-            width: 100%; 
-            height: auto;
-            max-height: 450px; 
-            background-color: #000; 
-            border-radius: 8px; 
-            margin-bottom: 20px; 
-            overflow: hidden; 
-            border: 1px solid #444; 
-            display: flex; 
-            align-items: center; 
-            justify-content: center; 
-        }
-        .img-container img { 
-            width: 100%; 
-            height: auto; 
-            max-height: 450px;
-            object-fit: contain; 
-            display: block; 
-        }
+        .img-container { width: 100%; height: auto; max-height: 450px; background-color: #000; border-radius: 8px; margin-bottom: 20px; overflow: hidden; border: 1px solid #444; display: flex; align-items: center; justify-content: center; }
+        .img-container img { width: 100%; height: auto; max-height: 450px; object-fit: contain; display: block; }
 
         .card { background-color: var(--card-bg); padding: 20px; border-radius: 12px; margin-bottom: 20px; box-shadow: 0 4px 6px rgba(0,0,0,0.3); }
         .narrative-text { font-style: italic; border-left: 3px solid var(--accent); padding-left: 15px; margin-top: 15px; color: #dcdcdc; }
@@ -55,14 +35,12 @@
         .info-content { display: none; margin-top: 15px; font-size: 0.9rem; background: #151515; padding: 15px; border-radius: 8px; text-align: left; }
         #feedback-msg { margin-top: 15px; font-weight: bold; min-height: 1.5em; color: var(--accent); }
 
-        /* ESTILS MASTER */
         .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.85); display: none; align-items: center; justify-content: center; z-index: 1000; padding: 20px; }
         .modal-content { background-color: var(--card-bg); padding: 30px; border-radius: 12px; text-align: center; width: 100%; max-width: 500px; border-top: 4px solid var(--accent); }
         .btn-master { background-color: transparent; border: 1px solid var(--text-muted); color: var(--text-muted); font-size: 0.8rem; margin-top: 20px; text-decoration: none; display: inline-block; width: 100%; text-align: center; }
     </style>
 </head>
 <body>
-    <!-- MODAL DEL MASTER -->
     <div id="master-modal" class="modal-overlay" onclick="closeMasterModal()">
         <div class="modal-content" onclick="event.stopPropagation();">
             <h2 id="master-titulo" style="margin-bottom: 15px; font-family: 'Cinzel', serif; color: #fff;"></h2>
@@ -93,9 +71,9 @@
                 <li>2. Inicial de l'<strong>animal</strong> (rèptil) de la bústia.</li>
                 <li>3. Nom de l'objecte heràldic sobre la <strong>llinda</strong> de la porta.</li>
             </ul>
-            <p style="margin-top:15px; font-weight: bold; color: var(--text-muted); font-size: 0.9rem;">FORMAT: Nº-LLETRA-PARAULA</p>
+            <p style="margin-top:15px; font-weight: bold; color: var(--text-muted); font-size: 0.9rem;">FORMAT: NºLLETRAOBJECTE</p>
             <label for="answer" style="display:none;">La teva resposta</label>
-            <input type="text" id="answer" placeholder="Ex: 4-B-ROSA">
+            <input type="text" id="answer" placeholder="Ex: 1AOBJECTE">
             
             <button class="btn btn-primary" onclick="checkAnswer()">Validar Codi</button>
             
@@ -103,9 +81,10 @@
             
             <button id="hint-toggle-btn" class="info-toggle" onclick="toggleHint()" style="display:none;">Necessites ajuda?</button>
             <div id="hint-box" class="info-content">
-                <p>1. Mira als flancs de la porta: hi ha <strong>2</strong> columnes.</p>
-                <p>2. Mira la bústia a la dreta: és una Tortuga (<strong>T</strong>).</p>
-                <p>3. Mira a dalt de tot, al triangle: és un <strong>ESCUT</strong>.</p>
+                <p>1. Compta les columnes verticals als costats de la porta.</p>
+                <p>2. Identifica l'animal de la bústia i pren la seva inicial.</p>
+                <p>3. Identifica l'objecte heràldic sobre la part superior de la porta.</p>
+                <p><strong>Pista:</strong> Uneix les tres dades en el format indicat.</p>
             </div>
         </section>
     </div>
@@ -132,12 +111,10 @@
                 }
             }
         }
-
         function toggleHint() {
             const box = document.getElementById('hint-box');
             box.style.display = box.style.display === 'block' ? 'none' : 'block';
         }
-
         function openMasterModal() { document.getElementById('master-modal').style.display = 'flex'; }
         function closeMasterModal() { document.getElementById('master-modal').style.display = 'none'; }
     </script>

@@ -13,6 +13,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Lato:wght@400;700&display=swap" rel="stylesheet">
+    
     <style>
         :root { --bg-color: #121212; --card-bg: #1e1e1e; --text-main: #e0d6c2; --text-muted: #a8a095; --accent: #c0392b; --success: #27ae60; }
         * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -20,27 +21,8 @@
         h1, h2, h3, h4 { font-family: 'Cinzel', serif; color: #fff; letter-spacing: 1px; }
         h1 { font-size: 1.8rem; text-align: center; margin-bottom: 25px; }
         
-        /* AJUSTE DE FOTOS CORREGIDO */
-        .img-container { 
-            width: 100%; 
-            height: auto;
-            max-height: 450px; 
-            background-color: #000; 
-            border-radius: 8px; 
-            margin-bottom: 20px; 
-            overflow: hidden; 
-            border: 1px solid #444; 
-            display: flex; 
-            align-items: center; 
-            justify-content: center; 
-        }
-        .img-container img { 
-            width: 100%; 
-            height: auto; 
-            max-height: 450px;
-            object-fit: contain; 
-            display: block; 
-        }
+        .img-container { width: 100%; height: auto; max-height: 450px; background-color: #000; border-radius: 8px; margin-bottom: 20px; overflow: hidden; border: 1px solid #444; display: flex; align-items: center; justify-content: center; }
+        .img-container img { width: 100%; height: auto; max-height: 450px; object-fit: contain; display: block; }
 
         .card { background-color: var(--card-bg); padding: 20px; border-radius: 12px; margin-bottom: 20px; box-shadow: 0 4px 6px rgba(0,0,0,0.3); }
         .btn { width: 100%; padding: 15px 20px; font-size: 1rem; font-weight: bold; text-transform: uppercase; border: none; border-radius: 8px; cursor: pointer; font-family: 'Cinzel', serif; text-decoration: none; display: inline-block; text-align: center; margin-top: 10px; }
@@ -58,8 +40,6 @@
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
         .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.85); display: none; align-items: center; justify-content: center; z-index: 1000; padding: 20px; }
         .modal-content { background-color: var(--card-bg); padding: 30px; border-radius: 12px; text-align: center; width: 100%; max-width: 500px; border-top: 4px solid var(--accent); }
-        .modal-content h2 { margin-bottom: 15px; }
-        .modal-content p { color: var(--text-muted); margin-bottom: 25px; }
         .modal-input { width: 100%; padding: 10px; font-size: 1rem; background-color: #1a1a1a; border: 2px solid #444; color: white; border-radius: 8px; margin: 15px 0; text-align: center; }
         #guardian-feedback { font-size: 0.9rem; color: var(--accent); min-height: 1.2em; margin-top: 10px; }
         .extra-hint-content { display: none; margin-top: 15px; padding-top: 15px; border-top: 1px dashed #444; }
@@ -67,7 +47,7 @@
     </style>
 </head>
 <body>
-    <!-- MODAL DEL MASTER -->
+
     <div id="master-modal" class="modal-overlay" onclick="closeMasterModal()">
         <div class="modal-content" onclick="event.stopPropagation();">
             <h2 id="master-titulo" style="margin-bottom: 15px; font-family: 'Cinzel', serif; color: #fff;"></h2>
@@ -83,13 +63,13 @@
             <p id="guardian-question"></p>
             <input type="text" id="guardian-answer" class="modal-input">
             <button id="guardian-submit" class="btn btn-primary">Validar</button>
-            <div id="guardian-feedback"></div>
+            <div id="guardian-feedback" style="margin-top: 10px; color: var(--accent); font-size: 0.9rem;"></div>
+            <button onclick="document.getElementById('guardian-modal').style.display='none'" class="btn-master" style="border:none; margin-top:10px; cursor:pointer;">Cancel·lar</button>
         </div>
     </div>
 
     <header><h1>Capítol III: La Frontera Invisible</h1></header>
 
-    <!-- IMAGEN CON NOMBRE NEUTRO Y CSS CORREGIDO -->
     <div class="img-container">
         <img src="../imagenes/parada3-recompensa.jpg" alt="Recompensa Capítol III">
     </div>
@@ -97,20 +77,25 @@
     <div id="reward-container">
         <div class="card">
             <div class="feedback-success">Correcte! El codi del comte és 1008.</div>
+            
             <div class="knowledge-reward">
                 <h3>El Llegat de la Frontera</h3>
                 <p><strong>El Llegat d'Al-Àndalus:</strong> Encara que Barcelona va resistir com a ciutat cristiana, la seva posició a la frontera amb Al-Àndalus la va convertir en un gresol. La proximitat va permetre un flux vital de coneixements en <strong>medicina</strong>, <strong>matemàtiques</strong> i <strong>filosofia</strong> que arribaven des de Còrdova.</p>
                 <p><strong>La Curiositat (Aliances):</strong> Ramon Berenguer III no només va lluitar amb l'espasa. També va establir aliances <strong>matrimonials</strong> i comercials amb senyors musulmans. Aquesta dualitat de conflicte i coexistència va definir la vida a la frontera.</p>
                 <span class="source-text">Font: "Al-Hakam I", doc. Vallvé 1992</span>
             </div>
+
             <div id="next-clue-box">
-                <p><strong>PISTA DE SALT:</strong><br>El número 1008 et transporta al cor del Gòtic. Endinsa't al carrer que passa sota el pont més famós i fotografiat del barri. Les bèsties de pedra t'observen des de dalt.</p>
+                <p><strong>PISTA DE SALT:</strong><br>El número 1008 et transporta al cor del Gòtic. Endinsa't al carrer que passa sota el <strong>pont</strong> més famós i fotografiat del barri. Les bèsties de pedra t'observen des de dalt.</p>
+                
                 <button id="hint-btn-1" class="btn btn-secondary" onclick="askGuardian(1)">No saps on anar? Demana una Pista Directa</button>
+
                 <div id="hint-level-2" class="extra-hint-content">
                     <h4>Pista Directa</h4>
-                    <p>Busca el <strong>Carrer del Bisbe</strong>. És el carrer que va des de la Catedral cap a la Plaça de Sant Jaume, passant per sota d'un icònic pont neogòtic.</p>
+                    <p>Busca el <strong>Carrer del Bisbe</strong>. És el carrer que va des de la Catedral cap a la Plaça de Sant Jaume, passant per sota d'un icònic <strong>pont</strong> neogòtic.</p>
                     <button id="hint-btn-2" class="btn btn-secondary" onclick="askGuardian(2)">Segueixo perdut/da. Mostra'm el mapa</button>
                 </div>
+                
                 <div id="hint-level-3" class="extra-hint-content">
                      <h4>Ubicació Exacta</h4>
                      <a href="https://www.google.com/maps/search/?api=1&query=Carrer+del+Bisbe,Barcelona" target="_blank" class="btn btn-map">Obrir a Google Maps</a>
@@ -124,9 +109,10 @@
 
     <script>
         const guardianPuzzles = [
-            { question: "Quin tipus de coneixements van arribar des de Còrdova?", answer: "MEDICINA" },
+            { question: "Quins tipus de coneixements van arribar des de Còrdova?", answer: "MEDICINA" },
             { question: "La pista directa esmenta un element arquitectònic icònic. Què és?", answer: "PONT" }
         ];
+        
         const feedbackError = 'Resposta incorrecta. La resposta és al text que acabes de llegir.';
         const modal = document.getElementById('guardian-modal');
         const questionEl = document.getElementById('guardian-question');
@@ -134,6 +120,7 @@
         const submitBtn = document.getElementById('guardian-submit');
         const feedbackEl = document.getElementById('guardian-feedback');
         let levelToUnlock = 0;
+
         function askGuardian(level) {
             levelToUnlock = level;
             const puzzle = guardianPuzzles[level - 1];
@@ -143,26 +130,26 @@
             modal.style.display = 'flex';
             answerEl.focus();
         }
+
         submitBtn.onclick = () => {
             const puzzle = guardianPuzzles[levelToUnlock - 1];
-            let userAnswer = answerEl.value.toUpperCase().trim();
-            userAnswer = userAnswer.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+            let userAnswer = answerEl.value.toUpperCase().trim().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+            
+            let isCorrect = false;
             if (levelToUnlock === 1) {
-                if (userAnswer.includes("MEDICINA") || userAnswer.includes("MATEMATIQUES") || userAnswer.includes("FILOSOFIA")) {
-                    modal.style.display = 'none';
-                    revealHint(levelToUnlock);
-                } else {
-                    feedbackEl.textContent = feedbackError;
-                }
+                isCorrect = userAnswer.includes("MEDICINA") || userAnswer.includes("MATEMATIQUES") || userAnswer.includes("FILOSOFIA");
             } else {
-                if (userAnswer.includes(puzzle.answer)) {
-                    modal.style.display = 'none';
-                    revealHint(levelToUnlock);
-                } else {
-                    feedbackEl.textContent = feedbackError;
-                }
+                isCorrect = userAnswer.includes(puzzle.answer);
+            }
+
+            if (isCorrect) {
+                modal.style.display = 'none';
+                revealHint(levelToUnlock);
+            } else {
+                feedbackEl.textContent = feedbackError;
             }
         };
+
         function revealHint(level) {
             if (level === 1) {
                 document.getElementById('hint-level-2').style.display = 'block';
@@ -172,6 +159,9 @@
                 document.getElementById('hint-btn-2').style.display = 'none';
             }
         }
+
+        function openMasterModal() { document.getElementById('master-modal').style.display = 'flex'; }
+        function closeMasterModal() { document.getElementById('master-modal').style.display = 'none'; }
     </script>
 </body>
 </html>

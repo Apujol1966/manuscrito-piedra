@@ -1,14 +1,14 @@
 <!DOCTYPE html>
-<html lang="ca">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>El Mosaic del Record</title>
+    <title>El Mosaic de la Història</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Lato:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        :root { --bg-color: #121212; --card-bg: #1e1e1e; --text-main: #e0d6c2; --gold: #d4af37; }
+        :root { --bg-color: #121212; --card-bg: #1e1e1e; --text-main: #e0d6c2; --gold: #d4af37; --accent: #c0392b; }
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body { background-color: var(--bg-color); color: var(--text-main); font-family: 'Lato', sans-serif; padding: 20px 20px 50px 20px; max-width: 600px; margin: 0 auto; text-align: center; overflow-x: hidden; }
         h1 { font-family: 'Cinzel', serif; color: var(--gold); margin-bottom: 30px; font-size: 1.8rem; animation: fadeInTitle 1s ease-out; }
@@ -29,13 +29,13 @@
             pointer-events: none;
             font-size: 14px; padding: 4px 8px; white-space: nowrap;
         }
-        .long-memory { font-size: 11px !important; }
-        .final-text { font-family: 'Cinzel', serif; font-weight: bold; font-size: 1.4rem; line-height: 1.8; color: var(--gold); text-shadow: 1px 1px 4px #000; margin-top: 40px; opacity: 0; animation: popIn 1s forwards; }
+        .final-text { font-family: 'Cinzel', serif; font-weight: bold; font-size: 1.1rem; line-height: 1.6; color: var(--gold); text-shadow: 1px 1px 4px #000; margin-top: 40px; opacity: 0; animation: popIn 1s forwards; }
         .btn-restart { display: inline-block; padding: 12px 25px; background-color: transparent; border: 1px solid #555; color: #888; font-size: 0.9rem; border-radius: 8px; margin-top: 30px; font-family: 'Cinzel', serif; transition: all 0.3s; cursor: pointer; opacity: 0; animation: popIn 1s forwards; }
         .btn-restart:hover { border-color: var(--gold); color: var(--gold); }
         .btn-disabled { border-color: #333; color: #333; cursor: default; pointer-events: none; }
+        
         .post-credits { margin-top: 60px; padding-top: 40px; border-top: 1px solid #333; opacity: 0; animation: fadeInPostCredits 2s forwards; }
-        .post-credits h2 { font-family: 'Cinzel', serif; font-style: italic; color: #ccc; margin-bottom: 20px; font-size: 1.2rem; }
+        .post-credits h2 { font-family: 'Cinzel', serif; color: var(--gold); margin-bottom: 20px; font-size: 1.2rem; }
         .promo-card { background-color: var(--card-bg); border-radius: 10px; overflow: hidden; text-align: center; }
         .promo-card img { width: 100%; height: 180px; object-fit: cover; display: block; }
         .promo-content { padding: 20px; }
@@ -43,6 +43,10 @@
         .promo-content p { color: #aaa; font-size: 0.9rem; line-height: 1.6; }
         .promo-button { display: inline-block; margin-top: 20px; padding: 12px 30px; background-color: var(--gold); color: #111; text-decoration: none; font-family: 'Cinzel', serif; font-weight: bold; border-radius: 5px; transition: transform 0.2s; }
         .promo-button:hover { transform: scale(1.05); }
+        
+        #descuento-box { display: none; margin-top: 30px; padding: 25px; border: 2px dashed var(--gold); border-radius: 12px; background: rgba(212, 175, 55, 0.05); }
+        .google-btn { display: inline-block; margin-top: 20px; padding: 15px 30px; background-color: var(--accent); color: white; text-decoration: none; font-family: 'Cinzel', serif; font-weight: bold; border-radius: 5px; transition: transform 0.2s; }
+        
         @keyframes fadeInTitle { from { opacity: 0; } to { opacity: 1; } }
         @keyframes popIn { from { opacity: 0; transform: scale(0.8); } to { opacity: 1; transform: scale(1); } }
         @keyframes fadeInPostCredits { from { opacity: 0; } to { opacity: 1; } }
@@ -55,33 +59,42 @@
 <body>
     <header><h1>El Mosaic de la Història</h1></header>
     <div class="mosaic-grid">
-        <div class="mosaic-item item-1" data-memory="BARCINO"><div class="zoom-container"><img src="../imagenes/roma.jpg" alt="Roma"><div class="mosaic-item-overlay"><span class="mosaic-item-title">ROMA</span></div><div class="memory-text"></div></div></div>
-        <div class="mosaic-item item-2" data-memory="MARTI5"><div class="zoom-container"><img src="../imagenes/visigodos.jpg" alt="Visigots"><div class="mosaic-item-overlay"><span class="mosaic-item-title">VISIGOTS</span></div><div class="memory-text"></div></div></div>
-        <div class="mosaic-item item-3" data-memory="1008"><div class="zoom-container"><img src="../imagenes/alandalus.jpg" alt="Al-Àndalus"><div class="mosaic-item-overlay"><span class="mosaic-item-title">AL-ÀNDALUS</span></div><div class="memory-text"></div></div></div>
-        <div class="mosaic-item item-4" data-memory="4171"><div class="zoom-container"><img src="../imagenes/gotico.jpg" alt="Gòtic"><div class="mosaic-item-overlay"><span class="mosaic-item-title">GÒTIC</span></div><div class="memory-text"></div></div></div>
-        <div class="mosaic-item item-5" data-memory="72"><div class="zoom-container"><img src="../imagenes/call.jpg" alt="El Call"><div class="mosaic-item-overlay"><span class="mosaic-item-title">EL CALL</span></div><div class="memory-text"></div></div></div>
-        <div class="mosaic-item item-6" data-memory="2TESCUT"><div class="zoom-container"><img src="../imagenes/ardiaca.jpg" alt="Renaixement"><div class="mosaic-item-overlay"><span class="mosaic-item-title">RENAIXEMENT</span></div><div class="memory-text long-memory"></div></div></div>
-        <div class="mosaic-item item-7" data-memory="PADELLAS"><div class="zoom-container"><img src="../imagenes/veguer.jpg" alt="Il·lustració"><div class="mosaic-item-overlay"><span class="mosaic-item-title">IL·LUSTRACIÓ</span></div><div class="memory-text long-memory"></div></div></div>
-        <div class="mosaic-item item-8" data-memory="OCTÀGON"><div class="zoom-container"><img src="../imagenes/felipneri.jpg" alt="Guerra Civil"><div class="mosaic-item-overlay"><span class="mosaic-item-title">GUERRA CIVIL</span></div><div class="memory-text long-memory"></div></div></div>
-        <div class="mosaic-item item-9" data-memory="BARCELONA"><div class="zoom-container"><img src="../imagenes/santjaume.jpg" alt="Present"><div class="mosaic-item-overlay"><span class="mosaic-item-title">PRESENT</span></div><div class="memory-text long-memory"></div></div></div>
+        <div class="mosaic-item item-1" data-memory="BARCINO"><div class="zoom-container"><img src="../imagenes/roma.jpg"><div class="mosaic-item-overlay"><span class="mosaic-item-title">ROMA</span></div><div class="memory-text"></div></div></div>
+        <div class="mosaic-item item-2" data-memory="MARTI5"><div class="zoom-container"><img src="../imagenes/visigodos.jpg"><div class="mosaic-item-overlay"><span class="mosaic-item-title">VISIGOTS</span></div><div class="memory-text"></div></div></div>
+        <div class="mosaic-item item-3" data-memory="1008"><div class="zoom-container"><img src="../imagenes/alandalus.jpg"><div class="mosaic-item-overlay"><span class="mosaic-item-title">AL-ÁNDALUS</span></div><div class="memory-text"></div></div></div>
+        <div class="mosaic-item item-4" data-memory="4171"><div class="zoom-container"><img src="../imagenes/gotico.jpg"><div class="mosaic-item-overlay"><span class="mosaic-item-title">GÓTIC</span></div><div class="memory-text"></div></div></div>
+        <div class="mosaic-item item-5" data-memory="72"><div class="zoom-container"><img src="../imagenes/call.jpg"><div class="mosaic-item-overlay"><span class="mosaic-item-title">EL CALL</span></div><div class="memory-text"></div></div></div>
+        <div class="mosaic-item item-6" data-memory="2TESCUT"><div class="zoom-container"><img src="../imagenes/ardiaca.jpg"><div class="mosaic-item-overlay"><span class="mosaic-item-title">RENAIXEMENT</span></div><div class="memory-text"></div></div></div>
+        <div class="mosaic-item item-7" data-memory="PADELLAS"><div class="zoom-container"><img src="../imagenes/veguer.jpg"><div class="mosaic-item-overlay"><span class="mosaic-item-title">ILUSTRACIÓ</span></div><div class="memory-text"></div></div></div>
+        <div class="mosaic-item item-8" data-memory="OCTàGON"><div class="zoom-container"><img src="../imagenes/felipneri.jpg"><div class="mosaic-item-overlay"><span class="mosaic-item-title">GUERRA CIVIL</span></div><div class="memory-text"></div></div></div>
+        <div class="mosaic-item item-9" data-memory="BARCELONA"><div class="zoom-container"><img src="../imagenes/santjaume.jpg"><div class="mosaic-item-overlay"><span class="mosaic-item-title">PRESENT</span></div><div class="memory-text"></div></div></div>
     </div>
     <div class="final-text">"Has desxifrat la pedra, has llegit el temps.<br>El Manuscrit ja no és un secret de la ciutat,<br>ara és part de la teva memòria."</div>
-    <button id="final-btn" class="btn-restart" onclick="closeBook()">Tancar el Manuscrit</button>
+    
     <div class="post-credits">
-        <h2>Però la història de Barcelona... no ha acabat.</h2>
-        <div class="promo-card">
-            <img src="../imagenes/tesoro-barcino.jpg" alt="El Tresor de Barcino">
-            <div class="promo-content">
-                <h3>La Teva Pròxima Aventura:<br>El Tresor de Barcino</h3>
-                <p>Un important cònsol de Bàrcino, Luci Minici Natal, ha desaparegut. El seu millor amic rep una estranya carta que parla d'un secret: "El Tresor de Barcino". Quin misteri s'amaga entre les muralles de la Barcelona romana?</p>
-                <a href="https://otiumescaperoom.es/producto/el-tesoro-de-barcino/" target="_blank" class="promo-button">Descobrir la Meva Pròxima Missió</a>
+        <h2>¿Ens ajudes al fet que altres arqueòlegs trobin el camí?</h2>
+        <p>Valora la teva aventura en Google i desbloqueja un <strong>10% de descompte</strong> per a la teva pròxima expedició.</p>
+        <a href="https://g.page/r/CWyNVR5O9gRyEBE/review" target="_blank" class="google-btn" onclick="mostrarDescuento()">VALORAR EN GOOGLE</a>
+        
+        <div id="descuento-box">
+            <h3>Gràcies pel teu suport!</h3>
+            <p>Aquí tens el teu codi de descompte:</p>
+            <p style="font-size: 2.5rem; color: var(--gold); font-family: 'Cinzel', serif; margin: 10px 0;">OBC10</p>
+            <div class="promo-card">
+                <img src="../imagenes/tesoro-barcino.jpg">
+                <div class="promo-content">
+                    <h3>El Tresor de Barcino</h3>
+                    <a href="https://otiumescaperoom.es/producto/el-tesoro-de-barcino/" target="_blank" class="promo-button">Usar descompte</a>
+                </div>
             </div>
         </div>
     </div>
+
+    <button id="final-btn" class="btn-restart" onclick="closeBook()">Tancar el Manuscrit</button>
+
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const items = document.querySelectorAll('.mosaic-item');
-            const grid = document.querySelector('.mosaic-grid');
             items.forEach(item => {
                 item.addEventListener('animationend', (event) => {
                     if (event.animationName === 'popIn') {
@@ -113,12 +126,8 @@
                 });
             });
         });
-        function closeBook() {
-            localStorage.removeItem('progresoJuego');
-            const btn = document.getElementById('final-btn');
-            btn.textContent = "El manuscrit s'ha tancat.";
-            btn.classList.add('btn-disabled');
-        }
+        function mostrarDescuento() { document.getElementById('descuento-box').style.display = 'block'; }
+        function closeBook() { localStorage.removeItem('progresoJuego'); const btn = document.getElementById('final-btn'); btn.textContent = "El manuscrito se ha cerrado."; btn.classList.add('btn-disabled'); }
     </script>
 </body>
 </html>

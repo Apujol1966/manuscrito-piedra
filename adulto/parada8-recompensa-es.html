@@ -6,7 +6,6 @@
     <meta name="google" content="notranslate">
     <title>Capítulo VIII: Guerra Civil - Descubierto</title>
     
-    <!-- CARGA DE CONFIGURACIÓN Y FUNCIONES -->
     <script src="../config.js"></script>
     <script src="../manuscrito-funciones.js"></script>
     <script>verificarAcceso();</script>
@@ -16,34 +15,14 @@
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Lato:wght@400;700&display=swap" rel="stylesheet">
     
     <style>
-        /* TU CSS ORIGINAL INTACTO */
         :root { --bg-color: #121212; --card-bg: #1e1e1e; --text-main: #e0d6c2; --text-muted: #a8a095; --accent: #c0392b; --success: #27ae60; }
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body { background-color: var(--bg-color); color: var(--text-main); font-family: 'Lato', sans-serif; line-height: 1.6; padding: 20px; max-width: 600px; margin: 0 auto; }
         h1, h2, h3, h4 { font-family: 'Cinzel', serif; color: #fff; letter-spacing: 1px; }
         h1 { font-size: 1.8rem; text-align: center; margin-bottom: 25px; }
         
-        /* AJUSTE DE FOTOS CORREGIDO */
-        .img-container { 
-            width: 100%; 
-            height: auto;
-            max-height: 450px; 
-            background-color: #000; 
-            border-radius: 8px; 
-            margin-bottom: 20px; 
-            overflow: hidden; 
-            border: 1px solid #444; 
-            display: flex; 
-            align-items: center; 
-            justify-content: center; 
-        }
-        .img-container img { 
-            width: 100%; 
-            height: auto; 
-            max-height: 450px;
-            object-fit: contain; 
-            display: block; 
-        }
+        .img-container { width: 100%; height: auto; max-height: 450px; background-color: #000; border-radius: 8px; margin-bottom: 20px; overflow: hidden; border: 1px solid #444; display: flex; align-items: center; justify-content: center; }
+        .img-container img { width: 100%; height: auto; max-height: 450px; object-fit: contain; display: block; }
 
         .card { background-color: var(--card-bg); padding: 20px; border-radius: 12px; margin-bottom: 20px; box-shadow: 0 4px 6px rgba(0,0,0,0.3); }
         .btn { width: 100%; padding: 15px 20px; font-size: 1rem; font-weight: bold; text-transform: uppercase; border: none; border-radius: 8px; cursor: pointer; font-family: 'Cinzel', serif; text-decoration: none; display: inline-block; text-align: center; margin-top: 10px; }
@@ -60,18 +39,14 @@
         .feedback-success { text-align: center; font-weight: bold; color: var(--success); font-size: 1.2rem; margin-bottom: 20px; animation: fadeIn 1s ease-in; }
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
         
-        /* MODALES */
         .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.85); display: none; align-items: center; justify-content: center; z-index: 1000; padding: 20px; }
         .modal-content { background-color: var(--card-bg); padding: 30px; border-radius: 12px; text-align: center; width: 100%; max-width: 500px; border-top: 4px solid var(--accent); }
         .modal-input { width: 100%; padding: 10px; font-size: 1rem; background-color: #1a1a1a; border: 2px solid #444; color: white; border-radius: 8px; margin: 15px 0; text-align: center; }
-        #guardian-feedback { font-size: 0.9rem; color: var(--accent); min-height: 1.2em; margin-top: 10px; }
         .extra-hint-content { display: none; margin-top: 15px; padding-top: 15px; border-top: 1px dashed #444; }
         .btn-master { background-color: transparent; border: 1px solid var(--text-muted); color: var(--text-muted); font-size: 0.8rem; margin-top: 20px; text-decoration: none; display: inline-block; width: 100%; text-align: center; }
     </style>
 </head>
 <body>
-
-    <!-- MODAL DEL MASTER -->
     <div id="master-modal" class="modal-overlay" onclick="closeMasterModal()">
         <div class="modal-content" onclick="event.stopPropagation();">
             <h2 id="master-titulo" style="margin-bottom: 15px; font-family: 'Cinzel', serif; color: #fff;"></h2>
@@ -81,7 +56,6 @@
         </div>
     </div>
 
-    <!-- MODAL DEL GUARDIÁN -->
     <div id="guardian-modal" class="modal-overlay">
         <div class="modal-content">
             <h2>Prueba del Guardián</h2>
@@ -89,19 +63,19 @@
             <input type="text" id="guardian-answer" class="modal-input">
             <button id="guardian-submit" class="btn btn-primary">Validar</button>
             <div id="guardian-feedback"></div>
+            <button onclick="document.getElementById('guardian-modal').style.display='none'" class="btn-master" style="border:none; margin-top:10px; cursor:pointer;">Cancelar</button>
         </div>
     </div>
 
     <header><h1>Capítulo VIII: El Dolor de Barcelona</h1></header>
 
-    <!-- IMAGEN CON NOMBRE NEUTRO Y CSS CORREGIDO -->
     <div class="img-container">
         <img src="../imagenes/parada8-recompensa.jpg" alt="Recompensa Capítulo VIII">
     </div>
 
     <div id="reward-container">
         <div class="card">
-            <div class="feedback-success">OCTÓGONO. La forma del recuerdo.</div>
+            <div id="feedback-success" class="feedback-success"></div>
             
             <div class="knowledge-reward">
                 <h3>Lo que ocurrió aquí</h3>
@@ -111,7 +85,7 @@
             </div>
 
             <div id="next-clue-box">
-                <p><strong>PISTA FINAL:</strong><br>Sal del silencio y dirígete al corazón del poder, donde todo confluye. Debes llegar a la plaza donde se encuentran el Palau de la Generalitat y el Ayuntamiento. Allí terminará tu viaje.</p>
+                <p><strong>PISTA DE SALTO:</strong><br>Sal del silencio y dirígete al corazón del poder, donde todo confluye. Debes llegar a la plaza donde se encuentran el Palau de la Generalitat y el Ayuntamiento. Allí terminará tu viaje.</p>
                 
                 <button id="hint-btn-1" class="btn btn-secondary" onclick="askGuardian(1)">¿No sabes dónde ir? Pide una Pista Directa</button>
 
@@ -129,15 +103,18 @@
         </div>
     </div>
     
-    <!-- BOTÓN DE AVANCE CENTRALIZADO -->
     <button class="btn btn-success" onclick="avanzarA('parada9-enigma')">Iniciar Capítulo Final (Presente)</button>
-
-    <!-- BOTÓN DEL MASTER -->
     <button class="btn btn-master" onclick="openMasterModal()">🆘 Contacta con el Master</button>
 
     <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const resp = localStorage.getItem('respuesta_font') || "OCTÓGONO";
+            document.getElementById('feedback-success').textContent = resp + ". La forma del recuerdo.";
+            localStorage.removeItem('respuesta_font');
+        });
+
         const guardianPuzzles = [
-            { question: "¿Qué causó realmente los agujeros de la fachada, según el texto?", answer: "BOMBA" },
+            { question: "¿Qué causó realmente los agujeros de la fachada, según el texto?", answer: ["BOMBA", "METRALLA", "AVIACION"] },
             { question: "La pista final te envía al centro del poder político. ¿Cómo se llama la plaza?", answer: "SANT JAUME" }
         ];
         
@@ -165,9 +142,9 @@
             
             let isCorrect = false;
             if (levelToUnlock === 1) {
-                isCorrect = userAnswer.includes("BOMBA") || userAnswer.includes("METRALLA") || userAnswer.includes("AVIACION");
+                isCorrect = puzzle.answer.some(ans => userAnswer.includes(ans));
             } else {
-                isCorrect = userAnswer.includes("SANT JAUME") || userAnswer.includes("JAIME");
+                isCorrect = userAnswer.includes(puzzle.answer);
             }
 
             if (isCorrect) {
@@ -188,7 +165,6 @@
             }
         }
 
-        // FUNCIONES DEL MASTER
         function openMasterModal() { document.getElementById('master-modal').style.display = 'flex'; }
         function closeMasterModal() { document.getElementById('master-modal').style.display = 'none'; }
     </script>
