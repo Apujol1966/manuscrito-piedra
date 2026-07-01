@@ -62,11 +62,11 @@
         <main>
             <section class="card">
                 <p>"Bienvenido/a, Arqueólogo/a del Tiempo.<br>Sostienes en tus manos el mapa de una excavación única. No buscarás oro ni reliquias, sino algo mucho más valioso: la memoria de Barcelona, grabada en su piel de piedra."</p>
-                <p>"Hoy, tu misión es excavar sus secretos. No usarás un pico y una pala, sino tu ingenio. Tu trabajo será retirar el polvo de los siglos para revelar las marcas que cada civilización dejó atrás."</p>
+                <p>"Hoy, tu misión es <strong>desenterrar</strong> sus secretos. No usarás un pico y una pala, sino tu ingenio. Tu trabajo será retirar el polvo de los siglos para revelar las marcas que cada civilización dejó atrás."</p>
             </section>
 
             <div style="margin-top: 25px; padding-top: 25px; border-top: 1px solid #333; text-align: center;">
-                <h3 style="color: var(--text-muted); margin-bottom: 15px; font-size: 1rem;">Punto de Inicio: Plaça de Catalunya</h3>
+                <h3 style="color: var(--text-muted); margin-bottom: 15px; font-size: 1rem; text-align: center;">Punto de Inicio: Plaça de Catalunya</h3>
                 
                 <div id="hint-level-1">
                     <p>"Desde la gran plaza, dale la espalda al edificio con la manzana mordida y busca, al otro lado, la avenida peatonal coronada por un <strong>gigantesco termómetro</strong>. Ese termómetro es tu brújula. Desciende por esa avenida hasta topar con la imponente fachada de la <strong>Catedral</strong>. Tu primer yacimiento te espera justo <strong>FRENTE A TI</strong>, donde dos torres cuadradas montan guardia."</p>
@@ -110,7 +110,7 @@
 
         // Lógica del Guardián (Pistas de navegación)
         const guardianPuzzles = [ 
-            { question: "¿Cuál es tu misión?", answer: "EXCAVAR" }, 
+            { question: "¿Cuál es tu misión?", answer: "EXCAVAR/DESENTERRAR" }, 
             { question: "¿Qué objeto te servirá como 'brújula'?", answer: "TERMOMETRO" } 
         ];
         
@@ -128,7 +128,14 @@
             const puzzle = guardianPuzzles[levelToUnlock - 1]; 
             let userAnswer = document.getElementById('guardian-answer').value.toUpperCase().trim().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
 
-            if (userAnswer.includes(puzzle.answer)) { 
+            let esCorrecto = false;
+            if (levelToUnlock === 1) {
+                if (userAnswer.includes("EXCAVAR") || userAnswer.includes("DESENTERRAR")) { esCorrecto = true; }
+            } else {
+                if (userAnswer.includes(puzzle.answer)) { esCorrecto = true; }
+            }
+
+            if (esCorrecto) { 
                 document.getElementById('guardian-modal').style.display = 'none'; 
                 revealHint(levelToUnlock); 
             } else { 

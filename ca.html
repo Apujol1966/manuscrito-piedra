@@ -62,11 +62,11 @@
         <main>
             <section class="card">
                 <p>"Benvingut/da, Arqueòleg/a del Temps.<br>Sostens a les teves mans el mapa d'una excavació única. No buscaràs or ni relíquies, sinó quelcom molt més valuós: la memòria de Barcelona, gravada a la seva pell de pedra."</p>
-                <p>"Avui, la teva missió és excavar els seus secrets. No faràs servir un pic i una pala, sinó el teu enginy. La teva feina serà retirar la pols dels segles per revelar les marques que cada civilització va deixar enrere."</p>
+                <p>"Avui, la teva missió és <strong>desenterrar</strong> els seus secrets. No faràs servir un pic i una pala, sinó el teu enginy. La teva feina serà retirar la pols dels segles per revelar les marques que cada civilització va deixar enrere."</p>
             </section>
 
             <div style="margin-top: 25px; padding-top: 25px; border-top: 1px solid #333; text-align: center;">
-                <h3 style="color: var(--text-muted); margin-bottom: 15px; font-size: 1rem;">Punt d'Inici: Plaça de Catalunya</h3>
+                <h3 style="color: var(--text-muted); margin-bottom: 15px; font-size: 1rem; text-align: center;">Punt d'Inici: Plaça de Catalunya</h3>
                 
                 <div id="hint-level-1">
                     <p>"Des de la gran plaça, dona l'esquena a l'edifici amb la poma mossegada i busca, a l'altre costat, l'avinguda de vianants coronada per un <strong>termòmetre gegant</strong>. Aquest termòmetre és la teva brúixola. Baixa per aquesta avinguda fins a topar amb la imponent façana de la <strong>Catedral</strong>. El teu primer jaciment t'espera just <strong>DAVANT TEU</strong>, on dues torres quadrades fan guàrdia."</p>
@@ -110,7 +110,7 @@
 
         // Lògica del Guardià (Pistes de navegació)
         const guardianPuzzles = [ 
-            { question: "Quina és la teva missió?", answer: "EXCAVAR" }, 
+            { question: "Quina és la teva missió?", answer: "EXCAVAR/DESENTERRAR" }, 
             { question: "Quin objecte et servirà com a 'brúixola'?", answer: "TERMOMETRE" } 
         ];
         
@@ -128,7 +128,14 @@
             const puzzle = guardianPuzzles[levelToUnlock - 1]; 
             let userAnswer = document.getElementById('guardian-answer').value.toUpperCase().trim().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
 
-            if (userAnswer.includes(puzzle.answer)) { 
+            let esCorrecte = false;
+            if (levelToUnlock === 1) {
+                if (userAnswer.includes("EXCAVAR") || userAnswer.includes("DESENTERRAR")) { esCorrecte = true; }
+            } else {
+                if (userAnswer.includes(puzzle.answer)) { esCorrecte = true; }
+            }
+
+            if (esCorrecte) { 
                 document.getElementById('guardian-modal').style.display = 'none'; 
                 revealHint(levelToUnlock); 
             } else { 
